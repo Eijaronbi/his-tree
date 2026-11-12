@@ -1,0 +1,47 @@
+# Secrets: once pushed, it takes a rewrite to get them out.
+.env
+.env.*
+!.env.example
+*.pem
+
+# Builds and what they need. Builds go in a release, with pch publish, not in the repo.
+# A leading slash means at the top only, so a source folder with the same name further down stays.
+/dist/
+/build/
+/out/
+/target/
+/bin/Debug/
+/bin/Release/
+/obj/
+node_modules/
+__pycache__/
+.venv/
+
+# Godot
+.godot/
+
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Unreal
+/Binaries/
+/Intermediate/
+/Saved/
+/DerivedData/
+
+# Gradle, for Minecraft mods
+.gradle/
+/run/
+
+# Blender's backups
+*.blend1
+*.blend2
+
+# Editors and systems
+.idea/
+.DS_Store
+Thumbs.db
+*.log
