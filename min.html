@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>min</title>
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.js" } }</script>
+<style>body{margin:0;background:#123}canvas{display:block}</style></head>
+<body><script type="module">
+import * as THREE from 'three';
+const renderer = new THREE.WebGLRenderer({ antialias: false });
+renderer.setSize(640, 480);
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, 640 / 480, 0.1, 100);
+camera.position.set(2, 2, 3);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x223344, 1.2));
+const dir = new THREE.DirectionalLight(0xffffff, 2);
+dir.position.set(3, 5, 2);
+scene.add(dir);
+const mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({ color: 0xff8844 }));
+scene.add(mesh);
+let frames = 0;
+function loop() {
+  requestAnimationFrame(loop);
+  mesh.rotation.y += 0.02;
+  renderer.render(scene, camera);
+  frames++;
+  window.__min = { frames, lost: renderer.getContext().isContextLost() };
+}
+loop();
+</script></body></html>

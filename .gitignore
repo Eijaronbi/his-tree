@@ -45,3 +45,20 @@ __pycache__/
 .DS_Store
 Thumbs.db
 *.log
+
+# HIS-TREE specific
+# Source archives of generated models: the .glb is committed, the .zip is not.
+/assets/models/generated/*.zip
+# Pipeline output and local scratch
+/tools/out/
+/tools/renders/
+/tools/glb/
+/tools/q2/
+/tools/q3/
+/tools/unz/
+/tools/tex/
+# Credentials are never in the repo; they live in /data/home/.config/
+*.key
+api_key
+# Large generated videos are produced on demand, not stored
+/assets/cinematics/*.webm

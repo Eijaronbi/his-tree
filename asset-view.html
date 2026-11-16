@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>HIS-TREE asset view</title>
+<style>
+  html,body{margin:0;height:100%;background:#0b0906;overflow:hidden}
+  canvas{display:block;width:100%;height:100%}
+  #meta{position:fixed;left:18px;bottom:14px;color:#c9a34e;font:11px/1.5 Georgia,serif;
+        letter-spacing:.18em;text-transform:uppercase;opacity:.8;text-shadow:0 1px 4px #000}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="meta"></div>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const params = new URLSearchParams(location.search);
+const modelPath = params.get('m') || './assets/models/characters/lincoln_bust.glb';
+const rotY = parseFloat(params.get('r') || '0') * Math.PI / 180;
+const elev = parseFloat(params.get('e') || '8');
+const dist = parseFloat(params.get('d') || '3.1');
+const spin = params.get('spin') === '1';
+const spinRate = parseFloat(params.get('sr') || '0.006');
+const bg = params.get('bg') || 'studio';
+document.getElementById('meta').textContent = params.get('label') || modelPath.split('/').pop();
+
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('c'), antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+
+if (bg === 'studio') {
+  const pm = new THREE.PMREMGenerator(renderer);
+  scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.environmentIntensity = 0.55;
+  const c = document.createElement('canvas'); c.width = 32; c.height = 512;
+  const g = c.getContext('2d').createLinearGradient(0, 0, 0, 512);
+  g.addColorStop(0, '#2a2118'); g.addColorStop(0.55, '#171208'); g.addColorStop(1, '#070503');
+  const ctx = c.getContext('2d'); ctx.fillStyle = g; ctx.fillRect(0, 0, 32, 512);
+  const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+  scene.background = tex;
+} else {
+  scene.background = new THREE.Color(bg);
+}
+
+const camera = new THREE.PerspectiveCamera(34, innerWidth / innerHeight, 0.05, 100);
+
+const key = new THREE.DirectionalLight(0xffe6c2, 4.2);
+key.position.set(-3.2, 4.4, 4.0);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.near = 0.5; key.shadow.camera.far = 20;
+key.shadow.bias = -0.0006;
+scene.add(key);
+
+const fill = new THREE.DirectionalLight(0xbfd4ff, 1.15);
+fill.position.set(4.5, 1.6, 2.4);
+scene.add(fill);
+
+const rim = new THREE.DirectionalLight(0xffb070, 2.6);
+rim.position.set(1.2, 3.0, -4.6);
+scene.add(rim);
+
+scene.add(new THREE.HemisphereLight(0x6f7f9f, 0x1a1208, 0.55));
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.45 }));
+floor.rotation.x = -Math.PI / 2;
+floor.receiveShadow = true;
+scene.add(floor);
+
+const pivot = new THREE.Group();
+pivot.rotation.y = rotY;
+scene.add(pivot);
+
+const loader = new GLTFLoader();
+loader.load(modelPath, (gltf) => {
+  const root = gltf.scene;
+  const box = new THREE.Box3().setFromObject(root);
+  const size = new THREE.Vector3(); box.getSize(size);
+  const center = new THREE.Vector3(); box.getCenter(center);
+  const s = 2.0 / Math.max(size.x, size.y, size.z);
+  root.scale.setScalar(s);
+  box.setFromObject(root);
+  box.getCenter(center);
+  root.position.sub(center);
+  root.position.y += (size.y * s) / 2;
+  root.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  pivot.add(root);
+
+  const rad = dist;
+  const el = elev * Math.PI / 180;
+  camera.position.set(Math.sin(0) * rad, 1.0 + Math.sin(el) * rad, Math.cos(0) * rad);
+  camera.lookAt(0, 1.0, 0);
+  document.body.dataset.ready = '1';
+}, undefined, (e) => {
+  document.getElementById('meta').textContent = 'FAILED: ' + modelPath;
+  console.error(e);
+});
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+const t0 = performance.now();
+renderer.setAnimationLoop(() => {
+  if (spin) pivot.rotation.y += spinRate;
+  renderer.render(scene, camera);
+});
+</script>
+</body>
+</html>

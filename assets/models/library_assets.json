@@ -1,0 +1,104 @@
+{
+ "kenney:mini-characters/character-female-c.glb": {
+  "file": "assets/models/character-female-c.glb",
+  "bytes": 148364,
+  "license": "CC0-1.0",
+  "credit": "\"Character female c\" by Kenney (Kenney, https://kenney.nl/assets/mini-characters), licensed CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/). Changed by Patch: re-packed GLB, pivot moved to the bottom centre, credit added to the file, textures embedded, scaled \u00d72.4 to real-world size (calibrated on its wall (1 unit; about 2.4 m, which makes its characters about 1.8 m)).",
+  "source": {
+   "id": "kenney",
+   "name": "Kenney",
+   "ref": "mini-characters/character-female-c.glb",
+   "rev": "1.0",
+   "url": "https://kenney.nl/assets/mini-characters"
+  },
+  "capabilities": [
+   "visual",
+   "animated",
+   "rigged"
+  ]
+ },
+ "kenney:mini-characters/character-male-a.glb": {
+  "file": "assets/models/character-male-a.glb",
+  "bytes": 144788,
+  "license": "CC0-1.0",
+  "credit": "\"Character male a\" by Kenney (Kenney, https://kenney.nl/assets/mini-characters), licensed CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/). Changed by Patch: re-packed GLB, pivot moved to the bottom centre, credit added to the file, textures embedded, scaled \u00d72.4 to real-world size (calibrated on its wall (1 unit; about 2.4 m, which makes its characters about 1.8 m)), duplicate faces removed.",
+  "source": {
+   "id": "kenney",
+   "name": "Kenney",
+   "ref": "mini-characters/character-male-a.glb",
+   "rev": "1.0",
+   "url": "https://kenney.nl/assets/mini-characters"
+  },
+  "capabilities": [
+   "visual",
+   "animated",
+   "rigged"
+  ]
+ },
+ "kenney:nature-kit/tree_palm.glb": {
+  "file": "assets/models/tree_palm.glb",
+  "bytes": 10412,
+  "license": "CC0-1.0",
+  "credit": "\"Tree palm\" by Kenney (Kenney, https://kenney.nl/assets/nature-kit), licensed CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/). Changed by Patch: re-packed GLB, pivot moved to the bottom centre, credit added to the file, scaled \u00d72.5 to real-world size (calibrated on the camp bed (0.75 units; about 1.9 m)), duplicate faces removed.",
+  "source": {
+   "id": "kenney",
+   "name": "Kenney",
+   "ref": "nature-kit/tree_palm.glb",
+   "rev": "1.0",
+   "url": "https://kenney.nl/assets/nature-kit"
+  },
+  "capabilities": [
+   "visual"
+  ]
+ },
+ "kenney:nature-kit/tree_palmTall.glb": {
+  "file": "assets/models/tree_palmTall.glb",
+  "bytes": 12912,
+  "license": "CC0-1.0",
+  "credit": "\"Tree palm tall\" by Kenney (Kenney, https://kenney.nl/assets/nature-kit), licensed CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/). Changed by Patch: re-packed GLB, pivot moved to the bottom centre, credit added to the file, scaled \u00d72.5 to real-world size (calibrated on the camp bed (0.75 units; about 1.9 m)).",
+  "source": {
+   "id": "kenney",
+   "name": "Kenney",
+   "ref": "nature-kit/tree_palmTall.glb",
+   "rev": "1.0",
+   "url": "https://kenney.nl/assets/nature-kit"
+  },
+  "capabilities": [
+   "visual"
+  ]
+ },
+ "polyfork:camel-base": {
+  "file": "assets/models/camel-base.glb",
+  "bytes": 1719300,
+  "license": "CC-BY-4.0",
+  "credit": "Camel by Polyfork (https://polyfork.dev/asset/camel-base), CC BY 4.0. Licence: https://creativecommons.org/licenses/by/4.0/. Changed by Patch: a compressed preview copy added for the viewer (web and src are as published).",
+  "source": {
+   "id": "polyfork",
+   "name": "Polyfork",
+   "ref": "camel-base",
+   "rev": "88afdeb0a175290c",
+   "url": "https://polyfork.dev/asset/camel-base"
+  },
+  "capabilities": [
+   "visual",
+   "rigged",
+   "animated"
+  ]
+ },
+ "polyfork:market-stall-94937d": {
+  "file": "assets/models/market-stall-94937d.glb",
+  "bytes": 68548,
+  "license": "CC-BY-4.0",
+  "credit": "Market Stall by Polyfork (https://polyfork.dev/asset/market-stall-94937d), CC BY 4.0. Licence: https://creativecommons.org/licenses/by/4.0/. Changed by Patch: a compressed preview copy added for the viewer (web and src are as published).",
+  "source": {
+   "id": "polyfork",
+   "name": "Polyfork",
+   "ref": "market-stall-94937d",
+   "rev": "0b64e308814f83ac",
+   "url": "https://polyfork.dev/asset/market-stall-94937d"
+  },
+  "capabilities": [
+   "visual"
+  ]
+ }
+}

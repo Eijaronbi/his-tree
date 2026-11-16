@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>HIS-TREE — Episode I: The Golden Empire</title>
+<style>
+  :root { --ochre:#d9a441; --ink:#2b1a0e; --sand:#e8d3ae; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; background:#1a1208; color:var(--sand);
+    font-family:Georgia,'Times New Roman',serif; }
+  #scene { display:block; width:100%; height:100%; touch-action:none; }
+  #hud { position:fixed; inset:0; pointer-events:none; }
+  #chapter { position:absolute; top:18px; left:22px; letter-spacing:.32em; font-size:11px;
+    text-transform:uppercase; color:var(--ochre); text-shadow:0 1px 3px #000; }
+  #objective { position:absolute; top:42px; left:22px; max-width:320px; font-size:13px; line-height:1.5;
+    text-shadow:0 1px 4px #000; opacity:.92; }
+  #stats { position:absolute; bottom:16px; left:22px; font-size:11px; letter-spacing:.12em;
+    opacity:.65; text-shadow:0 1px 3px #000; }
+  #hint { position:absolute; bottom:16px; right:22px; font-size:11px; letter-spacing:.1em;
+    opacity:.65; text-shadow:0 1px 3px #000; }
+  #toast { position:absolute; left:50%; bottom:11%; transform:translateX(-50%); padding:9px 20px;
+    background:rgba(20,12,5,.72); border:1px solid rgba(217,164,65,.45); font-size:13px;
+    letter-spacing:.08em; opacity:0; transition:opacity .35s; }
+  #title { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:18px; background:radial-gradient(circle at 50% 38%, #3a2712 0%, #120c05 70%);
+    z-index:10; transition:opacity .8s; }
+  #title h1 { font-size:clamp(30px,7vw,62px); letter-spacing:.3em; font-weight:400; color:var(--ochre);
+    text-shadow:0 3px 22px #000; }
+  #title h2 { font-size:clamp(12px,2.4vw,17px); letter-spacing:.42em; font-weight:400; opacity:.85; }
+  #title p { max-width:520px; text-align:center; font-size:13px; line-height:1.7; opacity:.7; padding:0 24px; }
+  #start { pointer-events:auto; margin-top:8px; padding:12px 34px; border:1px solid var(--ochre);
+    background:transparent; color:var(--ochre); font-family:inherit; font-size:13px; letter-spacing:.28em;
+    text-transform:uppercase; cursor:pointer; transition:.25s; }
+  #start:hover { background:var(--ochre); color:#1a1208; }
+  #loading { position:fixed; inset:auto 0 0 0; height:2px; width:0%; background:var(--ochre);
+    transition:width .3s; z-index:11; }
+  #touch { position:fixed; inset:0; display:none; z-index:9; }
+  body.touch #touch { display:block; }
+  #stick { position:absolute; left:28px; bottom:36px; width:132px; height:132px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.25); }
+  #knob { position:absolute; left:50%; top:50%; width:54px; height:54px; margin:-27px 0 0 -27px;
+    border-radius:50%; background:rgba(217,164,65,.55); }
+  #btnRun { position:absolute; right:28px; bottom:36px; width:84px; height:84px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
+    font-size:11px; letter-spacing:.16em; display:flex; align-items:center; justify-content:center; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div id="hud">
+  <div id="chapter">Episode I — The Golden Empire</div>
+  <div id="objective">Find the market quarter. Ask the salt merchant about the gold route.</div>
+  <div id="stats"></div>
+  <div id="hint">WASD move · Shift run · Mouse look · M music · Esc release</div>
+  <div id="toast"></div>
+</div>
+<div id="touch"><div id="stick"><div id="knob"></div></div><div id="btnRun">RUN</div></div>
+<div id="title" style="display:none">
+  <h1>HIS-TREE</h1>
+  <h2>EPISODE I &nbsp;·&nbsp; THE GOLDEN EMPIRE</h2>
+  <p>Mansa Musa&rsquo;s Mali, 1324. The Sahara road is open and the empire is rich in gold.
+     Walk the market of Djenn&eacute;-like earth, speak with its people, and decide what history
+     will remember of you.</p>
+  <button id="start">Begin</button>
+</div>
+<div id="loading"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
