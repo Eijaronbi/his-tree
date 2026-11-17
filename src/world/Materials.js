@@ -107,19 +107,21 @@ export function velvetMaterial(color = 0x6e2b2a) {
 
 
 export function theatreWoodMaterial() {
-  return pbrMat({ set: 'wood_floor', normalScale: 1.15, roughness: 1, color: 0xd9c6b0 });
+  const m = pbrMat({ set: 'wood_floor', normalScale: 1.15, roughness: 1, color: 0x9c7d5e });
+  return m;
 }
 
 export function theatrePlasterMaterial() {
-  return pbrMat({ set: 'worn_plaster_wall', normalScale: 0.9, roughness: 1, color: 0xf0e6d4 });
+  const m = pbrMat({ set: 'worn_plaster_wall', normalScale: 0.9, roughness: 1, color: 0x8d7d68 });
+  return m;
 }
 
-export function theatreVelvetMaterial(color = 0xffffff) {
+export function theatreVelvetMaterial(color = 0x7d2a33) {
   const m = pbrMat({ set: 'velour_velvet', normalScale: 1.0, roughness: 1 });
   m.color = new THREE.Color(color);
   m.sheen = 0.85;
-  m.sheenRoughness = 0.5;
-  m.sheenColor = new THREE.Color(0xd06a6a);
+  m.sheenRoughness = 0.62;
+  m.sheenColor = new THREE.Color(0xa9575c);
   return m;
 }
 

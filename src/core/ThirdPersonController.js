@@ -8,9 +8,9 @@ export class ThirdPersonController {
     this.input = input;
     this.groundY = groundY;
     this.yaw = Math.PI;
-    this.pitch = 0.28;
-    this.distance = 6.4;
-    this.height = 2.5;
+    this.pitch = 0.20;
+    this.distance = 4.4;
+    this.height = 1.35;
     this.speedWalk = 3.1;
     this.speedRun = 6.2;
     this.velocity = new THREE.Vector3();
@@ -58,7 +58,7 @@ export class ThirdPersonController {
     const speed = this.input.run ? this.speedRun : this.speedWalk;
 
     const forward = new THREE.Vector3(Math.sin(this.yaw), 0, Math.cos(this.yaw));
-    const right = new THREE.Vector3(forward.z, 0, -forward.x);
+    const right = new THREE.Vector3(-forward.z, 0, forward.x);
     const desired = new THREE.Vector3()
       .addScaledVector(forward, axis.y)
       .addScaledVector(right, axis.x);

@@ -8,9 +8,9 @@ export function buildHall1865(scene) {
   scene.add(group);
 
   const wood = theatreWoodMaterial();
-  const velvet = theatreVelvetMaterial(0xffffff);
+  const velvet = theatreVelvetMaterial(0x8a3038);
   const plaster = theatrePlasterMaterial();
-  const wool = carpetMaterial(0x8a6a52);
+  const wool = carpetMaterial(0x634c3a);
   const cloth = clothMaterial(0x8f2f28, false);
   const gold = goldMaterial();
 
@@ -67,15 +67,18 @@ export function buildHall1865(scene) {
     return t;
   })();
   const backdrop = new THREE.Mesh(
-    new THREE.PlaneGeometry(W - 6, 6.5),
-    new THREE.MeshStandardMaterial({ map: backdropTex, roughness: 1, metalness: 0 })
+    new THREE.PlaneGeometry(17.5, 5.2),
+    new THREE.MeshStandardMaterial({
+      map: backdropTex, emissive: 0xffffff, emissiveMap: backdropTex, emissiveIntensity: 0.20,
+      roughness: 1, metalness: 0, color: 0x8d8578
+    })
   );
-  backdrop.position.set(0, 4.4, -D / 2 + 1.1);
+  backdrop.position.set(0, 3.4, -D / 2 + 1.1);
   backdrop.userData.noTileUV = true;
   group.add(backdrop);
 
   // heavy velvet drapes at the stage opening, with folded geometry
-  const curtainMat = theatreVelvetMaterial(0x8a2028);
+  const curtainMat = theatreVelvetMaterial(0x6b1a22);
   const makeCurtain = (w, h, folds, amp) => {
     const g = new THREE.PlaneGeometry(w, h, 64, 10);
     const pos = g.attributes.position;
@@ -163,10 +166,10 @@ export function buildHall1865(scene) {
     group.add(m);
   }
   const crowdMats = [0x241f1b, 0x2e2721, 0x1e1b18].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.94, metalness: 0 }));
-  const skinMat = new THREE.MeshStandardMaterial({ color: 0x9a7b62, roughness: 0.72 });
+  const skinMat = new THREE.MeshStandardMaterial({ color: 0x6f5747, roughness: 0.72 });
   const torsoGeo = new RoundedBoxGeometry(0.48, 0.6, 0.34, 2, 0.09);
   const shoulderGeo = new RoundedBoxGeometry(0.6, 0.16, 0.36, 2, 0.07);
-  const headGeo = new THREE.SphereGeometry(0.115, 10, 8);
+  const headGeo = new THREE.SphereGeometry(0.098, 10, 8);
   const hatGeo = new THREE.CylinderGeometry(0.1, 0.13, 0.12, 10);
   let seatIndex = 0;
   for (let r = 0; r < 9; r++) {
@@ -204,8 +207,8 @@ export function buildHall1865(scene) {
   }
 
   const aisle = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.03, D - 4), wool);
-  aisle.rotation.x = -Math.PI / 2;
   aisle.position.set(0, 0.02, 1);
+  aisle.receiveShadow = true;
   group.add(aisle);
 
   // presidential box (right side, elevated)
@@ -243,12 +246,12 @@ export function buildHall1865(scene) {
     bust.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
     bustPivot.add(bust);
 
-    const key = new THREE.SpotLight(0xffe3bd, 90, 9, 0.6, 0.55, 1.6);
+    const key = new THREE.SpotLight(0xffe3bd, 182, 9, 0.6, 0.55, 1.6);
     key.position.set(W / 2 - 3.0, 9.4, -D / 2 + 7.2);
     key.target = bustPivot;
     scene.add(key);
     scene.add(key.target);
-    const rim = new THREE.PointLight(0xffb070, 26, 6, 1.8);
+    const rim = new THREE.PointLight(0x7fa6cc, 47, 6, 1.9);
     rim.position.set(W / 2 - 5.0, 7.0, -D / 2 + 10.6);
     scene.add(rim);
   }, undefined, (e) => console.warn('bust load failed', e));
@@ -270,7 +273,7 @@ export function buildHall1865(scene) {
     flame.scale.set(0.7, 1.5, 0.7);
     flame.position.set(x, 4.9, -D / 2 + 0.72);
     group.add(flame);
-    const gl = new THREE.PointLight(0xffb066, 26, 13, 1.6);
+    const gl = new THREE.PointLight(0xffb066, 26, 7.0, 2.0);
     gl.position.set(x, 4.9, -D / 2 + 1.1);
     group.add(gl);
     lights.push(gl);
@@ -322,12 +325,32 @@ export function buildHall1865(scene) {
     lights.push(l);
     return l;
   };
-  addLight(new THREE.Vector3(0, 9.2, 2), 320, 0xffb56a, 44);
-  addLight(new THREE.Vector3(-11, 3.4, -6), 120, 0xffb56a, 26);
-  addLight(new THREE.Vector3(11, 3.4, -6), 120, 0xffb56a, 26);
-  addLight(new THREE.Vector3(W / 2 - 3.4, 6.4, -D / 2 + 8), 110, 0xffc27a, 18);
-  addLight(new THREE.Vector3(0, 6.5, -D / 2 + 6), 200, 0xffcf96, 30);
-  addLight(new THREE.Vector3(0, 4.2, 12), 90, 0xffb56a, 26);
+  addLight(new THREE.Vector3(0, 9.2, 2), 234, 0xffc98a, 22);
+  addLight(new THREE.Vector3(-11, 3.4, -6), 52, 0xffb56a, 13);
+  addLight(new THREE.Vector3(11, 3.4, -6), 52, 0xffb56a, 13);
+  addLight(new THREE.Vector3(W / 2 - 3.4, 6.4, -D / 2 + 8), 91, 0xffc27a, 12);
+  addLight(new THREE.Vector3(0,  6.5, -D / 2 + 6), 182, 0xffcf96, 18);
+  addLight(new THREE.Vector3(0, 4.2, 12), 68, 0x6f95a8, 26);
+
+  const stageKey = new THREE.SpotLight(0xffe0b4, 676, 46, 0.60, 0.80, 1.6);
+  stageKey.position.set(0, 11.5, -2.0);
+  stageKey.target.position.set(0, 1.6, -15.0);
+  stageKey.castShadow = true;
+  stageKey.shadow.mapSize.set(1024, 1024);
+  stageKey.shadow.camera.near = 2;
+  stageKey.shadow.camera.far = 46;
+  stageKey.shadow.bias = -0.0014;
+  stageKey.shadow.normalBias = 0.03;
+  group.add(stageKey, stageKey.target);
+
+  const stageRim = new THREE.SpotLight(0x86a8d6, 312, 40, 0.95, 0.85, 1.7);
+  stageRim.position.set(-15.0, 9.0, -16.6);
+  stageRim.target.position.set(0, 3.4, -12.6);
+  group.add(stageRim, stageRim.target);
+
+  const houseFill = new THREE.PointLight(0x39606b, 42, 42, 1.8);
+  houseFill.position.set(0, 7.6, 10.0);
+  group.add(houseFill);
 
   // footlights along the stage lip
   const footMat = new THREE.MeshBasicMaterial({ color: 0xffd9a0 });
@@ -338,7 +361,7 @@ export function buildHall1865(scene) {
     f.position.set(x, 1.02, -D / 2 + 6.9);
     group.add(f);
   }
-  addLight(new THREE.Vector3(0, 1.2, -D / 2 + 7.4), 70, 0xffc27a, 12);
+  addLight(new THREE.Vector3(0, 1.2, -D / 2 + 7.4), 130, 0xffc27a, 11);
 
   // shallow steps up to the stage
   for (let i = 0; i < 2; i++) {

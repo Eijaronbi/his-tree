@@ -1,0 +1,213 @@
+[
+ {
+  "id": "player_1865",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.8,
+  "skin": "skins/middleage_caucasian_male/middleage_lightskinned_male_diffuse.png",
+  "hair": "short02",
+  "hair_tex": "hair/short02/short02_diffuse.png",
+  "clothes": "male_elegantsuit01",
+  "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "parker",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.78,
+  "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+  "hair": "short03",
+  "hair_tex": "hair/short03/short03_diffuse.png",
+  "clothes": "male_elegantsuit01",
+  "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "grant",
+  "macro": "caucasian-male-old",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.83,
+  "skin": "skins/old_caucasian_male/old_lightskinned_male_diffuse.png",
+  "hair": "short04",
+  "hair_tex": "hair/short04/short04_diffuse.png",
+  "clothes": "male_elegantsuit01",
+  "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "booth",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.75,
+  "skin": "skins/young_caucasian_male2/young_lightskinned_male_diffuse2.png",
+  "hair": "short01",
+  "hair_tex": "hair/short01/short01_diffuse.png",
+  "clothes": "male_casualsuit02",
+  "clothes_tex": "clothes/male_casualsuit02/male_casualsuit02_diffuse.png",
+  "clothes_normal": "clothes/male_casualsuit02/male_casualsuit02_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "amina",
+  "macro": "african-female-young",
+  "sex": "female",
+  "build": "minmuscle-minweight",
+  "height": 1.66,
+  "skin": "skins/young_african_female/young_darkskinned_female_diffuse.png",
+  "hair": "long01",
+  "hair_tex": "hair/long01/long01_diffuse.png",
+  "clothes": "female_casualsuit01",
+  "clothes_tex": "clothes/female_casualsuit01/female_casualsuit01_diffuse.png",
+  "clothes_normal": "clothes/female_casualsuit01/female_casualsuit01_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "bakary",
+  "macro": "african-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.79,
+  "skin": "skins/young_african_male/young_darkskinned_male_diffuse.png",
+  "hair": "short02",
+  "hair_tex": "hair/short02/short02_diffuse.png",
+  "clothes": "male_casualsuit02",
+  "clothes_tex": "clothes/male_casualsuit02/male_casualsuit02_diffuse.png",
+  "clothes_normal": "clothes/male_casualsuit02/male_casualsuit02_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "salim",
+  "macro": "african-male-old",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.71,
+  "skin": "skins/old_african_male/old_darkskinned_male_diffuse.png",
+  "hair": "short04",
+  "hair_tex": "hair/short04/short04_diffuse.png",
+  "clothes": "male_elegantsuit01",
+  "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "musa",
+  "macro": "african-male-old",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.82,
+  "skin": "skins/old_african_male/old_darkskinned_male_diffuse.png",
+  "hair": "short04",
+  "hair_tex": "hair/short04/short04_diffuse.png",
+  "clothes": "male_casualsuit05",
+  "clothes_tex": "clothes/male_casualsuit05/male_casualsuit05_diffuse.png",
+  "clothes_normal": "clothes/male_casualsuit05/male_casualsuit05_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "sergeant",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.77,
+  "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+  "hair": "short02",
+  "hair_tex": "hair/short02/short02_diffuse.png",
+  "clothes": "male_worksuit01",
+  "clothes_tex": "clothes/male_worksuit01/male_worksuit01_diffuse.png",
+  "clothes_normal": "clothes/male_worksuit01/male_worksuit01_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "miep",
+  "macro": "caucasian-female-young",
+  "sex": "female",
+  "build": "minmuscle-minweight",
+  "height": 1.63,
+  "skin": "skins/young_caucasian_female/young_lightskinned_female_diffuse.png",
+  "hair": "bob01",
+  "hair_tex": "hair/bob01/bob01_diffuse.png",
+  "clothes": "female_casualsuit02",
+  "clothes_tex": "clothes/female_casualsuit02/female_casualsuit02_diffuse.png",
+  "clothes_normal": "clothes/female_casualsuit02/female_casualsuit02_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "stasi",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.8,
+  "skin": "skins/middleage_caucasian_male/middleage_lightskinned_male_diffuse.png",
+  "hair": "short02",
+  "hair_tex": "hair/short02/short02_diffuse.png",
+  "clothes": "male_elegantsuit01",
+  "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ },
+ {
+  "id": "tommy",
+  "macro": "caucasian-male-young",
+  "sex": "male",
+  "build": "minmuscle-minweight",
+  "height": 1.74,
+  "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+  "hair": "short03",
+  "hair_tex": "hair/short03/short03_diffuse.png",
+  "clothes": "male_worksuit01",
+  "clothes_tex": "clothes/male_worksuit01/male_worksuit01_diffuse.png",
+  "clothes_normal": "clothes/male_worksuit01/male_worksuit01_normal.png",
+  "targets": [],
+  "hum": {
+   "muscle": 0.0,
+   "weight": 0.05
+  }
+ }
+]

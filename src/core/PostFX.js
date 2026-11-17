@@ -81,16 +81,16 @@ const PRESETS = {
     }
   },
   lincoln: {
-    exposure: 1.02,
-    bloom: { strength: 0.38, radius: 0.68, threshold: 0.82 },
+    exposure: 0.92,
+    bloom: { strength: 0.30, radius: 0.68, threshold: 1.00 },
     dof: { aperture: 0.0016, maxblur: 0.019, focus: 2.4 },
     dofGameplay: 1.0,
     grade: {
-      grain: 0.045, vignette: 0.5, ca: 0.0013,
-      saturation: 0.93, contrast: 1.06,
-      lift: [0.014, 0.009, 0.004],
-      gain: [1.08, 0.99, 0.88],
-      tint: [1.03, 1.0, 0.95]
+      grain: 0.045, vignette: 0.60, ca: 0.0013,
+      saturation: 0.90, contrast: 1.14,
+      lift: [0.010, 0.018, 0.024],
+      gain: [1.07, 0.98, 0.86],
+      tint: [1.03, 0.99, 0.94]
     }
   },
   mud: {

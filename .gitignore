@@ -62,3 +62,6 @@ Thumbs.db
 api_key
 # Large generated videos are produced on demand, not stored
 /assets/cinematics/*.webm
+
+# Local progress gallery (dev only, not part of the build)
+/gallery/

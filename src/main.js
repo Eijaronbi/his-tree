@@ -54,8 +54,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = flags.shadow;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
+renderer.toneMapping = THREE.AgXToneMapping;
+renderer.toneMappingExposure = 0.92;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 900);
@@ -106,7 +106,7 @@ function loadModel(key, file) {
 
 async function boot() {
   const jobs = [
-    ['player', './assets/models/character-female-c.glb'],
+    ['player', './assets/models/characters/player_1865.glb'],
     ['villager', './assets/models/character-male-a.glb'],
     ['palm', './assets/models/tree_palm.glb'],
     ['camel', './assets/models/camel-base.glb']
@@ -151,22 +151,31 @@ function disposeWorld() {
 
 function makePlayer(chapter) {
   const src = baseModels.player;
-  let root;
+  const pivot = new THREE.Group();
+  let model = null;
+  let height = 1.8;
   if (src && chapter.playerFile !== null) {
-    root = cloneSkinned(src);
+    model = cloneSkinned(src);
+    model.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(model);
+    const c = new THREE.Vector3();
+    box.getCenter(c);
+    height = Math.max(0.4, box.max.y - box.min.y);
+    model.position.set(-c.x, -box.min.y, -c.z);
+    pivot.add(model);
   } else {
-    root = new THREE.Group();
     const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.38, 1.0, 6, 12), new THREE.MeshStandardMaterial({ color: 0x8a5a35, roughness: 0.85 }));
     body.position.y = 0.9;
     body.castShadow = true;
-    root.add(body);
+    pivot.add(body);
   }
-  root.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false; } });
-  scene.add(root);
-  mixer = new THREE.AnimationMixer(root);
+  pivot.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false; } });
+  scene.add(pivot);
+  mixer = new THREE.AnimationMixer(model || pivot);
   const clips = [];
-  controller = new ThirdPersonController(camera, root, mixer, clips, input, 0);
-  return root;
+  controller = new ThirdPersonController(camera, pivot, mixer, clips, input, 0);
+  controller.height = height * 0.84;
+  return pivot;
 }
 
 function setAtmosphere(chapter) {
@@ -183,7 +192,7 @@ function setAtmosphere(chapter) {
     sun.color.setHex(0xffe6c0);
     sun.castShadow = flags.shadow;
     hemi.intensity = 0.22;
-    ambient.intensity = 0.055;
+    ambient.intensity = 0.028;
   } else {
     const env = interiorEnvironment({
       top: chapter.palette.clothIndigo,
@@ -194,11 +203,13 @@ function setAtmosphere(chapter) {
     applyEnvironment(scene, env, 0.35);
     scene.background = new THREE.Color(chapter.palette.haze).multiplyScalar(0.32);
     scene.fog = new THREE.FogExp2(chapter.palette.haze, chapter.id === 'france-1917' ? 0.022 : 0.012);
-    sun.intensity = 0.45;
-    sun.color.setHex(0x9fb4c8);
+    sun.intensity = 0.28;
+    sun.color.setHex(0x8ea4bd);
     sun.castShadow = false;
-    hemi.intensity = 0.16;
-    ambient.intensity = 0.10;
+    hemi.intensity = 0.055;
+    hemi.color.setHex(0x6c7f9c);
+    hemi.groundColor.setHex(0x3a2f26);
+    ambient.intensity = 0.055;
   }
   if (post) post.setPreset(chapter.post);
 }

@@ -74,7 +74,7 @@ export function interiorEnvironment(opts = {}) {
   const room = new THREE.Mesh(
     new THREE.BoxGeometry(24, 9, 18),
     new THREE.MeshStandardMaterial({
-      color: opts.wall || 0x8a7a68, roughness: 1, side: THREE.BackSide
+      color: opts.wall || 0x4a4038, roughness: 1, side: THREE.BackSide
     })
   );
   room.position.y = 2.6;
@@ -87,7 +87,7 @@ export function interiorEnvironment(opts = {}) {
   for (const [x, y, z] of lamps) {
     const bulb = new THREE.Mesh(
       new THREE.SphereGeometry(0.34, 12, 8),
-      new THREE.MeshBasicMaterial({ color: new THREE.Color(opts.lamp || 0xffb968).multiplyScalar(14) })
+      new THREE.MeshBasicMaterial({ color: new THREE.Color(opts.lamp || 0xffb968).multiplyScalar(5) })
     );
     bulb.position.set(x, y, z);
     scene.add(bulb);
@@ -95,7 +95,7 @@ export function interiorEnvironment(opts = {}) {
 
   const bounce = new THREE.Mesh(
     new THREE.PlaneGeometry(30, 20),
-    new THREE.MeshBasicMaterial({ color: new THREE.Color(opts.bounce || 0x53321a).multiplyScalar(0.5) })
+    new THREE.MeshBasicMaterial({ color: new THREE.Color(opts.bounce || 0x53321a).multiplyScalar(0.35) })
   );
   bounce.rotation.x = -Math.PI / 2;
   bounce.position.y = -1.6;
@@ -108,12 +108,13 @@ export function interiorEnvironment(opts = {}) {
 
 export function applyEnvironment(scene, tex, intensity = 1.0) {
   scene.environment = tex;
+  scene.environmentIntensity = intensity;
   scene.traverse((o) => {
     if (!o.isMesh) return;
     const mats = Array.isArray(o.material) ? o.material : [o.material];
     for (const m of mats) {
       if (!m) continue;
-      m.envMapIntensity = intensity;
+      m.envMapIntensity = 1.0;
       m.needsUpdate = true;
     }
   });
