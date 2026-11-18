@@ -44,7 +44,7 @@ export async function loadLofi(parent, file = './assets/models/characters/lofi.g
  * No jetpack: the lift is part of the character.
  */
 export class Flight {
-  constructor({ player, controller, camera, scene, ui, input }) {
+  constructor({ player, controller, camera, scene, ui, input, rig }) {
     this.player = player;
     this.controller = controller;
     this.camera = camera;
@@ -54,12 +54,13 @@ export class Flight {
     this.active = false;
     this.mode = 'ground';
     this.floatY = 0;
+    this.floatTarget = 0;
     this.vy = 0;
     this.bank = 0;
     this.pitch = 0;
     this.speed = 0;
     this.baseFog = scene && scene.fog ? scene.fog.density : 0.012;
-    this.model = player && player.children.length ? player.children[0] : player;
+    this.rig = rig || (player && player.children.length ? player.children[0] : player);
   }
 
   enable(on) {
@@ -71,7 +72,7 @@ export class Flight {
       this.bank = 0;
       this.pitch = 0;
       this.speed = 0;
-      if (this.model) this.model.rotation.set(0, 0, 0);
+      if (this.rig) { this.rig.rotation.set(0, 0, 0); this.rig.position.y = 0; }
       if (this.ui) this.ui.setPowers([]);
     }
   }
@@ -85,6 +86,7 @@ export class Flight {
     } else {
       this.mode = 'float';
       this.floatY = this.player.position.y;
+      this.floatTarget = Math.max(this.floatY, 1.6);
       this.ui.toast('Lofi lifts off — he floats', 1600);
     }
     this.ui.setPowers(this.mode === 'ground'
@@ -123,8 +125,9 @@ export class Flight {
     this.controller.frozen = this.mode !== 'ground';
     if (this.mode === 'float') {
       const climb = axis.y;
-      this.vy += (climb * 2.6 - this.vy) * Math.min(1, dt * 3.2);
-      this.floatY = Math.max(0, this.floatY + this.vy * dt);
+      if (climb !== 0) this.floatTarget = Math.max(0.5, this.floatTarget + climb * 3.4 * dt);
+      this.floatY += (this.floatTarget - this.floatY) * Math.min(1, dt * 2.2);
+      this.vy = (this.floatY - (this.floatY - this.vy * dt));
       p.y = this.floatY;
       this.controller.groundY = this.floatY;
       this._poseFloat(dt);
@@ -164,18 +167,22 @@ export class Flight {
   }
 
   _poseFloat(dt) {
-    if (!this.model) return;
+    if (!this.rig) return;
+    this.rig.position.y += (0 - this.rig.position.y) * Math.min(1, dt * 4);
     const t = performance.now() * 0.001;
-    this.model.rotation.x += (-0.12 - this.model.rotation.x) * Math.min(1, dt * 4);
-    this.model.rotation.z += (Math.sin(t * 0.7) * 0.08 - this.model.rotation.z) * Math.min(1, dt * 4);
-    this.model.rotation.y += (Math.sin(t * 0.45) * 0.12 - this.model.rotation.y) * Math.min(1, dt * 4);
+    this.rig.rotation.x += (-0.12 - this.rig.rotation.x) * Math.min(1, dt * 4);
+    this.rig.rotation.z += (Math.sin(t * 0.7) * 0.08 - this.rig.rotation.z) * Math.min(1, dt * 4);
+    this.rig.rotation.y += (Math.sin(t * 0.45) * 0.12 - this.rig.rotation.y) * Math.min(1, dt * 4);
   }
 
   _poseFly(dt, yaw) {
-    if (!this.model) return;
+    if (!this.rig) return;
     this.player.rotation.y = yaw;
-    this.model.rotation.x += (-Math.PI / 2 + this.pitch - this.model.rotation.x) * Math.min(1, dt * 4.5);
-    this.model.rotation.z += (this.bank - this.model.rotation.z) * Math.min(1, dt * 4.5);
-    this.model.rotation.y += (0 - this.model.rotation.y) * Math.min(1, dt * 4.5);
+    this.rig.rotation.x += (-Math.PI / 2 + this.pitch - this.rig.rotation.x) * Math.min(1, dt * 4.5);
+    this.rig.rotation.z += (this.bank - this.rig.rotation.z) * Math.min(1, dt * 4.5);
+    this.rig.rotation.y += (0 - this.rig.rotation.y) * Math.min(1, dt * 4.5);
+    // lift the rig as the body tips over, so Lofi flies level with the camera
+    const tip = Math.min(1, Math.abs(this.rig.rotation.x) / (Math.PI / 2));
+    this.rig.position.y += (0.82 * tip - this.rig.position.y) * Math.min(1, dt * 4);
   }
 }

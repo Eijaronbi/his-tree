@@ -1,5 +1,33 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { woodMaterial, clothMaterial, plasterMaterial, contactShadowMaterial, metalMaterial, tileObjectUVs, sandMaterial } from './Materials.js';
+
+const propLoader = new GLTFLoader();
+
+function loadRealProp(file, parent, { x = 0, y = 0, z = 0, rot = 0, scale = 1, height = null }) {
+  propLoader.load(file, (gltf) => {
+    const root = gltf.scene;
+    root.traverse((o) => {
+      if (o.isMesh) {
+        if (o.name === 'Cube' || o.name === 'Cube.001') { o.visible = false; return; }
+        o.castShadow = true;
+        o.receiveShadow = true;
+        o.frustumCulled = false;
+      }
+    });
+    root.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(root);
+    const h = box.max.y - box.min.y;
+    const k = height && h > 0.01 ? height / h : scale;
+    root.scale.setScalar(k);
+    root.rotation.y = rot;
+    root.updateMatrixWorld(true);
+    const box2 = new THREE.Box3().setFromObject(root);
+    root.position.set(x - (box2.min.x + box2.max.x) / 2, y - box2.min.y, z - (box2.min.z + box2.max.z) / 2);
+    parent.add(root);
+    console.info('[prop]', file, 'height', h.toFixed(2), 'scale', k.toFixed(3), 'pos', root.position.toArray().map((n) => n.toFixed(2)).join(','));
+  }, undefined, () => { /* fall back to the procedural trench */ });
+}
 
 function shadowBlobs(group, list) {
   for (const [w, d, x, z, op] of list) {
@@ -70,10 +98,21 @@ export function buildTrench1917(scene) {
   }
 
   const lights = [];
-  const key = new THREE.PointLight(0xbfc9cf, 90, 40, 1.7);
-  key.position.set(1.5, 3.2, 0);
+  const hemi = new THREE.HemisphereLight(0xa9c2d4, 0x4b4636, 1.35);
+  group.add(hemi);
+  lights.push(hemi);
+  const key = new THREE.PointLight(0xcfd8de, 130, 46, 1.5);
+  key.position.set(1.5, 3.4, 0);
   group.add(key);
   lights.push(key);
+  const rim = new THREE.DirectionalLight(0xffd9a8, 0.55);
+  rim.position.set(-8, 6, -12);
+  group.add(rim);
+  lights.push(rim);
+
+  // real trench corner generated with Lux3D, set into the line
+  loadRealProp('./assets/models/props/trench_corner.glb', group, { x: -3.6, z: -1.5, rot: 0.22, height: 2.2 });
+  loadRealProp('./assets/models/props/trench_corner.glb', group, { x: 3.6, z: -9.0, rot: Math.PI + 0.18, height: 2.0 });
 
   shadowBlobs(group, [[10, 34, 0, 0, 0.55]]);
   tileObjectUVs(group, 2.0);

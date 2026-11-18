@@ -106,6 +106,7 @@ let flight = null;
 let lofiRoot = null;
 let lofiHolder = null;
 let avatarMode = 'default';
+let playerBody = null;
 let clock = new THREE.Clock();
 
 const baseModels = {};
@@ -144,7 +145,7 @@ async function boot() {
     location.reload();
   });
 
-  window.__game = { scene, camera, renderer, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter }; }, THREE };
+  window.__game = { scene, camera, renderer, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter }; }, THREE };
   loop();
 }
 
@@ -184,22 +185,27 @@ async function ensureLofi() {
 function setAvatar(kind) {
   if (!player || !controller) return;
   const pivot = player;
-  for (const child of [...pivot.children]) {
-    if (child !== lofiRoot || kind !== 'default') pivot.remove(child);
+  let rig = pivot.children.find((c) => c.userData.poseRig);
+  if (!rig) {
+    rig = new THREE.Group();
+    rig.userData.poseRig = true;
+    pivot.add(rig);
   }
+  for (const child of [...rig.children]) rig.remove(child);
   avatarMode = kind;
   let model = null;
   let height = 1.8;
   if (kind === 'lofi' && lofiRoot) {
     model = lofiRoot;
     height = 1.72;
-    pivot.add(model);
+    rig.add(model);
   } else if (baseModels.player) {
     model = buildAvatarModel('default');
     height = model.userData.height || 1.8;
-    pivot.add(model);
+    rig.add(model);
   }
-  mixer = new THREE.AnimationMixer(model || pivot);
+  playerBody = model;
+  mixer = new THREE.AnimationMixer(model || rig);
   controller.mixer = mixer;
   controller.actions = {};
   controller.walkAction = null;
@@ -208,7 +214,7 @@ function setAvatar(kind) {
   controller.height = height * 0.84;
   controller.groundY = 0;
   if (flight) {
-    flight.model = model;
+    flight.rig = rig;
     flight.enable(kind === 'lofi');
   }
   ui.setPowers(kind === 'lofi'
@@ -237,29 +243,33 @@ function buildAvatarModel(kind) {
 
 function makePlayer(chapter) {
   const pivot = new THREE.Group();
+  const rig = new THREE.Group();
+  rig.userData.poseRig = true;
+  pivot.add(rig);
   let model = null;
   let height = 1.8;
   if (avatarMode === 'lofi' && lofiRoot) {
     model = lofiRoot;
     height = 1.72;
-    pivot.add(model);
+    rig.add(model);
   } else if (baseModels.player && chapter.playerFile !== null) {
     model = buildAvatarModel('default');
     height = model.userData.height || 1.8;
-    pivot.add(model);
+    rig.add(model);
   } else {
     const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.38, 1.0, 6, 12), new THREE.MeshStandardMaterial({ color: 0x8a5a35, roughness: 0.85 }));
     body.position.y = 0.9;
     body.castShadow = true;
-    pivot.add(body);
+    rig.add(body);
   }
   pivot.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false; } });
   scene.add(pivot);
-  mixer = new THREE.AnimationMixer(model || pivot);
+  mixer = new THREE.AnimationMixer(model || rig);
   const clips = [];
   controller = new ThirdPersonController(camera, pivot, mixer, clips, input, 0);
   controller.height = height * 0.84;
-  flight = new Flight({ player: pivot, controller, camera, scene, ui, input });
+  flight = new Flight({ player: pivot, controller, camera, scene, ui, input, rig });
+  playerBody = model;
   flight.enable(avatarMode === 'lofi');
   if (avatarMode === 'lofi') {
     ui.setPowers([{ key: 'F', label: 'Float' }, { key: 'G', label: 'Fly' }, { key: 'V', label: 'Change avatar' }]);
@@ -276,7 +286,7 @@ function setAtmosphere(chapter) {
     const env = exteriorEnvironment({ top: 0x4a7fb5, horizon: 0xe6cfa4, ground: 0xb08a5c, sunDir: new THREE.Vector3(0.55, 0.62, 0.42), sunColor: 0xfff0d4 });
     applyEnvironment(scene, env, 0.75);
     scene.background = new THREE.Color(0x9fc0e0);
-    scene.fog = new THREE.FogExp2(0xd8bf94, 0.0055);
+    scene.fog = new THREE.FogExp2(0xd8bf94, 0.0032);
     sun.intensity = 3.1;
     sun.color.setHex(0xffe6c0);
     sun.castShadow = flags.shadow;
@@ -400,7 +410,7 @@ async function startChapter(id) {
 
   if (chapter.id === 'washington-1865') {
     combat = new Combat({
-      scene, player, camera, ui, input, chapter,
+      scene, player, camera, ui, input, chapter, body: playerBody,
       onEvent: (e) => {
         if (e.type === 'hurt') { ui.flashHurt(); ui.toast('You are hit', 900); }
         else if (e.type === 'kill') ui.toast(`${e.enemy} is down`, 1600);

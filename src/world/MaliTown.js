@@ -21,6 +21,7 @@ export class MaliTown {
     this._buildCaravanCamp();
     this._buildPalaceGate();
     this._scatterNature();
+    this._buildHorizon();
     tileObjectUVs(this.group, 2.4);
   }
 
@@ -373,6 +374,26 @@ export class MaliTown {
     this._addCollider(0, 92, 3.2);
     this._addCollider(-16, 92, 2.4);
     this._addCollider(16, 92, 2.4);
+  }
+
+  _buildHorizon() {
+    const loader = new THREE.TextureLoader();
+    const backdrop = (file, width, height, y, x, z, ry) => {
+      const tex = loader.load(file);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      const mat = new THREE.MeshBasicMaterial({ map: tex, side: THREE.DoubleSide, fog: false, depthWrite: false });
+      const plane = new THREE.Mesh(new THREE.PlaneGeometry(width, height), mat);
+      plane.position.set(x, y, z);
+      plane.rotation.y = ry;
+      plane.renderOrder = -2;
+      this.group.add(plane);
+    };
+    const desert = './assets/textures/scenery/pano_desert.jpg';
+    const city = './assets/textures/scenery/pano_city.jpg';
+    backdrop(desert, 760, 380, 78, 0, -330, 0);
+    backdrop(desert, 760, 380, 78, 0, 330, Math.PI);
+    backdrop(city, 620, 310, 62, -330, 0, Math.PI / 2);
+    backdrop(city, 620, 310, 62, 330, 0, -Math.PI / 2);
   }
 
   _scatterNature() {

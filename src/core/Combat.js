@@ -72,7 +72,7 @@ function pistolMesh() {
  * plus assassin enemies with simple chase/attack AI.
  */
 export class Combat {
-  constructor({ scene, player, camera, ui, input, chapter, onEvent }) {
+  constructor({ scene, player, camera, ui, input, chapter, body, onEvent }) {
     this.scene = scene;
     this.player = player;
     this.camera = camera;
@@ -101,9 +101,15 @@ export class Combat {
     this.kills = 0;
     this.spawnPoint = new THREE.Vector3();
     this.forward = new THREE.Vector3(0, 0, 1);
+    this.body = body || null;
   }
 
   setSpawn(v) { this.spawnPoint.copy(v); }
+
+  bodyNode() {
+    if (this.body) return this.body;
+    return this.player.children.find((c) => c !== this.weaponMesh) || null;
+  }
 
   enable() {
     this.enabled = true;
@@ -123,7 +129,7 @@ export class Combat {
 
   removeWeapons() {
     if (this.weaponMesh) {
-      this.player.remove(this.weaponMesh);
+      if (this.weaponMesh && this.weaponMesh.parent) this.weaponMesh.parent.remove(this.weaponMesh);
       this.weaponMesh = null;
     }
   }
@@ -207,7 +213,7 @@ export class Combat {
     if (mesh) {
       mesh.position.set(0.34, 1.02, 0.26);
       mesh.rotation.set(-0.4, 0, 0.2);
-      this.player.add(mesh);
+      (this.bodyNode() || this.player).add(mesh);
       this.weaponMesh = mesh;
     }
     this.onEvent({ type: 'weapon', weapon: kind, label: WEAPONS[kind].label });
@@ -405,7 +411,7 @@ export class Combat {
     // swing feedback on the player model
     if (this.swing > 0) {
       const k = this.swing / 0.32;
-      const child = this.player.children.find((c) => c !== this.weaponMesh);
+      const child = this.bodyNode();
       if (child && child.rotation) {
         child.rotation.x = -Math.sin(k * Math.PI) * 0.42;
         child.rotation.y = Math.sin(k * Math.PI) * 0.22;
@@ -414,7 +420,7 @@ export class Combat {
         this.weaponMesh.rotation.x = -0.4 - Math.sin(k * Math.PI) * 1.1;
       }
     } else {
-      const child = this.player.children.find((c) => c !== this.weaponMesh);
+      const child = this.bodyNode();
       if (child && child.rotation) child.rotation.set(0, 0, 0);
     }
   }
