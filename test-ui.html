@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<link rel="icon" href="data:," />
+<title>HIS-TREE — UI harness</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; }
+  body {
+    background:
+      radial-gradient(80% 60% at 50% -10%, #1d1409 0%, #0b0805 62%, #060402 100%);
+    color: #e8d3ae;
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vh, 40px) clamp(16px, 4vw, 32px) 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .kicker {
+    margin: 0;
+    font-size: 9px;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    color: #d9a441;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(20px, 3.4vw, 30px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: .06em;
+  }
+  .note {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 12.5px;
+    line-height: 1.65;
+    opacity: .6;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .actions button {
+    padding: 11px 20px;
+    border: 1px solid rgba(217, 164, 65, .55);
+    background: transparent;
+    color: #d9a441;
+    font-family: inherit;
+    font-size: 10.5px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .actions button:hover { background: #d9a441; border-color: #d9a441; color: #140c04; }
+  .actions button:focus-visible { outline: 1px solid #d9a441; outline-offset: 3px; }
+  .log-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(232, 211, 174, .12);
+  }
+  .log-head h2 {
+    margin: 0;
+    font-size: 9.5px;
+    font-weight: 400;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: #d9a441;
+  }
+  .log-head span { font-size: 8.5px; letter-spacing: .2em; text-transform: uppercase; opacity: .4; }
+  pre {
+    margin: 0;
+    padding: 14px 16px;
+    min-height: 132px;
+    border: 1px solid rgba(217, 164, 65, .24);
+    background: #110b06;
+    color: #e8d3ae;
+    font: 11.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="kicker">HIS-TREE</p>
+  <h1>Overlay harness</h1>
+  <p class="note">Two additive modules, no existing files touched. The episode map carries six chapters across three continents, two of them playable. The witness picker holds nine avatars, three sealed. Selections are logged below.</p>
+  <div class="actions">
+    <button type="button" id="open-map">Open episode map</button>
+    <button type="button" id="open-avatars">Open witness picker</button>
+  </div>
+  <div class="log-head">
+    <h2>onSelect log</h2>
+    <span>live</span>
+  </div>
+  <pre id="log">Waiting for a selection.</pre>
+</main>
+
+<script type="module">
+import { WorldMap } from './src/ui/WorldMap.js';
+import { AvatarPicker } from './src/ui/AvatarPicker.js';
+
+const MALI_ART = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c4925c'/%3E%3Cstop offset='.55' stop-color='%237a4f2c'/%3E%3Cstop offset='1' stop-color='%232a180c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23a)'/%3E%3Ccircle cx='620' cy='120' r='66' fill='%23ffe0b0' opacity='.55'/%3E%3Cpath d='M0 372 L170 246 L326 356 L498 226 L706 348 L800 296 L800 500 L0 500 Z' fill='%232a180c' opacity='.5'/%3E%3C/svg%3E";
+const THEATRE_ART = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%233a2f2a'/%3E%3Cstop offset='.6' stop-color='%235e1a1c'/%3E%3Cstop offset='1' stop-color='%23130c09'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23b)'/%3E%3Crect x='96' y='112' width='200' height='310' fill='%23ffd9a0' opacity='.18'/%3E%3Crect x='486' y='86' width='238' height='336' fill='%23ffd9a0' opacity='.12'/%3E%3Ccircle cx='395' cy='104' r='44' fill='%23ffd9a0' opacity='.32'/%3E%3C/svg%3E";
+
+const chapters = [
+  {
+    id: 'mali-1324',
+    title: 'THE GOLDEN EMPIRE',
+    year: '1324 CE',
+    place: 'Walata, southern Sahara',
+    blurb: 'Every road out of the desert is priced in salt.',
+    continent: 'Africa',
+    card: MALI_ART,
+    playable: true
+  },
+  {
+    id: 'taghaza-1352',
+    title: 'THE SALT ROAD',
+    year: '1352',
+    place: 'Taghaza, salt mines of the Sahara',
+    blurb: 'Salt cuts both ways on the road north.',
+    continent: 'Africa'
+  },
+  {
+    id: 'washington-1865',
+    title: 'SAVE LINCOLN',
+    year: '14 April 1865',
+    place: 'Ford’s Theatre, Washington',
+    blurb: 'History has a door with no guard on it.',
+    continent: 'North America',
+    card: THEATRE_ART,
+    playable: true
+  },
+  {
+    id: 'chicago-1893',
+    title: 'THE WHITE CITY',
+    year: '1893',
+    place: 'Jackson Park, Chicago',
+    blurb: 'A fair that forgets who built it.',
+    continent: 'North America'
+  },
+  {
+    id: 'france-1917',
+    title: 'THE QUIET MUTINY',
+    year: '1917',
+    place: 'Supply trench, Chemin des Dames',
+    blurb: 'The paperwork is the weapon.',
+    continent: 'Europe'
+  },
+  {
+    id: 'berlin-1989',
+    title: 'THE FILE THAT DOESN’T EXIST',
+    year: '9 November 1989',
+    place: 'Ministry archive, East Berlin',
+    blurb: 'Everything is true until the building falls.',
+    continent: 'Europe'
+  }
+];
+
+const avatars = [
+  {
+    id: 'frock',
+    name: 'Augustin Roux',
+    era: 'Mali, 1324',
+    blurb: 'A caravan clerk who keeps two ledgers and one secret.',
+    thumb: '/thumbs/char_adult_m_frock.png',
+    locked: false
+  },
+  {
+    id: 'officer',
+    name: 'Nathaniel Ward',
+    era: 'Washington, 1865',
+    blurb: 'A detail officer with a fondness for the wrong door.',
+    thumb: '/thumbs/char_adult_m_officer.png',
+    locked: false
+  },
+  {
+    id: 'f_elegant',
+    name: 'Élise Marchand',
+    era: 'Paris, 1917',
+    blurb: 'A nurse who files every letter she is told to burn.',
+    thumb: '/thumbs/char_adult_f_elegant.png',
+    locked: false
+  },
+  {
+    id: 'f_simple',
+    name: 'Hannah Voss',
+    era: 'Berlin, 1989',
+    blurb: 'An archivist who reads the files she is meant to shelve.',
+    thumb: '/thumbs/char_adult_f_simple.png',
+    locked: false
+  },
+  {
+    id: 'worker',
+    name: 'Tomás Ibarra',
+    era: 'Chicago, 1893',
+    blurb: 'A steelworker walking the fairgrounds he built.',
+    thumb: '/thumbs/char_worker.png',
+    locked: false
+  },
+  {
+    id: 'soldier_blue',
+    name: 'Amos Reed',
+    era: 'Argonne, 1917',
+    blurb: 'A sergeant who trusts paperwork more than officers.',
+    thumb: '/thumbs/char_soldier_blue.png',
+    locked: false
+  },
+  {
+    id: 'old_m_top',
+    name: 'Elias Pym',
+    era: 'London, 1666',
+    blurb: 'A printer with a cellar full of unsold pamphlets.',
+    thumb: '/thumbs/char_old_m_top.png',
+    locked: true
+  },
+  {
+    id: 'old_f_bonnet',
+    name: 'Marguerite Dey',
+    era: 'Rouen, 1431',
+    blurb: 'A witness whose testimony was never written down.',
+    thumb: '/thumbs/char_old_f_bonnet.png',
+    locked: true
+  },
+  {
+    id: 'lofi',
+    name: 'The Archivist',
+    era: 'Outside the tree',
+    blurb: 'Not yet written into any branch.',
+    thumb: '/thumbs/lofi.png',
+    locked: true
+  }
+];
+
+const log = document.getElementById('log');
+
+function write(kind, payload) {
+  log.textContent = kind + '\n' + JSON.stringify(payload, null, 2);
+}
+
+const map = new WorldMap({
+  chapters,
+  onSelect: (chapter) => write('worldmap → onSelect', {
+    id: chapter.id,
+    title: chapter.title,
+    year: chapter.year,
+    place: chapter.place
+  })
+});
+
+const picker = new AvatarPicker({
+  avatars,
+  onSelect: (avatar) => write('avatarpicker → onSelect', {
+    id: avatar.id,
+    name: avatar.name,
+    era: avatar.era
+  }),
+  onHover: (id) => {
+    const target = document.getElementById('open-avatars');
+    if (target) target.dataset.hover = id;
+  }
+});
+
+document.getElementById('open-map').addEventListener('click', () => map.show());
+document.getElementById('open-avatars').addEventListener('click', () => picker.show());
+
+const params = new URLSearchParams(location.search);
+const open = params.get('open');
+if (open === 'map') {
+  map.show();
+  const continent = params.get('continent');
+  const keys = ['africa', 'north-america', 'europe'];
+  const spot = keys.indexOf(continent);
+  if (spot > 0) map.goTo(spot, false);
+}
+if (open === 'avatars') picker.show();
+
+window.__ui = { map, picker, chapters, avatars };
+</script>
+</body>
+</html>

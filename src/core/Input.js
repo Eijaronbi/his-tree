@@ -7,7 +7,10 @@ export class Input {
     this.look = { x: 0, y: 0 };
     this.run = false;
     this.locked = false;
+    this.mouseAttack = false;
     this.touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    this.lookSensitivity = { x: 0.0026, y: 0.0022 };
+    this.touchLook = { x: 0.0075, y: 0.0062 };
     if (this.touch) document.body.classList.add('touch');
     this._bindKeyboard();
     this._bindMouse();
@@ -29,17 +32,30 @@ export class Input {
   }
 
   _bindMouse() {
+    let dragging = false;
     this.canvas.addEventListener('mousedown', (e) => {
       if (e.button === 0) this.mouseAttack = true;
-      if (!this.touch && !this.locked) this.canvas.requestPointerLock();
+      if (this.touch) return;
+      if (!this.locked) {
+        dragging = true;
+        this._lx = e.clientX;
+        this._ly = e.clientY;
+        try { this.canvas.requestPointerLock(); } catch (err) { /* ignore */ }
+      }
     });
+    window.addEventListener('mouseup', () => { dragging = false; });
     document.addEventListener('pointerlockchange', () => {
       this.locked = document.pointerLockElement === this.canvas;
     });
     window.addEventListener('mousemove', (e) => {
       if (this.locked) {
-        this.look.x -= e.movementX * 0.0026;
-        this.look.y -= e.movementY * 0.0022;
+        this.look.x -= e.movementX * this.lookSensitivity.x;
+        this.look.y -= e.movementY * this.lookSensitivity.y;
+      } else if (dragging) {
+        this.look.x -= (e.clientX - this._lx) * this.lookSensitivity.x;
+        this.look.y -= (e.clientY - this._ly) * this.lookSensitivity.y;
+        this._lx = e.clientX;
+        this._ly = e.clientY;
       }
     });
   }
@@ -49,29 +65,31 @@ export class Input {
     const knob = document.getElementById('knob');
     const runBtn = document.getElementById('btnRun');
     if (!stick) return;
+
     let stickId = null;
     let origin = { x: 0, y: 0 };
-    const setKnob = (dx, dy) => {
-      knob.style.transform = `translate(${dx}px, ${dy}px)`;
-    };
+    const setKnob = (dx, dy) => { if (knob) knob.style.transform = `translate(${dx}px, ${dy}px)`; };
+
     stick.addEventListener('touchstart', (e) => {
       const t = e.changedTouches[0];
       stickId = t.identifier;
       const rect = stick.getBoundingClientRect();
       origin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
       e.preventDefault();
+      e.stopPropagation();
     }, { passive: false });
+
     const onMove = (e) => {
       for (const t of e.changedTouches) {
         if (t.identifier !== stickId) continue;
         let dx = t.clientX - origin.x;
         let dy = t.clientY - origin.y;
-        const max = 44;
+        const max = 46;
         const len = Math.hypot(dx, dy);
         if (len > max) { dx = (dx / len) * max; dy = (dy / len) * max; }
         setKnob(dx, dy);
         this.move.x = dx / max;
-        this.move.y = dy / max;
+        this.move.y = -dy / max;
       }
       e.preventDefault();
     };
@@ -87,34 +105,80 @@ export class Input {
     };
     stick.addEventListener('touchend', onEnd);
     stick.addEventListener('touchcancel', onEnd);
-    runBtn.addEventListener('touchstart', (e) => { this.run = true; e.preventDefault(); }, { passive: false });
-    runBtn.addEventListener('touchend', (e) => { this.run = false; e.preventDefault(); }, { passive: false });
+
+    if (runBtn) {
+      runBtn.addEventListener('touchstart', (e) => { this.run = true; e.preventDefault(); e.stopPropagation(); }, { passive: false });
+      runBtn.addEventListener('touchend', (e) => { this.run = false; e.preventDefault(); }, { passive: false });
+      runBtn.addEventListener('touchcancel', () => { this.run = false; });
+    }
+
     const hold = (id, code) => {
       const el = document.getElementById(id);
       if (!el) return;
-      el.addEventListener('touchstart', (e) => { this.just.add(code); e.preventDefault(); }, { passive: false });
+      el.addEventListener('touchstart', (e) => {
+        this.just.add(code);
+        e.preventDefault();
+        e.stopPropagation();
+      }, { passive: false });
     };
     hold('btnAttack', 'KeyJ');
     hold('btnKick', 'KeyK');
     hold('btnDodge', 'KeyL');
     hold('btnAsk', 'KeyQ');
+    hold('btnUse', 'KeyE');
+    hold('btnJump', 'Space');
+    hold('btnFloat', 'KeyF');
+    hold('btnFly', 'KeyG');
     hold('btnKnife', 'Digit1');
     hold('btnGun', 'Digit2');
-    this.canvas.addEventListener('touchmove', (e) => {
-      if (e.touches.length !== 1) return;
-      const t = e.touches[0];
-      if (t.clientX < window.innerWidth * 0.35) return;
-      this.look.x -= (t.clientX - (this._lx ?? t.clientX)) * 0.006;
-      this.look.y -= (t.clientY - (this._ly ?? t.clientY)) * 0.005;
-      this._lx = t.clientX;
-      this._ly = t.clientY;
+
+    let lookId = null;
+    let lx = 0;
+    let ly = 0;
+    const startLook = (e) => {
+      const t = e.changedTouches[0];
+      if (lookId !== null) return;
+      lookId = t.identifier;
+      lx = t.clientX;
+      ly = t.clientY;
+    };
+    const moveLook = (e) => {
+      for (const t of e.changedTouches) {
+        if (t.identifier !== lookId) continue;
+        this.look.x -= (t.clientX - lx) * this.touchLook.x;
+        this.look.y -= (t.clientY - ly) * this.touchLook.y;
+        lx = t.clientX;
+        ly = t.clientY;
+      }
       e.preventDefault();
-    }, { passive: false });
-    this.canvas.addEventListener('touchend', () => { this._lx = undefined; this._ly = undefined; });
+    };
+    const endLook = (e) => {
+      for (const t of e.changedTouches) {
+        if (t.identifier === lookId) lookId = null;
+      }
+    };
+    this.canvas.addEventListener('touchstart', (e) => { startLook(e); }, { passive: true });
+    this.canvas.addEventListener('touchmove', (e) => { moveLook(e); }, { passive: false });
+    this.canvas.addEventListener('touchend', endLook);
+    this.canvas.addEventListener('touchcancel', endLook);
+
+    const lookZone = document.getElementById('lookzone');
+    if (lookZone) {
+      lookZone.addEventListener('touchstart', (e) => { startLook(e); }, { passive: true });
+      lookZone.addEventListener('touchmove', moveLook, { passive: false });
+      lookZone.addEventListener('touchend', endLook);
+      lookZone.addEventListener('touchcancel', endLook);
+    }
   }
 
   pressed(code) {
     return this.just.has(code);
+  }
+
+  consume(code) {
+    const had = this.just.has(code);
+    this.just.delete(code);
+    return had;
   }
 
   endFrame() {

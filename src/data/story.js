@@ -98,6 +98,14 @@ export const CHAPTERS = [
       clothRed: 0x8f2f28, clothIndigo: 0x2f4a70, clothOchre: 0xc08a2e,
       sky: 0x8fb4d8, haze: 0xd8bf94, sun: 0xffe0b0
     },
+    cinematic: {
+      shots: [
+        { pos: [0, 30, 62], target: [0, 5, -8], fov: 56, dur: 4.6 },
+        { pos: [-9, 3.4, 18], target: [0, 2.6, -6], fov: 43, dur: 4.0 },
+        { pos: [5, 2.7, 31], target: [0, 1.5, 22], fov: 40, dur: 3.6 },
+        { pos: [0, 8, -28], target: [0, 5.5, -56], fov: 47, dur: 4.2 }
+      ]
+    },
     post: 'mali',
     lighting: 'highsun',
     intro: [
@@ -223,6 +231,13 @@ export const CHAPTERS = [
       clothRed: 0x5e1a1c, clothIndigo: 0x25324e, clothOchre: 0xa88a52,
       sky: 0x2a2f3a, haze: 0x3a2f2a, sun: 0xffd9a0
     },
+    cinematic: {
+      shots: [
+        { pos: [-15, 9.5, 15], target: [0, 4, -8], fov: 50, dur: 4.2 },
+        { pos: [-2, 6.0, 6.0], target: [4, 3.4, -12], fov: 45, dur: 3.8 },
+        { pos: [8, 4.4, 9], target: [10.5, 3.4, -2], fov: 42, dur: 3.8 }
+      ]
+    },
     post: 'lincoln',
     lighting: 'lamplight',
     intro: [
@@ -320,6 +335,13 @@ export const CHAPTERS = [
       clothRed: 0x6b3a2a, clothIndigo: 0x2a3440, clothOchre: 0x8a7a4a,
       sky: 0x8a949c, haze: 0x9aa0a0, sun: 0xdfe6ea
     },
+    cinematic: {
+      shots: [
+        { pos: [0, 2.4, 14], target: [0, 1.2, -6], fov: 46, dur: 4.0 },
+        { pos: [7, 2.0, 2], target: [-8, 1.4, -3], fov: 43, dur: 4.0 },
+        { pos: [-4, 3.4, 10], target: [2, 1.0, -10], fov: 48, dur: 3.6 }
+      ]
+    },
     post: 'mud',
     lighting: 'overcast',
     intro: [
@@ -366,6 +388,12 @@ export const CHAPTERS = [
       adobe: 0x8a8578, adobeDark: 0x4a4640, sand: 0x9a958a, wood: 0x6a5238,
       clothRed: 0x8a2a24, clothIndigo: 0x2a3a52, clothOchre: 0x9a8a5a,
       sky: 0x6a7686, haze: 0x7a8090, sun: 0xd8d0c0
+    },
+    cinematic: {
+      shots: [
+        { pos: [0, 3.0, 12], target: [0, 1.6, -6], fov: 46, dur: 4.0 },
+        { pos: [-6, 2.2, 4], target: [6, 1.6, -4], fov: 44, dur: 3.8 }
+      ]
     },
     post: 'cold',
     lighting: 'fluorescent',

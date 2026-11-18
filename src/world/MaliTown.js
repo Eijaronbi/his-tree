@@ -25,8 +25,8 @@ export class MaliTown {
     tileObjectUVs(this.group, 2.4);
   }
 
-  _addCollider(x, z, r) {
-    this.colliders.push({ x, z, r });
+  _addCollider(x, z, r, solid = true) {
+    this.colliders.push({ x, z, r, solid });
   }
 
   _buildGround() {
@@ -154,7 +154,7 @@ export class MaliTown {
     g.position.set(x, 0, z);
     g.rotation.y = rot;
     this.group.add(g);
-    this._addCollider(x, z, 1.5);
+    this._addCollider(x, z, 1.5, false);
     return g;
   }
 
@@ -195,7 +195,7 @@ export class MaliTown {
     clone.scale.setScalar(1.0);
     clone.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
     this.group.add(clone);
-    this._addCollider(x, z, 1.5);
+    this._addCollider(x, z, 1.5, false);
   }
 
   _donkey(x, z, rot = 0) {
@@ -230,7 +230,7 @@ export class MaliTown {
     g.position.set(x, 0, z);
     g.rotation.y = rot;
     this.group.add(g);
-    this._addCollider(x, z, 0.9);
+    this._addCollider(x, z, 0.9, false);
     return g;
   }
 
@@ -242,7 +242,7 @@ export class MaliTown {
     clone.rotation.y = rot;
     clone.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
     this.group.add(clone);
-    this._addCollider(x, z, 0.7);
+    this._addCollider(x, z, 0.7, false);
     return clone;
   }
 
@@ -421,6 +421,7 @@ export class MaliTown {
 
   resolveCollisions(position, radius = 0.6) {
     for (const c of this.colliders) {
+      if (c.solid === false) continue;
       const dx = position.x - c.x;
       const dz = position.z - c.z;
       const dist = Math.hypot(dx, dz);

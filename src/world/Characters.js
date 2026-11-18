@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { poseCharacter } from './CharacterAnim.js';
 
 const loader = new GLTFLoader();
 
@@ -32,6 +33,8 @@ export class Character {
       if (o.isBone) this.bones[o.name] = o;
     });
     this.height = new THREE.Box3().setFromObject(root).max.y;
+    this.pose = root.userData.noPose ? null : poseCharacter(root, { armDown: 'auto', legAmp: 0.4 });
+    if (this.pose) this.pose.setIdle();
 
     const ring = new THREE.Mesh(new THREE.RingGeometry(0.52, 0.62, 40), ringMaterial());
     ring.rotation.x = -Math.PI / 2;

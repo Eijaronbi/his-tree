@@ -11,6 +11,7 @@ import { MaliTown } from './world/MaliTown.js';
 import { skyDome } from './world/Materials.js';
 import { exteriorEnvironment, interiorEnvironment, applyEnvironment } from './world/Environment.js';
 import { loadCharacters } from './world/Characters.js';
+import { dressMaliCourt } from './world/Attire.js';
 import { buildHall1865 } from './world/Hall1865.js';
 import { buildTrench1917, buildArchive1989 } from './world/OtherEras.js';
 import { Quest, loadSave } from './core/Quest.js';
@@ -18,7 +19,56 @@ import { Ask } from './core/Ask.js';
 import { Combat } from './core/Combat.js';
 import { Crowd, maliTownsfolk } from './world/Crowd.js';
 import { UI } from './ui/UI.js';
+import { poseCharacter } from './world/CharacterAnim.js';
 import { CHAPTERS } from './data/story.js';
+import { Cinematic } from './ui/Cinematic.js';
+import { Waypoint } from './ui/Waypoint.js';
+import { WorldMap } from './ui/WorldMap.js';
+import { AvatarPicker } from './ui/AvatarPicker.js';
+import { AvatarPreview } from './ui/AvatarPreview.js';
+
+const AVATARS = [
+  { id: 'frock', name: 'Augustin Roux', era: 'Merchant, 1324', blurb: 'A coat cut for counting coin.', thumb: './thumbs/char_adult_m_frock.png', file: './assets/models/characters/audience/char_adult_m_frock.glb' },
+  { id: 'officer', name: 'Nathaniel Ward', era: 'Officer, 1865', blurb: 'Buttons polished, conscience not.', thumb: './thumbs/char_adult_m_officer.png', file: './assets/models/characters/audience/char_adult_m_officer.glb' },
+  { id: 'elegant', name: 'Clara Bellamy', era: 'Singer, 1865', blurb: 'Knows every door in the city.', thumb: './thumbs/char_adult_f_elegant.png', file: './assets/models/characters/audience/char_adult_f_elegant.glb' },
+  { id: 'simple', name: 'Maren Holt', era: 'Seamstress, 1917', blurb: 'Thread and nerves both thin.', thumb: './thumbs/char_adult_f_simple.png', file: './assets/models/characters/audience/char_adult_f_simple.glb' },
+  { id: 'worker', name: 'Silas Pike', era: 'Dockhand, 1893', blurb: 'Carries what the century drops.', thumb: './thumbs/char_worker.png', file: './assets/models/characters/audience/char_worker.glb' },
+  { id: 'soldier', name: 'Tommy Doyle', era: 'Private, 1917', blurb: 'Sixteen, and already old.', thumb: './thumbs/char_soldier_blue.png', file: './assets/models/characters/audience/char_soldier_blue.glb' },
+  { id: 'elder-m', name: 'Elias Crane', era: 'Archivist, 1989', blurb: 'Kept the file nobody wanted.', thumb: './thumbs/char_old_m_top.png', file: './assets/models/characters/audience/char_old_m_top.glb' },
+  { id: 'elder-f', name: 'Agnes Pike', era: 'Widow, 1917', blurb: 'Has buried better men than you.', thumb: './thumbs/char_old_f_bonnet.png', file: './assets/models/characters/audience/char_old_f_bonnet.glb' },
+  { id: 'lofi', name: 'Lofi', era: 'Yeti, out of time', blurb: 'Floats. Flies. Judges you.', thumb: './thumbs/lofi.png', file: './assets/models/characters/lofi.glb' }
+];
+
+const EXTRA_CARDS = [
+  { id: 'alexandria', title: 'THE LIBRARY', year: '48 BCE', place: 'Alexandria, Egypt', blurb: 'The shelves are burning. Someone is choosing what to carry.', continent: 'Africa', playable: false },
+  { id: 'timbuktu', title: 'CITY OF BOOKS', year: '1510 CE', place: 'Timbuktu, Songhai', blurb: 'A caravan arrives with paper worth more than gold.', continent: 'Africa', playable: false },
+  { id: 'tenochtitlan', title: 'THE FLOATING CITY', year: '1519 CE', place: 'Tenochtitlan, Mexica', blurb: 'Causeways, canals, and strangers on the horizon.', continent: 'North America', playable: false },
+  { id: 'chicago', title: 'THE WHITE CITY', year: '1893', place: 'Chicago, Illinois', blurb: 'Everything is lit. Someone is lying about it.', continent: 'North America', playable: false },
+  { id: 'printing', title: 'THE PRESS', year: '1450', place: 'Mainz, Holy Roman Empire', blurb: 'One man, one press, and the end of a monopoly.', continent: 'Europe', playable: false },
+  { id: 'sarajevo', title: 'THE ARCHDUKE', year: '1914', place: 'Sarajevo, Bosnia', blurb: 'A wrong turn that takes a continent with it.', continent: 'Europe', playable: false }
+];
+
+const CONTINENT_BY_CHAPTER = {
+  'mali-1324': 'Africa',
+  'washington-1865': 'North America',
+  'france-1917': 'Europe',
+  'berlin-1989': 'Europe'
+};
+
+const CARD_BY_CHAPTER = {
+  'mali-1324': './assets/textures/scenery/pano_desert.jpg',
+  'washington-1865': './assets/textures/scenery/playbill.png'
+};
+
+let cine = null;
+let waypoint = null;
+let worldMap = null;
+let avatarPicker = null;
+let avatarPreview = null;
+let pendingChapterId = null;
+let chosenAvatar = null;
+let avatarModel = null;
+let avatarLoading = null;
 
 const canvas = document.getElementById('scene');
 const loadingBar = document.getElementById('loading');
@@ -107,6 +157,7 @@ let lofiRoot = null;
 let lofiHolder = null;
 let avatarMode = 'default';
 let playerBody = null;
+let playerPose = null;
 let clock = new THREE.Clock();
 
 const baseModels = {};
@@ -136,20 +187,28 @@ async function boot() {
 
   if (avatarParam === 'lofi') avatarMode = 'lofi';
   const save = loadSave();
+  if (avatarParam) {
+    const a = AVATARS.find((v) => v.id === avatarParam);
+    if (a) { chosenAvatar = a; await applyAvatar(a); }
+  }
   if (autostartParam) startChapter(autostartParam);
-  else ui.menu(CHAPTERS.map((c) => ({
+  else if (params.get('menu') === '1') ui.menu(CHAPTERS.map((c) => ({
     ...c,
     tagline: (save.completed || []).includes(c.id) ? `${c.tagline} · completed` : c.tagline
   })), startChapter, () => {
     localStorage.removeItem('his-tree:save:v1');
     location.reload();
   });
+  else openMap();
 
-  window.__game = { scene, camera, renderer, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter }; }, THREE };
+  waypoint = new Waypoint();
+
+  window.__game = { scene, camera, renderer, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter, controller, input, flight, playerPose, avatarMode }; }, THREE };
   loop();
 }
 
 function disposeWorld() {
+  if (waypoint) waypoint.clear();
   if (combat) { combat.disable(); combat = null; }
   if (streetCrowd) { scene.remove(streetCrowd.group); streetCrowd = null; }
   ask = null;
@@ -205,6 +264,7 @@ function setAvatar(kind) {
     rig.add(model);
   }
   playerBody = model;
+  playerPose = (model && kind !== 'lofi' && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
   mixer = new THREE.AnimationMixer(model || rig);
   controller.mixer = mixer;
   controller.actions = {};
@@ -223,12 +283,27 @@ function setAvatar(kind) {
   ui.toast(kind === 'lofi' ? 'You are Lofi the Yeti' : 'Back to your own body', 1800);
 }
 
+async function ensureAvatar(file) {
+  if (avatarModel && avatarModel.userData.file === file) return avatarModel;
+  if (avatarLoading) await avatarLoading.catch(() => {});
+  avatarLoading = new Promise((resolve) => {
+    if (!file) { resolve(null); return; }
+    loader.load(file, (gltf) => {
+      const model = gltf.scene;
+      model.userData.file = file;
+      avatarModel = model;
+      resolve(model);
+    }, undefined, () => resolve(null));
+  });
+  return avatarLoading;
+}
+
 function buildAvatarModel(kind) {
   if (kind === 'lofi' && lofiRoot) {
     lofiRoot.updateMatrixWorld(true);
     return lofiRoot;
   }
-  const src = baseModels.player;
+  const src = avatarModel || baseModels.player;
   if (!src) return null;
   const model = cloneSkinned(src);
   model.updateMatrixWorld(true);
@@ -270,7 +345,9 @@ function makePlayer(chapter) {
   controller.height = height * 0.84;
   flight = new Flight({ player: pivot, controller, camera, scene, ui, input, rig });
   playerBody = model;
+  playerPose = (model && avatarMode !== 'lofi' && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
   flight.enable(avatarMode === 'lofi');
+  if (typeof syncTouchPowers === 'function') syncTouchPowers();
   if (avatarMode === 'lofi') {
     ui.setPowers([{ key: 'F', label: 'Float' }, { key: 'G', label: 'Fly' }, { key: 'V', label: 'Change avatar' }]);
   }
@@ -387,6 +464,12 @@ async function startChapter(id) {
   camera.position.set(cfg.spawn.x, 4.2, cfg.spawn.z + 5.4);
 
   npcs = await loadCharacters(cfg.npcs, scene, cfg.positions);
+  if (chapter.id === 'mali-1324') {
+    if (npcs.musa) dressMaliCourt(npcs.musa.root, 'royal');
+    if (npcs.salim) dressMaliCourt(npcs.salim.root, 'noble');
+    if (npcs.amina) dressMaliCourt(npcs.amina.root, 'noble');
+    if (npcs.bakary) dressMaliCourt(npcs.bakary.root, 'noble');
+  }
   quest = new Quest({
     chapter, scene, ui, player, npcs, props, world, save: loadSave(),
     auto: autoParam,
@@ -429,7 +512,10 @@ async function startChapter(id) {
     combat.spawnPickup({ kind: 'gun', x: 8.4, y: 1.18, z: 12.4, label: 'the pistol left on the bar' });
   }
 
-  if (!input.touch && document.pointerLockElement !== canvas) {
+  if (chapter.cinematic && chapter.cinematic.shots && params.get('cine') !== '0') {
+    if (!cine) cine = new Cinematic({ camera, onComplete: () => { cine = null; } });
+    cine.start({ ...chapter.cinematic, number: chapter.number, title: chapter.title });
+  } else if (!input.touch && document.pointerLockElement !== canvas) {
     try { canvas.requestPointerLock(); } catch (e) { /* ignore */ }
   }
   try { audio.start(); } catch (e) { /* needs a gesture on some browsers */ }
@@ -438,6 +524,17 @@ async function startChapter(id) {
 
 window.addEventListener('keydown', (e) => {
   if (!flight || !player) return;
+  if (e.code === 'KeyL' && !combat) {
+    const a = input.axis();
+    const dir = new THREE.Vector3(Math.sin(controller.yaw), 0, Math.cos(controller.yaw));
+    if (a.len > 0.1) {
+      const fwd = new THREE.Vector3(Math.sin(controller.yaw), 0, Math.cos(controller.yaw));
+      const right = new THREE.Vector3(-fwd.z, 0, fwd.x);
+      dir.copy(fwd).multiplyScalar(a.y).addScaledVector(right, a.x);
+    }
+    controller.dash(dir);
+    e.preventDefault();
+  }
   if (e.code === 'KeyF') { flight.toggleFloat(); e.preventDefault(); }
   if (e.code === 'KeyG') { flight.toggleFly(); e.preventDefault(); }
   if (e.code === 'KeyV') { setAvatar(avatarMode === 'lofi' ? 'default' : 'lofi'); e.preventDefault(); }
@@ -454,24 +551,153 @@ function journalKey(e) {
   }
 }
 
+function isPortrait() { return window.innerHeight > window.innerWidth * 1.04; }
+
+function syncOrientation() {
+  document.body.classList.toggle('portrait', isPortrait());
+}
+
+function syncTouchPowers() {
+  const show = avatarMode === 'lofi';
+  for (const id of ['btnFloat', 'btnFly']) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = show && document.body.classList.contains('touch') ? 'flex' : 'none';
+  }
+}
+
+function setupMobile() {
+  syncOrientation();
+  syncTouchPowers();
+  const full = document.getElementById('btnFull');
+  if (full) {
+    full.addEventListener('click', () => {
+      const el = document.documentElement;
+      if (!document.fullscreenElement) {
+        (el.requestFullscreen ? el.requestFullscreen() : Promise.resolve()).then(() => {
+          const lock = screen.orientation && screen.orientation.lock;
+          if (lock) lock.call(screen.orientation, 'landscape').catch(() => {});
+        }).catch(() => {});
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+  }
+  const skip = document.getElementById('rotateSkip');
+  if (skip) skip.addEventListener('click', () => document.body.classList.add('no-rotate'));
+  window.addEventListener('orientationchange', () => setTimeout(syncOrientation, 120));
+}
+
+function objectiveTarget() {
+  if (!quest || !quest.step) return null;
+  const st = quest.step;
+  if (st.type === 'goto' && st.marker) return { x: st.marker.x, y: 0, z: st.marker.z };
+  if (st.type === 'talk' && st.who && npcs[st.who]) return npcs[st.who].position;
+  if (st.type === 'inspect' && st.target && props[st.target]) return props[st.target].position;
+  return null;
+}
+
+function mapChapters() {
+  const list = CHAPTERS.map((c) => ({
+    ...c,
+    continent: CONTINENT_BY_CHAPTER[c.id] || 'Europe',
+    playable: true,
+    card: CARD_BY_CHAPTER[c.id]
+  }));
+  return list.concat(EXTRA_CARDS);
+}
+
+function openMap() {
+  if (!worldMap) {
+    worldMap = new WorldMap({
+      chapters: mapChapters(),
+      onSelect: (chapter) => {
+        if (!chapter.playable) return;
+        pendingChapterId = chapter.id;
+        openPicker();
+      }
+    });
+  }
+  worldMap.show();
+}
+
+function openPicker() {
+  const container = document.getElementById('avatar-preview');
+  if (container) avatarPreview = new AvatarPreview(container, loader);
+  if (!avatarPicker) {
+    avatarPicker = new AvatarPicker({
+      avatars: AVATARS,
+      onSelect: async (a) => {
+        if (!a || a.locked) return;
+        chosenAvatar = a;
+        avatarPicker.hide();
+        await applyAvatar(a);
+        if (pendingChapterId) startChapter(pendingChapterId);
+        pendingChapterId = null;
+      },
+      onHover: (id) => {
+        const a = AVATARS.find((v) => v.id === id);
+        if (!a || !avatarPreview) return;
+        avatarPreview.load(a.file).catch(() => {});
+      }
+    });
+  }
+  avatarPicker.show();
+  const first = AVATARS.find((a) => !a.locked);
+  if (first) {
+    if (!avatarPreview) avatarPreview = new AvatarPreview(document.getElementById('avatar-preview'), loader);
+    avatarPreview.load(first.file).catch(() => {});
+  }
+}
+
+async function applyAvatar(a) {
+  if (!a) return;
+  avatarMode = a.id === 'lofi' ? 'lofi' : 'default';
+  if (a.id === 'lofi') {
+    await ensureLofi();
+  } else {
+    await ensureAvatar(a.file);
+  }
+  if (player && rig) setAvatar(avatarMode);
+}
+
+window.__setArm = () => false;
+window.__openMap = openMap;
+window.__openPicker = openPicker;
+window.__poseUniforms = () => (playerPose ? playerPose.uniforms : null);
+
+setupMobile();
+
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   if (post) post.resize();
+  syncOrientation();
 });
 
 let frames = 0;
 let fpsTime = 0;
 function loop() {
   requestAnimationFrame(loop);
-  const dt = Math.min(0.05, clock.getDelta());
+  const rawDt = clock.getDelta();
+  const dt = Math.min(0.05, rawDt);
   const t = clock.elapsedTime;
 
-  if (player && controller) {
+  const inCine = !!(cine && cine.active);
+  if (inCine) cine.update(rawDt);
+  if (player && controller && !inCine) {
     if (flight) flight.update(dt);
     controller.update(dt);
-    if (camParam === 'box') { camera.position.set(16.6, 7.9, -2.6); camera.lookAt(22.6, 6.5, -9.0); }
+    if (playerPose) playerPose.setWalk(controller.speed, controller.walkPhase);
+    if (window.__look) {
+      const lk = window.__look;
+      camera.position.set(lk.f[0], lk.f[1], lk.f[2]);
+      camera.lookAt(lk.a[0], lk.a[1], lk.a[2]);
+    } else if (window.__cam) {
+      const c = window.__cam;
+      camera.position.set(player.position.x + c.p[0], player.position.y + c.p[1], player.position.z + c.p[2]);
+      camera.lookAt(player.position.x + (c.l[0] || 0), player.position.y + c.l[1], player.position.z + (c.l[2] || 0));
+    } else if (camParam === 'box') { camera.position.set(16.6, 7.9, -2.6); camera.lookAt(22.6, 6.5, -9.0); }
     else if (camParam === 'hall') { camera.position.set(0, 7.5, 15.5); camera.lookAt(0, 4.2, -6); }
     else if (camParam === 'stage') { camera.position.set(-2, 6.0, 6.0); camera.lookAt(4, 3.4, -12); }
     const airborne = flight && flight.mode !== 'ground';
@@ -485,11 +711,18 @@ function loop() {
       sun.position.set(player.position.x + 58, 74, player.position.z + 42);
     }
   }
+  if (waypoint) {
+    waypoint.update(dt, {
+      camera, player, world, npcs,
+      target: inCine ? null : objectiveTarget(),
+      yaw: controller ? controller.yaw : 0
+    });
+  }
   if (world && world.update) world.update(dt, t);
   if (streetCrowd) streetCrowd.update(dt, t);
   Object.values(npcs).forEach((n) => n.update(dt, t, player ? player.position : null));
-  if (quest && player) quest.update(dt, input);
-  if (ask && player && !ui.busy) ask.update(dt, input);
+  if (quest && player && !inCine) quest.update(dt, input);
+  if (ask && player && !ui.busy && !inCine) ask.update(dt, input);
   if (combat && player && !ui.busy) {
     combat.update(dt);
     ui.combatStatus({

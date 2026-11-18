@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0805'/%3E%3Cpath d='M6 26h20M16 26V9M16 12l-6-4M16 12l6-4M16 18l-7 5M16 18l7 5' stroke='%23d9a441' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>HIS-TREE — Episode I: The Golden Empire</title>
 <style>
   :root { --ochre:#d9a441; --ink:#2b1a0e; --sand:#e8d3ae; }
@@ -35,8 +39,10 @@
   #start:hover { background:var(--ochre); color:#1a1208; }
   #loading { position:fixed; inset:auto 0 0 0; height:2px; width:0%; background:var(--ochre);
     transition:width .3s; z-index:11; }
-  #touch { position:fixed; inset:0; display:none; z-index:9; }
+  #touch { position:fixed; inset:0; display:none; z-index:9; pointer-events:none; }
   body.touch #touch { display:block; }
+  #touch .ctl { pointer-events:auto; }
+  #lookzone { position:absolute; inset:0; pointer-events:auto; }
   #stick { position:absolute; left:28px; bottom:36px; width:132px; height:132px; border-radius:50%;
     border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.25); }
   #knob { position:absolute; left:50%; top:50%; width:54px; height:54px; margin:-27px 0 0 -27px;
@@ -60,12 +66,68 @@
     border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
     font-size:9px; display:none; align-items:center; justify-content:center; }
   #ask-panel { display:none; }
+  #btnFull { position:fixed; top:10px; right:12px; z-index:22; pointer-events:auto; width:38px; height:38px;
+    border-radius:8px; border:1px solid rgba(232,211,174,.35); background:rgba(14,9,4,.5); color:var(--sand);
+    font-size:10px; letter-spacing:.06em; display:none; align-items:center; justify-content:center; }
+  body.touch #btnFull { display:flex; }
+  #rotate { position:fixed; inset:0; z-index:60; display:none; flex-direction:column; align-items:center;
+    justify-content:center; gap:22px; background:#0b0805; text-align:center; padding:32px; }
+  #rotate .ph { width:64px; height:104px; border:2px solid var(--ochre); border-radius:10px;
+    transform:rotate(90deg); animation:tilt 2.4s ease-in-out infinite; }
+  @keyframes tilt { 0%,30% { transform:rotate(90deg); } 60%,100% { transform:rotate(0deg); } }
+  #rotate h2 { font-size:15px; letter-spacing:.24em; text-transform:uppercase; color:var(--ochre); font-weight:400; }
+  #rotate p { font-size:12.5px; opacity:.7; max-width:340px; line-height:1.6; }
+  #rotate button { padding:10px 22px; border:1px solid rgba(217,164,65,.6); background:transparent;
+    color:var(--ochre); font-family:inherit; font-size:11px; letter-spacing:.2em; text-transform:uppercase; }
+  body.touch.portrait #rotate { display:flex; }
+  body.no-rotate #rotate { display:none !important; }
+  @media (orientation: landscape) and (max-height: 520px) {
+    #chapter { font-size:9px; top:8px; left:12px; letter-spacing:.24em; }
+    #objective { font-size:10.5px; top:24px; left:12px; max-width:230px; line-height:1.4; }
+    #stats { font-size:9px; bottom:6px; left:12px; }
+    #hint { display:none; }
+    #stick { width:104px; height:104px; left:14px; bottom:14px; }
+    #knob { width:44px; height:44px; margin:-22px 0 0 -22px; }
+    #btnRun { width:64px; height:64px; right:14px; bottom:14px; font-size:9px; }
+    #btnAttack { width:56px; height:56px; right:86px; bottom:18px; font-size:9px; }
+    #btnDodge { width:48px; height:48px; right:92px; bottom:82px; font-size:8.5px; }
+    #btnAsk { width:48px; height:48px; right:14px; bottom:86px; font-size:9px; }
+    #btnKnife { right:150px; bottom:64px; width:44px; height:44px; }
+    #btnGun { right:150px; bottom:14px; width:44px; height:44px; }
+    #cine-root .bar.top, #cine-root .bar.bottom { height:8vh; }
+  }
+  #hud-powers .row { text-shadow:0 1px 3px #000; }
 </style>
 <script type="importmap">
 { "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
 </script>
+<style id="splash-css">
+#splash{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:10px;background:radial-gradient(circle at 50% 42%,#191208 0%,#0b0805 62%);color:var(--ochre,#d9a441);
+pointer-events:none;animation:splashOut 4.2s cubic-bezier(.4,0,.2,1) forwards}
+#splash .sp-word{font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,6vw,44px);letter-spacing:.34em;
+text-indent:.34em;color:#e8d3ae;opacity:0;animation:spIn 1.5s .25s ease-out forwards}
+#splash .sp-tag{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:#a8813f;opacity:0;
+animation:spIn 1.5s .85s ease-out forwards}
+#splash .sp-bar{width:120px;height:1px;background:#2a1f11;margin-top:6px;overflow:hidden}
+#splash .sp-bar i{display:block;height:100%;width:0;background:#d9a441;animation:spBar 2.6s .5s ease-in-out forwards}
+#splash svg{color:#d9a441;opacity:0;animation:spIn 1.6s .05s ease-out forwards;filter:drop-shadow(0 0 14px rgba(217,164,65,.35))}
+@keyframes spIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes spBar{from{width:0}to{width:100%}}
+@keyframes splashOut{0%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
+</style>
 </head>
 <body>
+<div id="splash" aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="86" height="86" aria-hidden="true">
+    <path d="M32 56V22M32 30 18 18M32 30 46 18M32 40 14 51M32 40 50 51" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="18" cy="18" r="3.4" fill="currentColor"/><circle cx="46" cy="18" r="3.4" fill="currentColor"/>
+    <circle cx="14" cy="51" r="3" fill="currentColor"/><circle cx="50" cy="51" r="3" fill="currentColor"/>
+  </svg>
+  <div class="sp-word">HIS-TREE</div>
+  <div class="sp-tag">one tree · every century</div>
+  <div class="sp-bar"><i></i></div>
+</div>
 <canvas id="scene"></canvas>
 <div id="hud">
   <div id="chapter">Episode I — The Golden Empire</div>
@@ -75,13 +137,26 @@
   <div id="toast"></div>
 </div>
 <div id="touch">
-  <div id="stick"><div id="knob"></div></div>
-  <div id="btnRun">RUN</div>
-  <div id="btnAttack">HIT</div>
-  <div id="btnDodge">DODGE</div>
-  <div id="btnAsk">ASK</div>
-  <div id="btnKnife">KNIFE</div>
-  <div id="btnGun">GUN</div>
+  <div id="lookzone"></div>
+  <div id="stick" class="ctl"><div id="knob"></div></div>
+  <div id="btnRun" class="ctl">RUN</div>
+  <div id="btnAttack" class="ctl">HIT</div>
+  <div id="btnKick" class="ctl" style="position:absolute;right:86px;bottom:88px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.28);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">KICK</div>
+  <div id="btnDodge" class="ctl">DODGE</div>
+  <div id="btnAsk" class="ctl">ASK</div>
+  <div id="btnUse" class="ctl" style="position:absolute;right:84px;bottom:150px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(217,164,65,.35);background:rgba(20,12,5,.25);color:var(--ochre);font-size:9px;display:flex;align-items:center;justify-content:center;">USE</div>
+  <div id="btnJump" class="ctl" style="position:absolute;left:150px;bottom:16px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.25);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">JUMP</div>
+  <div id="btnFloat" class="ctl" style="position:absolute;left:14px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLOAT</div>
+  <div id="btnFly" class="ctl" style="position:absolute;left:68px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLY</div>
+  <div id="btnKnife" class="ctl">KNIFE</div>
+  <div id="btnGun" class="ctl">GUN</div>
+</div>
+<button id="btnFull">FULL</button>
+<div id="rotate">
+  <div class="ph"></div>
+  <h2>Rotate your device</h2>
+  <p>HIS-TREE plays best in landscape. Turn your phone sideways for the full view.</p>
+  <button id="rotateSkip">Play anyway</button>
 </div>
 <div id="title" style="display:none">
   <h1>HIS-TREE</h1>
