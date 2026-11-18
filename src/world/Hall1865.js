@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { theatreWoodMaterial, theatrePlasterMaterial, theatreVelvetMaterial, carpetMaterial, goldMaterial, clothMaterial, metalMaterial, contactShadowMaterial, tileObjectUVs } from './Materials.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { Crowd, theatreAudienceSeats, theatreStandingCrowd, stageActors } from './Crowd.js';
+import { Cast, theatreCast } from './Cast.js';
 
 export function buildHall1865(scene) {
   const group = new THREE.Group();
@@ -40,42 +42,21 @@ export function buildHall1865(scene) {
   stage.receiveShadow = true;
   group.add(stage);
 
-  const backdropTex = (() => {
-    const cv = document.createElement('canvas');
-    cv.width = 1024; cv.height = 512;
-    const g = cv.getContext('2d');
-    const sky = g.createLinearGradient(0, 0, 0, 512);
-    sky.addColorStop(0, '#24324d');
-    sky.addColorStop(0.5, '#8d6e52');
-    sky.addColorStop(1, '#2a2017');
-    g.fillStyle = sky; g.fillRect(0, 0, 1024, 512);
-    g.fillStyle = 'rgba(60,52,38,0.85)';
-    g.beginPath(); g.moveTo(0, 380);
-    for (let x = 0; x <= 1024; x += 32) g.lineTo(x, 350 + Math.sin(x * 0.006) * 40 + Math.sin(x * 0.017) * 14);
-    g.lineTo(1024, 512); g.lineTo(0, 512); g.closePath(); g.fill();
-    g.fillStyle = 'rgba(32,27,20,0.9)';
-    g.fillRect(360, 300, 120, 90);
-    g.beginPath(); g.moveTo(340, 300); g.lineTo(420, 240); g.lineTo(500, 300); g.closePath(); g.fill();
-    g.fillStyle = 'rgba(255,214,150,0.55)';
-    g.fillRect(400, 330, 18, 22);
-    for (let i = 0; i < 180; i++) {
-      g.fillStyle = `rgba(0,0,0,${0.03 + Math.random() * 0.05})`;
-      g.fillRect(Math.random() * 1024, Math.random() * 512, 2, 2);
-    }
-    const t = new THREE.CanvasTexture(cv);
-    t.colorSpace = THREE.SRGBColorSpace;
-    return t;
-  })();
-  const backdrop = new THREE.Mesh(
-    new THREE.PlaneGeometry(17.5, 5.2),
+
+  // painted stage backdrop: a Lux3D generated 1860s scenic drop
+  const dropTex = new THREE.TextureLoader().load('./assets/textures/scenery/theatre_drop_wide.png');
+  dropTex.colorSpace = THREE.SRGBColorSpace;
+  dropTex.anisotropy = 8;
+  const drop = new THREE.Mesh(
+    new THREE.PlaneGeometry(19.0, 10.4),
     new THREE.MeshStandardMaterial({
-      map: backdropTex, emissive: 0xffffff, emissiveMap: backdropTex, emissiveIntensity: 0.20,
-      roughness: 1, metalness: 0, color: 0x8d8578
+      map: dropTex, roughness: 0.95, metalness: 0.0, color: 0xb9ad9c
     })
   );
-  backdrop.position.set(0, 3.4, -D / 2 + 1.1);
-  backdrop.userData.noTileUV = true;
-  group.add(backdrop);
+  drop.position.set(0, 6.1, -D / 2 + 0.42);
+  drop.receiveShadow = true;
+  drop.userData.noTileUV = true;
+  group.add(drop);
 
   // heavy velvet drapes at the stage opening, with folded geometry
   const curtainMat = theatreVelvetMaterial(0x6b1a22);
@@ -165,46 +146,15 @@ export function buildHall1865(scene) {
     m.instanceMatrix.needsUpdate = true;
     group.add(m);
   }
-  const crowdMats = [0x241f1b, 0x2e2721, 0x1e1b18].map((c) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.94, metalness: 0 }));
-  const skinMat = new THREE.MeshStandardMaterial({ color: 0x6f5747, roughness: 0.72 });
-  const torsoGeo = new RoundedBoxGeometry(0.48, 0.6, 0.34, 2, 0.09);
-  const shoulderGeo = new RoundedBoxGeometry(0.6, 0.16, 0.36, 2, 0.07);
-  const headGeo = new THREE.SphereGeometry(0.098, 10, 8);
-  const hatGeo = new THREE.CylinderGeometry(0.1, 0.13, 0.12, 10);
-  let seatIndex = 0;
-  for (let r = 0; r < 9; r++) {
-    for (let c = 0; c < 20; c++) {
-      const x = -12 + c * 1.42;
-      if (Math.abs(x) < 1.6) continue;
-      seatIndex++;
-      if (seatIndex % 7 === 0) continue;
-      const z = -8 + r * 1.5;
-      const mat = crowdMats[seatIndex % crowdMats.length];
-      const t = new THREE.Mesh(torsoGeo, mat);
-      t.position.set(x, 1.0, z + 0.06); t.rotation.x = -0.06; t.castShadow = true;
-      const sh = new THREE.Mesh(shoulderGeo, mat);
-      sh.position.set(x, 1.27, z + 0.04);
-      const h = new THREE.Mesh(headGeo, skinMat);
-      h.position.set(x, 1.43, z + 0.03);
-      group.add(t, sh, h);
-      if (seatIndex % 3 === 0) {
-        const hat = new THREE.Mesh(hatGeo, mat);
-        hat.position.set(x, 1.53, z + 0.02);
-        group.add(hat);
-      }
-    }
-  }
-  const standGeo = new RoundedBoxGeometry(0.5, 1.15, 0.34, 2, 0.08);
-  for (let i = 0; i < 12; i++) {
-    const x = -18 + i * 3.3;
-    if (Math.abs(x) < 2) continue;
-    const mat = crowdMats[i % crowdMats.length];
-    const b = new THREE.Mesh(standGeo, mat);
-    b.position.set(x, 0.95, D / 2 - 2.4); b.castShadow = true;
-    const h = new THREE.Mesh(headGeo, skinMat);
-    h.position.set(x, 1.66, D / 2 - 2.4);
-    group.add(b, h);
-  }
+  const crowdInstances = [];
+  const audience = new Crowd(theatreAudienceSeats(), { name: 'audience' });
+  const house = new Crowd(theatreStandingCrowd(D), { name: 'house' });
+  group.add(audience.group, house.group);
+  crowdInstances.push(audience, house);
+
+  // real cast members (Lux3D generated) take the stage and the aisles
+  const cast = new Cast(group);
+  cast.loadAll(theatreCast());
 
   const aisle = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.03, D - 4), wool);
   aisle.position.set(0, 0.02, 1);
@@ -363,6 +313,75 @@ export function buildHall1865(scene) {
   }
   addLight(new THREE.Vector3(0, 1.2, -D / 2 + 7.4), 130, 0xffc27a, 11);
 
+
+  // theatre playbills on the side walls
+  const playbillTex = new THREE.TextureLoader().load('./assets/textures/scenery/playbill.png');
+  playbillTex.colorSpace = THREE.SRGBColorSpace;
+  const playbillMat = new THREE.MeshStandardMaterial({ map: playbillTex, roughness: 0.95 });
+  for (const side of [-1, 1]) {
+    const bill = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 2.0), playbillMat);
+    bill.position.set(side * (W / 2 - 0.35), 3.1, -2 + side * 3.5);
+    bill.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+    group.add(bill);
+  }
+
+  // stage dressing: parlour table, chairs, candlesticks, rug
+  const stageY = 1.0;
+  const rug = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 4.6), velvet);
+  rug.rotation.x = -Math.PI / 2;
+  rug.position.set(0.4, stageY + 0.012, -14.6);
+  rug.receiveShadow = true;
+  group.add(rug);
+
+  const tableTop = new THREE.Mesh(new RoundedBoxGeometry(2.6, 0.09, 1.0, 2, 0.03), wood);
+  tableTop.position.set(0.4, stageY + 0.78, -14.6);
+  tableTop.castShadow = true;
+  group.add(tableTop);
+  for (const dx of [-1.1, 1.1]) {
+    for (const dz of [-0.34, 0.34]) {
+      const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.06, 0.74, 8), wood);
+      leg.position.set(0.4 + dx, stageY + 0.37, -14.6 + dz);
+      leg.castShadow = true;
+      group.add(leg);
+    }
+  }
+  const chairProto = new THREE.Group();
+  const chairSeat = new THREE.Mesh(new RoundedBoxGeometry(0.46, 0.07, 0.44, 2, 0.02), wood);
+  chairSeat.position.y = 0.46;
+  const chairBack = new THREE.Mesh(new RoundedBoxGeometry(0.46, 0.62, 0.06, 2, 0.02), wood);
+  chairBack.position.set(0, 0.8, -0.2);
+  const chairLegs = [];
+  for (const dx of [-0.18, 0.18]) {
+    for (const dz of [-0.17, 0.17]) {
+      const l = new THREE.Mesh(new THREE.CylinderGeometry(0.028, 0.035, 0.44, 6), wood);
+      l.position.set(dx, 0.22, dz);
+      chairLegs.push(l);
+    }
+  }
+  chairProto.add(chairSeat, chairBack, ...chairLegs);
+  chairProto.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+  for (const [cx, cz, cr] of [[-1.5, -14.2, 0.5], [2.4, -14.9, -0.6], [-0.9, -13.1, 2.4]]) {
+    const ch = chairProto.clone(true);
+    ch.position.set(cx, stageY, cz);
+    ch.rotation.y = cr;
+    group.add(ch);
+  }
+  const candleStickMat = gold;
+  for (const [cx, cz] of [[-0.7, -14.5], [0.2, -14.4], [1.1, -14.6]]) {
+    const stick = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.07, 0.34, 8), candleStickMat);
+    stick.position.set(cx, stageY + 0.99, cz);
+    const candle = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.04, 0.26, 8), new THREE.MeshStandardMaterial({ color: 0xe8dcc0, roughness: 0.7, emissive: 0xffb45c, emissiveIntensity: 1.1 }));
+    candle.position.set(cx, stageY + 1.28, cz);
+    const flame = new THREE.Mesh(new THREE.SphereGeometry(0.045, 7, 5), new THREE.MeshBasicMaterial({ color: 0xffdda6 }));
+    flame.scale.set(0.7, 1.7, 0.7);
+    flame.position.set(cx, stageY + 1.46, cz);
+    group.add(stick, candle, flame);
+    const gl = new THREE.PointLight(0xffb066, 14, 4.2, 2.0);
+    gl.position.set(cx, stageY + 1.5, cz);
+    group.add(gl);
+    lights.push(gl);
+  }
+
   // shallow steps up to the stage
   for (let i = 0; i < 2; i++) {
     const step = new THREE.Mesh(new THREE.BoxGeometry(7 - i * 1.4, 0.16, 0.55), wood);
@@ -470,5 +489,14 @@ export function buildHall1865(scene) {
   };
 
   const spawn = new THREE.Vector3(0, 0, 9);
-  return { group, props, npcPositions, spawn, lights, hall: { W, D, H }, update: () => {} };
+  const update = (dt, t) => {
+    for (const c of crowdInstances) c.update(dt, t);
+    cast.update(dt, t);
+    for (let i = 0; i < lights.length; i++) {
+      const l = lights[i];
+      if (!l.userData.baseIntensity) l.userData.baseIntensity = l.intensity;
+      l.intensity = l.userData.baseIntensity * (0.93 + 0.07 * Math.sin(t * (2.1 + i * 0.31) + i));
+    }
+  };
+  return { group, props, npcPositions, spawn, lights, hall: { W, D, H }, crowds: crowdInstances, cast, update };
 }

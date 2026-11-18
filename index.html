@@ -44,6 +44,22 @@
   #btnRun { position:absolute; right:28px; bottom:36px; width:84px; height:84px; border-radius:50%;
     border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
     font-size:11px; letter-spacing:.16em; display:flex; align-items:center; justify-content:center; }
+  #btnAttack { position:absolute; right:124px; bottom:46px; width:74px; height:74px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
+    font-size:10px; letter-spacing:.12em; display:flex; align-items:center; justify-content:center; }
+  #btnDodge { position:absolute; right:130px; bottom:128px; width:62px; height:62px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.28); background:rgba(20,12,5,.22); color:var(--sand);
+    font-size:9.5px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
+  #btnAsk { position:absolute; right:28px; bottom:130px; width:62px; height:62px; border-radius:50%;
+    border:1px solid rgba(217,164,65,.4); background:rgba(20,12,5,.28); color:var(--ochre);
+    font-size:10px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
+  #btnKnife { position:absolute; right:210px; bottom:96px; width:56px; height:56px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #btnGun { position:absolute; right:210px; bottom:32px; width:56px; height:56px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #ask-panel { display:none; }
 </style>
 <script type="importmap">
 { "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
@@ -58,7 +74,15 @@
   <div id="hint">WASD move · Shift run · Mouse look · M music · Esc release</div>
   <div id="toast"></div>
 </div>
-<div id="touch"><div id="stick"><div id="knob"></div></div><div id="btnRun">RUN</div></div>
+<div id="touch">
+  <div id="stick"><div id="knob"></div></div>
+  <div id="btnRun">RUN</div>
+  <div id="btnAttack">HIT</div>
+  <div id="btnDodge">DODGE</div>
+  <div id="btnAsk">ASK</div>
+  <div id="btnKnife">KNIFE</div>
+  <div id="btnGun">GUN</div>
+</div>
 <div id="title" style="display:none">
   <h1>HIS-TREE</h1>
   <h2>EPISODE I &nbsp;·&nbsp; THE GOLDEN EMPIRE</h2>

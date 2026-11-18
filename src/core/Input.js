@@ -29,7 +29,8 @@ export class Input {
   }
 
   _bindMouse() {
-    this.canvas.addEventListener('click', () => {
+    this.canvas.addEventListener('mousedown', (e) => {
+      if (e.button === 0) this.mouseAttack = true;
       if (!this.touch && !this.locked) this.canvas.requestPointerLock();
     });
     document.addEventListener('pointerlockchange', () => {
@@ -88,6 +89,17 @@ export class Input {
     stick.addEventListener('touchcancel', onEnd);
     runBtn.addEventListener('touchstart', (e) => { this.run = true; e.preventDefault(); }, { passive: false });
     runBtn.addEventListener('touchend', (e) => { this.run = false; e.preventDefault(); }, { passive: false });
+    const hold = (id, code) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('touchstart', (e) => { this.just.add(code); e.preventDefault(); }, { passive: false });
+    };
+    hold('btnAttack', 'KeyJ');
+    hold('btnKick', 'KeyK');
+    hold('btnDodge', 'KeyL');
+    hold('btnAsk', 'KeyQ');
+    hold('btnKnife', 'Digit1');
+    hold('btnGun', 'Digit2');
     this.canvas.addEventListener('touchmove', (e) => {
       if (e.touches.length !== 1) return;
       const t = e.touches[0];
@@ -107,6 +119,7 @@ export class Input {
 
   endFrame() {
     this.just.clear();
+    this.mouseAttack = false;
   }
 
   axis() {

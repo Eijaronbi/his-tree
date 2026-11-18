@@ -197,6 +197,42 @@ export class MaliTown {
     this._addCollider(x, z, 1.5);
   }
 
+  _donkey(x, z, rot = 0) {
+    const grey = new THREE.MeshStandardMaterial({ color: 0x6b6257, roughness: 0.94 });
+    const dark = new THREE.MeshStandardMaterial({ color: 0x4a443c, roughness: 0.95 });
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.62, 1.5), grey);
+    body.position.y = 0.92;
+    const neck = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.72, 0.34), grey);
+    neck.position.set(0, 1.34, 0.62);
+    neck.rotation.x = -0.34;
+    const head = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.3, 0.56), grey);
+    head.position.set(0, 1.52, 0.98);
+    head.rotation.x = 0.22;
+    const ears = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.34, 6), dark);
+    ears.position.set(0.09, 1.82, 0.88);
+    const ears2 = ears.clone();
+    ears2.position.x = -0.09;
+    const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.03, 0.42, 6), dark);
+    tail.position.set(0, 1.06, -0.78);
+    tail.rotation.x = 0.5;
+    const legs = [];
+    for (const dx of [-0.22, 0.22]) {
+      for (const dz of [-0.52, 0.52]) {
+        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.86, 7), dark);
+        leg.position.set(dx, 0.43, dz);
+        legs.push(leg);
+      }
+    }
+    g.add(body, neck, head, ears, ears2, tail, ...legs);
+    g.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+    g.position.set(x, 0, z);
+    g.rotation.y = rot;
+    this.group.add(g);
+    this._addCollider(x, z, 0.9);
+    return g;
+  }
+
   _npc(x, z, rot = 0, name = 'villager') {
     const model = this.models.villager;
     if (!model) return;
@@ -296,6 +332,11 @@ export class MaliTown {
     this._camel(cx - 5, cz + 1, 0.8);
     this._camel(cx + 3, cz + 5, 2.1);
     this._camel(cx + 7, cz - 3, -1.2);
+    this._donkey(cx - 8, cz + 6, 1.4);
+    this._donkey(cx + 9, cz + 8, -0.6);
+    this._donkey(cx - 2, cz - 9, 2.6);
+    this._donkey(-4.6, 22.8, 0.9);
+    this._donkey(6.2, 25.6, -1.7);
     for (let i = 0; i < 5; i++) {
       this._basket(cx + (this.rng() - 0.5) * 14, cz + (this.rng() - 0.5) * 14, 0.8 + this.rng() * 0.6);
     }

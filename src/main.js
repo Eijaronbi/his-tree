@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone as cloneSkinned } from 'three/addons/utils/SkeletonUtils.js';
 import { Input } from './core/Input.js';
 import { ThirdPersonController } from './core/ThirdPersonController.js';
+import { loadLofi, Flight } from './core/Flight.js';
 import { AudioManager } from './core/AudioManager.js';
 import { PostFX } from './core/PostFX.js';
 import { CameraDirector } from './core/CameraDirector.js';
@@ -13,6 +14,9 @@ import { loadCharacters } from './world/Characters.js';
 import { buildHall1865 } from './world/Hall1865.js';
 import { buildTrench1917, buildArchive1989 } from './world/OtherEras.js';
 import { Quest, loadSave } from './core/Quest.js';
+import { Ask } from './core/Ask.js';
+import { Combat } from './core/Combat.js';
+import { Crowd, maliTownsfolk } from './world/Crowd.js';
 import { UI } from './ui/UI.js';
 import { CHAPTERS } from './data/story.js';
 
@@ -25,6 +29,7 @@ const qualityParam = params.get('q');
 const autostartParam = params.get('chapter');
 const autoParam = params.get('auto') === '1';
 const camParam = params.get('cam');
+const avatarParam = params.get('avatar');
 const flags = {
   shadow: params.get('shadow') !== '0',
   lights: params.get('lights') !== '0',
@@ -94,6 +99,13 @@ let quest = null;
 let cfg = null;
 let activeChapter = null;
 let sky = null;
+let ask = null;
+let combat = null;
+let streetCrowd = null;
+let flight = null;
+let lofiRoot = null;
+let lofiHolder = null;
+let avatarMode = 'default';
 let clock = new THREE.Clock();
 
 const baseModels = {};
@@ -121,6 +133,7 @@ async function boot() {
 
   if (flags.post) post = new PostFX(renderer, scene, camera, tier, 'mali');
 
+  if (avatarParam === 'lofi') avatarMode = 'lofi';
   const save = loadSave();
   if (autostartParam) startChapter(autostartParam);
   else ui.menu(CHAPTERS.map((c) => ({
@@ -136,6 +149,9 @@ async function boot() {
 }
 
 function disposeWorld() {
+  if (combat) { combat.disable(); combat = null; }
+  if (streetCrowd) { scene.remove(streetCrowd.group); streetCrowd = null; }
+  ask = null;
   if (world && world.group) {
     world.group.traverse((o) => {
       if (o.isMesh && o.userData.ownedGeometry) o.geometry.dispose();
@@ -149,19 +165,87 @@ function disposeWorld() {
   quest = null;
 }
 
-function makePlayer(chapter) {
+async function ensureLofi() {
+  if (lofiRoot) return lofiRoot;
+  if (!lofiHolder) {
+    lofiHolder = new THREE.Group();
+    lofiHolder.visible = false;
+    scene.add(lofiHolder);
+  }
+  lofiRoot = await loadLofi(lofiHolder);
+  if (lofiRoot) {
+    lofiRoot.traverse((o) => {
+      if (o.isMesh && (o.name === 'Cube' || o.name === 'Cube.001')) o.visible = false;
+    });
+  }
+  return lofiRoot;
+}
+
+function setAvatar(kind) {
+  if (!player || !controller) return;
+  const pivot = player;
+  for (const child of [...pivot.children]) {
+    if (child !== lofiRoot || kind !== 'default') pivot.remove(child);
+  }
+  avatarMode = kind;
+  let model = null;
+  let height = 1.8;
+  if (kind === 'lofi' && lofiRoot) {
+    model = lofiRoot;
+    height = 1.72;
+    pivot.add(model);
+  } else if (baseModels.player) {
+    model = buildAvatarModel('default');
+    height = model.userData.height || 1.8;
+    pivot.add(model);
+  }
+  mixer = new THREE.AnimationMixer(model || pivot);
+  controller.mixer = mixer;
+  controller.actions = {};
+  controller.walkAction = null;
+  controller.runAction = null;
+  controller.idleAction = null;
+  controller.height = height * 0.84;
+  controller.groundY = 0;
+  if (flight) {
+    flight.model = model;
+    flight.enable(kind === 'lofi');
+  }
+  ui.setPowers(kind === 'lofi'
+    ? [{ key: 'F', label: 'Float' }, { key: 'G', label: 'Fly' }, { key: 'V', label: 'Change avatar' }]
+    : []);
+  ui.toast(kind === 'lofi' ? 'You are Lofi the Yeti' : 'Back to your own body', 1800);
+}
+
+function buildAvatarModel(kind) {
+  if (kind === 'lofi' && lofiRoot) {
+    lofiRoot.updateMatrixWorld(true);
+    return lofiRoot;
+  }
   const src = baseModels.player;
+  if (!src) return null;
+  const model = cloneSkinned(src);
+  model.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(model);
+  const c = new THREE.Vector3();
+  box.getCenter(c);
+  const height = Math.max(0.4, box.max.y - box.min.y);
+  model.position.set(-c.x, -box.min.y, -c.z);
+  model.userData.height = height;
+  return model;
+}
+
+function makePlayer(chapter) {
   const pivot = new THREE.Group();
   let model = null;
   let height = 1.8;
-  if (src && chapter.playerFile !== null) {
-    model = cloneSkinned(src);
-    model.updateMatrixWorld(true);
-    const box = new THREE.Box3().setFromObject(model);
-    const c = new THREE.Vector3();
-    box.getCenter(c);
-    height = Math.max(0.4, box.max.y - box.min.y);
-    model.position.set(-c.x, -box.min.y, -c.z);
+  if (avatarMode === 'lofi' && lofiRoot) {
+    model = lofiRoot;
+    height = 1.72;
+    pivot.add(model);
+  } else if (baseModels.player && chapter.playerFile !== null) {
+    model = buildAvatarModel('default');
+    height = model.userData.height || 1.8;
     pivot.add(model);
   } else {
     const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.38, 1.0, 6, 12), new THREE.MeshStandardMaterial({ color: 0x8a5a35, roughness: 0.85 }));
@@ -175,6 +259,11 @@ function makePlayer(chapter) {
   const clips = [];
   controller = new ThirdPersonController(camera, pivot, mixer, clips, input, 0);
   controller.height = height * 0.84;
+  flight = new Flight({ player: pivot, controller, camera, scene, ui, input });
+  flight.enable(avatarMode === 'lofi');
+  if (avatarMode === 'lofi') {
+    ui.setPowers([{ key: 'F', label: 'Float' }, { key: 'G', label: 'Fly' }, { key: 'V', label: 'Change avatar' }]);
+  }
   return pivot;
 }
 
@@ -230,6 +319,8 @@ async function startChapter(id) {
 
   if (chapter.id === 'mali-1324') {
     world = new MaliTown(scene, baseModels, chapter.palette, { palms: true, lights: flags.lights });
+    streetCrowd = new Crowd(maliTownsfolk(), { name: 'townsfolk' });
+    scene.add(streetCrowd.group);
     props = {
       stall: { position: new THREE.Vector3(0, 1.3, 24), label: 'The cloth stall', desc: 'Indigo bolts, unrolled cloth, a wooden counter with a hidden ledge beneath it. A folded page has been pushed under the ledge.' },
       'crate-a': { position: new THREE.Vector3(46, 1.0, -20), label: 'The astronomy crate', desc: 'Ptolemy, corrected in Toledo. The water has reached the second folio; the tables on eclipses are still dry.' },
@@ -279,6 +370,7 @@ async function startChapter(id) {
     };
   }
 
+  if (avatarMode === 'lofi' && !lofiRoot) await ensureLofi();
   player = makePlayer(chapter);
   player.position.copy(cfg.spawn);
   player.rotation.y = Math.PI;
@@ -304,6 +396,29 @@ async function startChapter(id) {
   window.addEventListener('keydown', journalKey);
   quest.start();
 
+  ask = new Ask({ chapter, ui, player, npcs, quest, input });
+
+  if (chapter.id === 'washington-1865') {
+    combat = new Combat({
+      scene, player, camera, ui, input, chapter,
+      onEvent: (e) => {
+        if (e.type === 'hurt') { ui.flashHurt(); ui.toast('You are hit', 900); }
+        else if (e.type === 'kill') ui.toast(`${e.enemy} is down`, 1600);
+        else if (e.type === 'pickup') ui.toast(e.kind === 'gun' ? 'You take the pistol' : 'You take the knife', 1400);
+        else if (e.type === 'downed') ui.toast('You have fallen — they will carry you out', 2400);
+        else if (e.type === 'empty') ui.toast('Empty', 900);
+        else if (e.type === 'weapon') ui.toast(e.label, 1000);
+      }
+    });
+    combat.setSpawn(cfg.spawn);
+    combat.enable();
+    combat.spawnEnemy({ id: 'assassin-1', x: -9.5, z: -5.5, rot: 0.8, label: 'A man in a cap', health: 64, damage: 9 });
+    combat.spawnEnemy({ id: 'assassin-2', x: -13.2, z: -1.0, rot: 1.9, label: 'A man with a knife', health: 70, damage: 11 });
+    combat.spawnEnemy({ id: 'assassin-3', x: -6.0, z: -9.0, rot: 0.2, label: 'A man in the passage', health: 58, damage: 8 });
+    combat.spawnPickup({ kind: 'knife', x: -13.4, y: 1.05, z: 1.8, label: 'the knife on the porter’s table' });
+    combat.spawnPickup({ kind: 'gun', x: 8.4, y: 1.18, z: 12.4, label: 'the pistol left on the bar' });
+  }
+
   if (!input.touch && document.pointerLockElement !== canvas) {
     try { canvas.requestPointerLock(); } catch (e) { /* ignore */ }
   }
@@ -311,8 +426,15 @@ async function startChapter(id) {
   window.addEventListener('pointerdown', () => { try { audio.start(); } catch (e) { /* ignore */ } }, { once: true });
 }
 
+window.addEventListener('keydown', (e) => {
+  if (!flight || !player) return;
+  if (e.code === 'KeyF') { flight.toggleFloat(); e.preventDefault(); }
+  if (e.code === 'KeyG') { flight.toggleFly(); e.preventDefault(); }
+  if (e.code === 'KeyV') { setAvatar(avatarMode === 'lofi' ? 'default' : 'lofi'); e.preventDefault(); }
+});
+
 function journalKey(e) {
-  if (e.code === 'KeyJ' && quest) {
+  if (e.code === 'KeyC' && quest) {
     if (ui.journal.style.display === 'block') ui.closeJournal();
     else ui.openJournal(quest.entries());
   }
@@ -337,12 +459,14 @@ function loop() {
   const t = clock.elapsedTime;
 
   if (player && controller) {
+    if (flight) flight.update(dt);
     controller.update(dt);
     if (camParam === 'box') { camera.position.set(16.6, 7.9, -2.6); camera.lookAt(22.6, 6.5, -9.0); }
     else if (camParam === 'hall') { camera.position.set(0, 7.5, 15.5); camera.lookAt(0, 4.2, -6); }
     else if (camParam === 'stage') { camera.position.set(-2, 6.0, 6.0); camera.lookAt(4, 3.4, -12); }
-    if (world && world.resolveCollisions) world.resolveCollisions(player.position, 0.62);
-    if (world && world.hall) {
+    const airborne = flight && flight.mode !== 'ground';
+    if (!airborne && world && world.resolveCollisions) world.resolveCollisions(player.position, 0.62);
+    if (!airborne && world && world.hall) {
       player.position.x = THREE.MathUtils.clamp(player.position.x, -world.hall.W / 2 + 1.2, world.hall.W / 2 - 1.2);
       player.position.z = THREE.MathUtils.clamp(player.position.z, -world.hall.D / 2 + 1.2, world.hall.D / 2 - 1.2);
     }
@@ -352,8 +476,21 @@ function loop() {
     }
   }
   if (world && world.update) world.update(dt, t);
+  if (streetCrowd) streetCrowd.update(dt, t);
   Object.values(npcs).forEach((n) => n.update(dt, t, player ? player.position : null));
   if (quest && player) quest.update(dt, input);
+  if (ask && player && !ui.busy) ask.update(dt, input);
+  if (combat && player && !ui.busy) {
+    combat.update(dt);
+    ui.combatStatus({
+      health: combat.health,
+      maxHealth: combat.maxHealth,
+      weapon: combat.weapon,
+      weaponLabel: combat.weapon === 'fist' ? 'Fists' : (combat.weapon === 'kick' ? 'Fists' : (combat.weapon === 'knife' ? 'Knife' : 'Pistol')),
+      ammo: combat.ammo.gun,
+      kills: combat.kills
+    });
+  }
   if (world && world.lights && activeChapter && activeChapter.id !== 'mali-1324') {
     // practicals handled inside each scene
   }

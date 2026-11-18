@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>HIS-TREE Collection</title>
+<style>
+body{background:#0b0c0f;color:#e9e7e2;font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:18px}
+h1{font-size:24px;margin:0 0 4px}h2{font-size:15px;color:#c9a76a;border-bottom:1px solid #242730;padding-bottom:6px;margin:26px 0 10px}
+.sub{color:#8f929c;font-size:12px;margin-bottom:10px}
+.cards{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.card{background:#14161b;border:1px solid #242730;border-radius:9px;padding:10px 14px;min-width:110px}
+.card b{font-size:22px;display:block;color:#c9a76a}.card span{font-size:11px;color:#8f929c}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #1d2027;vertical-align:top}
+th{color:#8f929c;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+tr:hover td{background:#14161b}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+a{color:#c9a76a}
+</style></head><body>
+<h1>HIS-TREE Collection</h1>
+<div class="sub">asset + property browser &middot; generated %s &middot; <a href="../">open the game</a></div>
+<div class="cards">
+<div class="card"><b>%d</b><span>characters</span></div>
+<div class="card"><b>%d</b><span>models</span></div>
+<div class="card"><b>%d</b><span>textures</span></div>
+<div class="card"><b>%d</b><span>source files</span></div>
+<div class="card"><b>%d</b><span>chapters</span></div>
+</div>
+<h2>Characters</h2><div class="scroll"><table>
+<tr><th>id</th><th>macro</th><th>sex</th><th>build</th><th>height</th><th>skin</th><th>hair</th><th>garment</th><th>size</th><th>geometry</th></tr>
+%s</table></div>
+<h2>Chapters</h2><div class="scroll"><table>
+<tr><th>id</th><th>title</th><th>place</th><th>year</th></tr>%s</table></div>
+<h2>Models</h2><div class="scroll"><table>
+<tr><th>file</th><th>size</th><th>geometry</th><th>materials</th></tr>%s</table></div>
+<h2>Textures</h2><div class="scroll"><table>
+<tr><th>file</th><th>size</th><th>resolution</th><th>format</th><th>source</th></tr>%s</table></div>
+<h2>Source</h2><div class="scroll"><table>
+<tr><th>file</th><th>lines</th><th>size</th></tr>%s</table></div>
+<script>fetch('data.json').then(r=>r.json()).then(d=>{document.title='HIS-TREE Collection ('+d.counts.characters+' chars)';});</script>
+</body></html>

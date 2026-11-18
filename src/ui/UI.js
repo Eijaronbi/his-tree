@@ -18,6 +18,24 @@ const CSS = `
   font-family:inherit; font-size:14px; line-height:1.45; cursor:pointer; transition:.18s; }
 #choice button:hover { background:rgba(217,164,65,.18); border-color:#d9a441; }
 #choice button b { color:#d9a441; margin-right:10px; }
+#ask { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(620px,92vw);
+  padding:22px 24px; display:none; }
+#ask h3 { font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:#d9a441; margin-bottom:14px; }
+#ask button { display:block; width:100%; text-align:left; margin:7px 0; padding:11px 14px;
+  background:rgba(217,164,65,.06); border:1px solid rgba(217,164,65,.32); color:#e8d3ae;
+  font-family:inherit; font-size:13.5px; line-height:1.45; cursor:pointer; transition:.16s; }
+#ask button:hover { background:rgba(217,164,65,.16); border-color:#d9a441; }
+#ask .close { margin-top:14px; text-align:center; font-size:10px; letter-spacing:.24em; text-transform:uppercase; }
+#hud-fight { position:absolute; left:22px; bottom:44px; display:none; }
+#hud-fight .bar { width:168px; height:7px; border:1px solid rgba(232,211,174,.4); background:rgba(10,7,4,.7); }
+#hud-fight .fill { height:100%; width:100%; background:#8c3b32; transition:width .2s; }
+#hud-fight .wpn { font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:#d9a441; margin-top:6px; }
+#hud-fight .wpn span { color:#8f929c; letter-spacing:.12em; }
+#hud-powers { position:absolute; right:22px; bottom:44px; display:none; text-align:right; }
+#hud-powers .row { margin-top:5px; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:#cfe3f2; opacity:.85; }
+#hud-powers .row b { color:#9fd0ff; font-weight:400; margin-right:8px; }
+#hurt-flash { position:absolute; inset:0; background:radial-gradient(circle at 50% 50%, rgba(120,20,10,0) 45%, rgba(120,20,10,.55) 100%);
+  opacity:0; transition:opacity .28s; }
 #journal { position:absolute; right:3%; top:6%; width:min(440px,92vw); max-height:84vh; padding:22px 24px;
   display:none; overflow:auto; }
 #journal h3 { font-size:12px; letter-spacing:.34em; text-transform:uppercase; color:#d9a441; margin-bottom:14px; }
@@ -66,17 +84,93 @@ export class UI {
       <div id="hintbar"></div>
       <div id="dialog" class="panel"><div class="who"></div><div class="line"></div><div class="more">E / click to continue</div></div>
       <div id="choice" class="panel"><div class="prompt"></div><div class="options"></div></div>
+      <div id="ask" class="panel"><h3></h3><div class="questions"></div><button class="close">End the conversation</button></div>
       <div id="journal" class="panel"><h3>Field journal</h3><div class="entries"></div></div>
       <div id="ending"><div class="card panel"><h2></h2><div class="tag"></div><p></p><button>Continue</button></div></div>
+      <div id="hud-fight"><div class="bar"><div class="fill"></div></div><div class="wpn"></div></div>
+      <div id="hud-powers"></div>
+      <div id="hurt-flash"></div>
     `;
     document.body.appendChild(this.root);
 
     this.hintbar = this.root.querySelector('#hintbar');
     this.dialog = this.root.querySelector('#dialog');
     this.choice = this.root.querySelector('#choice');
+    this.askPanel = this.root.querySelector('#ask');
     this.journal = this.root.querySelector('#journal');
     this.ending = this.root.querySelector('#ending');
+    this.fightHud = this.root.querySelector('#hud-fight');
+    this.fightFill = this.fightHud.querySelector('.fill');
+    this.fightWeapon = this.fightHud.querySelector('.wpn');
+    this.powersHud = this.root.querySelector('#hud-powers');
+    this.hurtFlash = this.root.querySelector('#hurt-flash');
     this.busy = false;
+  }
+
+  ask(speaker, questions, onPick, onClose) {
+    this.busy = true;
+    this.askPanel.style.display = 'block';
+    this.askPanel.querySelector('h3').textContent = 'Ask ' + speaker;
+    const box = this.askPanel.querySelector('.questions');
+    box.innerHTML = '';
+    const keys = ['1', '2', '3', '4', '5', '6', '7', '8'];
+    questions.forEach((q, idx) => {
+      const b = document.createElement('button');
+      b.innerHTML = `<b>${keys[idx] || '+'}</b>${q}`;
+      b.addEventListener('click', () => { this.askPanel.style.display = 'none'; this.busy = false; onPick(idx); });
+      box.appendChild(b);
+    });
+    const close = this.askPanel.querySelector('.close');
+    const shut = () => {
+      this.askPanel.style.display = 'none';
+      window.removeEventListener('keydown', key);
+      close.removeEventListener('click', shut);
+      this.busy = false;
+      if (onClose) onClose();
+    };
+    const key = (e) => {
+      const idx = keys.indexOf(e.key);
+      if (idx >= 0 && idx < questions.length) {
+        this.askPanel.style.display = 'none';
+        this.busy = false;
+        window.removeEventListener('keydown', key);
+        onPick(idx);
+      } else if (e.code === 'Escape' || e.code === 'KeyQ') {
+        shut();
+      }
+    };
+    close.addEventListener('click', shut);
+    window.addEventListener('keydown', key);
+  }
+
+  combatStatus(state) {
+    if (!state) { this.fightHud.style.display = 'none'; return; }
+    this.fightHud.style.display = 'block';
+    const pct = Math.max(0, Math.min(100, (state.health / (state.maxHealth || 100)) * 100));
+    this.fightFill.style.width = pct + '%';
+    this.fightFill.style.background = pct > 55 ? '#7d8b52' : (pct > 25 ? '#b08a3a' : '#8c3b32');
+    let w = state.weaponLabel || 'Fists';
+    if (state.weapon === 'gun') w += ` · ${state.ammo} rounds`;
+    if (state.kills) w += ` · ${state.kills} down`;
+    this.fightWeapon.innerHTML = `${w} <span>· J punch · K kick · L dodge</span>`;
+  }
+
+  flashHurt() {
+    this.hurtFlash.style.opacity = '1';
+    setTimeout(() => { this.hurtFlash.style.opacity = '0'; }, 160);
+  }
+
+  setPowers(list) {
+    if (!this.powersHud) return;
+    if (!list || !list.length) {
+      this.powersHud.style.display = 'none';
+      this.powersHud.innerHTML = '';
+      return;
+    }
+    this.powersHud.style.display = 'block';
+    this.powersHud.innerHTML = list
+      .map((p) => `<div class="row"><b>${p.key}</b>${p.label}</div>`)
+      .join('');
   }
 
   setObjective(mission, step) {
@@ -212,7 +306,7 @@ export class UI {
             <div class="m" style="opacity:.45;margin-top:6px">${c.tagline}</div>
           </button>`).join('')}
       </div>
-      <div class="foot">Every historical claim in this game is tagged: VERIFIED, INTERPRETED, DISPUTED, or invented. Press J in game to read the journal and its sources.</div>
+      <div class="foot">Every historical claim in this game is tagged: VERIFIED, INTERPRETED, DISPUTED, or invented. Press C in game to read the journal and its sources.</div>
       <button class="go" style="margin-top:10px">${onReset ? 'Clear progress' : ''}</button>
     `;
     document.body.appendChild(el);

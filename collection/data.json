@@ -1,0 +1,1467 @@
+{
+ "generated": "2026-11-17 15:45:57",
+ "characters": [
+  {
+   "id": "player_1865",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.8,
+   "skin": "skins/middleage_caucasian_male/middleage_lightskinned_male_diffuse.png",
+   "hair": "short02",
+   "hair_tex": "hair/short02/short02_diffuse.png",
+   "clothes": "male_elegantsuit01",
+   "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/player_1865.glb",
+   "size": 2063988,
+   "glb": {
+    "vertices": 25407,
+    "triangles": 46496,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "middleage_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "parker",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.78,
+   "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+   "hair": "short03",
+   "hair_tex": "hair/short03/short03_diffuse.png",
+   "clothes": "male_elegantsuit01",
+   "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/parker.glb",
+   "size": 1885932,
+   "glb": {
+    "vertices": 24647,
+    "triangles": 45074,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short03_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "grant",
+   "macro": "caucasian-male-old",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.83,
+   "skin": "skins/old_caucasian_male/old_lightskinned_male_diffuse.png",
+   "hair": "short04",
+   "hair_tex": "hair/short04/short04_diffuse.png",
+   "clothes": "male_elegantsuit01",
+   "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/grant.glb",
+   "size": 2133416,
+   "glb": {
+    "vertices": 24596,
+    "triangles": 44202,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "old_lightskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "booth",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.75,
+   "skin": "skins/young_caucasian_male2/young_lightskinned_male_diffuse2.png",
+   "hair": "short01",
+   "hair_tex": "hair/short01/short01_diffuse.png",
+   "clothes": "male_casualsuit02",
+   "clothes_tex": "clothes/male_casualsuit02/male_casualsuit02_diffuse.png",
+   "clothes_normal": "clothes/male_casualsuit02/male_casualsuit02_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/booth.glb",
+   "size": 2241292,
+   "glb": {
+    "vertices": 20727,
+    "triangles": 35994,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse2",
+     "iris",
+     "short01_diffuse",
+     "male_casualsuit02_normal",
+     "male_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "amina",
+   "macro": "african-female-young",
+   "sex": "female",
+   "build": "minmuscle-minweight",
+   "height": 1.66,
+   "skin": "skins/young_african_female/young_darkskinned_female_diffuse.png",
+   "hair": "long01",
+   "hair_tex": "hair/long01/long01_diffuse.png",
+   "clothes": "female_casualsuit01",
+   "clothes_tex": "clothes/female_casualsuit01/female_casualsuit01_diffuse.png",
+   "clothes_normal": "clothes/female_casualsuit01/female_casualsuit01_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/amina.glb",
+   "size": 2170236,
+   "glb": {
+    "vertices": 21052,
+    "triangles": 36540,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_darkskinned_female_diffuse",
+     "iris",
+     "long01_diffuse",
+     "female_casualsuit01_normal",
+     "female_casualsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "bakary",
+   "macro": "african-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.79,
+   "skin": "skins/young_african_male/young_darkskinned_male_diffuse.png",
+   "hair": "short02",
+   "hair_tex": "hair/short02/short02_diffuse.png",
+   "clothes": "male_casualsuit02",
+   "clothes_tex": "clothes/male_casualsuit02/male_casualsuit02_diffuse.png",
+   "clothes_normal": "clothes/male_casualsuit02/male_casualsuit02_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/bakary.glb",
+   "size": 2139120,
+   "glb": {
+    "vertices": 19471,
+    "triangles": 35660,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_darkskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_casualsuit02_normal",
+     "male_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "salim",
+   "macro": "african-male-old",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.71,
+   "skin": "skins/old_african_male/old_darkskinned_male_diffuse.png",
+   "hair": "short04",
+   "hair_tex": "hair/short04/short04_diffuse.png",
+   "clothes": "male_elegantsuit01",
+   "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/salim.glb",
+   "size": 1957212,
+   "glb": {
+    "vertices": 24596,
+    "triangles": 44202,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "old_darkskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "musa",
+   "macro": "african-male-old",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.82,
+   "skin": "skins/old_african_male/old_darkskinned_male_diffuse.png",
+   "hair": "short04",
+   "hair_tex": "hair/short04/short04_diffuse.png",
+   "clothes": "male_casualsuit05",
+   "clothes_tex": "clothes/male_casualsuit05/male_casualsuit05_diffuse.png",
+   "clothes_normal": "clothes/male_casualsuit05/male_casualsuit05_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/musa.glb",
+   "size": 2213324,
+   "glb": {
+    "vertices": 19857,
+    "triangles": 35242,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "old_darkskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_casualsuit05_normal",
+     "male_casualsuit05_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "sergeant",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.77,
+   "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+   "hair": "short02",
+   "hair_tex": "hair/short02/short02_diffuse.png",
+   "clothes": "male_worksuit01",
+   "clothes_tex": "clothes/male_worksuit01/male_worksuit01_diffuse.png",
+   "clothes_normal": "clothes/male_worksuit01/male_worksuit01_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/sergeant.glb",
+   "size": 2495956,
+   "glb": {
+    "vertices": 21119,
+    "triangles": 38526,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_worksuit01_normal",
+     "male_worksuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "miep",
+   "macro": "caucasian-female-young",
+   "sex": "female",
+   "build": "minmuscle-minweight",
+   "height": 1.63,
+   "skin": "skins/young_caucasian_female/young_lightskinned_female_diffuse.png",
+   "hair": "bob01",
+   "hair_tex": "hair/bob01/bob01_diffuse.png",
+   "clothes": "female_casualsuit02",
+   "clothes_tex": "clothes/female_casualsuit02/female_casualsuit02_diffuse.png",
+   "clothes_normal": "clothes/female_casualsuit02/female_casualsuit02_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/miep.glb",
+   "size": 2667104,
+   "glb": {
+    "vertices": 23887,
+    "triangles": 42158,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_female_diffuse",
+     "iris",
+     "bob01_diffuse",
+     "female_casualsuit02_normal",
+     "female_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "stasi",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.8,
+   "skin": "skins/middleage_caucasian_male/middleage_lightskinned_male_diffuse.png",
+   "hair": "short02",
+   "hair_tex": "hair/short02/short02_diffuse.png",
+   "clothes": "male_elegantsuit01",
+   "clothes_tex": "clothes/male_elegantsuit01/male_elegantsuit01_diffuse.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/stasi.glb",
+   "size": 2063980,
+   "glb": {
+    "vertices": 25407,
+    "triangles": 46496,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "middleage_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "id": "tommy",
+   "macro": "caucasian-male-young",
+   "sex": "male",
+   "build": "minmuscle-minweight",
+   "height": 1.74,
+   "skin": "skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+   "hair": "short03",
+   "hair_tex": "hair/short03/short03_diffuse.png",
+   "clothes": "male_worksuit01",
+   "clothes_tex": "clothes/male_worksuit01/male_worksuit01_diffuse.png",
+   "clothes_normal": "clothes/male_worksuit01/male_worksuit01_normal.png",
+   "targets": [],
+   "hum": {
+    "muscle": 0.0,
+    "weight": 0.05
+   },
+   "file": "assets/models/characters/tommy.glb",
+   "size": 2303176,
+   "glb": {
+    "vertices": 20359,
+    "triangles": 37104,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short03_diffuse",
+     "male_worksuit01_normal",
+     "male_worksuit01_diffuse"
+    ]
+   }
+  }
+ ],
+ "models": [
+  {
+   "file": "assets/models/blender/mali_house_v0.glb",
+   "size": 4555912,
+   "glb": {
+    "vertices": 948,
+    "triangles": 504,
+    "meshes": 1,
+    "materials": 3,
+    "animations": 0,
+    "skins": 0,
+    "textures": 6,
+    "images": [
+     "adobe_v0_normal",
+     "adobe_v0_albedo",
+     "adobe_v0_rough",
+     "wood_normal",
+     "wood_albedo",
+     "wood_rough"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/blender/mali_house_v1.glb",
+   "size": 4562504,
+   "glb": {
+    "vertices": 1020,
+    "triangles": 544,
+    "meshes": 1,
+    "materials": 3,
+    "animations": 0,
+    "skins": 0,
+    "textures": 6,
+    "images": [
+     "adobe_v1_normal",
+     "adobe_v1_albedo",
+     "adobe_v1_rough",
+     "wood_normal",
+     "wood_albedo",
+     "wood_rough"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/blender/mali_house_v2.glb",
+   "size": 4667588,
+   "glb": {
+    "vertices": 1020,
+    "triangles": 552,
+    "meshes": 1,
+    "materials": 3,
+    "animations": 0,
+    "skins": 0,
+    "textures": 6,
+    "images": [
+     "adobe_v2_normal",
+     "adobe_v2_albedo",
+     "adobe_v2_rough",
+     "wood_normal",
+     "wood_albedo",
+     "wood_rough"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/camel-base.glb",
+   "size": 1719300,
+   "glb": {
+    "vertices": 10092,
+    "triangles": 3364,
+    "meshes": 1,
+    "materials": 1,
+    "animations": 3,
+    "skins": 1,
+    "textures": 0,
+    "images": []
+   }
+  },
+  {
+   "file": "assets/models/character-female-c.glb",
+   "size": 148364,
+   "glb": {
+    "vertices": 1322,
+    "triangles": 732,
+    "meshes": 2,
+    "materials": 1,
+    "animations": 32,
+    "skins": 1,
+    "textures": 1,
+    "images": [
+     "colormap"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/character-male-a.glb",
+   "size": 144788,
+   "glb": {
+    "vertices": 1259,
+    "triangles": 709,
+    "meshes": 2,
+    "materials": 1,
+    "animations": 32,
+    "skins": 1,
+    "textures": 1,
+    "images": [
+     "colormap"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/amina.glb",
+   "size": 2170236,
+   "glb": {
+    "vertices": 21052,
+    "triangles": 36540,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_darkskinned_female_diffuse",
+     "iris",
+     "long01_diffuse",
+     "female_casualsuit01_normal",
+     "female_casualsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/bakary.glb",
+   "size": 2139120,
+   "glb": {
+    "vertices": 19471,
+    "triangles": 35660,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_darkskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_casualsuit02_normal",
+     "male_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/booth.glb",
+   "size": 2241292,
+   "glb": {
+    "vertices": 20727,
+    "triangles": 35994,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse2",
+     "iris",
+     "short01_diffuse",
+     "male_casualsuit02_normal",
+     "male_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/grant.glb",
+   "size": 2133416,
+   "glb": {
+    "vertices": 24596,
+    "triangles": 44202,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "old_lightskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/lincoln.glb",
+   "size": 1597856,
+   "glb": {
+    "vertices": 16247,
+    "triangles": 29920,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 1,
+    "textures": 4,
+    "images": [
+     "skin_pores_normal",
+     "lincoln_albedo",
+     "lincoln_rough",
+     "iris"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/lincoln_bust.glb",
+   "size": 6364936,
+   "glb": {
+    "vertices": 138170,
+    "triangles": 150000,
+    "meshes": 1,
+    "materials": 1,
+    "animations": 0,
+    "skins": 0,
+    "textures": 2,
+    "images": [
+     "Image_0",
+     "Image_1"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/lincoln_color.glb",
+   "size": 6364936,
+   "glb": {
+    "vertices": 138170,
+    "triangles": 150000,
+    "meshes": 1,
+    "materials": 1,
+    "animations": 0,
+    "skins": 0,
+    "textures": 2,
+    "images": [
+     "Image_0",
+     "Image_1"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/miep.glb",
+   "size": 2667104,
+   "glb": {
+    "vertices": 23887,
+    "triangles": 42158,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_female_diffuse",
+     "iris",
+     "bob01_diffuse",
+     "female_casualsuit02_normal",
+     "female_casualsuit02_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/musa.glb",
+   "size": 2213324,
+   "glb": {
+    "vertices": 19857,
+    "triangles": 35242,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "old_darkskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_casualsuit05_normal",
+     "male_casualsuit05_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/parker.glb",
+   "size": 1885932,
+   "glb": {
+    "vertices": 24647,
+    "triangles": 45074,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short03_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/player_1865.glb",
+   "size": 2063988,
+   "glb": {
+    "vertices": 25407,
+    "triangles": 46496,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "middleage_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/reed.glb",
+   "size": 5427076,
+   "glb": {
+    "vertices": 109626,
+    "triangles": 150000,
+    "meshes": 1,
+    "materials": 1,
+    "animations": 0,
+    "skins": 0,
+    "textures": 2,
+    "images": [
+     "Image_0",
+     "Image_1"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/salim.glb",
+   "size": 1957212,
+   "glb": {
+    "vertices": 24596,
+    "triangles": 44202,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "old_darkskinned_male_diffuse",
+     "iris",
+     "short04_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/sergeant.glb",
+   "size": 2495956,
+   "glb": {
+    "vertices": 21119,
+    "triangles": 38526,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_worksuit01_normal",
+     "male_worksuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/stasi.glb",
+   "size": 2063980,
+   "glb": {
+    "vertices": 25407,
+    "triangles": 46496,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 4,
+    "images": [
+     "middleage_lightskinned_male_diffuse",
+     "iris",
+     "short02_diffuse",
+     "male_elegantsuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/characters/tommy.glb",
+   "size": 2303176,
+   "glb": {
+    "vertices": 20359,
+    "triangles": 37104,
+    "meshes": 5,
+    "materials": 4,
+    "animations": 0,
+    "skins": 0,
+    "textures": 5,
+    "images": [
+     "young_lightskinned_male_diffuse",
+     "iris",
+     "short03_diffuse",
+     "male_worksuit01_normal",
+     "male_worksuit01_diffuse"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/generated/mali_house_glb.glb",
+   "size": 11338324,
+   "glb": {
+    "vertices": 44776,
+    "triangles": 58440,
+    "meshes": 1,
+    "materials": 1,
+    "animations": 0,
+    "skins": 0,
+    "textures": 3,
+    "images": [
+     "buffer",
+     "buffer",
+     "buffer"
+    ]
+   }
+  },
+  {
+   "file": "assets/models/generated/mali_house_lite_glb.glb",
+   "size": 1302892,
+   "glb": {
+    "vertices": 36159,
+    "triangles": 72352,
+    "meshes": 1,
+    "materials": 0,
+    "animations": 0,
+    "skins": 0,
+    "textures": 0,
+    "images": []
+   }
+  },
+  {
+   "file": "assets/models/generated/mali_house_lite_obj.obj",
+   "size": 3878969,
+   "glb": {}
+  },
+  {
+   "file": "assets/models/generated/mali_house_zip.zip",
+   "size": 11535540,
+   "glb": {}
+  },
+  {
+   "file": "assets/models/market-stall-94937d.glb",
+   "size": 68548,
+   "glb": {
+    "vertices": 1776,
+    "triangles": 592,
+    "meshes": 2,
+    "materials": 1,
+    "animations": 0,
+    "skins": 0,
+    "textures": 0,
+    "images": []
+   }
+  },
+  {
+   "file": "assets/models/tree_palm.glb",
+   "size": 10412,
+   "glb": {
+    "vertices": 592,
+    "triangles": 102,
+    "meshes": 1,
+    "materials": 2,
+    "animations": 0,
+    "skins": 0,
+    "textures": 0,
+    "images": []
+   }
+  },
+  {
+   "file": "assets/models/tree_palmTall.glb",
+   "size": 12912,
+   "glb": {
+    "vertices": 712,
+    "triangles": 190,
+    "meshes": 1,
+    "materials": 2,
+    "animations": 0,
+    "skins": 0,
+    "textures": 0,
+    "images": []
+   }
+  }
+ ],
+ "textures": [
+  {
+   "file": "assets/textures/adobe_v0_albedo.webp",
+   "size": 33940,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v0_normal.webp",
+   "size": 27376,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v0_rough.webp",
+   "size": 11134,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v1_albedo.webp",
+   "size": 34798,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v1_normal.webp",
+   "size": 28508,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v1_rough.webp",
+   "size": 11146,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v2_albedo.webp",
+   "size": 38202,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v2_normal.webp",
+   "size": 32366,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/adobe_v2_rough.webp",
+   "size": 12226,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/dirty_carpet_albedo.webp",
+   "size": 281934,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/dirty_carpet_normal.webp",
+   "size": 230216,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/dirty_carpet_rough.webp",
+   "size": 1126,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/plaster_albedo.webp",
+   "size": 12620,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/plaster_normal.webp",
+   "size": 9586,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/plaster_rough.webp",
+   "size": 1920,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/sand_albedo.webp",
+   "size": 30062,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/sand_normal.webp",
+   "size": 17006,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/sand_rough.webp",
+   "size": 3692,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/skin_pores_normal.png",
+   "size": 248692,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/amina_albedo.png",
+   "size": 306790,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/amina_rough.png",
+   "size": 9068,
+   "w": 256,
+   "h": 256,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/bakary_albedo.png",
+   "size": 306599,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/bakary_rough.png",
+   "size": 9068,
+   "w": 256,
+   "h": 256,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/lincoln_albedo.png",
+   "size": 305919,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/lincoln_rough.png",
+   "size": 9068,
+   "w": 256,
+   "h": 256,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/musa_albedo.png",
+   "size": 305508,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/musa_rough.png",
+   "size": 9068,
+   "w": 256,
+   "h": 256,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/salim_albedo.png",
+   "size": 305470,
+   "w": 512,
+   "h": 512,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/skins/salim_rough.png",
+   "size": 9068,
+   "w": 256,
+   "h": 256,
+   "fmt": "PNG"
+  },
+  {
+   "file": "assets/textures/var0.webp",
+   "size": 908,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/var1.webp",
+   "size": 820,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/var2.webp",
+   "size": 940,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velour_velvet_albedo.webp",
+   "size": 129144,
+   "w": 1024,
+   "h": 985,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velour_velvet_normal.webp",
+   "size": 49518,
+   "w": 1024,
+   "h": 985,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velour_velvet_rough.webp",
+   "size": 48240,
+   "w": 512,
+   "h": 493,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velvet_albedo.webp",
+   "size": 8624,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velvet_normal.webp",
+   "size": 54570,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/velvet_rough.webp",
+   "size": 42090,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_albedo.webp",
+   "size": 6504,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_floor_albedo.webp",
+   "size": 114654,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_floor_normal.webp",
+   "size": 4310,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_floor_rough.webp",
+   "size": 4012,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_normal.webp",
+   "size": 5406,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wood_rough.webp",
+   "size": 3120,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wool_albedo.webp",
+   "size": 886,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wool_normal.webp",
+   "size": 64516,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wool_rough.webp",
+   "size": 11004,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/worn_plaster_wall_albedo.webp",
+   "size": 239252,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/worn_plaster_wall_normal.webp",
+   "size": 134608,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/worn_plaster_wall_rough.webp",
+   "size": 10832,
+   "w": 1024,
+   "h": 1024,
+   "fmt": "WebP"
+  },
+  {
+   "file": "assets/textures/wv.webp",
+   "size": 6242,
+   "w": 512,
+   "h": 512,
+   "fmt": "WebP"
+  }
+ ],
+ "source": [
+  {
+   "file": "src/core/AudioManager.js",
+   "size": 3174,
+   "lines": 98
+  },
+  {
+   "file": "src/core/CameraDirector.js",
+   "size": 3772,
+   "lines": 143
+  },
+  {
+   "file": "src/core/Input.js",
+   "size": 4477,
+   "lines": 130
+  },
+  {
+   "file": "src/core/PostFX.js",
+   "size": 8833,
+   "lines": 275
+  },
+  {
+   "file": "src/core/Quest.js",
+   "size": 8184,
+   "lines": 251
+  },
+  {
+   "file": "src/core/ThirdPersonController.js",
+   "size": 3337,
+   "lines": 98
+  },
+  {
+   "file": "src/data/episode.js",
+   "size": 633,
+   "lines": 23
+  },
+  {
+   "file": "src/data/story.js",
+   "size": 35873,
+   "lines": 583
+  },
+  {
+   "file": "src/main.js",
+   "size": 15138,
+   "lines": 384
+  },
+  {
+   "file": "src/ui/UI.js",
+   "size": 11172,
+   "lines": 231
+  },
+  {
+   "file": "src/world/Characters.js",
+   "size": 4090,
+   "lines": 117
+  },
+  {
+   "file": "src/world/Environment.js",
+   "size": 3677,
+   "lines": 121
+  },
+  {
+   "file": "src/world/Hall1865.js",
+   "size": 20202,
+   "lines": 474
+  },
+  {
+   "file": "src/world/MaliTown.js",
+   "size": 13104,
+   "lines": 379
+  },
+  {
+   "file": "src/world/Materials.js",
+   "size": 9855,
+   "lines": 307
+  },
+  {
+   "file": "src/world/OtherEras.js",
+   "size": 6245,
+   "lines": 172
+  }
+ ],
+ "chapters": [
+  {
+   "id": "mali-1324",
+   "title": "THE GOLDEN EMPIRE",
+   "place": "Walata, on the southern edge of the Sahara",
+   "year": "1324 CE"
+  },
+  {
+   "id": "salt-ledger",
+   "title": "The Salt Ledger",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "words-before-water",
+   "title": "Words Before Water",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "guides-price",
+   "title": "The Guide\u2019s Price",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "the-gift",
+   "title": "A Gift for Cairo",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "the-road-remembers",
+   "title": "The Road Remembers",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "washington-1865",
+   "title": "SAVE LINCOLN",
+   "place": "Ford\u2019s Theatre, Washington, D.C.",
+   "year": "14 April 1865"
+  },
+  {
+   "id": "the-door",
+   "title": "The Door With No Guard",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "the-missing-guest",
+   "title": "The Missing Guest",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "the-man-in-the-corridor",
+   "title": "The Man in the Corridor",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "the-choice",
+   "title": "What You Are Willing to Break",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "france-1917",
+   "title": "THE QUIET MUTINY",
+   "place": "A supply trench behind the Chemin des Dames",
+   "year": "1917"
+  },
+  {
+   "id": "the-order",
+   "title": "The Order",
+   "place": "",
+   "year": ""
+  },
+  {
+   "id": "berlin-1989",
+   "title": "THE FILE THAT DOESN\u2019T EXIST",
+   "place": "A ministry archive, East Berlin",
+   "year": "9 November 1989"
+  },
+  {
+   "id": "the-archive",
+   "title": "The Archive",
+   "place": "",
+   "year": ""
+  }
+ ],
+ "counts": {
+  "characters": 12,
+  "models": 29,
+  "textures": 51,
+  "source": 16,
+  "chapters": 15
+ }
+}

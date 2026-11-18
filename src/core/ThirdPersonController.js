@@ -15,6 +15,7 @@ export class ThirdPersonController {
     this.speedRun = 6.2;
     this.velocity = new THREE.Vector3();
     this.state = 'idle';
+    this.frozen = false;
     this.actions = {};
     if (clips) {
       for (const clip of clips) {
@@ -54,7 +55,7 @@ export class ThirdPersonController {
     this.yaw += look.x;
     this.pitch = Math.max(-0.15, Math.min(1.15, this.pitch + look.y));
     const axis = this.input.axis();
-    const moving = axis.len > 0.05;
+    const moving = !this.frozen && axis.len > 0.05;
     const speed = this.input.run ? this.speedRun : this.speedWalk;
 
     const forward = new THREE.Vector3(Math.sin(this.yaw), 0, Math.cos(this.yaw));
@@ -65,8 +66,10 @@ export class ThirdPersonController {
     if (desired.lengthSq() > 0) desired.normalize().multiplyScalar(speed * axis.len);
 
     this.velocity.lerp(desired, Math.min(1, dt * 12));
-    this.player.position.addScaledVector(this.velocity, dt);
-    this.player.position.y = this.groundY;
+    if (!this.frozen) {
+      this.player.position.addScaledVector(this.velocity, dt);
+      this.player.position.y = this.groundY;
+    }
 
     if (moving) {
       const target = Math.atan2(this.velocity.x, this.velocity.z);
