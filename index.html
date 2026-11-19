@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0805'/%3E%3Cpath d='M6 26h20M16 26V9M16 12l-6-4M16 12l6-4M16 18l-7 5M16 18l7 5' stroke='%23d9a441' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>HIS-TREE — Episode I: The Golden Empire</title>
+<style>
+  :root { --ochre:#d9a441; --ink:#2b1a0e; --sand:#e8d3ae; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:100%; height:100%; overflow:hidden; background:#1a1208; color:var(--sand);
+    font-family:Georgia,'Times New Roman',serif; }
+  #scene { display:block; width:100%; height:100%; touch-action:none; }
+  #hud { position:fixed; inset:0; pointer-events:none; }
+  #chapter { position:absolute; top:18px; left:22px; letter-spacing:.32em; font-size:11px;
+    text-transform:uppercase; color:var(--ochre); text-shadow:0 1px 3px #000; }
+  #objective { position:absolute; top:42px; left:22px; max-width:320px; font-size:13px; line-height:1.5;
+    text-shadow:0 1px 4px #000; opacity:.92; }
+  #stats { position:absolute; bottom:16px; left:22px; font-size:11px; letter-spacing:.12em;
+    opacity:.65; text-shadow:0 1px 3px #000; }
+  #hint { position:absolute; bottom:16px; right:22px; font-size:11px; letter-spacing:.1em;
+    opacity:.65; text-shadow:0 1px 3px #000; }
+  #toast { position:absolute; left:50%; bottom:11%; transform:translateX(-50%); padding:9px 20px;
+    background:rgba(20,12,5,.72); border:1px solid rgba(217,164,65,.45); font-size:13px;
+    letter-spacing:.08em; opacity:0; transition:opacity .35s; }
+  #title { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; gap:18px; background:radial-gradient(circle at 50% 38%, #3a2712 0%, #120c05 70%);
+    z-index:10; transition:opacity .8s; }
+  #title h1 { font-size:clamp(30px,7vw,62px); letter-spacing:.3em; font-weight:400; color:var(--ochre);
+    text-shadow:0 3px 22px #000; }
+  #title h2 { font-size:clamp(12px,2.4vw,17px); letter-spacing:.42em; font-weight:400; opacity:.85; }
+  #title p { max-width:520px; text-align:center; font-size:13px; line-height:1.7; opacity:.7; padding:0 24px; }
+  #start { pointer-events:auto; margin-top:8px; padding:12px 34px; border:1px solid var(--ochre);
+    background:transparent; color:var(--ochre); font-family:inherit; font-size:13px; letter-spacing:.28em;
+    text-transform:uppercase; cursor:pointer; transition:.25s; }
+  #start:hover { background:var(--ochre); color:#1a1208; }
+  #loading { position:fixed; inset:auto 0 0 0; height:2px; width:0%; background:var(--ochre);
+    transition:width .3s; z-index:11; }
+  #touch { position:fixed; inset:0; display:none; z-index:9; pointer-events:none; }
+  body.touch #touch { display:block; }
+  #touch .ctl { pointer-events:auto; }
+  #lookzone { position:absolute; inset:0; pointer-events:auto; }
+  #stick { position:absolute; left:28px; bottom:36px; width:132px; height:132px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.25); }
+  #knob { position:absolute; left:50%; top:50%; width:54px; height:54px; margin:-27px 0 0 -27px;
+    border-radius:50%; background:rgba(217,164,65,.55); }
+  #btnRun { position:absolute; right:28px; bottom:36px; width:84px; height:84px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
+    font-size:11px; letter-spacing:.16em; display:flex; align-items:center; justify-content:center; }
+  #btnAttack { position:absolute; right:124px; bottom:46px; width:74px; height:74px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
+    font-size:10px; letter-spacing:.12em; display:flex; align-items:center; justify-content:center; }
+  #btnDodge { position:absolute; right:130px; bottom:128px; width:62px; height:62px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.28); background:rgba(20,12,5,.22); color:var(--sand);
+    font-size:9.5px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
+  #btnAsk { position:absolute; right:28px; bottom:130px; width:62px; height:62px; border-radius:50%;
+    border:1px solid rgba(217,164,65,.4); background:rgba(20,12,5,.28); color:var(--ochre);
+    font-size:10px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
+  #btnKnife { position:absolute; right:210px; bottom:96px; width:56px; height:56px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #btnGun { position:absolute; right:210px; bottom:32px; width:56px; height:56px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #ask-panel { display:none; }
+  #btnFull { position:fixed; top:10px; right:12px; z-index:22; pointer-events:auto; width:38px; height:38px;
+    border-radius:8px; border:1px solid rgba(232,211,174,.35); background:rgba(14,9,4,.5); color:var(--sand);
+    font-size:10px; letter-spacing:.06em; display:none; align-items:center; justify-content:center; }
+  body.touch #btnFull { display:flex; }
+  #rotate { position:fixed; inset:0; z-index:60; display:none; flex-direction:column; align-items:center;
+    justify-content:center; gap:22px; background:#0b0805; text-align:center; padding:32px; }
+  #rotate .ph { width:64px; height:104px; border:2px solid var(--ochre); border-radius:10px;
+    transform:rotate(90deg); animation:tilt 2.4s ease-in-out infinite; }
+  @keyframes tilt { 0%,30% { transform:rotate(90deg); } 60%,100% { transform:rotate(0deg); } }
+  #rotate h2 { font-size:15px; letter-spacing:.24em; text-transform:uppercase; color:var(--ochre); font-weight:400; }
+  #rotate p { font-size:12.5px; opacity:.7; max-width:340px; line-height:1.6; }
+  #rotate button { padding:10px 22px; border:1px solid rgba(217,164,65,.6); background:transparent;
+    color:var(--ochre); font-family:inherit; font-size:11px; letter-spacing:.2em; text-transform:uppercase; }
+  body.touch.portrait #rotate { display:flex; }
+  body.no-rotate #rotate { display:none !important; }
+  @media (orientation: landscape) and (max-height: 520px) {
+    #chapter { font-size:9px; top:8px; left:12px; letter-spacing:.24em; }
+    #objective { font-size:10.5px; top:24px; left:12px; max-width:230px; line-height:1.4; }
+    #stats { font-size:9px; bottom:6px; left:12px; }
+    #hint { display:none; }
+    #stick { width:104px; height:104px; left:14px; bottom:14px; }
+    #knob { width:44px; height:44px; margin:-22px 0 0 -22px; }
+    #btnRun { width:64px; height:64px; right:14px; bottom:14px; font-size:9px; }
+    #btnAttack { width:56px; height:56px; right:86px; bottom:18px; font-size:9px; }
+    #btnDodge { width:48px; height:48px; right:92px; bottom:82px; font-size:8.5px; }
+    #btnAsk { width:48px; height:48px; right:14px; bottom:86px; font-size:9px; }
+    #btnKnife { right:150px; bottom:64px; width:44px; height:44px; }
+    #btnGun { right:150px; bottom:14px; width:44px; height:44px; }
+    #cine-root .bar.top, #cine-root .bar.bottom { height:8vh; }
+  }
+  #hud-powers .row { text-shadow:0 1px 3px #000; }
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three/three.module.js", "three/addons/": "./vendor/three/addons/" } }
+</script>
+<style id="splash-css">
+#btnMenu{position:fixed;top:10px;right:10px;z-index:42;width:34px;height:34px;display:grid;place-items:center;
+border:1px solid rgba(217,164,65,.34);background:rgba(12,8,4,.5);color:var(--sand,#e8d3ae);cursor:pointer;
+backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#btnMenu:active{transform:scale(.94)}
+#pause{position:fixed;inset:0;z-index:58;display:none;align-items:center;justify-content:center;
+background:rgba(6,4,2,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+#pause.is-open{display:flex}
+#pause .pause-panel{width:min(340px,84vw);padding:22px 22px 16px;border:1px solid rgba(217,164,65,.28);
+background:linear-gradient(180deg,rgba(24,16,9,.96),rgba(12,8,5,.97));text-align:center;
+box-shadow:0 26px 60px rgba(0,0,0,.6)}
+#pause .pause-kicker{margin:0;font-size:9px;letter-spacing:.4em;color:#a8813f}
+#pause h2{margin:6px 0 16px;font-family:'Cinzel',Georgia,serif;font-size:20px;letter-spacing:.16em;color:#e8d3ae;font-weight:400}
+#pause .pause-actions{display:grid;gap:8px}
+#pause .pause-btn{padding:11px 14px;border:1px solid rgba(217,164,65,.3);background:rgba(30,20,10,.6);
+color:#e8d3ae;font-family:inherit;font-size:10px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+#pause .pause-btn:hover{border-color:rgba(217,164,65,.6);background:rgba(217,164,65,.1)}
+#pause .pause-btn.is-primary{border-color:rgba(217,164,65,.65);background:rgba(217,164,65,.16)}
+#pause .pause-hint{margin:14px 0 0;font-size:9px;letter-spacing:.2em;opacity:.45;text-transform:uppercase}
+#splash{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:10px;background:radial-gradient(circle at 50% 42%,#191208 0%,#0b0805 62%);color:var(--ochre,#d9a441);
+pointer-events:none;animation:splashOut 4.2s cubic-bezier(.4,0,.2,1) forwards}
+#splash .sp-word{font-family:'Cinzel',Georgia,serif;font-size:clamp(22px,6vw,44px);letter-spacing:.34em;
+text-indent:.34em;color:#e8d3ae;opacity:0;animation:spIn 1.5s .25s ease-out forwards}
+#splash .sp-tag{font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:#a8813f;opacity:0;
+animation:spIn 1.5s .85s ease-out forwards}
+#splash .sp-bar{width:120px;height:1px;background:#2a1f11;margin-top:6px;overflow:hidden}
+#splash .sp-bar i{display:block;height:100%;width:0;background:#d9a441;animation:spBar 2.6s .5s ease-in-out forwards}
+#splash svg{color:#d9a441;opacity:0;animation:spIn 1.6s .05s ease-out forwards;filter:drop-shadow(0 0 14px rgba(217,164,65,.35))}
+@keyframes spIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes spBar{from{width:0}to{width:100%}}
+@keyframes splashOut{0%,72%{opacity:1}100%{opacity:0;visibility:hidden}}
+</style>
+</head>
+<body>
+<div id="splash" aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="86" height="86" aria-hidden="true">
+    <path d="M32 56V22M32 30 18 18M32 30 46 18M32 40 14 51M32 40 50 51" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="18" cy="18" r="3.4" fill="currentColor"/><circle cx="46" cy="18" r="3.4" fill="currentColor"/>
+    <circle cx="14" cy="51" r="3" fill="currentColor"/><circle cx="50" cy="51" r="3" fill="currentColor"/>
+  </svg>
+  <div class="sp-word">HIS-TREE</div>
+  <div class="sp-tag">one tree · every century</div>
+  <div class="sp-bar"><i></i></div>
+</div>
+<canvas id="scene"></canvas>
+<div id="hud">
+  <div id="chapter">Episode I — The Golden Empire</div>
+  <div id="objective">Find the market quarter. Ask the salt merchant about the gold route.</div>
+  <div id="stats"></div>
+  <div id="hint">WASD move · Shift run · Mouse look · M music · Esc release</div>
+  <div id="toast"></div>
+</div>
+<div id="touch">
+  <div id="lookzone"></div>
+  <div id="stick" class="ctl"><div id="knob"></div></div>
+  <div id="btnRun" class="ctl">RUN</div>
+  <div id="btnAttack" class="ctl">HIT</div>
+  <div id="btnKick" class="ctl" style="position:absolute;right:86px;bottom:88px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.28);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">KICK</div>
+  <div id="btnDodge" class="ctl">DODGE</div>
+  <div id="btnAsk" class="ctl">ASK</div>
+  <div id="btnUse" class="ctl" style="position:absolute;right:84px;bottom:150px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(217,164,65,.35);background:rgba(20,12,5,.25);color:var(--ochre);font-size:9px;display:flex;align-items:center;justify-content:center;">USE</div>
+  <div id="btnJump" class="ctl" style="position:absolute;left:150px;bottom:16px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.25);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">JUMP</div>
+  <div id="btnFloat" class="ctl" style="position:absolute;left:14px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLOAT</div>
+  <div id="btnFly" class="ctl" style="position:absolute;left:68px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLY</div>
+  <div id="btnKnife" class="ctl">KNIFE</div>
+  <div id="btnGun" class="ctl">GUN</div>
+</div>
+<button id="btnFull">FULL</button>
+<button id="btnMenu" aria-label="Pause menu" title="Menu">
+  <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h16v2H4z" fill="currentColor"/></svg>
+</button>
+<div id="pause" aria-hidden="true">
+  <div class="pause-panel">
+    <p class="pause-kicker">HIS-TREE</p>
+    <h2>Paused</h2>
+    <div class="pause-actions">
+      <button id="pauseResume" class="pause-btn is-primary">Resume</button>
+      <button id="pauseChapters" class="pause-btn">Chapter map</button>
+      <button id="pauseRestart" class="pause-btn">Restart episode</button>
+      <button id="pauseMusic" class="pause-btn is-toggle">Music: on</button>
+      <button id="pauseSfx" class="pause-btn is-toggle">Sound effects: on</button>
+    </div>
+    <p class="pause-hint">Esc to resume</p>
+  </div>
+</div>
+<div id="rotate">
+  <div class="ph"></div>
+  <h2>Rotate your device</h2>
+  <p>HIS-TREE plays best in landscape. Turn your phone sideways for the full view.</p>
+  <button id="rotateSkip">Play anyway</button>
+</div>
+<div id="title" style="display:none">
+  <h1>HIS-TREE</h1>
+  <h2>EPISODE I &nbsp;·&nbsp; THE GOLDEN EMPIRE</h2>
+  <p>Mansa Musa&rsquo;s Mali, 1324. The Sahara road is open and the empire is rich in gold.
+     Walk the market of Djenn&eacute;-like earth, speak with its people, and decide what history
+     will remember of you.</p>
+  <button id="start">Begin</button>
+</div>
+<div id="loading"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
