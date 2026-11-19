@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { theatreWoodMaterial, theatrePlasterMaterial, theatreVelvetMaterial, carpetMaterial, goldMaterial, clothMaterial, metalMaterial, contactShadowMaterial, tileObjectUVs } from './Materials.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { Crowd, theatreAudienceSeats, theatreStandingCrowd, stageActors } from './Crowd.js';
+import { Audience } from './Audience.js';
 import { Cast, theatreCast } from './Cast.js';
 
 export function buildHall1865(scene) {
@@ -111,31 +112,40 @@ export function buildHall1865(scene) {
   // seats: rounded cushions, curved backs, wooden frames (instanced)
   const COLS = 20, ROWS = 9;
   const cushionGeo = new RoundedBoxGeometry(0.66, 0.16, 0.6, 3, 0.05);
-  const backGeo = new RoundedBoxGeometry(0.66, 0.72, 0.14, 3, 0.06);
+  const backGeo = new RoundedBoxGeometry(0.66, 0.46, 0.13, 3, 0.05);
   const baseGeo = new RoundedBoxGeometry(0.66, 0.42, 0.58, 2, 0.04);
   const armGeo = new RoundedBoxGeometry(0.07, 0.2, 0.58, 2, 0.03);
-  const seatCount = COLS * ROWS;
+  const seatSpots = [];
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const x = -12 + c * 1.42;
+      const z = -8 + r * 1.5;
+      if (Math.abs(x) < 1.95) continue; // keep the centre aisle clear
+      seatSpots.push({ x, z });
+    }
+  }
+  const seatCount = seatSpots.length;
   const cushions = new THREE.InstancedMesh(cushionGeo, velvet, seatCount);
   const backs = new THREE.InstancedMesh(backGeo, velvet, seatCount);
   const bases = new THREE.InstancedMesh(baseGeo, wood, seatCount);
   const arms = new THREE.InstancedMesh(armGeo, wood, seatCount * 2);
   const dummy = new THREE.Object3D();
   let si = 0, ai = 0;
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
-      const x = -12 + c * 1.42;
-      const z = -8 + r * 1.5;
+  for (const spot of seatSpots) {
+    {
+      const x = spot.x;
+      const z = spot.z;
       dummy.rotation.set(0, 0, 0);
       dummy.position.set(x, 0.62, z + 0.03);
       dummy.updateMatrix(); cushions.setMatrixAt(si, dummy.matrix);
       dummy.position.set(x, 0.28, z + 0.03);
       dummy.updateMatrix(); bases.setMatrixAt(si, dummy.matrix);
-      dummy.position.set(x, 0.98, z + 0.31);
-      dummy.rotation.x = -0.12;
+      dummy.position.set(x, 0.92, z + 0.30);
+      dummy.rotation.x = -0.14;
       dummy.updateMatrix(); backs.setMatrixAt(si, dummy.matrix);
       dummy.rotation.x = 0;
       for (const sx of [-1, 1]) {
-        dummy.position.set(x + sx * 0.355, 0.72, z + 0.05);
+        dummy.position.set(x + sx * 0.355, 0.74, z + 0.05);
         dummy.updateMatrix(); arms.setMatrixAt(ai++, dummy.matrix);
       }
       si++;
@@ -147,9 +157,10 @@ export function buildHall1865(scene) {
     group.add(m);
   }
   const crowdInstances = [];
-  const audience = new Crowd(theatreAudienceSeats(), { name: 'audience' });
+  const audience = new Audience(group);
+  audience.load().then(() => { if (group.userData.audienceReady) group.userData.audienceReady(); });
   const house = new Crowd(theatreStandingCrowd(D), { name: 'house' });
-  group.add(audience.group, house.group);
+  group.add(house.group);
   crowdInstances.push(audience, house);
 
   // real cast members (Lux3D generated) take the stage and the aisles
@@ -491,6 +502,7 @@ export function buildHall1865(scene) {
   const spawn = new THREE.Vector3(0, 0, 9);
   const update = (dt, t) => {
     for (const c of crowdInstances) c.update(dt, t);
+    if (cast && cast.clapLevel !== undefined) cast.clapLevel = audience.clapLevel || 0;
     cast.update(dt, t);
     for (let i = 0; i < lights.length; i++) {
       const l = lights[i];
@@ -498,5 +510,17 @@ export function buildHall1865(scene) {
       l.intensity = l.userData.baseIntensity * (0.93 + 0.07 * Math.sin(t * (2.1 + i * 0.31) + i));
     }
   };
-  return { group, props, npcPositions, spawn, lights, hall: { W, D, H }, crowds: crowdInstances, cast, update };
+  return {
+    group,
+    props,
+    npcPositions,
+    spawn,
+    lights,
+    hall: { W, D, H },
+    crowds: crowdInstances,
+    cast,
+    audience,
+    setClapLevel: (level) => { if (audience) audience.setClapLevel(level); if (cast) cast.clapLevel = level; },
+    update
+  };
 }

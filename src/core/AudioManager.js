@@ -5,6 +5,7 @@ export class AudioManager {
     this.musicGain = null;
     this.ambienceGain = null;
     this.musicOn = true;
+    this.sfxOn = true;
     this.started = false;
     this.timer = null;
   }
@@ -23,6 +24,9 @@ export class AudioManager {
     this.ambienceGain = this.ctx.createGain();
     this.ambienceGain.gain.value = 0.22;
     this.ambienceGain.connect(this.master);
+    this.sfxGain = this.ctx.createGain();
+    this.sfxGain.gain.value = this.sfxOn ? 0.8 : 0;
+    this.sfxGain.connect(this.master);
     this._buildWind();
     this._buildDrums();
     this.started = true;
@@ -86,6 +90,69 @@ export class AudioManager {
       this.timer = setTimeout(schedule, 2000);
     };
     schedule();
+  }
+
+  toggleSfx() {
+    this.sfxOn = !this.sfxOn;
+    if (this.sfxGain) {
+      this.sfxGain.gain.setTargetAtTime(this.sfxOn ? 0.8 : 0, this.ctx.currentTime, 0.05);
+    }
+    return this.sfxOn;
+  }
+
+  noise(dur, freq, q, gain, type = 'bandpass') {
+    if (!this.ctx || !this.sfxOn) return;
+    const ctx = this.ctx;
+    const length = Math.max(1, Math.floor(ctx.sampleRate * dur));
+    const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i += 1) data[i] = (Math.random() * 2 - 1) * (1 - i / length);
+    const src = ctx.createBufferSource();
+    src.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = type;
+    filter.frequency.value = freq;
+    filter.Q.value = q;
+    const g = ctx.createGain();
+    g.gain.value = gain;
+    src.connect(filter);
+    filter.connect(g);
+    g.connect(this.sfxGain);
+    src.start();
+  }
+
+  tone(freq, dur, gain, type = 'sine', slide = 1) {
+    if (!this.ctx || !this.sfxOn) return;
+    const ctx = this.ctx;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(30, freq * slide), ctx.currentTime + dur);
+    g.gain.setValueAtTime(0.0001, ctx.currentTime);
+    g.gain.exponentialRampToTime(gain, ctx.currentTime + 0.008);
+    g.gain.exponentialRampToTime(0.0001, ctx.currentTime + dur);
+    osc.connect(g);
+    g.connect(this.sfxGain);
+    osc.start();
+    osc.stop(ctx.currentTime + dur + 0.02);
+  }
+
+  sfx(name) {
+    if (!this.ctx || !this.sfxOn) return;
+    switch (name) {
+      case 'punch': this.noise(0.16, 320, 1.1, 0.7); this.tone(110, 0.12, 0.35, 'sine', 0.6); break;
+      case 'kick': this.noise(0.2, 220, 1.0, 0.8); this.tone(90, 0.16, 0.4, 'sine', 0.5); break;
+      case 'gun': this.noise(0.42, 1500, 0.4, 0.9, 'lowpass'); this.tone(70, 0.3, 0.5, 'square', 0.35); break;
+      case 'knife': this.noise(0.12, 4200, 2.2, 0.35, 'highpass'); break;
+      case 'stab': this.noise(0.22, 260, 0.9, 0.85); this.tone(140, 0.14, 0.3, 'triangle', 0.5); break;
+      case 'step': this.noise(0.07, 260, 0.8, 0.18, 'lowpass'); break;
+      case 'clap': this.noise(0.09, 1500, 0.7, 0.35); break;
+      case 'thud': this.noise(0.3, 160, 0.7, 0.6, 'lowpass'); break;
+      case 'ui': this.tone(660, 0.06, 0.18, 'triangle', 1.3); break;
+      case 'pickup': this.tone(520, 0.1, 0.2, 'sine', 1.6); break;
+      default: break;
+    }
   }
 
   toggleMusic() {

@@ -355,6 +355,35 @@ body.avatarpicker-open { overflow: hidden; }
   overflow: hidden;
   overflow-wrap: break-word;
 }
+#avatarpicker-root .ap-cta {
+  position: absolute;
+  right: clamp(10px, 1.6vw, 18px);
+  bottom: clamp(10px, 1.6vw, 18px);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px 9px 12px;
+  border: 1px solid var(--ap-ochre);
+  background: linear-gradient(180deg, rgba(217, 164, 65, .96), rgba(184, 133, 46, .96));
+  color: #1b1105;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .45);
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+#avatarpicker-root .ap-cta:hover { transform: translateY(-1px); filter: brightness(1.06); }
+#avatarpicker-root .ap-cta:active { transform: translateY(0); }
+#avatarpicker-root .ap-cta-key {
+  padding: 3px 7px;
+  border: 1px solid rgba(27, 17, 5, .45);
+  font-size: 8.5px;
+  letter-spacing: .14em;
+}
+#avatarpicker-root .ap-cta-label { font-weight: 500; }
 #avatarpicker-root .ap-hint {
   flex: 0 0 auto;
   margin: 6px 0 0;
@@ -388,7 +417,36 @@ body.avatarpicker-open { overflow: hidden; }
   #avatarpicker-root .ap-blurb { font-size: 10.5px; margin-top: 5px; -webkit-line-clamp: 1; }
   #avatarpicker-root .ap-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 78px), 1fr)); gap: 7px; padding-top: 7px; }
   #avatarpicker-root .ap-card-name { font-size: 10px; }
-  #avatarpicker-root .ap-hint { display: none; }
+  #avatarpicker-root .ap-cta {
+  position: absolute;
+  right: clamp(10px, 1.6vw, 18px);
+  bottom: clamp(10px, 1.6vw, 18px);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px 9px 12px;
+  border: 1px solid var(--ap-ochre);
+  background: linear-gradient(180deg, rgba(217, 164, 65, .96), rgba(184, 133, 46, .96));
+  color: #1b1105;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .45);
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+#avatarpicker-root .ap-cta:hover { transform: translateY(-1px); filter: brightness(1.06); }
+#avatarpicker-root .ap-cta:active { transform: translateY(0); }
+#avatarpicker-root .ap-cta-key {
+  padding: 3px 7px;
+  border: 1px solid rgba(27, 17, 5, .45);
+  font-size: 8.5px;
+  letter-spacing: .14em;
+}
+#avatarpicker-root .ap-cta-label { font-weight: 500; }
+#avatarpicker-root .ap-hint { display: none; }
 }
 @media (max-width: 720px) {
   #avatarpicker-root .ap-top { padding-top: 14px; }
@@ -401,7 +459,36 @@ body.avatarpicker-open { overflow: hidden; }
   }
   #avatarpicker-root .ap-tag.is-right { display: none; }
   #avatarpicker-root .ap-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 94px), 1fr)); }
-  #avatarpicker-root .ap-hint { display: none; }
+  #avatarpicker-root .ap-cta {
+  position: absolute;
+  right: clamp(10px, 1.6vw, 18px);
+  bottom: clamp(10px, 1.6vw, 18px);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 16px 9px 12px;
+  border: 1px solid var(--ap-ochre);
+  background: linear-gradient(180deg, rgba(217, 164, 65, .96), rgba(184, 133, 46, .96));
+  color: #1b1105;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .45);
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+}
+#avatarpicker-root .ap-cta:hover { transform: translateY(-1px); filter: brightness(1.06); }
+#avatarpicker-root .ap-cta:active { transform: translateY(0); }
+#avatarpicker-root .ap-cta-key {
+  padding: 3px 7px;
+  border: 1px solid rgba(27, 17, 5, .45);
+  font-size: 8.5px;
+  letter-spacing: .14em;
+}
+#avatarpicker-root .ap-cta-label { font-weight: 500; }
+#avatarpicker-root .ap-hint { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   #avatarpicker-root,
@@ -535,7 +622,17 @@ export class AvatarPicker {
     blurb.className = 'ap-blurb';
     caption.append(name, era, blurb);
 
-    stage.append(canvas, placeholder, tagLeft, tagRight, caption, frame);
+    const cta = document.createElement('button');
+    cta.type = 'button';
+    cta.className = 'ap-cta';
+    cta.innerHTML = '<span class="ap-cta-key">ENTER</span><span class="ap-cta-label">Begin the chapter</span>';
+    cta.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (this._active >= 0) this._confirm(this._active);
+    });
+
+    stage.append(canvas, placeholder, tagLeft, tagRight, caption, cta, frame);
+    this._cta = cta;
 
     const roster = document.createElement('div');
     roster.className = 'ap-roster';
@@ -608,10 +705,7 @@ export class AvatarPicker {
     } else {
       card.type = 'button';
       card.tabIndex = -1;
-      card.addEventListener('click', () => {
-        this._setActive(index, false);
-        this._confirm(index);
-      });
+      card.addEventListener('click', () => this._setActive(index, false));
       card.addEventListener('focus', () => this._hover(index));
       card.addEventListener('pointerenter', () => this._hover(index));
     }

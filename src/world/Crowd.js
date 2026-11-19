@@ -14,21 +14,24 @@ class PartBank {
   constructor() {
     this.parts = new Map();
   }
-  add(key, geometry, matrix) {
-    if (!this.parts.has(key)) this.parts.set(key, { geometry, matrices: [] });
-    this.parts.get(key).matrices.push(matrix.clone());
+  add(key, geometry, matrix, fig = -1) {
+    if (!this.parts.has(key)) this.parts.set(key, { geometry, matrices: [], figs: [] });
+    const entry = this.parts.get(key);
+    entry.matrices.push(matrix.clone());
+    entry.figs.push(fig);
   }
   build(parent, materials, opts = {}) {
     const out = [];
     for (const [key, entry] of this.parts) {
       const count = entry.matrices.length;
-      const mat = materials[key];
+      const mat = materials[key.split('|')[0]] || materials[key];
       const mesh = new THREE.InstancedMesh(entry.geometry, mat, count);
       mesh.castShadow = opts.castShadow !== false;
       mesh.receiveShadow = true;
       mesh.frustumCulled = false;
       mesh.userData.base = entry.matrices.map((m) => m.clone());
       mesh.userData.key = key;
+      mesh.userData.figs = entry.figs.slice();
       for (let i = 0; i < count; i++) mesh.setMatrixAt(i, entry.matrices[i]);
       mesh.instanceMatrix.needsUpdate = true;
       parent.add(mesh);
@@ -111,38 +114,49 @@ export class Crowd {
       };
 
       if (pose === 'sit') {
-        const hipY = 0.74;
-        bank.add(coatKey, torsoGeo, local(0, hipY + 0.28, 0.02, -0.1));
-        bank.add(coatKey, armGeo, local(-0.26, hipY + 0.16, 0.1, 0.95, 0, 0.12));
-        bank.add(coatKey, armGeo, local(0.26, hipY + 0.16, 0.1, 0.95, 0, -0.12));
-        bank.add(trouserKey, thighGeo, local(-0.11, hipY - 0.06, 0.24, 1.5));
-        bank.add(trouserKey, thighGeo, local(0.11, hipY - 0.06, 0.24, 1.5));
-        bank.add(trouserKey, legGeo, local(-0.11, 0.34, 0.44));
-        bank.add(trouserKey, legGeo, local(0.11, 0.34, 0.44));
-        bank.add(skinKey, headGeo, local(0, hipY + 0.72, 0.04));
+        const hipY = 0.72;
+        bank.add(coatKey, torsoGeo, local(0, hipY + 0.30, 0.02, -0.06), idx);
+        bank.add(coatKey + '|arm', armGeo, local(-0.25, hipY + 0.20, 0.11, 0.78, 0, 0.10), idx);
+        bank.add(coatKey + '|arm', armGeo, local(0.25, hipY + 0.20, 0.11, 0.78, 0, -0.10), idx);
+        bank.add(coatKey + '|forearm', armGeo, local(-0.24, hipY + 0.02, 0.26, 1.42, 0, 0.08), idx);
+        bank.add(coatKey + '|forearm', armGeo, local(0.24, hipY + 0.02, 0.26, 1.42, 0, -0.08), idx);
+        bank.add(trouserKey, thighGeo, local(-0.11, hipY - 0.06, 0.24, 1.5), idx);
+        bank.add(trouserKey, thighGeo, local(0.11, hipY - 0.06, 0.24, 1.5), idx);
+        bank.add(trouserKey, legGeo, local(-0.11, 0.34, 0.44), idx);
+        bank.add(trouserKey, legGeo, local(0.11, 0.34, 0.44), idx);
+        bank.add(skinKey, headGeo, local(0, hipY + 0.74, 0.03), idx);
+        bank.add(skinKey + '|neck', new THREE.CylinderGeometry(0.05, 0.06, 0.1, 8), local(0, hipY + 0.62, 0.02), idx);
       } else {
-        bank.add(coatKey, torsoGeo, local(0, 1.16, 0));
-        bank.add(coatKey, armGeo, local(-0.27, 1.12, 0.02, 0, 0, 0.08));
-        bank.add(coatKey, armGeo, local(0.27, 1.12, 0.02, 0, 0, -0.08));
-        bank.add(trouserKey, legGeo, local(-0.11, 0.42, 0));
-        bank.add(trouserKey, legGeo, local(0.11, 0.42, 0));
-        bank.add(skinKey, headGeo, local(0, 1.6, 0));
+        bank.add(coatKey, torsoGeo, local(0, 1.16, 0), idx);
+        bank.add(coatKey + '|arm', armGeo, local(-0.27, 1.12, 0.02, 0, 0, 0.08), idx);
+        bank.add(coatKey + '|arm', armGeo, local(0.27, 1.12, 0.02, 0, 0, -0.08), idx);
+        bank.add(trouserKey, legGeo, local(-0.11, 0.42, 0), idx);
+        bank.add(trouserKey, legGeo, local(0.11, 0.42, 0), idx);
+        bank.add(skinKey, headGeo, local(0, 1.6, 0), idx);
+        bank.add(skinKey + '|neck', new THREE.CylinderGeometry(0.05, 0.06, 0.1, 8), local(0, 1.46, 0), idx);
       }
 
       if (hat === 'top') {
-        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.52 : 1.78, 0));
-        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.45 : 1.71, 0));
+        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.52 : 1.78, 0), idx);
+        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.45 : 1.71, 0), idx);
       } else if (hat === 'brim') {
-        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.5 : 1.76, 0));
-        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.46 : 1.72, 0));
+        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.5 : 1.76, 0), idx);
+        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.46 : 1.72, 0), idx);
       } else if (hat === 'turban') {
-        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.54 : 1.8, 0, 0, 0, 0, 1.25));
+        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.54 : 1.8, 0, 0, 0, 0, 1.25), idx);
       } else if (hat === 'kepi') {
-        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.53 : 1.79, 0.01, 0, 0, 0, 0.75));
-        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.5 : 1.76, 0.05, 0.16));
+        bank.add(hatKey, hatGeo, local(0, pose === 'sit' ? 1.53 : 1.79, 0.01, 0, 0, 0, 0.75), idx);
+        bank.add(hatKey, brimGeo, local(0, pose === 'sit' ? 1.5 : 1.76, 0.05, 0.16), idx);
       }
 
-      this.figures.push({ phase: (idx * 1.7) % (Math.PI * 2), pose, key: coatKey });
+      this.figures.push({
+        phase: (idx * 1.7) % (Math.PI * 2),
+        pose,
+        key: coatKey,
+        clap: spec.clap !== false && pose === 'sit',
+        clapPhase: (idx * 0.83) % (Math.PI * 2),
+        idle: (idx * 2.11) % 10
+      });
     });
 
     for (const [key, mat] of coatKeys) materials[key] = mat;
@@ -151,12 +165,83 @@ export class Crowd {
     for (const [key, mat] of hatKeys) materials[key] = mat;
 
     this.meshes = bank.build(this.group, materials);
-    this.headMeshes = this.meshes.filter((m) => m.userData.key && skinKeys.has(m.userData.key));
+    this.headMeshes = this.meshes.filter((m) => m.userData.key && skinKeys.has(m.userData.key.split('|')[0]));
+    this.armMeshes = this.meshes.filter((m) => m.userData.key && m.userData.key.includes('|arm'));
+    this.forearmMeshes = this.meshes.filter((m) => m.userData.key && m.userData.key.includes('|forearm'));
   }
 
   update(dt, t) {
     this.time = t;
     const m = new THREE.Matrix4();
+    if (this.stageWalk) {
+      for (const mesh of this.meshes) {
+        const bases = mesh.userData.base;
+        const figs = mesh.userData.figs || [];
+        for (let i = 0; i < bases.length; i++) {
+          const fig = this.figures[figs[i]];
+          if (!fig || fig.pose !== 'act') continue;
+          m.copy(bases[i]);
+          const p = new THREE.Vector3();
+          const q = new THREE.Quaternion();
+          const sc = new THREE.Vector3();
+          m.decompose(p, q, sc);
+          p.x += Math.sin(t * 0.55 + fig.phase) * 0.9;
+          p.z += Math.cos(t * 0.4 + fig.phase) * 0.35;
+          const e = new THREE.Euler().setFromQuaternion(q, 'YXZ');
+          e.y += Math.sin(t * 0.55 + fig.phase) * 0.5;
+          e.z += Math.sin(t * 1.7 + fig.phase) * 0.05;
+          q.setFromEuler(e);
+          m.compose(p, q, sc);
+          mesh.setMatrixAt(i, m);
+        }
+        mesh.instanceMatrix.needsUpdate = true;
+      }
+    }
+    const clapAmount = this.clapLevel !== undefined ? this.clapLevel : 0;
+    for (const mesh of this.armMeshes) {
+      const bases = mesh.userData.base;
+      const figs = mesh.userData.figs || [];
+      for (let i = 0; i < bases.length; i++) {
+        const fig = this.figures[figs[i]];
+        if (!fig || !fig.clap) continue;
+        const beat = Math.max(0, Math.sin(t * 3.4 + fig.clapPhase));
+        const amt = beat * beat * clapAmount;
+        m.copy(bases[i]);
+        const p = new THREE.Vector3();
+        const q = new THREE.Quaternion();
+        const sc = new THREE.Vector3();
+        m.decompose(p, q, sc);
+        const e = new THREE.Euler().setFromQuaternion(q, 'YXZ');
+        e.x -= amt * 0.85;
+        e.z += amt * 0.34 * (p.x > 0 ? -1 : 1);
+        q.setFromEuler(e);
+        m.compose(p, q, sc);
+        mesh.setMatrixAt(i, m);
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+    }
+    for (const mesh of this.forearmMeshes) {
+      const bases = mesh.userData.base;
+      const figs = mesh.userData.figs || [];
+      for (let i = 0; i < bases.length; i++) {
+        const fig = this.figures[figs[i]];
+        if (!fig || !fig.clap) continue;
+        const beat = Math.max(0, Math.sin(t * 3.4 + fig.clapPhase));
+        const amt = beat * beat * clapAmount;
+        m.copy(bases[i]);
+        const p = new THREE.Vector3();
+        const q = new THREE.Quaternion();
+        const sc = new THREE.Vector3();
+        m.decompose(p, q, sc);
+        const e = new THREE.Euler().setFromQuaternion(q, 'YXZ');
+        e.x -= amt * 1.15;
+        e.z += amt * 0.5 * (p.x > 0 ? -1 : 1);
+        q.setFromEuler(e);
+        m.compose(p, q, sc);
+        mesh.setMatrixAt(i, m);
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+    }
     for (const mesh of this.headMeshes) {
       const bases = mesh.userData.base;
       for (let i = 0; i < bases.length; i++) {
@@ -225,12 +310,14 @@ export function theatreStandingCrowd(D) {
 export function stageActors() {
   const Y = 1.0;
   return [
-    { x: -2.6, z: -14.4, y: Y, rot: 0.4, pose: 'stand', coat: 0x1d1b19, trouser: 0x22201d, hat: 'none', skin: 0x9a7a5f },
-    { x: 0.4, z: -14.9, y: Y, rot: -0.2, pose: 'stand', coat: 0x3a2f2a, trouser: 0x272521, hat: 'none', skin: 0x8d6a52 },
-    { x: 3.1, z: -14.2, y: Y, rot: -0.5, pose: 'stand', coat: 0x554636, trouser: 0x322b24, hat: 'none', skin: 0x7a5942 },
-    { x: 5.6, z: -13.6, y: Y, rot: -0.9, pose: 'stand', coat: 0x2f3338, trouser: 0x1d1c1a, hat: 'none', skin: 0xa28568 },
-    { x: -4.4, z: -13.2, y: Y, rot: 1.1, pose: 'stand', coat: 0x463a2e, trouser: 0x3b342a, hat: 'none', skin: 0x9a7a5f },
-    { x: 2.0, z: -13.4, y: Y, rot: 0.1, pose: 'stand', coat: 0x2a2622, trouser: 0x272521, hat: 'none', skin: 0x8d6a52 }
+    { x: -2.6, z: -14.4, y: Y, rot: 0.4, pose: 'act', coat: 0x1d1b19, trouser: 0x22201d, hat: 'none', skin: 0x9a7a5f },
+    { x: 0.4, z: -14.9, y: Y, rot: -0.2, pose: 'act', coat: 0x3a2f2a, trouser: 0x272521, hat: 'none', skin: 0x8d6a52 },
+    { x: 3.1, z: -14.2, y: Y, rot: -0.5, pose: 'act', coat: 0x554636, trouser: 0x322b24, hat: 'none', skin: 0x7a5942 },
+    { x: 5.6, z: -13.6, y: Y, rot: -0.9, pose: 'act', coat: 0x2f3338, trouser: 0x1d1c1a, hat: 'none', skin: 0xa28568 },
+    { x: -4.4, z: -13.2, y: Y, rot: 1.1, pose: 'act', coat: 0x463a2e, trouser: 0x3b342a, hat: 'none', skin: 0x9a7a5f },
+    { x: 2.0, z: -13.4, y: Y, rot: 0.1, pose: 'act', coat: 0x2a2622, trouser: 0x272521, hat: 'none', skin: 0x8d6a52 },
+    { x: -0.9, z: -13.6, y: Y, rot: 0.9, pose: 'act', coat: 0x4a3a30, trouser: 0x1d1c1a, hat: 'none', skin: 0xa28568 },
+    { x: 4.4, z: -15.4, y: Y, rot: -1.2, pose: 'act', coat: 0x38302a, trouser: 0x3b342a, hat: 'none', skin: 0x6b4d39 }
   ];
 }
 

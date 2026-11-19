@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { poseCharacter } from '../world/CharacterAnim.js';
+import { robustBox } from '../world/frame.js';
 
 export class AvatarPreview {
   constructor(canvas, loader) {
@@ -74,7 +75,7 @@ export class AvatarPreview {
     const gltf = await this.loader.loadAsync(file);
     const model = gltf.scene;
     model.updateMatrixWorld(true);
-    const box = new THREE.Box3().setFromObject(model);
+    const box = robustBox(model);
     const size = new THREE.Vector3();
     box.getSize(size);
     const center = new THREE.Vector3();
@@ -95,7 +96,6 @@ export class AvatarPreview {
         o.frustumCulled = false;
       }
     });
-    holder.rotation.y = Math.PI;
     this.group.add(holder);
     this.current = holder;
     this.canvas.dataset.ready = 'true';

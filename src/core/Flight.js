@@ -79,7 +79,8 @@ export class Flight {
 
   toggleFloat() {
     if (!this.active) return;
-    this.controller.frozen = this.mode !== 'ground';
+    this.controller.frozen = this.mode === 'fly';
+    this.controller.airborne = this.mode !== 'ground';
     if (this.mode === 'float') {
       this.mode = 'ground';
       this.ui.toast('Lofi settles back down', 1400);
@@ -122,13 +123,13 @@ export class Flight {
     const axis = input.axis();
     const p = this.player.position;
 
-    this.controller.frozen = this.mode !== 'ground';
+    this.controller.frozen = this.mode === 'fly';
+    this.controller.airborne = this.mode !== 'ground';
     if (this.mode === 'float') {
       const climb = axis.y;
       if (climb !== 0) this.floatTarget = Math.max(0.5, this.floatTarget + climb * 3.4 * dt);
       this.floatY += (this.floatTarget - this.floatY) * Math.min(1, dt * 2.2);
       this.vy = (this.floatY - (this.floatY - this.vy * dt));
-      p.y = this.floatY;
       this.controller.groundY = this.floatY;
       this._poseFloat(dt);
     } else if (this.mode === 'fly') {
@@ -178,11 +179,11 @@ export class Flight {
   _poseFly(dt, yaw) {
     if (!this.rig) return;
     this.player.rotation.y = yaw;
-    this.rig.rotation.x += (-Math.PI / 2 + this.pitch - this.rig.rotation.x) * Math.min(1, dt * 4.5);
+    this.rig.rotation.x += (Math.PI / 2 + this.pitch - this.rig.rotation.x) * Math.min(1, dt * 4.5);
     this.rig.rotation.z += (this.bank - this.rig.rotation.z) * Math.min(1, dt * 4.5);
     this.rig.rotation.y += (0 - this.rig.rotation.y) * Math.min(1, dt * 4.5);
     // lift the rig as the body tips over, so Lofi flies level with the camera
     const tip = Math.min(1, Math.abs(this.rig.rotation.x) / (Math.PI / 2));
-    this.rig.position.y += (0.82 * tip - this.rig.position.y) * Math.min(1, dt * 4);
+    this.rig.position.y += (0.62 * tip - this.rig.position.y) * Math.min(1, dt * 4);
   }
 }

@@ -6,7 +6,9 @@ will-change:transform}
 #waypoint .wp-in{display:flex;flex-direction:column;align-items:center;gap:3px;
 transform:translate(-50%,-50%)}
 #waypoint .wp-arrow{width:16px;height:16px;border-left:2px solid #d9a441;border-top:2px solid #d9a441;
-transform:rotate(45deg);filter:drop-shadow(0 0 6px rgba(217,164,65,.75))}
+transform:rotate(45deg);filter:drop-shadow(0 0 6px rgba(217,164,65,.75));transition:transform .08s linear}
+#waypoint .wp-label{font-size:8.5px;letter-spacing:.18em;color:#d9a441;text-transform:uppercase;
+text-shadow:0 1px 3px #000;max-width:130px;text-align:center;line-height:1.25}
 #waypoint .wp-dist{font-size:9px;letter-spacing:.16em;color:#e8d3ae;text-shadow:0 1px 3px #000;
 font-variant-numeric:tabular-nums}
 #waypoint.is-edge .wp-arrow{width:12px;height:12px;border-color:#e8d3ae}
@@ -30,10 +32,12 @@ export class Waypoint {
 
       const wp = document.createElement('div');
       wp.id = 'waypoint';
-      wp.innerHTML = '<div class="wp-in"><div class="wp-arrow"></div><div class="wp-dist"></div></div>';
+      wp.innerHTML = '<div class="wp-in"><div class="wp-arrow"></div><div class="wp-dist"></div><div class="wp-label"></div></div>';
       (mount || document.body).appendChild(wp);
       this.el = wp;
       this.distEl = wp.querySelector('.wp-dist');
+      this.arrowEl = wp.querySelector('.wp-arrow');
+      this.labelEl = wp.querySelector('.wp-label');
 
       const mini = document.createElement('div');
       mini.id = 'minimap';
@@ -48,6 +52,8 @@ export class Waypoint {
     } else {
       this.el = document.getElementById('waypoint');
       this.distEl = this.el.querySelector('.wp-dist');
+      this.arrowEl = this.el.querySelector('.wp-arrow');
+      this.labelEl = this.el.querySelector('.wp-label');
       this.mini = document.getElementById('minimap');
       this.ctx = this.mini.querySelector('canvas').getContext('2d');
       this.acc = 0;
@@ -98,6 +104,17 @@ export class Waypoint {
       this.el.classList.toggle('is-edge', edge);
       this.el.style.transform = `translate(${px.toFixed(1)}px, ${py.toFixed(1)}px)`;
       this.distEl.textContent = `${Math.round(dist)} m`;
+      if (this.labelEl) this.labelEl.textContent = target.label || '';
+      if (this.arrowEl) {
+        const to = new THREE.Vector3(target.x - player.position.x, 0, target.z - player.position.z);
+        const worldAngle = Math.atan2(to.x, -to.z);
+        const camAngle = Math.atan2(
+          camera.matrixWorld.elements[8],
+          camera.matrixWorld.elements[10]
+        );
+        const screenAngle = worldAngle - camAngle;
+        this.arrowEl.style.transform = `rotate(${(screenAngle * 180 / Math.PI + 45).toFixed(1)}deg)`;
+      }
       this.visible = true;
     } else {
       this.el.style.display = 'none';

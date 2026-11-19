@@ -16,6 +16,7 @@ export class ThirdPersonController {
     this.velocity = new THREE.Vector3();
     this.state = 'idle';
     this.frozen = false;
+    this.airborne = false;
     this.actions = {};
     this.walkPhase = 0;
     this.speed = 0;
@@ -87,7 +88,7 @@ export class ThirdPersonController {
     const accel = moving ? 14 : 18;
     this.velocity.lerp(desired, Math.min(1, dt * accel));
 
-    if (!this.frozen) {
+    if (!this.frozen || this.airborne) {
       this.player.position.addScaledVector(this.velocity, dt);
       this.player.position.y = this.groundY;
     }

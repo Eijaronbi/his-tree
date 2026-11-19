@@ -28,25 +28,18 @@ import { AvatarPicker } from './ui/AvatarPicker.js';
 import { AvatarPreview } from './ui/AvatarPreview.js';
 
 const AVATARS = [
-  { id: 'frock', name: 'Augustin Roux', era: 'Merchant, 1324', blurb: 'A coat cut for counting coin.', thumb: './thumbs/char_adult_m_frock.png', file: './assets/models/characters/audience/char_adult_m_frock.glb' },
-  { id: 'officer', name: 'Nathaniel Ward', era: 'Officer, 1865', blurb: 'Buttons polished, conscience not.', thumb: './thumbs/char_adult_m_officer.png', file: './assets/models/characters/audience/char_adult_m_officer.glb' },
-  { id: 'elegant', name: 'Clara Bellamy', era: 'Singer, 1865', blurb: 'Knows every door in the city.', thumb: './thumbs/char_adult_f_elegant.png', file: './assets/models/characters/audience/char_adult_f_elegant.glb' },
-  { id: 'simple', name: 'Maren Holt', era: 'Seamstress, 1917', blurb: 'Thread and nerves both thin.', thumb: './thumbs/char_adult_f_simple.png', file: './assets/models/characters/audience/char_adult_f_simple.glb' },
-  { id: 'worker', name: 'Silas Pike', era: 'Dockhand, 1893', blurb: 'Carries what the century drops.', thumb: './thumbs/char_worker.png', file: './assets/models/characters/audience/char_worker.glb' },
-  { id: 'soldier', name: 'Tommy Doyle', era: 'Private, 1917', blurb: 'Sixteen, and already old.', thumb: './thumbs/char_soldier_blue.png', file: './assets/models/characters/audience/char_soldier_blue.glb' },
-  { id: 'elder-m', name: 'Elias Crane', era: 'Archivist, 1989', blurb: 'Kept the file nobody wanted.', thumb: './thumbs/char_old_m_top.png', file: './assets/models/characters/audience/char_old_m_top.glb' },
-  { id: 'elder-f', name: 'Agnes Pike', era: 'Widow, 1917', blurb: 'Has buried better men than you.', thumb: './thumbs/char_old_f_bonnet.png', file: './assets/models/characters/audience/char_old_f_bonnet.glb' },
-  { id: 'lofi', name: 'Lofi', era: 'Yeti, out of time', blurb: 'Floats. Flies. Judges you.', thumb: './thumbs/lofi.png', file: './assets/models/characters/lofi.glb' }
+  { id: 'frock', name: 'Augustin Roux', era: 'Merchant, 1324', blurb: 'A coat cut for counting coin.', thumb: './thumbs/faces/frock.png', file: './assets/models/characters/audience_lod/char_adult_m_frock.glb' },
+  { id: 'officer', name: 'Nathaniel Ward', era: 'Officer, 1865', blurb: 'Buttons polished, conscience not.', thumb: './thumbs/faces/officer.png', file: './assets/models/characters/audience_lod/char_adult_m_officer.glb' },
+  { id: 'elegant', name: 'Clara Bellamy', era: 'Singer, 1865', blurb: 'Knows every door in the city.', thumb: './thumbs/faces/elegant.png', file: './assets/models/characters/audience_lod/char_adult_f_elegant.glb' },
+  { id: 'simple', name: 'Maren Holt', era: 'Seamstress, 1917', blurb: 'Thread and nerves both thin.', thumb: './thumbs/faces/simple.png', file: './assets/models/characters/audience_lod/char_adult_f_simple.glb' },
+  { id: 'worker', name: 'Silas Pike', era: 'Dockhand, 1893', blurb: 'Carries what the century drops.', thumb: './thumbs/faces/worker.png', file: './assets/models/characters/audience_lod/char_worker.glb' },
+  { id: 'soldier', name: 'Tommy Doyle', era: 'Private, 1917', blurb: 'Sixteen, and already old.', thumb: './thumbs/faces/soldier.png', file: './assets/models/characters/audience_lod/char_soldier_blue.glb' },
+  { id: 'elder-m', name: 'Elias Crane', era: 'Archivist, 1989', blurb: 'Kept the file nobody wanted.', thumb: './thumbs/faces/elder-m.png', file: './assets/models/characters/audience_lod/char_old_m_top.glb' },
+  { id: 'elder-f', name: 'Agnes Pike', era: 'Widow, 1917', blurb: 'Has buried better men than you.', thumb: './thumbs/faces/elder-f.png', file: './assets/models/characters/audience_lod/char_old_f_bonnet.glb' },
+  { id: 'lofi', name: 'Lofi', era: 'Yeti, out of time', blurb: 'Floats. Flies. Judges you.', thumb: './thumbs/faces/lofi.png', file: './assets/models/characters/lofi.glb' }
 ];
 
-const EXTRA_CARDS = [
-  { id: 'alexandria', title: 'THE LIBRARY', year: '48 BCE', place: 'Alexandria, Egypt', blurb: 'The shelves are burning. Someone is choosing what to carry.', continent: 'Africa', playable: false },
-  { id: 'timbuktu', title: 'CITY OF BOOKS', year: '1510 CE', place: 'Timbuktu, Songhai', blurb: 'A caravan arrives with paper worth more than gold.', continent: 'Africa', playable: false },
-  { id: 'tenochtitlan', title: 'THE FLOATING CITY', year: '1519 CE', place: 'Tenochtitlan, Mexica', blurb: 'Causeways, canals, and strangers on the horizon.', continent: 'North America', playable: false },
-  { id: 'chicago', title: 'THE WHITE CITY', year: '1893', place: 'Chicago, Illinois', blurb: 'Everything is lit. Someone is lying about it.', continent: 'North America', playable: false },
-  { id: 'printing', title: 'THE PRESS', year: '1450', place: 'Mainz, Holy Roman Empire', blurb: 'One man, one press, and the end of a monopoly.', continent: 'Europe', playable: false },
-  { id: 'sarajevo', title: 'THE ARCHDUKE', year: '1914', place: 'Sarajevo, Bosnia', blurb: 'A wrong turn that takes a continent with it.', continent: 'Europe', playable: false }
-];
+const EXTRA_CARDS = [];
 
 const CONTINENT_BY_CHAPTER = {
   'mali-1324': 'Africa',
@@ -257,14 +250,17 @@ function setAvatar(kind) {
   if (kind === 'lofi' && lofiRoot) {
     model = lofiRoot;
     height = 1.72;
+    model.position.set(0, 0, 0);
     rig.add(model);
+    const fb = new THREE.Box3().setFromObject(model);
+    if (Number.isFinite(fb.min.y) && Math.abs(fb.min.y) > 0.005) model.position.y -= fb.min.y;
   } else if (baseModels.player) {
     model = buildAvatarModel('default');
     height = model.userData.height || 1.8;
     rig.add(model);
   }
   playerBody = model;
-  playerPose = (model && kind !== 'lofi' && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
   mixer = new THREE.AnimationMixer(model || rig);
   controller.mixer = mixer;
   controller.actions = {};
@@ -345,7 +341,7 @@ function makePlayer(chapter) {
   controller.height = height * 0.84;
   flight = new Flight({ player: pivot, controller, camera, scene, ui, input, rig });
   playerBody = model;
-  playerPose = (model && avatarMode !== 'lofi' && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
   flight.enable(avatarMode === 'lofi');
   if (typeof syncTouchPowers === 'function') syncTouchPowers();
   if (avatarMode === 'lofi') {
@@ -501,6 +497,13 @@ async function startChapter(id) {
         else if (e.type === 'downed') ui.toast('You have fallen — they will carry you out', 2400);
         else if (e.type === 'empty') ui.toast('Empty', 900);
         else if (e.type === 'weapon') ui.toast(e.label, 1000);
+        else if (e.type === 'swing') {
+          if (e.kind === 'fist') audio.sfx(avatarMode === 'lofi' ? 'thud' : 'punch');
+          else if (e.kind === 'kick') audio.sfx('kick');
+          else if (e.kind === 'knife') audio.sfx(e.hit ? 'stab' : 'knife');
+          else if (e.kind === 'gun') audio.sfx('gun');
+          if (e.hit) audio.sfx('punch');
+        }
       }
     });
     combat.setSpawn(cfg.spawn);
@@ -513,7 +516,7 @@ async function startChapter(id) {
   }
 
   if (chapter.cinematic && chapter.cinematic.shots && params.get('cine') !== '0') {
-    if (!cine) cine = new Cinematic({ camera, onComplete: () => { cine = null; } });
+    if (!cine) cine = new Cinematic({ camera, onComplete: () => { if (cine) { try { cine.dispose(); } catch (e) { /* ignore */ } } cine = null; } });
     cine.start({ ...chapter.cinematic, number: chapter.number, title: chapter.title });
   } else if (!input.touch && document.pointerLockElement !== canvas) {
     try { canvas.requestPointerLock(); } catch (e) { /* ignore */ }
@@ -551,6 +554,60 @@ function journalKey(e) {
   }
 }
 
+let paused = false;
+
+function setPaused(on) {
+  paused = !!on;
+  const panel = document.getElementById('pause');
+  if (panel) {
+    panel.classList.toggle('is-open', paused);
+    panel.setAttribute('aria-hidden', paused ? 'false' : 'true');
+  }
+  if (paused && document.pointerLockElement === canvas) document.exitPointerLock();
+  if (!paused && !input.touch && document.pointerLockElement !== canvas) {
+    try { canvas.requestPointerLock(); } catch (e) { /* ignore */ }
+  }
+  if (ui) ui.setPaused(paused);
+}
+
+function setupPauseMenu() {
+  const menuBtn = document.getElementById('btnMenu');
+  if (menuBtn) menuBtn.addEventListener('click', () => { audio.sfx('ui'); setPaused(!paused); });
+  const resume = document.getElementById('pauseResume');
+  if (resume) resume.addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
+  const chapters = document.getElementById('pauseChapters');
+  if (chapters) chapters.addEventListener('click', () => {
+    audio.sfx('ui');
+    setPaused(false);
+    if (avatarPicker) avatarPicker.hide();
+    openMap();
+  });
+  const restart = document.getElementById('pauseRestart');
+  if (restart) restart.addEventListener('click', () => {
+    audio.sfx('ui');
+    setPaused(false);
+    if (activeChapter) startChapter(activeChapter.id);
+  });
+  const musicBtn = document.getElementById('pauseMusic');
+  if (musicBtn) musicBtn.addEventListener('click', () => {
+    const on = audio.toggleMusic();
+    musicBtn.textContent = 'Music: ' + (on ? 'on' : 'off');
+    musicBtn.classList.toggle('is-off', !on);
+  });
+  const sfxBtn = document.getElementById('pauseSfx');
+  if (sfxBtn) sfxBtn.addEventListener('click', () => {
+    const on = audio.toggleSfx();
+    sfxBtn.textContent = 'Sound effects: ' + (on ? 'on' : 'off');
+    sfxBtn.classList.toggle('is-off', !on);
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape' && player && !document.getElementById('avatarpicker-root')) {
+      e.preventDefault();
+      setPaused(!paused);
+    }
+  });
+}
+
 function isPortrait() { return window.innerHeight > window.innerWidth * 1.04; }
 
 function syncOrientation() {
@@ -566,6 +623,7 @@ function syncTouchPowers() {
 }
 
 function setupMobile() {
+  setupPauseMenu();
   syncOrientation();
   syncTouchPowers();
   const full = document.getElementById('btnFull');
@@ -590,9 +648,13 @@ function setupMobile() {
 function objectiveTarget() {
   if (!quest || !quest.step) return null;
   const st = quest.step;
-  if (st.type === 'goto' && st.marker) return { x: st.marker.x, y: 0, z: st.marker.z };
-  if (st.type === 'talk' && st.who && npcs[st.who]) return npcs[st.who].position;
-  if (st.type === 'inspect' && st.target && props[st.target]) return props[st.target].position;
+  if (st.type === 'goto' && st.marker) return { x: st.marker.x, y: 0, z: st.marker.z, label: st.label || 'Go there' };
+  if (st.type === 'talk' && st.who && npcs[st.who]) {
+    return { x: npcs[st.who].position.x, y: npcs[st.who].position.y, z: npcs[st.who].position.z, label: npcs[st.who].label || 'Speak to them' };
+  }
+  if (st.type === 'inspect' && st.target && props[st.target]) {
+    return { x: props[st.target].position.x, y: props[st.target].position.y, z: props[st.target].position.z, label: props[st.target].label || 'Look closer' };
+  }
   return null;
 }
 
@@ -683,10 +745,19 @@ function loop() {
   const dt = Math.min(0.05, rawDt);
   const t = clock.elapsedTime;
 
+  if (paused) {
+    renderer.render(scene, camera);
+    return;
+  }
   const inCine = !!(cine && cine.active);
   if (inCine) cine.update(rawDt);
   if (player && controller && !inCine) {
     if (flight) flight.update(dt);
+    if (playerPose) {
+      if (flight && flight.mode === 'fly') playerPose.setPose('superman');
+      else if (flight && flight.mode === 'float') playerPose.setPose('float');
+      else if (playerPose.uniforms.uPose.value !== 0) playerPose.setPose('idle');
+    }
     controller.update(dt);
     if (playerPose) playerPose.setWalk(controller.speed, controller.walkPhase);
     if (window.__look) {
@@ -702,6 +773,34 @@ function loop() {
     else if (camParam === 'stage') { camera.position.set(-2, 6.0, 6.0); camera.lookAt(4, 3.4, -12); }
     const airborne = flight && flight.mode !== 'ground';
     if (!airborne && world && world.resolveCollisions) world.resolveCollisions(player.position, 0.62);
+    if (!airborne && npcs) {
+      for (const key of Object.keys(npcs)) {
+        const npc = npcs[key];
+        if (!npc || !npc.root) continue;
+        const dx = player.position.x - npc.root.position.x;
+        const dz = player.position.z - npc.root.position.z;
+        const distSq = dx * dx + dz * dz;
+        const minDist = 0.92;
+        if (distSq > minDist * minDist || distSq < 1e-6) continue;
+        const dist = Math.sqrt(distSq);
+        const push = (minDist - dist);
+        const nx = dx / dist;
+        const nz = dz / dist;
+        player.position.x += nx * push;
+        player.position.z += nz * push;
+        const closing = Math.abs(controller.speed);
+        if (closing > 1.2 && !npc.bumped) {
+          npc.bumped = true;
+          npc.bump = 0.45;
+          setTimeout(() => { npc.bumped = false; }, 420);
+          audio.sfx('thud');
+          ui.toast(`${npc.label || 'Someone'} feels your shoulder`, 1200);
+          controller.speed *= 0.25;
+          const knock = new THREE.Vector3(nx, 0, nz).multiplyScalar(0.9);
+          player.position.add(knock);
+        }
+      }
+    }
     if (!airborne && world && world.hall) {
       player.position.x = THREE.MathUtils.clamp(player.position.x, -world.hall.W / 2 + 1.2, world.hall.W / 2 - 1.2);
       player.position.z = THREE.MathUtils.clamp(player.position.z, -world.hall.D / 2 + 1.2, world.hall.D / 2 - 1.2);

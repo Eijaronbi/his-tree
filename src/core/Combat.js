@@ -5,6 +5,7 @@ const loader = new GLTFLoader();
 
 const WEAPONS = {
   fist: { label: 'Fists', range: 1.9, damage: 11, cooldown: 0.42, swing: 0.9 },
+  slam: { label: 'Body slam', range: 2.6, damage: 24, cooldown: 0.62, swing: 1.25 },
   kick: { label: 'Kick', range: 2.25, damage: 17, cooldown: 0.72, swing: 1.1 },
   knife: { label: 'Knife', range: 2.0, damage: 28, cooldown: 0.5, swing: 1.0 },
   gun: { label: 'Pistol', range: 26, damage: 46, cooldown: 1.15, swing: 0.7 }
@@ -249,9 +250,49 @@ export class Combat {
     }
   }
 
-  damageEnemy(enemy, amount) {
+  bloodAt(position, amount = 1) {
+    if (!this.scene) return;
+    const count = Math.min(18, 6 + Math.floor(amount));
+    const geo = new THREE.SphereGeometry(0.035, 6, 5);
+    const mat = new THREE.MeshBasicMaterial({ color: 0x7d0f14, transparent: true, opacity: 0.95 });
+    for (let i = 0; i < count; i += 1) {
+      const drop = new THREE.Mesh(geo, mat);
+      drop.position.copy(position);
+      drop.position.x += (Math.random() - 0.5) * 0.35;
+      drop.position.y += 0.9 + Math.random() * 0.7;
+      drop.position.z += (Math.random() - 0.5) * 0.35;
+      drop.userData.vel = new THREE.Vector3((Math.random() - 0.5) * 2.4, Math.random() * 2.2 + 0.6, (Math.random() - 0.5) * 2.4);
+      drop.userData.life = 1.1 + Math.random() * 0.5;
+      this.scene.add(drop);
+      if (!this.blood) this.blood = [];
+      this.blood.push(drop);
+    }
+  }
+
+  _updateBlood(dt) {
+    if (!this.blood || !this.blood.length) return;
+    for (let i = this.blood.length - 1; i >= 0; i -= 1) {
+      const d = this.blood[i];
+      d.userData.life -= dt;
+      d.userData.vel.y -= 9.4 * dt;
+      d.position.addScaledVector(d.userData.vel, dt);
+      if (d.position.y < 0.02) { d.position.y = 0.02; d.userData.vel.multiplyScalar(0.2); d.userData.vel.y = 0; }
+      d.scale.setScalar(Math.max(0.2, d.userData.life));
+      if (d.userData.life <= 0) {
+        this.scene.remove(d);
+        d.geometry.dispose();
+        d.material.dispose();
+        this.blood.splice(i, 1);
+      }
+    }
+  }
+
+  damageEnemy(enemy, amount, kind = 'fist') {
     enemy.health -= amount;
     enemy.lunge = 0.18;
+    if (kind === 'knife' || kind === 'gun') {
+      this.bloodAt(enemy.root.position, kind === 'gun' ? 10 : 14);
+    }
     this.onEvent({ type: 'hit', enemy: enemy.label, amount, health: Math.max(0, enemy.health) });
     if (enemy.health <= 0 && !enemy.dead) {
       enemy.dead = true;
@@ -262,7 +303,8 @@ export class Combat {
   }
 
   _tryAttack(kind) {
-    const spec = WEAPONS[kind];
+    if (kind === 'fist' && this.bodyMode === 'slam') kind = 'slam';
+    const spec = WEAPONS[kind] || WEAPONS.fist;
     if (!spec) return;
     if (this.cooldown > 0) return;
     if (kind === 'gun' && this.ammo.gun <= 0) {
@@ -283,12 +325,12 @@ export class Combat {
       const dist = to.length();
       if (dist > spec.range) continue;
       if (to.normalize().dot(facing) < -0.25) continue;
-      this.damageEnemy(e, spec.damage);
+      this.damageEnemy(e, spec.damage, kind);
       hitAny = true;
-      e.root.position.addScaledVector(to.normalize(), 0.18);
+      e.root.position.addScaledVector(to.normalize(), kind === 'fist' && this.bodyMode === 'slam' ? 0.55 : 0.18);
       break;
     }
-    this.onEvent({ type: 'swing', kind, hit: hitAny });
+    this.onEvent({ type: 'swing', kind: kind === 'slam' ? 'fist' : kind, hit: hitAny, slam: kind === 'slam' });
   }
 
   _tryDodge() {
@@ -308,7 +350,12 @@ export class Combat {
     this.onEvent({ type: 'dodge' });
   }
 
+  setBodyMode(mode) {
+    this.bodyMode = mode;
+  }
+
   update(dt) {
+    this._updateBlood(dt);
     if (!this.enabled) return;
     this.cooldown = Math.max(0, this.cooldown - dt);
     this.swing = Math.max(0, this.swing - dt);

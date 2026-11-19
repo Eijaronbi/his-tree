@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Pose sheet</title>
+<style>html,body{margin:0;background:#120c06}</style>
+<script type="importmap">{"imports":{"three":"../vendor/three/three.module.js","three/addons/":"../vendor/three/addons/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { robustBox } from '../src/world/frame.js';
+import { poseCharacter } from '../src/world/CharacterAnim.js';
+const A='../assets/models/characters/audience/';
+const FILES = [
+ ['frock',A+'char_adult_m_frock.glb'],['officer',A+'char_adult_m_officer.glb'],['elegant',A+'char_adult_f_elegant.glb'],
+ ['simple',A+'char_adult_f_simple.glb'],['worker',A+'char_worker.glb'],['soldier',A+'char_soldier_blue.glb'],
+ ['elder-m',A+'char_old_m_top.glb'],['elder-f',A+'char_old_f_bonnet.glb'],['actor-m',A+'char_actor_m.glb'],['actor-f',A+'char_actor_f.glb'],
+ ['actor-m2',A+'char_actor_m2.glb'],['child-m',A+'char_child_m.glb'],['musa','../assets/models/characters/musa.glb'],
+ ['salim','../assets/models/characters/salim.glb'],['bakary','../assets/models/characters/bakary.glb'],
+ ['tommy','../assets/models/characters/tommy.glb'],['stasi','../assets/models/characters/stasi.glb'],
+ ['booth','../assets/models/characters/booth.glb'],['grant','../assets/models/characters/grant.glb'],
+ ['miep','../assets/models/characters/miep.glb'],['parker','../assets/models/characters/parker.glb'],
+ ['reed','../assets/models/characters/reed.glb'],['sergeant','../assets/models/characters/sergeant.glb'],
+ ['amina','../assets/models/characters/amina.glb'],['p1865','../assets/models/characters/player_1865.glb'],
+ ['lofi','../assets/models/characters/lofi.glb']
+];
+const W=150,H=330, loader=new GLTFLoader();
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(W,H); renderer.setPixelRatio(1);
+renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping;
+const scene=new THREE.Scene(); scene.background=new THREE.Color('#241a10');
+scene.add(new THREE.HemisphereLight(0xffe9c4,0x2a1a0c,1.2));
+const key=new THREE.DirectionalLight(0xffd9a0,2.4); key.position.set(2.2,3.4,3.0); scene.add(key);
+const rim=new THREE.DirectionalLight(0x9fc4ff,1.2); rim.position.set(-2.6,1.8,-2.4); scene.add(rim);
+const cam=new THREE.PerspectiveCamera(22,W/H,0.05,40);
+window.__sheet=[];
+const cv=document.createElement('canvas'); cv.width=W; cv.height=H; document.body.appendChild(cv);
+const ctx=cv.getContext('2d');
+for (const [id,file] of FILES) {
+  const path=file;
+  try {
+    const g=await loader.loadAsync(path);
+    for (const mode of ['posed','natural']) {
+      const root=g.scene.clone(true);
+      root.updateMatrixWorld(true);
+      const box=robustBox(root); const s=1.72/Math.max(.2,box.max.y-box.min.y);
+      const holder=new THREE.Group(); holder.add(root); holder.scale.setScalar(s);
+      root.updateMatrixWorld(true); const b=robustBox(root);
+      const c=new THREE.Vector3(); b.getCenter(c); root.position.set(-c.x,-b.min.y,-c.z);
+      root.traverse(o=>{if(o.isMesh){o.frustumCulled=false;}});
+      scene.add(holder);
+      if (mode==='posed') { try { const p=poseCharacter(holder,{armDown:'auto',legAmp:0.55,armAmp:0.46}); if(p) p.setIdle(); } catch(e){} }
+      cam.position.set(0,1.05,4.6); cam.lookAt(0,0.92,0);
+      renderer.render(scene,cam);
+      window.__sheet.push({id,mode,img:renderer.domElement.toDataURL('image/png')});
+      scene.remove(holder);
+    }
+  } catch(e) { window.__sheet.push({id,mode:'err',img:''}); }
+}
+window.__done=true;
+</script></body></html>

@@ -290,6 +290,13 @@ body.worldmap-open { overflow: hidden; }
   white-space: nowrap;
 }
 #worldmap-root .wm-card.is-locked .wm-status { color: rgba(232, 211, 174, .46); }
+#worldmap-root .wm-soon {
+  margin: 10px 2px 0;
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(232, 211, 174, .40);
+}
 #worldmap-root .wm-play { font-size: 7px; line-height: 1; letter-spacing: 0; }
 #worldmap-root .wm-lock-dot {
   width: 5px;
@@ -603,7 +610,10 @@ export class WorldMap {
         cards.className = 'wm-cards';
         for (const chapter of group.chapters) cards.appendChild(this._card(chapter, group));
 
-        page.append(head, cards);
+        const soon = document.createElement('p');
+        soon.className = 'wm-soon';
+        soon.textContent = 'More historic events coming soon';
+        page.append(head, cards, soon);
         track.appendChild(page);
         this._pages.push(page);
       });
@@ -717,7 +727,7 @@ export class WorldMap {
     icon.setAttribute('aria-hidden', 'true');
     if (playable) icon.textContent = '\u25b6';
     const label = document.createElement('span');
-    label.textContent = playable ? 'Play' : 'Coming soon';
+    label.textContent = playable ? 'Play' : 'More historic events soon';
     status.append(icon, label);
     body.appendChild(status);
 

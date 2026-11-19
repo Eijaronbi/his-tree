@@ -32,6 +32,7 @@ export class Character {
       }
       if (o.isBone) this.bones[o.name] = o;
     });
+    this.bump = 0;
     this.height = new THREE.Box3().setFromObject(root).max.y;
     this.pose = root.userData.noPose ? null : poseCharacter(root, { armDown: 'auto', legAmp: 0.4 });
     if (this.pose) this.pose.setIdle();
@@ -62,6 +63,16 @@ export class Character {
 
   update(dt, t, focus) {
     const breathe = Math.sin(t * 1.15 + this.phase) * 0.012;
+    if (this.pose) {
+      const amt = 0.5 + Math.sin(t * 0.9 + this.phase) * 0.5;
+      this.pose.uniforms.uArmAmp.value = 0.28 + amt * 0.1;
+      if (this.bump > 0) {
+        this.bump = Math.max(0, this.bump - dt);
+        this.root.rotation.z = Math.sin(this.bump * 42) * this.bump * 0.16;
+      }
+    } else {
+      this.root.rotation.y += Math.sin(t * 0.55 + this.phase) * dt * 0.05;
+    }
     if (this.bones.spine03) {
       this.bones.spine03.rotation.x = breathe;
       this.bones.spine03.rotation.z = Math.sin(t * 0.7 + this.phase) * 0.01;

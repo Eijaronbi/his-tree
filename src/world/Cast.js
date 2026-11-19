@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { poseCharacter } from './CharacterAnim.js';
+import { robustBox } from './frame.js';
 
 const loader = new GLTFLoader();
 
@@ -29,21 +31,36 @@ export class Cast {
       }
     });
     root.updateMatrixWorld(true);
-    const box = new THREE.Box3().setFromObject(root);
+    const box = robustBox(root);
     const height = box.max.y - box.min.y;
     const target = spec.height || 1.72;
     const k = height > 0.01 ? target / height : 1;
-    root.scale.setScalar(k);
+    const holder = new THREE.Group();
+    holder.add(root);
+    holder.scale.setScalar(k);
     root.updateMatrixWorld(true);
-    const box2 = new THREE.Box3().setFromObject(root);
-    root.position.set(
-      (spec.x || 0) - (box2.min.x + box2.max.x) / 2,
-      (spec.y || 0) - box2.min.y,
-      (spec.z || 0) - (box2.min.z + box2.max.z) / 2
-    );
-    if (spec.rot) root.rotation.y = spec.rot;
-    this.group.add(root);
-    const actor = { root, spec, phase: Math.random() * Math.PI * 2 };
+    const box2 = robustBox(holder);
+    const cx = (box2.min.x + box2.max.x) / 2;
+    const cz = (box2.min.z + box2.max.z) / 2;
+    root.position.set(-cx, -box2.min.y, -cz);
+    holder.position.set(spec.x || 0, spec.y || 0, spec.z || 0);
+    if (spec.rot) holder.rotation.y = spec.rot;
+    this.group.add(holder);
+
+    let pose = null;
+    if (!spec.noPose) {
+      pose = poseCharacter(holder, { armDown: 'auto', legAmp: 0.42, armAmp: 0.34 });
+      if (pose) pose.setIdle();
+    }
+    const actor = {
+      root: holder,
+      inner: root,
+      spec,
+      pose,
+      phase: Math.random() * Math.PI * 2,
+      home: new THREE.Vector3(spec.x || 0, spec.y || 0, spec.z || 0),
+      clap: !!spec.clap
+    };
     this.actors.push(actor);
     return actor;
   }
@@ -54,28 +71,43 @@ export class Cast {
   }
 
   update(dt, t, focus) {
+    const clapLevel = this.clapLevel !== undefined ? this.clapLevel : 0;
     for (const a of this.actors) {
-      if (!a.spec.sway) continue;
-      const s = Math.sin(t * 0.6 + a.phase) * 0.012 * a.spec.sway;
+      const s = Math.sin(t * 0.6 + a.phase) * 0.012 * (a.spec.sway || 0);
       a.root.rotation.z += (s - a.root.rotation.z) * Math.min(1, dt * 2);
+      if (a.spec.stage) {
+        const pace = Math.sin(t * 0.42 + a.phase);
+        a.root.position.x = a.home.x + pace * 1.15;
+        a.root.position.z = a.home.z + Math.cos(t * 0.33 + a.phase) * 0.4;
+        const face = pace > 0 ? 0.4 : -1.9;
+        a.root.rotation.y += (face - a.root.rotation.y) * Math.min(1, dt * 1.6);
+      }
+      if (a.pose) {
+        if (a.clap && clapLevel > 0.01) {
+          const beat = Math.max(0, Math.sin(t * 3.3 + a.phase));
+          a.pose.uniforms.uArmAmp.value = 0.34 + beat * beat * clapLevel * 1.5;
+        } else if (a.pose) {
+          a.pose.uniforms.uArmAmp.value = 0.34;
+        }
+      }
     }
   }
 }
 
 /** Theatre cast: three actors on the stage, the house standing about the aisles. */
 export function theatreCast() {
-  const A = './assets/models/characters/audience/';
+  const A = './assets/models/characters/audience_lod/';
   const stageY = 1.0;
   return [
-    { file: A + 'char_actor_m.glb', x: -1.8, y: stageY, z: -14.3, rot: 0.35, height: 1.78, sway: 1 },
-    { file: A + 'char_actor_m2.glb', x: 2.4, y: stageY, z: -14.6, rot: -0.45, height: 1.74, sway: 1 },
-    { file: A + 'char_actor_f.glb', x: 0.5, y: stageY, z: -13.6, rot: -0.1, height: 1.68, sway: 1 },
+    { file: A + 'char_actor_m.glb', x: -1.8, y: stageY, z: -14.3, rot: 0.35, height: 1.78, sway: 1, stage: true },
+    { file: A + 'char_actor_m2.glb', x: 2.4, y: stageY, z: -14.6, rot: -0.45, height: 1.74, sway: 1, stage: true },
+    { file: A + 'char_actor_f.glb', x: 0.5, y: stageY, z: -13.6, rot: -0.1, height: 1.68, sway: 1, stage: true },
     { file: A + 'char_adult_m_officer.glb', x: 5.4, y: stageY, z: -13.4, rot: -1.0, height: 1.76 },
     { file: A + 'char_adult_m_frock.glb', x: -5.0, y: stageY, z: -13.2, rot: 1.1, height: 1.74 },
-    { file: A + 'char_adult_f_elegant.glb', x: -14.6, y: 0, z: -7.0, rot: 1.5, height: 1.70, sway: 0.6 },
-    { file: A + 'char_adult_f_simple.glb', x: 14.6, y: 0, z: -4.2, rot: -1.5, height: 1.66, sway: 0.6 },
-    { file: A + 'char_old_m_top.glb', x: -15.4, y: 0, z: 1.6, rot: 1.4, height: 1.70, sway: 0.5 },
-    { file: A + 'char_old_f_bonnet.glb', x: 15.2, y: 0, z: 4.4, rot: -1.5, height: 1.63, sway: 0.5 },
+    { file: A + 'char_adult_f_elegant.glb', x: -14.6, y: 0, z: -7.0, rot: 1.5, height: 1.70, sway: 0.6, clap: true },
+    { file: A + 'char_adult_f_simple.glb', x: 14.6, y: 0, z: -4.2, rot: -1.5, height: 1.66, sway: 0.6, clap: true },
+    { file: A + 'char_old_m_top.glb', x: -15.4, y: 0, z: 1.6, rot: 1.4, height: 1.70, sway: 0.5, clap: true },
+    { file: A + 'char_old_f_bonnet.glb', x: 15.2, y: 0, z: 4.4, rot: -1.5, height: 1.63, sway: 0.5, clap: true },
     { file: A + 'char_soldier_blue.glb', x: -16.0, y: 0, z: 8.0, rot: 1.2, height: 1.80 },
     { file: A + 'char_worker.glb', x: 16.2, y: 0, z: 10.4, rot: -1.3, height: 1.74 },
     { file: A + 'char_child_m.glb', x: -13.2, y: 0, z: 12.8, rot: 2.9, height: 1.22, sway: 0.8 }

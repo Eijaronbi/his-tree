@@ -15,8 +15,8 @@ HIS-TREE is a browser 3D game for [Patch](https://patch.gg). Four chapters, each
 |---|---------|-------|------|
 | 1 | **The Golden Empire** | Timbuktu / Djenné, Mali | 1324 |
 | 2 | **Save Lincoln** | Ford's Theatre, Washington D.C. | 14 April 1865 |
-| 3 | **The Somme Mud** | A Western Front trench sector | 1917 |
-| 4 | **The Wall** | Berlin, 9 November 1989 | 1989 |
+| 3 | **The Quiet Mutiny** | Chemin des Dames, Western Front | 1917 |
+| 4 | **The File That Doesn't Exist** | Berlin, 9 November 1989 | 1989 |
 
 You play the **Timekeeper**, who can move between these moments. Each chapter is a
 guided investigation: walk the place, read the objects, talk to the people, then
@@ -25,6 +25,24 @@ make a decision that either confirms what history recorded or changes it.
 Every journal entry carries a provenance tag — `VERIFIED`, `INTERPRETED`,
 `DISPUTED`, `FICTIONAL_CHARACTER`, `FICTIONALISED_DIALOGUE`, `ALTERNATE_HISTORY` —
 so the player always knows which parts are sourced and which are the game's own.
+
+## Built with Aholo Lux3D
+
+Every character in HIS-TREE — the four chapter casts, the twelve-variant theatre
+crowd, and the player avatars — started as an image→3D generation on
+**Aholo Lux3D** (Manycore Tech). The workflow was:
+
+1. Reference stills (period portraits, museum photographs, public-domain plates)
+   and a written prompt describing period, class, posture and clothing.
+2. Lux3D image→3D generation for the base body, garments and props.
+3. Blender cleanup: seam welding, floor alignment, skin-weight repair for
+   procedural posing, and two decimation passes (`audience_lod` at 0.14,
+   `audience_far` at 0.055) so 180 seated spectators can be instanced in one draw.
+4. A per-asset face render (`tools/headshots.html`) to pick the avatar roster.
+
+The iteration record — first generation, failure modes, and the corrected asset —
+lives in [docs/PIPELINE.md](docs/PIPELINE.md). No third-party character or
+environment models are bundled; the only vendored code is three.js r169.
 
 ## How to play
 
@@ -55,6 +73,28 @@ Useful URL parameters:
 | `?q=low\|medium\|high` | Force a quality tier (otherwise auto-detected) |
 | `?shadow=0`, `?lights=0`, `?post=0`, `?px=1` | Toggle individual rendering features for debugging |
 | `?cam=box\|hall\|stage` | Park the camera at a fixed shot |
+
+## Hosting
+
+The game is a static site. Two supported paths:
+
+**Vercel** — import this repository, or run `npx vercel --prod`. `vercel.json`
+runs `scripts/build-dist.sh` and serves `dist/` (≈87 MB, inside Vercel's 100 MB
+Hobby static-upload limit) with immutable caching on `assets/`.
+
+```bash
+npm run build      # writes dist/
+npm run serve      # previews dist/ on :8080
+```
+
+`dist/` carries only runtime files: `index.html`, `src/`, `thumbs/`, the vendored
+three.js build, and the assets the game actually loads. Repository originals
+(`assets/models/characters/audience/`, `assets/models/blender/`,
+`assets/models/generated/`) stay in the repo for reproducibility but are not
+shipped.
+
+**Any static host** — copy `dist/` behind nginx/Caddy. No server runtime, no API
+keys, no environment variables.
 
 ## How to build on it
 

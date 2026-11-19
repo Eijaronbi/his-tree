@@ -73,6 +73,14 @@ const CSS = `
 `;
 
 export class UI {
+  setPaused(on) {
+    this.paused = !!on;
+    const hud = document.getElementById('hud');
+    if (hud) hud.style.opacity = this.paused ? '0.25' : '';
+    const touch = document.getElementById('touch');
+    if (touch) touch.style.pointerEvents = this.paused ? 'none' : '';
+  }
+
   constructor() {
     const style = document.createElement('style');
     style.textContent = CSS;
