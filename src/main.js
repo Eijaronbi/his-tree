@@ -27,6 +27,22 @@ import { WorldMap } from './ui/WorldMap.js';
 import { AvatarPicker } from './ui/AvatarPicker.js';
 import { AvatarPreview } from './ui/AvatarPreview.js';
 
+const safeStore = (() => {
+  try {
+    const k = '__his_tree_probe';
+    window.localStorage.setItem(k, '1');
+    window.localStorage.removeItem(k);
+    return window.localStorage;
+  } catch (e) {
+    const mem = new Map();
+    return {
+      getItem: (k) => (mem.has(k) ? mem.get(k) : null),
+      setItem: (k, v) => mem.set(k, String(v)),
+      removeItem: (k) => mem.delete(k),
+    };
+  }
+})();
+
 const AVATARS = [
   { id: 'frock', name: 'Augustin Roux', era: 'Merchant, 1324', blurb: 'A coat cut for counting coin.', thumb: './thumbs/faces/frock.png', file: './assets/models/characters/audience_lod/char_adult_m_frock.glb' },
   { id: 'officer', name: 'Nathaniel Ward', era: 'Officer, 1865', blurb: 'Buttons polished, conscience not.', thumb: './thumbs/faces/officer.png', file: './assets/models/characters/audience_lod/char_adult_m_officer.glb' },
@@ -84,7 +100,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: !flags.px, powerPr
 
 function detectTier() {
   if (qualityParam && ['high', 'medium', 'low'].includes(qualityParam)) return qualityParam;
-  const saved = localStorage.getItem('his-tree:quality');
+  const saved = safeStore.getItem('his-tree:quality');
   if (saved) return saved;
   try {
     const gl = renderer.getContext();
@@ -189,7 +205,7 @@ async function boot() {
     ...c,
     tagline: (save.completed || []).includes(c.id) ? `${c.tagline} · completed` : c.tagline
   })), startChapter, () => {
-    localStorage.removeItem('his-tree:save:v1');
+    safeStore.removeItem('his-tree:save:v1');
     location.reload();
   });
   else openMap();
@@ -475,7 +491,7 @@ async function startChapter(id) {
         ui.menu(CHAPTERS.map((c) => ({
           ...c,
           tagline: (save.completed || []).includes(c.id) ? `${c.tagline} · completed` : c.tagline
-        })), startChapter, () => { localStorage.removeItem('his-tree:save:v1'); location.reload(); });
+        })), startChapter, () => { safeStore.removeItem('his-tree:save:v1'); location.reload(); });
         disposeWorld();
         if (player) { scene.remove(player); player = null; }
       });

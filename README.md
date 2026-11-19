@@ -12,6 +12,12 @@ episode is a self-contained moment — a place, a date, the people in the room a
 decision that hung on it. The first four are playable today; the tree is designed to
 keep growing across cultures, centuries and continents.
 
+## Play
+
+- **ModelScope Studio (primary):** https://www.modelscope.ai/studios/Airnomics/his-tree
+- **Mirror:** https://eijaronbi.github.io/his-tree/
+- **Demo video (75 s, narrated):** `docs/media/his-tree-demo.mp4` · **Project report:** `docs/HIS-TREE-report.pdf`
+
 ## What it is
 
 HIS-TREE is a browser 3D game for [Patch](https://patch.gg). The first four episodes, each a real place at human scale:
@@ -87,7 +93,7 @@ Useful URL parameters:
 
 The game is a static site. Two supported paths:
 
-**Vercel** — import this repository, or run `npx vercel --prod`. `vercel.json`
+**ModelScope Studio** (primary host, `sdk: static`) or **Vercel** — import this repository, or run `npx vercel --prod`. `vercel.json`
 runs `scripts/build-dist.sh` and serves `dist/` (≈87 MB, inside Vercel's 100 MB
 Hobby static-upload limit) with immutable caching on `assets/`.
 
