@@ -7,9 +7,14 @@ engine: three.js r169 (vendored, no CDN)
 
 A time-traveller walks into documented history, meets the people who were there, and either witnesses how it happened — or rewrites it and lives with the consequences.
 
+HIS-TREE is built as a growing library of history, not a fixed set of levels. Each
+episode is a self-contained moment — a place, a date, the people in the room and the
+decision that hung on it. The first four are playable today; the tree is designed to
+keep growing across cultures, centuries and continents.
+
 ## What it is
 
-HIS-TREE is a browser 3D game for [Patch](https://patch.gg). Four chapters, each a real place at human scale:
+HIS-TREE is a browser 3D game for [Patch](https://patch.gg). The first four episodes, each a real place at human scale:
 
 | # | Chapter | Place | Year |
 |---|---------|-------|------|
@@ -17,6 +22,10 @@ HIS-TREE is a browser 3D game for [Patch](https://patch.gg). Four chapters, each
 | 2 | **Save Lincoln** | Ford's Theatre, Washington D.C. | 14 April 1865 |
 | 3 | **The Quiet Mutiny** | Chemin des Dames, Western Front | 1917 |
 | 4 | **The File That Doesn't Exist** | Berlin, 9 November 1989 | 1989 |
+
+These four are the opening branches. The same episode format — a reconstructed
+place, a sourced cast, a decision with two sides — is what lets HIS-TREE keep adding
+events: a burning library, a printing press, a city on a lake, a wrong turn in Sarajevo.
 
 You play the **Timekeeper**, who can move between these moments. Each chapter is a
 guided investigation: walk the place, read the objects, talk to the people, then
