@@ -1,0 +1,75 @@
+{
+  "chapter": "berlin-1989",
+  "loadToStateMs": 13531,
+  "viewport": [
+    1280,
+    720
+  ],
+  "scene": {
+    "chapter": "berlin-1989",
+    "quest": true,
+    "npcs": [
+      "miep"
+    ],
+    "player": [
+      0,
+      0,
+      8
+    ],
+    "camera": [
+      -5.497596563046444e-16,
+      3.078316077174015,
+      12.489128266920785
+    ],
+    "hall": {
+      "W": 26,
+      "D": 34,
+      "H": 4.6
+    },
+    "renderer": {
+      "calls": 1,
+      "triangles": 1,
+      "geometries": 36,
+      "textures": 18
+    },
+    "occlusionHits": [
+      {
+        "distance": 1.4633970699146706,
+        "point": [
+          -3.8576374246136263e-16,
+          2.4881750051139258,
+          11.150000005960464
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "BoxGeometry",
+        "objectPosition": [
+          0,
+          2.3,
+          11
+        ]
+      }
+    ],
+    "stats": "3.2 FPS · LOW · THE FILE THAT DOESN’T EXIST · 0, 8"
+  },
+  "timing": {
+    "intervals": [
+      916.6999999999998,
+      433.1999999999998,
+      16.700000000000728,
+      516.5999999999985,
+      466.8000000000011,
+      433.2999999999993,
+      466.60000000000036,
+      483.2999999999993,
+      399.90000000000146,
+      316.6999999999989
+    ],
+    "stats": "2.2 FPS · LOW · THE FILE THAT DOESN’T EXIST · 0, 8",
+    "frameMsMedian": 466.60000000000036,
+    "measuredFps": 2.247292013124186,
+    "displayedFps": 2.2
+  },
+  "errors": [],
+  "failedRequests": []
+}

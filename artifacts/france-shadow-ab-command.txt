@@ -1,0 +1,1 @@
+{"largeTransparentPlanes":1,"screenshots":["artifacts/france-shadow-ab/before.png","artifacts/france-shadow-ab/without-large-shadow.png"]}

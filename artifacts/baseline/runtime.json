@@ -1,0 +1,226 @@
+[
+  {
+    "chapter": "mali-1324",
+    "npcs": [
+      "salim",
+      "musa",
+      "amina",
+      "bakary"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 61,
+    "geometries": 325,
+    "programs": 32,
+    "frameMsMedian": 583.3000000000029,
+    "frameMsP95": 633.4000000000015,
+    "dpr": 1,
+    "post": "low",
+    "canvas": [
+      1280,
+      720
+    ],
+    "player": [
+      0,
+      0,
+      6
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The Salt LedgerWalk to the market quarter"
+    },
+    "mobile": false,
+    "loadToCaptureMs": 70583,
+    "errors": [
+      "NotAllowedError: A user gesture is required to request Pointer Lock."
+    ],
+    "failed": [],
+    "screenshot": "desktop-mali-1324.png"
+  },
+  {
+    "chapter": "washington-1865",
+    "npcs": [
+      "parker",
+      "booth",
+      "grant"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 63,
+    "geometries": 141,
+    "programs": 36,
+    "frameMsMedian": 1566.5,
+    "frameMsP95": 3183.300000000003,
+    "dpr": 1,
+    "post": "low",
+    "canvas": [
+      1280,
+      720
+    ],
+    "player": [
+      0,
+      0,
+      9
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The Door With No GuardWalk the lobby"
+    },
+    "mobile": false,
+    "loadToCaptureMs": 177393,
+    "errors": [
+      "NotAllowedError: A user gesture is required to request Pointer Lock."
+    ],
+    "failed": [],
+    "screenshot": "desktop-washington-1865.png"
+  },
+  {
+    "chapter": "france-1917",
+    "npcs": [
+      "sergeant"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 24,
+    "geometries": 170,
+    "programs": 12,
+    "frameMsMedian": 516.6000000000058,
+    "frameMsP95": 1000,
+    "dpr": 1,
+    "post": "low",
+    "canvas": [
+      1280,
+      720
+    ],
+    "player": [
+      0,
+      0,
+      15
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The OrderWalk the reserve trench"
+    },
+    "mobile": false,
+    "loadToCaptureMs": 70458,
+    "errors": [],
+    "failed": [],
+    "screenshot": "desktop-france-1917.png"
+  },
+  {
+    "chapter": "berlin-1989",
+    "npcs": [
+      "miep"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 18,
+    "geometries": 36,
+    "programs": 11,
+    "frameMsMedian": 333.5,
+    "frameMsP95": 800,
+    "dpr": 1,
+    "post": "low",
+    "canvas": [
+      1280,
+      720
+    ],
+    "player": [
+      0,
+      0,
+      8
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The ArchiveEnter the archive"
+    },
+    "mobile": false,
+    "loadToCaptureMs": 49056,
+    "errors": [],
+    "failed": [],
+    "screenshot": "desktop-berlin-1989.png"
+  },
+  {
+    "chapter": "mali-1324",
+    "npcs": [
+      "salim",
+      "amina",
+      "bakary",
+      "musa"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 61,
+    "geometries": 333,
+    "programs": 32,
+    "frameMsMedian": 333.3000000000029,
+    "frameMsP95": 400,
+    "dpr": 2,
+    "post": "low",
+    "canvas": [
+      1688,
+      780
+    ],
+    "player": [
+      0,
+      0,
+      6
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The Salt LedgerWalk to the market quarter"
+    },
+    "mobile": true,
+    "loadToCaptureMs": 46140,
+    "errors": [],
+    "failed": [],
+    "screenshot": "mobile-mali-1324.png"
+  },
+  {
+    "chapter": "washington-1865",
+    "npcs": [
+      "parker",
+      "booth",
+      "grant"
+    ],
+    "quest": true,
+    "questStep": "goto",
+    "drawCalls": 1,
+    "triangles": 1,
+    "textures": 63,
+    "geometries": 146,
+    "programs": 37,
+    "frameMsMedian": 1049.9000000000087,
+    "frameMsP95": 1416.800000000003,
+    "dpr": 2,
+    "post": "low",
+    "canvas": [
+      1688,
+      780
+    ],
+    "player": [
+      0,
+      0,
+      9
+    ],
+    "ui": {
+      "hint": "WASD move · Shift run · Mouse look · M music · Esc release",
+      "objective": "The Door With No GuardWalk the lobby"
+    },
+    "mobile": true,
+    "loadToCaptureMs": 126561,
+    "errors": [],
+    "failed": [],
+    "screenshot": "mobile-washington-1865.png"
+  }
+]

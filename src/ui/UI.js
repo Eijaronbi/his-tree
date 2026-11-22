@@ -1,5 +1,15 @@
 const CSS = `
 #ui-root { position:fixed; inset:0; pointer-events:none; z-index:20; font-family:Georgia,'Times New Roman',serif; color:#e8d3ae; }
+#menu .graphics-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center;
+  margin-top:8px; }
+#menu .gq-select { pointer-events:auto; background:rgba(14,9,4,.9); color:#e8d3ae; border:1px solid rgba(217,164,65,.4);
+  padding:5px 8px; font-family:inherit; font-size:12px; }
+#menu .narrator-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center;
+  margin:14px 0 4px; font-size:11px; letter-spacing:.16em; text-transform:uppercase; opacity:.85; }
+#menu .nr-voice { pointer-events:auto; background:rgba(14,9,4,.9); color:#e8d3ae; border:1px solid rgba(217,164,65,.4);
+  padding:7px 10px; font-family:inherit; font-size:12px; letter-spacing:.06em; text-transform:none; cursor:pointer; }
+#menu .nr-mute { display:flex; align-items:center; gap:6px; cursor:pointer; }
+#menu .nr-mute-box { pointer-events:auto; accent-color:#d9a441; width:14px; height:14px; cursor:pointer; }
 #ui-root .panel { pointer-events:auto; background:linear-gradient(180deg, rgba(18,12,6,.94), rgba(10,7,4,.96));
   border:1px solid rgba(217,164,65,.35); box-shadow:0 18px 60px rgba(0,0,0,.6); }
 #hintbar { position:absolute; left:50%; bottom:12%; transform:translateX(-50%); padding:8px 18px;
@@ -53,6 +63,13 @@ const CSS = `
 #ending p { font-size:15px; line-height:1.85; opacity:.88; margin-bottom:18px; text-align:left; }
 #ending .tag { display:inline-block; padding:3px 9px; font-size:9.5px; letter-spacing:.18em;
   border:1px solid rgba(217,164,65,.5); color:#d9a441; margin-bottom:26px; }
+#ending .verdict { font-size:11px; letter-spacing:.2em; text-transform:uppercase; opacity:.62;
+  margin:-6px 0 22px; }
+#menu .modes { display:flex; gap:10px; margin:4px 0 2px; }
+#menu .modes button { padding:9px 18px; border:1px solid rgba(217,164,65,.35); background:transparent;
+  color:#e8d3ae; font-family:inherit; font-size:10px; letter-spacing:.22em; text-transform:uppercase; cursor:pointer; }
+#menu .modes button.is-active { background:rgba(217,164,65,.16); border-color:#d9a441; color:#d9a441; }
+#menu .mode-note { font-size:10px; letter-spacing:.12em; opacity:.55; max-width:520px; text-align:center; }
 #ending button, #menu button.go { padding:12px 30px; border:1px solid #d9a441; background:transparent;
   color:#d9a441; font-family:inherit; font-size:12px; letter-spacing:.24em; text-transform:uppercase; cursor:pointer; }
 #ending button:hover, #menu button.go:hover { background:#d9a441; color:#140c04; }
@@ -94,7 +111,7 @@ export class UI {
       <div id="choice" class="panel"><div class="prompt"></div><div class="options"></div></div>
       <div id="ask" class="panel"><h3></h3><div class="questions"></div><button class="close">End the conversation</button></div>
       <div id="journal" class="panel"><h3>Field journal</h3><div class="entries"></div></div>
-      <div id="ending"><div class="card panel"><h2></h2><div class="tag"></div><p></p><button>Continue</button></div></div>
+      <div id="ending"><div class="card panel"><h2></h2><div class="tag"></div><p></p><div class="verdict"></div><button>Continue</button></div></div>
       <div id="hud-fight"><div class="bar"><div class="fill"></div></div><div class="wpn"></div></div>
       <div id="hud-powers"></div>
       <div id="hurt-flash"></div>
@@ -113,6 +130,7 @@ export class UI {
     this.powersHud = this.root.querySelector('#hud-powers');
     this.hurtFlash = this.root.querySelector('#hurt-flash');
     this.busy = false;
+    this.historyMode = 'real';
   }
 
   ask(speaker, questions, onPick, onClose) {
@@ -220,6 +238,7 @@ export class UI {
       const cur = lines[i];
       who.textContent = cur.speakerName || cur.speaker;
       line.textContent = cur.text;
+      if (this.onLine) this.onLine(cur);
       i++;
     };
     show();
@@ -285,11 +304,18 @@ export class UI {
 
   closeJournal() { this.journal.style.display = 'none'; }
 
+  setHistoryMode(mode) { this.historyMode = mode === 'rewrite' ? 'rewrite' : 'real'; }
+
   showEnding(end, onContinue) {
     this.ending.style.display = 'flex';
     this.ending.querySelector('h2').textContent = end.title;
     this.ending.querySelector('.tag').textContent = end.provenance.replace(/_/g, ' ');
     this.ending.querySelector('p').textContent = end.text;
+    if (this.onEndingText) this.onEndingText(end.text);
+    const verified = String(end.provenance || '').startsWith('VERIFIED');
+    this.ending.querySelector('.verdict').textContent = this.historyMode === 'rewrite'
+      ? (verified ? 'The branch held. You wanted a new one and got the old one.' : 'A new branch. The Tree grew it overnight.')
+      : (verified ? 'History held.' : 'History did not hold.');
     const btn = this.ending.querySelector('button');
     const go = () => {
       this.ending.style.display = 'none';
@@ -299,12 +325,34 @@ export class UI {
     btn.addEventListener('click', go);
   }
 
-  menu(chapters, onPick, onReset) {
+  menu(chapters, onPick, onReset, onMode) {
     const el = document.createElement('div');
     el.id = 'menu';
     el.innerHTML = `
       <h1>HIS-TREE</h1>
       <div class="sub">Experience history · rewrite destiny</div>
+      <div class="modes">
+        <button data-mode="real" class="${this.historyMode === 'real' ? 'is-active' : ''}">Replay history</button>
+        <button data-mode="rewrite" class="${this.historyMode === 'rewrite' ? 'is-active' : ''}">Rewrite history</button>
+      </div>
+      <div class="graphics-row">
+        <label class="gq-label">Graphics</label>
+        <select class="gq-select">
+          ${['auto', 'low', 'medium', 'high'].map((q) => `
+            <option value="${q}" ${q === (this.graphicsQuality || 'auto') ? 'selected' : ''}>${q === 'auto' ? 'Auto (adaptive)' : q[0].toUpperCase() + q.slice(1)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="narrator-row">
+        <label class="nr-label">Narrator voice</label>
+        <select class="nr-voice">
+          ${(this.narratorVoices || [{ id: 'andrew', label: 'Andrew' }]).map((v) => `
+            <option value="${v.id}" ${v.id === (this.narratorVoice || 'andrew') ? 'selected' : ''}>${v.label}</option>`).join('')}
+        </select>
+        <label class="nr-mute"><input type="checkbox" class="nr-mute-box" ${this.narratorEnabled === false ? '' : 'checked'}> Voice on</label>
+      </div>
+      <div class="mode-note">${this.historyMode === 'rewrite'
+        ? 'You start already off the record. Every choice you make is a divergence, and the journal will say so.'
+        : 'You start on the record. Choices that match what happened keep history intact; the rest rewrite it.'}</div>
       <div class="chapters">
         ${chapters.map((c) => `
           <button class="ch" data-id="${c.id}">
@@ -318,6 +366,36 @@ export class UI {
       <button class="go" style="margin-top:10px">${onReset ? 'Clear progress' : ''}</button>
     `;
     document.body.appendChild(el);
+    if (onMode) {
+      el.querySelectorAll('.modes button').forEach((b) => {
+        b.addEventListener('click', () => {
+          onMode(b.dataset.mode);
+          el.querySelectorAll('.modes button').forEach((x) => x.classList.toggle('is-active', x === b));
+          const note = el.querySelector('.mode-note');
+          if (note) note.textContent = b.dataset.mode === 'rewrite'
+            ? 'You start already off the record. Every choice you make is a divergence, and the journal will say so.'
+            : 'You start on the record. Choices that match what happened keep history intact; the rest rewrite it.';
+        });
+      });
+    }
+    const gqSel = el.querySelector('.gq-select');
+    if (gqSel) {
+      gqSel.addEventListener('change', () => {
+        if (this.onGraphicsQuality) this.onGraphicsQuality(gqSel.value);
+      });
+    }
+    const voiceSel = el.querySelector('.nr-voice');
+    if (voiceSel) {
+      voiceSel.addEventListener('change', () => {
+        if (this.onNarratorVoice) this.onNarratorVoice(voiceSel.value);
+      });
+    }
+    const muteBox = el.querySelector('.nr-mute-box');
+    if (muteBox) {
+      muteBox.addEventListener('change', () => {
+        if (this.onNarratorMute) this.onNarratorMute(muteBox.checked);
+      });
+    }
     el.querySelectorAll('.ch').forEach((b) => {
       b.addEventListener('click', () => { el.remove(); onPick(b.dataset.id); });
     });

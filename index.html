@@ -19,6 +19,13 @@
     text-transform:uppercase; color:var(--ochre); text-shadow:0 1px 3px #000; }
   #objective { position:absolute; top:42px; left:22px; max-width:320px; font-size:13px; line-height:1.5;
     text-shadow:0 1px 4px #000; opacity:.92; }
+#history-badge { position:absolute; right:62px; top:18px; display:none; padding:5px 10px;
+  font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; border:1px solid rgba(217,164,65,.45);
+  background:rgba(14,9,4,.72); color:#d9a441; pointer-events:none; }
+#history-badge.intact { color:#cfe3c0; border-color:rgba(180,220,150,.45); }
+#history-badge.rewritten { color:#e8a35c; border-color:rgba(232,163,92,.55); }
+#history-badge.unrecorded { color:#b9b2d8; border-color:rgba(185,178,216,.45); }
+#history-badge.rewrite { color:#e07a7a; border-color:rgba(224,122,122,.55); }
   #stats { position:absolute; bottom:16px; left:22px; font-size:11px; letter-spacing:.12em;
     opacity:.65; text-shadow:0 1px 3px #000; }
   #hint { position:absolute; bottom:16px; right:22px; font-size:11px; letter-spacing:.1em;
@@ -43,28 +50,52 @@
   body.touch #touch { display:block; }
   #touch .ctl { pointer-events:auto; }
   #lookzone { position:absolute; inset:0; pointer-events:auto; }
-  #stick { position:absolute; left:28px; bottom:36px; width:132px; height:132px; border-radius:50%;
+  #stick { position:absolute; left:16px; bottom:16px; width:112px; height:112px; border-radius:50%;
     border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.25); }
-  #knob { position:absolute; left:50%; top:50%; width:54px; height:54px; margin:-27px 0 0 -27px;
+  #knob { position:absolute; left:50%; top:50%; width:48px; height:48px; margin:-24px 0 0 -24px;
     border-radius:50%; background:rgba(217,164,65,.55); }
-  #btnRun { position:absolute; right:28px; bottom:36px; width:84px; height:84px; border-radius:50%;
+  #btnRun { position:absolute; right:14px; bottom:16px; width:72px; height:72px; border-radius:50%;
     border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
     font-size:11px; letter-spacing:.16em; display:flex; align-items:center; justify-content:center; }
-  #btnAttack { position:absolute; right:124px; bottom:46px; width:74px; height:74px; border-radius:50%;
+  #btnAttack { position:absolute; right:92px; bottom:72px; width:52px; height:52px; border-radius:50%;
     border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.3); color:var(--sand);
     font-size:10px; letter-spacing:.12em; display:flex; align-items:center; justify-content:center; }
-  #btnDodge { position:absolute; right:130px; bottom:128px; width:62px; height:62px; border-radius:50%;
+  #btnDodge { position:absolute; right:150px; bottom:16px; width:48px; height:48px; border-radius:50%;
     border:1px solid rgba(232,211,174,.28); background:rgba(20,12,5,.22); color:var(--sand);
     font-size:9.5px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
-  #btnAsk { position:absolute; right:28px; bottom:130px; width:62px; height:62px; border-radius:50%;
+  #btnAsk { position:absolute; right:14px; bottom:96px; width:52px; height:52px; border-radius:50%;
     border:1px solid rgba(217,164,65,.4); background:rgba(20,12,5,.28); color:var(--ochre);
     font-size:10px; letter-spacing:.1em; display:flex; align-items:center; justify-content:center; }
-  #btnKnife { position:absolute; right:210px; bottom:96px; width:56px; height:56px; border-radius:50%;
+  #btnKnife { position:absolute; right:14px; bottom:156px; width:46px; height:46px; border-radius:50%;
     border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
     font-size:9px; display:none; align-items:center; justify-content:center; }
-  #btnGun { position:absolute; right:210px; bottom:32px; width:56px; height:56px; border-radius:50%;
+  #btnGun { position:absolute; right:14px; bottom:210px; width:46px; height:46px; border-radius:50%;
     border:1px solid rgba(232,211,174,.22); background:rgba(20,12,5,.2); color:var(--sand);
     font-size:9px; display:none; align-items:center; justify-content:center; }
+  #btnKick { position:absolute; right:150px; bottom:72px; width:48px; height:48px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.28); color:var(--sand);
+    font-size:9px; display:flex; align-items:center; justify-content:center; }
+  #btnUse { position:absolute; right:92px; bottom:16px; width:48px; height:48px; border-radius:50%;
+    border:1px solid rgba(217,164,65,.35); background:rgba(20,12,5,.25); color:var(--ochre);
+    font-size:9px; display:flex; align-items:center; justify-content:center; }
+  #btnJump { position:absolute; left:138px; bottom:22px; width:50px; height:50px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.3); background:rgba(20,12,5,.25); color:var(--sand);
+    font-size:9px; display:flex; align-items:center; justify-content:center; }
+  #btnFloat { position:absolute; left:138px; bottom:80px; width:44px; height:44px; border-radius:50%;
+    border:1px solid rgba(159,208,255,.35); background:rgba(20,12,5,.25); color:#9fd0ff;
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #btnFly { position:absolute; left:138px; bottom:130px; width:44px; height:44px; border-radius:50%;
+    border:1px solid rgba(159,208,255,.35); background:rgba(20,12,5,.25); color:#9fd0ff;
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  #btnPov { position:absolute; left:138px; bottom:180px; width:44px; height:44px; border-radius:50%;
+    border:1px solid rgba(232,211,174,.35); background:rgba(20,12,5,.25); color:var(--sand);
+    font-size:9px; display:none; align-items:center; justify-content:center; }
+  body.touch #dialog { width:min(500px,86vw); bottom:32%; }
+  body.touch #hintbar { bottom:auto; top:96px; }
+  body.touch #toast { bottom:24%; }
+  body.touch #hint { display:none; }
+  body.touch #objective { max-width:220px; }
+  body.touch #stats { left:16px; top:126px; bottom:auto; font-size:9px; }
   #ask-panel { display:none; }
   #btnFull { position:fixed; top:10px; right:12px; z-index:22; pointer-events:auto; width:38px; height:38px;
     border-radius:8px; border:1px solid rgba(232,211,174,.35); background:rgba(14,9,4,.5); color:var(--sand);
@@ -84,16 +115,25 @@
   @media (orientation: landscape) and (max-height: 520px) {
     #chapter { font-size:9px; top:8px; left:12px; letter-spacing:.24em; }
     #objective { font-size:10.5px; top:24px; left:12px; max-width:230px; line-height:1.4; }
-    #stats { font-size:9px; bottom:6px; left:12px; }
-    #hint { display:none; }
+    body.touch #stats { font-size:9px; bottom:6px; left:130px; }
+    body.touch #hint { display:none; }
+    body.touch #hintbar { top:56px; }
+    body.touch #toast { bottom:16%; }
+    body.touch #dialog { width:min(380px,42vw); bottom:10%; }
     #stick { width:104px; height:104px; left:14px; bottom:14px; }
     #knob { width:44px; height:44px; margin:-22px 0 0 -22px; }
-    #btnRun { width:64px; height:64px; right:14px; bottom:14px; font-size:9px; }
-    #btnAttack { width:56px; height:56px; right:86px; bottom:18px; font-size:9px; }
-    #btnDodge { width:48px; height:48px; right:92px; bottom:82px; font-size:8.5px; }
-    #btnAsk { width:48px; height:48px; right:14px; bottom:86px; font-size:9px; }
-    #btnKnife { right:150px; bottom:64px; width:44px; height:44px; }
-    #btnGun { right:150px; bottom:14px; width:44px; height:44px; }
+    #btnRun { width:60px; height:60px; right:14px; bottom:14px; font-size:9px; }
+    #btnAttack { width:52px; height:52px; right:82px; bottom:14px; font-size:9px; }
+    #btnDodge { width:46px; height:46px; right:82px; bottom:72px; font-size:8.5px; }
+    #btnAsk { width:44px; height:44px; right:14px; bottom:82px; font-size:9px; }
+    #btnKnife { right:196px; bottom:14px; width:42px; height:42px; }
+    #btnGun { right:196px; bottom:62px; width:42px; height:42px; }
+    #btnKick { right:140px; bottom:14px; width:44px; height:44px; }
+    #btnUse { right:140px; bottom:64px; width:44px; height:44px; }
+    #btnJump { left:130px; bottom:16px; width:46px; height:46px; }
+    #btnFloat { left:130px; bottom:68px; width:42px; height:42px; }
+    #btnFly { left:130px; bottom:116px; width:42px; height:42px; }
+    #btnPov { left:130px; bottom:164px; width:42px; height:42px; }
     #cine-root .bar.top, #cine-root .bar.bottom { height:8vh; }
   }
   #hud-powers .row { text-shadow:0 1px 3px #000; }
@@ -106,6 +146,11 @@
 border:1px solid rgba(217,164,65,.34);background:rgba(12,8,4,.5);color:var(--sand,#e8d3ae);cursor:pointer;
 backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 #btnMenu:active{transform:scale(.94)}
+#btnView{position:fixed;top:10px;right:52px;z-index:42;height:34px;padding:0 11px;display:flex;align-items:center;
+ border:1px solid rgba(217,164,65,.34);background:rgba(12,8,4,.5);color:var(--sand,#e8d3ae);cursor:pointer;
+ font:600 10px/1 var(--sans);letter-spacing:.08em;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#btnView:active{transform:scale(.94)}
+#btnView.is-pov{border-color:rgba(159,208,255,.5);color:#9fd0ff}
 #pause{position:fixed;inset:0;z-index:58;display:none;align-items:center;justify-content:center;
 background:rgba(6,4,2,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
 #pause.is-open{display:flex}
@@ -149,6 +194,7 @@ animation:spIn 1.5s .85s ease-out forwards}
 <canvas id="scene"></canvas>
 <div id="hud">
   <div id="chapter">Episode I — The Golden Empire</div>
+  <div id="history-badge">HISTORY INTACT</div>
   <div id="objective">Find the market quarter. Ask the salt merchant about the gold route.</div>
   <div id="stats"></div>
   <div id="hint">WASD move · Shift run · Mouse look · M music · Esc release</div>
@@ -159,17 +205,19 @@ animation:spIn 1.5s .85s ease-out forwards}
   <div id="stick" class="ctl"><div id="knob"></div></div>
   <div id="btnRun" class="ctl">RUN</div>
   <div id="btnAttack" class="ctl">HIT</div>
-  <div id="btnKick" class="ctl" style="position:absolute;right:86px;bottom:88px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.28);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">KICK</div>
+  <div id="btnKick" class="ctl">KICK</div>
   <div id="btnDodge" class="ctl">DODGE</div>
   <div id="btnAsk" class="ctl">ASK</div>
-  <div id="btnUse" class="ctl" style="position:absolute;right:84px;bottom:150px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(217,164,65,.35);background:rgba(20,12,5,.25);color:var(--ochre);font-size:9px;display:flex;align-items:center;justify-content:center;">USE</div>
-  <div id="btnJump" class="ctl" style="position:absolute;left:150px;bottom:16px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(232,211,174,.3);background:rgba(20,12,5,.25);color:var(--sand);font-size:9px;display:flex;align-items:center;justify-content:center;">JUMP</div>
-  <div id="btnFloat" class="ctl" style="position:absolute;left:14px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLOAT</div>
-  <div id="btnFly" class="ctl" style="position:absolute;left:68px;bottom:126px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(159,208,255,.35);background:rgba(20,12,5,.25);color:#9fd0ff;font-size:9px;display:none;align-items:center;justify-content:center;">FLY</div>
+  <div id="btnUse" class="ctl">USE</div>
+  <div id="btnJump" class="ctl">JUMP</div>
+  <div id="btnFloat" class="ctl">FLOAT</div>
+  <div id="btnFly" class="ctl">FLY</div>
+  <div id="btnPov" class="ctl">POV</div>
   <div id="btnKnife" class="ctl">KNIFE</div>
   <div id="btnGun" class="ctl">GUN</div>
 </div>
 <button id="btnFull">FULL</button>
+<button id="btnView" aria-label="Switch to first person view" title="First person view (P)">POV</button>
 <button id="btnMenu" aria-label="Pause menu" title="Menu">
   <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h16v2H4z" fill="currentColor"/></svg>
 </button>
@@ -183,6 +231,7 @@ animation:spIn 1.5s .85s ease-out forwards}
       <button id="pauseRestart" class="pause-btn">Restart episode</button>
       <button id="pauseMusic" class="pause-btn is-toggle">Music: on</button>
       <button id="pauseSfx" class="pause-btn is-toggle">Sound effects: on</button>
+      <button id="pausePov" class="pause-btn is-toggle">View: Third person</button>
     </div>
     <p class="pause-hint">Esc to resume</p>
   </div>
@@ -202,6 +251,6 @@ animation:spIn 1.5s .85s ease-out forwards}
   <button id="start">Begin</button>
 </div>
 <div id="loading"></div>
-<script type="module" src="./src/main.js"></script>
+<script type="module" src="./src/main.js?v=4"></script>
 </body>
 </html>

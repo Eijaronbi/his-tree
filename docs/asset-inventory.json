@@ -1,0 +1,7043 @@
+{
+ "root": "/data/home/his-tree",
+ "total_files": 689,
+ "total_bytes": 225037586,
+ "by_extension": {
+  ".glb": {
+   "files": 67,
+   "bytes": 180256972
+  },
+  ".jpg": {
+   "files": 4,
+   "bytes": 1868133
+  },
+  ".json": {
+   "files": 2,
+   "bytes": 38216
+  },
+  ".mp3": {
+   "files": 560,
+   "bytes": 18967248
+  },
+  ".obj": {
+   "files": 1,
+   "bytes": 3878969
+  },
+  ".png": {
+   "files": 14,
+   "bytes": 6734450
+  },
+  ".webp": {
+   "files": 40,
+   "bytes": 1758058
+  },
+  ".zip": {
+   "files": 1,
+   "bytes": 11535540
+  }
+ },
+ "unreferenced": {
+  "files": 27,
+  "bytes": 121257880
+ },
+ "assets": [
+  {
+   "path": "assets/models/generated/mali_house_zip.zip",
+   "bytes": 11535540,
+   "ext": ".zip",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/generated/mali_house_glb.glb",
+   "bytes": 11338324,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_adult_f_elegant.glb",
+   "bytes": 6772836,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/lincoln_bust.glb",
+   "bytes": 6364936,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Hall1865.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/lincoln_color.glb",
+   "bytes": 6364936,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_old_f_bonnet.glb",
+   "bytes": 6207436,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/reed.glb",
+   "bytes": 5427076,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_actor_m.glb",
+   "bytes": 5392732,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/props/trench_corner.glb",
+   "bytes": 5319324,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/OtherEras.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience/char_actor_m2.glb",
+   "bytes": 5217176,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_adult_f_simple.glb",
+   "bytes": 5167484,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_old_m_top.glb",
+   "bytes": 5062920,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/lofi.glb",
+   "bytes": 5039016,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/core/Flight.js",
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience/char_actor_f.glb",
+   "bytes": 4824168,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_adult_m_frock.glb",
+   "bytes": 4722488,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/blender/mali_house_v2.glb",
+   "bytes": 4667588,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_soldier_blue.glb",
+   "bytes": 4633452,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_worker.glb",
+   "bytes": 4604860,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/blender/mali_house_v1.glb",
+   "bytes": 4562504,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/blender/mali_house_v0.glb",
+   "bytes": 4555912,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_adult_m_officer.glb",
+   "bytes": 4485772,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience/char_child_m.glb",
+   "bytes": 4482116,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/generated/mali_house_lite_obj.obj",
+   "bytes": 3878969,
+   "ext": ".obj",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/miep.glb",
+   "bytes": 2667104,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/sergeant.glb",
+   "bytes": 2495956,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/tommy.glb",
+   "bytes": 2303176,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/booth.glb",
+   "bytes": 2241292,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/musa.glb",
+   "bytes": 2213324,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/amina.glb",
+   "bytes": 2170236,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/bakary.glb",
+   "bytes": 2139120,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/grant.glb",
+   "bytes": 2133416,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/player_1865.glb",
+   "bytes": 2065444,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/stasi.glb",
+   "bytes": 2063980,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/salim.glb",
+   "bytes": 1957212,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/theatre_backdrop.png",
+   "bytes": 1888986,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/parker.glb",
+   "bytes": 1885932,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/camel-base.glb",
+   "bytes": 1719300,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_adult_f_elegant.glb",
+   "bytes": 1605348,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/lincoln.glb",
+   "bytes": 1597856,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_old_f_bonnet.glb",
+   "bytes": 1578504,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/playbill.png",
+   "bytes": 1565103,
+   "ext": ".png",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Hall1865.js",
+    "src/world/Materials.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/donkey-base.glb",
+   "bytes": 1555952,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_actor_m.glb",
+   "bytes": 1517512,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_actor_m2.glb",
+   "bytes": 1485168,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/theatre_drop_wide.png",
+   "bytes": 1456043,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Hall1865.js",
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_worker.glb",
+   "bytes": 1427356,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_soldier_blue.glb",
+   "bytes": 1408004,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_child_m.glb",
+   "bytes": 1402704,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_adult_m_officer.glb",
+   "bytes": 1385176,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_adult_m_frock.glb",
+   "bytes": 1383740,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_old_m_top.glb",
+   "bytes": 1346432,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_actor_f.glb",
+   "bytes": 1340120,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_lod/char_adult_f_simple.glb",
+   "bytes": 1333972,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/Audience.js",
+    "src/world/Cast.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/horse-base.glb",
+   "bytes": 1319840,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/generated/mali_house_lite_glb.glb",
+   "bytes": 1302892,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_actor_m.glb",
+   "bytes": 1218208,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_old_f_bonnet.glb",
+   "bytes": 1212760,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_adult_f_elegant.glb",
+   "bytes": 1180916,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_actor_m2.glb",
+   "bytes": 1177176,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_worker.glb",
+   "bytes": 1176872,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_soldier_blue.glb",
+   "bytes": 1141756,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_adult_m_officer.glb",
+   "bytes": 1132908,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_adult_m_frock.glb",
+   "bytes": 1125880,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_child_m.glb",
+   "bytes": 1124796,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_actor_f.glb",
+   "bytes": 1058800,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_old_m_top.glb",
+   "bytes": 1036208,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/characters/audience_far/char_adult_f_simple.glb",
+   "bytes": 1026544,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/world/Audience.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/theatre_auditorium.jpg",
+   "bytes": 1012638,
+   "ext": ".jpg",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/sky_storm.jpg",
+   "bytes": 748070,
+   "ext": ".jpg",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/amina_albedo.png",
+   "bytes": 306790,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/bakary_albedo.png",
+   "bytes": 306599,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/lincoln_albedo.png",
+   "bytes": 305919,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/musa_albedo.png",
+   "bytes": 305508,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/salim_albedo.png",
+   "bytes": 305470,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/dirty_carpet_albedo.webp",
+   "bytes": 281934,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skin_pores_normal.png",
+   "bytes": 248692,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/worn_plaster_wall_albedo.webp",
+   "bytes": 239252,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/dirty_carpet_normal.webp",
+   "bytes": 230216,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/character-female-c.glb",
+   "bytes": 148364,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/models/character-male-a.glb",
+   "bytes": 144788,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/textures/worn_plaster_wall_normal.webp",
+   "bytes": 134608,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velour_velvet_albedo.webp",
+   "bytes": 129144,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d04aaf4b.mp3",
+   "bytes": 126720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/7d870403.mp3",
+   "bytes": 126144,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/7d870403.mp3",
+   "bytes": 122976,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d04aaf4b.mp3",
+   "bytes": 121680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d04aaf4b.mp3",
+   "bytes": 121248,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d04aaf4b.mp3",
+   "bytes": 119952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wood_floor_albedo.webp",
+   "bytes": 114654,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/7d870403.mp3",
+   "bytes": 111888,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d23945fd.mp3",
+   "bytes": 110736,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d23945fd.mp3",
+   "bytes": 109440,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d23945fd.mp3",
+   "bytes": 108864,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/7d870403.mp3",
+   "bytes": 108432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ff4b6a56.mp3",
+   "bytes": 107568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/5182dc2f.mp3",
+   "bytes": 107136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ff4b6a56.mp3",
+   "bytes": 106848,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/02471b1a.mp3",
+   "bytes": 105264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/02471b1a.mp3",
+   "bytes": 104544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/02471b1a.mp3",
+   "bytes": 103536,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d23945fd.mp3",
+   "bytes": 103104,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ff4b6a56.mp3",
+   "bytes": 102672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/813f8a96.mp3",
+   "bytes": 102096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/813f8a96.mp3",
+   "bytes": 101088,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/5182dc2f.mp3",
+   "bytes": 100656,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/02471b1a.mp3",
+   "bytes": 100656,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ff4b6a56.mp3",
+   "bytes": 98640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/5182dc2f.mp3",
+   "bytes": 98496,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/5182dc2f.mp3",
+   "bytes": 96480,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/813f8a96.mp3",
+   "bytes": 94896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/813f8a96.mp3",
+   "bytes": 92592,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/cbd4d61b.mp3",
+   "bytes": 84528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/cbd4d61b.mp3",
+   "bytes": 80784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/cbd4d61b.mp3",
+   "bytes": 75024,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/cbd4d61b.mp3",
+   "bytes": 74880,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d7c306db.mp3",
+   "bytes": 71856,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/6be29be6.mp3",
+   "bytes": 71568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d7c306db.mp3",
+   "bytes": 70992,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/801c924c.mp3",
+   "bytes": 70560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/801c924c.mp3",
+   "bytes": 70416,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/6be29be6.mp3",
+   "bytes": 69984,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/market-stall-94937d.glb",
+   "bytes": 68548,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/audio/narration/ava/6be29be6.mp3",
+   "bytes": 67536,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d7c306db.mp3",
+   "bytes": 67392,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/46ea292c.mp3",
+   "bytes": 66816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c19fbde3.mp3",
+   "bytes": 66528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b4a19de1.mp3",
+   "bytes": 66240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wool_normal.webp",
+   "bytes": 64516,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/46ea292c.mp3",
+   "bytes": 64512,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d7c306db.mp3",
+   "bytes": 64080,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/801c924c.mp3",
+   "bytes": 63936,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c19fbde3.mp3",
+   "bytes": 63504,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b4a19de1.mp3",
+   "bytes": 63504,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/pano_city.jpg",
+   "bytes": 63389,
+   "ext": ".jpg",
+   "referenced_by": [
+    "src/world/MaliTown.js",
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/11abfb93.mp3",
+   "bytes": 62784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c19fbde3.mp3",
+   "bytes": 62784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/250c1b49.mp3",
+   "bytes": 62064,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/6be29be6.mp3",
+   "bytes": 61632,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/11abfb93.mp3",
+   "bytes": 61632,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c19fbde3.mp3",
+   "bytes": 61344,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/4762efab.mp3",
+   "bytes": 60480,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/801c924c.mp3",
+   "bytes": 60336,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/e740cafa.mp3",
+   "bytes": 59472,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/250c1b49.mp3",
+   "bytes": 58896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/46ea292c.mp3",
+   "bytes": 58896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/46ea292c.mp3",
+   "bytes": 58464,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b4a19de1.mp3",
+   "bytes": 58032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/32bde78d.mp3",
+   "bytes": 57888,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/250c1b49.mp3",
+   "bytes": 57456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/32bde78d.mp3",
+   "bytes": 57456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/e740cafa.mp3",
+   "bytes": 57312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/250c1b49.mp3",
+   "bytes": 56880,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/4762efab.mp3",
+   "bytes": 56736,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/11abfb93.mp3",
+   "bytes": 56448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/7dbf1c09.mp3",
+   "bytes": 56304,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/3d0e9d6c.mp3",
+   "bytes": 56160,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/4762efab.mp3",
+   "bytes": 55440,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/3d0e9d6c.mp3",
+   "bytes": 54576,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/0c73607f.mp3",
+   "bytes": 54576,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velvet_normal.webp",
+   "bytes": 54570,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/0c73607f.mp3",
+   "bytes": 54432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/83f2a7ba.mp3",
+   "bytes": 54432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c39e1423.mp3",
+   "bytes": 54288,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/7dbf1c09.mp3",
+   "bytes": 54288,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c39e1423.mp3",
+   "bytes": 53856,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2134be07.mp3",
+   "bytes": 53712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/4762efab.mp3",
+   "bytes": 53424,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/65e5608a.mp3",
+   "bytes": 53280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2134be07.mp3",
+   "bytes": 53280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/83f2a7ba.mp3",
+   "bytes": 52848,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/f4f5a7d6.mp3",
+   "bytes": 52848,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9014d4c4.mp3",
+   "bytes": 52848,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/11abfb93.mp3",
+   "bytes": 52704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9014d4c4.mp3",
+   "bytes": 52560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/06df9627.mp3",
+   "bytes": 52416,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/f4f5a7d6.mp3",
+   "bytes": 51840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/65e5608a.mp3",
+   "bytes": 51552,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9fd4d7eb.mp3",
+   "bytes": 51408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/031db524.mp3",
+   "bytes": 51408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/06df9627.mp3",
+   "bytes": 51408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/51e4b042.mp3",
+   "bytes": 51408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/e740cafa.mp3",
+   "bytes": 51120,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/bbd76c30.mp3",
+   "bytes": 50976,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b4a19de1.mp3",
+   "bytes": 50832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9fd4d7eb.mp3",
+   "bytes": 50688,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2a25f543.mp3",
+   "bytes": 50688,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/031db524.mp3",
+   "bytes": 49968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2a25f543.mp3",
+   "bytes": 49968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/06df9627.mp3",
+   "bytes": 49968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/bbd76c30.mp3",
+   "bytes": 49824,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velour_velvet_normal.webp",
+   "bytes": 49518,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/f4f5a7d6.mp3",
+   "bytes": 49248,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/51e4b042.mp3",
+   "bytes": 48960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velour_velvet_rough.webp",
+   "bytes": 48240,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/4211ebef.mp3",
+   "bytes": 47952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/4211ebef.mp3",
+   "bytes": 47808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/32bde78d.mp3",
+   "bytes": 47520,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/e740cafa.mp3",
+   "bytes": 47088,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/640bce8c.mp3",
+   "bytes": 46656,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/99d70127.mp3",
+   "bytes": 46512,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/7dbf1c09.mp3",
+   "bytes": 46512,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/0ea23ec2.mp3",
+   "bytes": 45936,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b7a10c88.mp3",
+   "bytes": 45792,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/92b4833c.mp3",
+   "bytes": 45648,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/3d0e9d6c.mp3",
+   "bytes": 45648,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/99d70127.mp3",
+   "bytes": 45504,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/0ea23ec2.mp3",
+   "bytes": 45360,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/031db524.mp3",
+   "bytes": 45360,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/bbd76c30.mp3",
+   "bytes": 45216,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/640bce8c.mp3",
+   "bytes": 45216,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/22997e42.mp3",
+   "bytes": 45072,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/06df9627.mp3",
+   "bytes": 44928,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/32bde78d.mp3",
+   "bytes": 44784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b7a10c88.mp3",
+   "bytes": 44784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/0c73607f.mp3",
+   "bytes": 44784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/51e4b042.mp3",
+   "bytes": 44784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9fd4d7eb.mp3",
+   "bytes": 44640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9fd4d7eb.mp3",
+   "bytes": 44640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c39e1423.mp3",
+   "bytes": 44640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/6c0468db.mp3",
+   "bytes": 44208,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/54041446.mp3",
+   "bytes": 44208,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/22997e42.mp3",
+   "bytes": 44208,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/scenery/pano_desert.jpg",
+   "bytes": 44036,
+   "ext": ".jpg",
+   "referenced_by": [
+    "src/main.js",
+    "src/world/MaliTown.js",
+    "src/world/Materials.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/f4f5a7d6.mp3",
+   "bytes": 43920,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/bbd76c30.mp3",
+   "bytes": 43920,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2a25f543.mp3",
+   "bytes": 43776,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2134be07.mp3",
+   "bytes": 43776,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/6c0468db.mp3",
+   "bytes": 43632,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/6a59cce2.mp3",
+   "bytes": 43632,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/3d0e9d6c.mp3",
+   "bytes": 43344,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/7dbf1c09.mp3",
+   "bytes": 43200,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/51e4b042.mp3",
+   "bytes": 43200,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/031db524.mp3",
+   "bytes": 43056,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c39e1423.mp3",
+   "bytes": 42912,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2a25f543.mp3",
+   "bytes": 42912,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/83f2a7ba.mp3",
+   "bytes": 42624,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9014d4c4.mp3",
+   "bytes": 42624,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/54041446.mp3",
+   "bytes": 42336,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/6a59cce2.mp3",
+   "bytes": 42336,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c10e0745.mp3",
+   "bytes": 42192,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velvet_rough.webp",
+   "bytes": 42090,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/92b4833c.mp3",
+   "bytes": 41904,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ef6be93c.mp3",
+   "bytes": 41904,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ef6be93c.mp3",
+   "bytes": 41472,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/cab879d4.mp3",
+   "bytes": 40896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/95254953.mp3",
+   "bytes": 40320,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/640bce8c.mp3",
+   "bytes": 40320,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/83f2a7ba.mp3",
+   "bytes": 40176,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/95254953.mp3",
+   "bytes": 40032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/65e5608a.mp3",
+   "bytes": 40032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c10e0745.mp3",
+   "bytes": 39744,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/0c73607f.mp3",
+   "bytes": 39600,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/54041446.mp3",
+   "bytes": 39600,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9014d4c4.mp3",
+   "bytes": 39456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ae71227b.mp3",
+   "bytes": 39456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/22997e42.mp3",
+   "bytes": 39456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/88322164.mp3",
+   "bytes": 39312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ae71227b.mp3",
+   "bytes": 39312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/8f1fc2d4.mp3",
+   "bytes": 39312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/389e8dcb.mp3",
+   "bytes": 39312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2383dd2e.mp3",
+   "bytes": 39168,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/389e8dcb.mp3",
+   "bytes": 39024,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/cab879d4.mp3",
+   "bytes": 39024,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/640bce8c.mp3",
+   "bytes": 38880,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/88322164.mp3",
+   "bytes": 38592,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/05d79bc4.mp3",
+   "bytes": 38592,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/389e8dcb.mp3",
+   "bytes": 38448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2383dd2e.mp3",
+   "bytes": 38304,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v2_albedo.webp",
+   "bytes": 38202,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/8f1fc2d4.mp3",
+   "bytes": 38160,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/f6825ed3.mp3",
+   "bytes": 38160,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/f6825ed3.mp3",
+   "bytes": 38016,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/05d79bc4.mp3",
+   "bytes": 38016,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2471abc6.mp3",
+   "bytes": 37728,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/8d2080e2.mp3",
+   "bytes": 37728,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2471abc6.mp3",
+   "bytes": 37728,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/92b4833c.mp3",
+   "bytes": 37584,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b7a10c88.mp3",
+   "bytes": 37440,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/92b4833c.mp3",
+   "bytes": 37440,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2134be07.mp3",
+   "bytes": 37296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ffb1368d.mp3",
+   "bytes": 37296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ffb1368d.mp3",
+   "bytes": 37296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/65e5608a.mp3",
+   "bytes": 37008,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/389e8dcb.mp3",
+   "bytes": 36720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/6c0468db.mp3",
+   "bytes": 36720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c9434aea.mp3",
+   "bytes": 36576,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/cbe8a72d.mp3",
+   "bytes": 36288,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/8d2080e2.mp3",
+   "bytes": 36288,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/6a59cce2.mp3",
+   "bytes": 36144,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/cbe8a72d.mp3",
+   "bytes": 36144,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/0ea23ec2.mp3",
+   "bytes": 35856,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/6a59cce2.mp3",
+   "bytes": 35856,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/54041446.mp3",
+   "bytes": 35712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/1adc5e87.mp3",
+   "bytes": 35568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/f0e0978a.mp3",
+   "bytes": 35568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/22997e42.mp3",
+   "bytes": 35280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/6c0468db.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/370178e5.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/402e192a.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c9434aea.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/f0e0978a.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/8f1fc2d4.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/cab879d4.mp3",
+   "bytes": 35136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v1_albedo.webp",
+   "bytes": 34798,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/0ea23ec2.mp3",
+   "bytes": 34704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/1adc5e87.mp3",
+   "bytes": 34704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/bb684139.mp3",
+   "bytes": 34560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/4452019b.mp3",
+   "bytes": 34128,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/manifest.json",
+   "bytes": 33989,
+   "ext": ".json",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/34a3bbeb.mp3",
+   "bytes": 33984,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/370178e5.mp3",
+   "bytes": 33984,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2471abc6.mp3",
+   "bytes": 33984,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v0_albedo.webp",
+   "bytes": 33940,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ec083eb9.mp3",
+   "bytes": 33840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9c233f98.mp3",
+   "bytes": 33840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/4452019b.mp3",
+   "bytes": 33840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/34a3bbeb.mp3",
+   "bytes": 33840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/bb684139.mp3",
+   "bytes": 33552,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/36c5c0c3.mp3",
+   "bytes": 33264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/99d70127.mp3",
+   "bytes": 33264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/4211ebef.mp3",
+   "bytes": 33120,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/4211ebef.mp3",
+   "bytes": 32832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/402e192a.mp3",
+   "bytes": 32688,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2d5b40cb.mp3",
+   "bytes": 32544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/8f1fc2d4.mp3",
+   "bytes": 32400,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/36510b03.mp3",
+   "bytes": 32400,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/88322164.mp3",
+   "bytes": 32400,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v2_normal.webp",
+   "bytes": 32366,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b7a10c88.mp3",
+   "bytes": 32112,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/36510b03.mp3",
+   "bytes": 32112,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/034fed9f.mp3",
+   "bytes": 32112,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9c233f98.mp3",
+   "bytes": 31968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ef6be93c.mp3",
+   "bytes": 31968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ae71227b.mp3",
+   "bytes": 31824,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ec083eb9.mp3",
+   "bytes": 31680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/36c5c0c3.mp3",
+   "bytes": 31680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/cab879d4.mp3",
+   "bytes": 31248,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/f6825ed3.mp3",
+   "bytes": 31104,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/8d2080e2.mp3",
+   "bytes": 31104,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/e2b02e3b.mp3",
+   "bytes": 30960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/1a1884fb.mp3",
+   "bytes": 30960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/034fed9f.mp3",
+   "bytes": 30960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/05d79bc4.mp3",
+   "bytes": 30960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ffb1368d.mp3",
+   "bytes": 30816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2d5b40cb.mp3",
+   "bytes": 30816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ffb1368d.mp3",
+   "bytes": 30816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/1a1884fb.mp3",
+   "bytes": 30672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/e2b02e3b.mp3",
+   "bytes": 30672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/4b40c931.mp3",
+   "bytes": 30672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2383dd2e.mp3",
+   "bytes": 30672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/eaa29f25.mp3",
+   "bytes": 30528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/95254953.mp3",
+   "bytes": 30528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/99d70127.mp3",
+   "bytes": 30384,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/a78018d7.mp3",
+   "bytes": 30384,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ae71227b.mp3",
+   "bytes": 30240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/1035a620.mp3",
+   "bytes": 30240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/57831a0f.mp3",
+   "bytes": 30240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2471abc6.mp3",
+   "bytes": 30096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/34b7dc3a.mp3",
+   "bytes": 30096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/eaa29f25.mp3",
+   "bytes": 30096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/cbe8a72d.mp3",
+   "bytes": 30096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/sand_albedo.webp",
+   "bytes": 30062,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/f6825ed3.mp3",
+   "bytes": 29952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/a78018d7.mp3",
+   "bytes": 29952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/57831a0f.mp3",
+   "bytes": 29952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/1adc5e87.mp3",
+   "bytes": 29952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/05d79bc4.mp3",
+   "bytes": 29808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b0a66a68.mp3",
+   "bytes": 29664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/e2b02e3b.mp3",
+   "bytes": 29664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/dcc74112.mp3",
+   "bytes": 29520,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/1a1884fb.mp3",
+   "bytes": 29376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/88322164.mp3",
+   "bytes": 29376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/464e64ce.mp3",
+   "bytes": 29376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/4a2a05ff.mp3",
+   "bytes": 29376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/34a3bbeb.mp3",
+   "bytes": 29376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/4b40c931.mp3",
+   "bytes": 29232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/1035a620.mp3",
+   "bytes": 29232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/370178e5.mp3",
+   "bytes": 29232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/fa38a170.mp3",
+   "bytes": 29088,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b0a66a68.mp3",
+   "bytes": 29088,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/fa38a170.mp3",
+   "bytes": 28944,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/402e192a.mp3",
+   "bytes": 28944,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2383dd2e.mp3",
+   "bytes": 28800,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/8d2080e2.mp3",
+   "bytes": 28800,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/34b7dc3a.mp3",
+   "bytes": 28800,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/f0e0978a.mp3",
+   "bytes": 28800,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v1_normal.webp",
+   "bytes": 28508,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c10e0745.mp3",
+   "bytes": 28368,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/dcc74112.mp3",
+   "bytes": 28224,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/034fed9f.mp3",
+   "bytes": 28224,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ef6be93c.mp3",
+   "bytes": 28080,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/464e64ce.mp3",
+   "bytes": 28080,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/1a1884fb.mp3",
+   "bytes": 28080,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/4452019b.mp3",
+   "bytes": 28080,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/1035a620.mp3",
+   "bytes": 27936,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/e2b02e3b.mp3",
+   "bytes": 27648,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ec083eb9.mp3",
+   "bytes": 27648,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v0_normal.webp",
+   "bytes": 27376,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/4a2a05ff.mp3",
+   "bytes": 27360,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/1035a620.mp3",
+   "bytes": 26928,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/36c5c0c3.mp3",
+   "bytes": 26784,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/1adc5e87.mp3",
+   "bytes": 26640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/207048e6.mp3",
+   "bytes": 26640,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/cbe8a72d.mp3",
+   "bytes": 26496,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/f0e0978a.mp3",
+   "bytes": 26352,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/acc20052.mp3",
+   "bytes": 26064,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/4452019b.mp3",
+   "bytes": 25920,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/95254953.mp3",
+   "bytes": 25920,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/36510b03.mp3",
+   "bytes": 25920,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9c233f98.mp3",
+   "bytes": 25776,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2d5b40cb.mp3",
+   "bytes": 25632,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/402e192a.mp3",
+   "bytes": 25488,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/207048e6.mp3",
+   "bytes": 25488,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b153bdd7.mp3",
+   "bytes": 25488,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/bb684139.mp3",
+   "bytes": 25488,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c9434aea.mp3",
+   "bytes": 25488,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/370178e5.mp3",
+   "bytes": 25344,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c10e0745.mp3",
+   "bytes": 25344,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/57831a0f.mp3",
+   "bytes": 25344,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/a78018d7.mp3",
+   "bytes": 25200,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/7285c0c2.mp3",
+   "bytes": 25056,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/34a3bbeb.mp3",
+   "bytes": 24624,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b153bdd7.mp3",
+   "bytes": 24624,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/7285c0c2.mp3",
+   "bytes": 24192,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2f0d76e1.mp3",
+   "bytes": 24192,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/acc20052.mp3",
+   "bytes": 24192,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b153bdd7.mp3",
+   "bytes": 23904,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ec083eb9.mp3",
+   "bytes": 23760,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/36c5c0c3.mp3",
+   "bytes": 23760,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/bb684139.mp3",
+   "bytes": 23760,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b27fe2e1.mp3",
+   "bytes": 23760,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/4b40c931.mp3",
+   "bytes": 23760,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/034fed9f.mp3",
+   "bytes": 23616,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2f0d76e1.mp3",
+   "bytes": 23616,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9c233f98.mp3",
+   "bytes": 23472,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b27fe2e1.mp3",
+   "bytes": 23472,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/da8ec5ef.mp3",
+   "bytes": 23472,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ab76eef8.mp3",
+   "bytes": 23328,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b153bdd7.mp3",
+   "bytes": 23040,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/66fd416d.mp3",
+   "bytes": 22896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/34b7dc3a.mp3",
+   "bytes": 22896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/acc20052.mp3",
+   "bytes": 22896,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ab76eef8.mp3",
+   "bytes": 22752,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/66fd416d.mp3",
+   "bytes": 22752,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/eaa29f25.mp3",
+   "bytes": 22752,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/acc20052.mp3",
+   "bytes": 22608,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/36510b03.mp3",
+   "bytes": 22464,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/da8ec5ef.mp3",
+   "bytes": 22464,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2d5b40cb.mp3",
+   "bytes": 22032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/464e64ce.mp3",
+   "bytes": 22032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b0a66a68.mp3",
+   "bytes": 22032,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/dcc74112.mp3",
+   "bytes": 21744,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c9434aea.mp3",
+   "bytes": 21600,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/fa38a170.mp3",
+   "bytes": 21456,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c167fd1c.mp3",
+   "bytes": 21312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/84b83a9b.mp3",
+   "bytes": 21312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ab76eef8.mp3",
+   "bytes": 21312,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/4a2a05ff.mp3",
+   "bytes": 21168,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/eaa29f25.mp3",
+   "bytes": 21024,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/66fd416d.mp3",
+   "bytes": 21024,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ab76eef8.mp3",
+   "bytes": 20880,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c4cd9976.mp3",
+   "bytes": 20880,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/464e64ce.mp3",
+   "bytes": 20736,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c167fd1c.mp3",
+   "bytes": 20592,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b27fe2e1.mp3",
+   "bytes": 20448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/57831a0f.mp3",
+   "bytes": 20448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2f0d76e1.mp3",
+   "bytes": 20448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/044d1ea6.mp3",
+   "bytes": 20448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/41c35cf2.mp3",
+   "bytes": 20448,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/a78018d7.mp3",
+   "bytes": 20304,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/207048e6.mp3",
+   "bytes": 20160,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/044d1ea6.mp3",
+   "bytes": 20016,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2f0d76e1.mp3",
+   "bytes": 20016,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/da8ec5ef.mp3",
+   "bytes": 19872,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b27fe2e1.mp3",
+   "bytes": 19872,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/34b7dc3a.mp3",
+   "bytes": 19728,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/5d1cf61e.mp3",
+   "bytes": 19728,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/84b83a9b.mp3",
+   "bytes": 19584,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b0a66a68.mp3",
+   "bytes": 19440,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/4b40c931.mp3",
+   "bytes": 19296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/dcc74112.mp3",
+   "bytes": 19296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/5d1cf61e.mp3",
+   "bytes": 19296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/da8ec5ef.mp3",
+   "bytes": 19296,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/66fd416d.mp3",
+   "bytes": 19008,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c4cd9976.mp3",
+   "bytes": 19008,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/4a2a05ff.mp3",
+   "bytes": 18720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/a95e62d7.mp3",
+   "bytes": 18720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/41c35cf2.mp3",
+   "bytes": 18720,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/468fbd6d.mp3",
+   "bytes": 18576,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b053e116.mp3",
+   "bytes": 18576,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d4bcb35a.mp3",
+   "bytes": 18432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b053e116.mp3",
+   "bytes": 18432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/468fbd6d.mp3",
+   "bytes": 18432,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/7782a366.mp3",
+   "bytes": 18288,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/fa38a170.mp3",
+   "bytes": 18000,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/84b83a9b.mp3",
+   "bytes": 18000,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/7285c0c2.mp3",
+   "bytes": 18000,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/84b83a9b.mp3",
+   "bytes": 17712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/7782a366.mp3",
+   "bytes": 17712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c167fd1c.mp3",
+   "bytes": 17712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/044d1ea6.mp3",
+   "bytes": 17712,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/fbe59975.mp3",
+   "bytes": 17568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/dc543a45.mp3",
+   "bytes": 17568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ae782c38.mp3",
+   "bytes": 17568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/a95e62d7.mp3",
+   "bytes": 17568,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d4bcb35a.mp3",
+   "bytes": 17424,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/a55a5863.mp3",
+   "bytes": 17280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/832becaa.mp3",
+   "bytes": 17280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/a55a5863.mp3",
+   "bytes": 17280,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ae782c38.mp3",
+   "bytes": 17136,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/sand_normal.webp",
+   "bytes": 17006,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/a707cb8f.mp3",
+   "bytes": 16992,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c4cd9976.mp3",
+   "bytes": 16992,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/832becaa.mp3",
+   "bytes": 16848,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/044d1ea6.mp3",
+   "bytes": 16704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c4cd9976.mp3",
+   "bytes": 16704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/17cd192b.mp3",
+   "bytes": 16704,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/207048e6.mp3",
+   "bytes": 16560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/a707cb8f.mp3",
+   "bytes": 16560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/dc543a45.mp3",
+   "bytes": 16560,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b5c21013.mp3",
+   "bytes": 16416,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/05c13336.mp3",
+   "bytes": 16272,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/41c35cf2.mp3",
+   "bytes": 16272,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/e908757e.mp3",
+   "bytes": 16128,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/fbe59975.mp3",
+   "bytes": 16128,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/425681a1.mp3",
+   "bytes": 15984,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/17cd192b.mp3",
+   "bytes": 15840,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/19cd8ae5.mp3",
+   "bytes": 15696,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/3d288eb6.mp3",
+   "bytes": 15696,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b5c21013.mp3",
+   "bytes": 15696,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9e664e9b.mp3",
+   "bytes": 15552,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/e908757e.mp3",
+   "bytes": 15552,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/19cd8ae5.mp3",
+   "bytes": 15552,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9a62b10a.mp3",
+   "bytes": 15408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/5d1cf61e.mp3",
+   "bytes": 15408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/a95e62d7.mp3",
+   "bytes": 15408,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c167fd1c.mp3",
+   "bytes": 15264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/07d89098.mp3",
+   "bytes": 15264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/9a70d35d.mp3",
+   "bytes": 15264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/3d288eb6.mp3",
+   "bytes": 15264,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/5d1cf61e.mp3",
+   "bytes": 15120,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/83922f30.mp3",
+   "bytes": 15120,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/2ede2605.mp3",
+   "bytes": 15120,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9e664e9b.mp3",
+   "bytes": 14976,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/5f83b84f.mp3",
+   "bytes": 14976,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/05c13336.mp3",
+   "bytes": 14976,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/7285c0c2.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/2ede2605.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/5f83b84f.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/060749ab.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/b36b57c2.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/7782a366.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/a707cb8f.mp3",
+   "bytes": 14832,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/83922f30.mp3",
+   "bytes": 14688,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9a70d35d.mp3",
+   "bytes": 14688,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/32498cd4.mp3",
+   "bytes": 14544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/9a62b10a.mp3",
+   "bytes": 14544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/07d89098.mp3",
+   "bytes": 14544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b053e116.mp3",
+   "bytes": 14544,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/41c35cf2.mp3",
+   "bytes": 14400,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/468fbd6d.mp3",
+   "bytes": 14400,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/425681a1.mp3",
+   "bytes": 14256,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/32498cd4.mp3",
+   "bytes": 13968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/060749ab.mp3",
+   "bytes": 13968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d4bcb35a.mp3",
+   "bytes": 13968,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/a95e62d7.mp3",
+   "bytes": 13824,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/dc543a45.mp3",
+   "bytes": 13824,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/7782a366.mp3",
+   "bytes": 13680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/ed60e91a.mp3",
+   "bytes": 13680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/fbe59975.mp3",
+   "bytes": 13680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ae782c38.mp3",
+   "bytes": 13680,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b053e116.mp3",
+   "bytes": 13392,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/1ef4f106.mp3",
+   "bytes": 13392,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/a9224c40.mp3",
+   "bytes": 13392,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/b36b57c2.mp3",
+   "bytes": 13392,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d12265a4.mp3",
+   "bytes": 13248,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d12265a4.mp3",
+   "bytes": 13104,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d4bcb35a.mp3",
+   "bytes": 12960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/3e83cd9d.mp3",
+   "bytes": 12960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d3898efc.mp3",
+   "bytes": 12960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/1ef4f106.mp3",
+   "bytes": 12960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/e908757e.mp3",
+   "bytes": 12960,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/tree_palmTall.glb",
+   "bytes": 12912,
+   "ext": ".glb",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/audio/narration/andrew/468fbd6d.mp3",
+   "bytes": 12816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/832becaa.mp3",
+   "bytes": 12816,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/d0e3aa8a.mp3",
+   "bytes": 12672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/17cd192b.mp3",
+   "bytes": 12672,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/plaster_albedo.webp",
+   "bytes": 12620,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/fbe59975.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/fe15b846.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/204f94c1.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/a9224c40.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/3e83cd9d.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b5c21013.mp3",
+   "bytes": 12528,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/ed60e91a.mp3",
+   "bytes": 12384,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/fe15b846.mp3",
+   "bytes": 12384,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/a55a5863.mp3",
+   "bytes": 12384,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/5fb395e7.mp3",
+   "bytes": 12240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/19cd8ae5.mp3",
+   "bytes": 12240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/3d288eb6.mp3",
+   "bytes": 12240,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v2_rough.webp",
+   "bytes": 12226,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ae782c38.mp3",
+   "bytes": 12096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d3898efc.mp3",
+   "bytes": 12096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/204f94c1.mp3",
+   "bytes": 12096,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/a707cb8f.mp3",
+   "bytes": 11952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/17cd192b.mp3",
+   "bytes": 11952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/dc543a45.mp3",
+   "bytes": 11952,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/832becaa.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/d0e3aa8a.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/c2a90558.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/5f83b84f.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/060749ab.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/05c13336.mp3",
+   "bytes": 11808,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b5c21013.mp3",
+   "bytes": 11664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/e908757e.mp3",
+   "bytes": 11664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/guy/c2a90558.mp3",
+   "bytes": 11664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9a62b10a.mp3",
+   "bytes": 11664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/2ede2605.mp3",
+   "bytes": 11664,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9a70d35d.mp3",
+   "bytes": 11520,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/9e664e9b.mp3",
+   "bytes": 11376,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/1ef4f106.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/a55a5863.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d0e3aa8a.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/425681a1.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9a62b10a.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/2ede2605.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/19cd8ae5.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/a9224c40.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9e664e9b.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d12265a4.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/3e83cd9d.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/ed60e91a.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/3d288eb6.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/32498cd4.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/fe15b846.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/d3898efc.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/204f94c1.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/c2a90558.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/5fb395e7.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/83922f30.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/07d89098.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/060749ab.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/05c13336.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/b36b57c2.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/9a70d35d.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ryan/5fb395e7.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/1ef4f106.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d0e3aa8a.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/425681a1.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/a9224c40.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d12265a4.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/3e83cd9d.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/ed60e91a.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/32498cd4.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/fe15b846.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/d3898efc.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/204f94c1.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/c2a90558.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/5fb395e7.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/83922f30.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/07d89098.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/ava/b36b57c2.mp3",
+   "bytes": 11232,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v1_rough.webp",
+   "bytes": 11146,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/adobe_v0_rough.webp",
+   "bytes": 11134,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/audio/narration/andrew/5f83b84f.mp3",
+   "bytes": 11088,
+   "ext": ".mp3",
+   "referenced_by": [
+    "src/core/Narrator.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wool_rough.webp",
+   "bytes": 11004,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/worn_plaster_wall_rough.webp",
+   "bytes": 10832,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/tree_palm.glb",
+   "bytes": 10412,
+   "ext": ".glb",
+   "referenced_by": [
+    "src/main.js"
+   ],
+   "chapters": [
+    "berlin-1989",
+    "france-1917",
+    "mali-1324",
+    "washington-1865"
+   ],
+   "used": true
+  },
+  {
+   "path": "assets/textures/plaster_normal.webp",
+   "bytes": 9586,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/amina_rough.png",
+   "bytes": 9068,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/salim_rough.png",
+   "bytes": 9068,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/bakary_rough.png",
+   "bytes": 9068,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/musa_rough.png",
+   "bytes": 9068,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/skins/lincoln_rough.png",
+   "bytes": 9068,
+   "ext": ".png",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/velvet_albedo.webp",
+   "bytes": 8624,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wood_albedo.webp",
+   "bytes": 6504,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wv.webp",
+   "bytes": 6242,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wood_normal.webp",
+   "bytes": 5406,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wood_floor_normal.webp",
+   "bytes": 4310,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/models/library_assets.json",
+   "bytes": 4227,
+   "ext": ".json",
+   "referenced_by": [],
+   "chapters": [],
+   "used": false
+  },
+  {
+   "path": "assets/textures/wood_floor_rough.webp",
+   "bytes": 4012,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/sand_rough.webp",
+   "bytes": 3692,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wood_rough.webp",
+   "bytes": 3120,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/plaster_rough.webp",
+   "bytes": 1920,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/dirty_carpet_rough.webp",
+   "bytes": 1126,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/var2.webp",
+   "bytes": 940,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/var0.webp",
+   "bytes": 908,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/wool_albedo.webp",
+   "bytes": 886,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  },
+  {
+   "path": "assets/textures/var1.webp",
+   "bytes": 820,
+   "ext": ".webp",
+   "referenced_by": [
+    "src/world/Materials.js"
+   ],
+   "chapters": [],
+   "used": true
+  }
+ ]
+}

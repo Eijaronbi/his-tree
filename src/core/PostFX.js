@@ -149,6 +149,7 @@ export class PostFX {
     this.settings = QUALITY[this.tier];
     this.presetName = preset;
     this.time = 0;
+    this.resolutionScale = 1;
 
     const size = renderer.getSize(new THREE.Vector2());
     const target = new THREE.WebGLRenderTarget(
@@ -265,6 +266,22 @@ export class PostFX {
     this.composer.setSize(size.x, size.y);
     if (this.aoPass && this.aoPass.setSize) this.aoPass.setSize(size.x, size.y);
     this.gradePass.uniforms.resolution.value.set(size.x, size.y);
+  }
+
+  setResolutionScale(scale) {
+    this.resolutionScale = Math.max(0.5, Math.min(1, scale || 1));
+    this.composer.setPixelRatio(this.settings.dpr * this.resolutionScale);
+    this.resize();
+  }
+
+  setTier(tier) {
+    if (!QUALITY[tier]) return;
+    this.tier = tier;
+    this.settings = QUALITY[tier];
+    if (this.aoPass) this.aoPass.enabled = this.settings.ao;
+    if (this.bloomPass) this.bloomPass.enabled = this.settings.bloom;
+    if (this.bokehPass) this.bokehPass.enabled = this.settings.dof;
+    this.setResolutionScale(this.resolutionScale || 1);
   }
 
   render(dt) {

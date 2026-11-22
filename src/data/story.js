@@ -114,6 +114,13 @@ export const CHAPTERS = [
       { speaker: 'timekeeper', text: 'Something is about to go missing. Not gold. The thing that makes gold mean anything.' },
       { speaker: 'timekeeper', text: 'You will have five days. Or you will have one, repeated. It depends how you count.' }
     ],
+    endingFlag: 'ending',
+    history: {
+      label: 'No record of this journey survives',
+      verifiedKey: null,
+      verified: [],
+      unrecorded: true
+    },
     missions: [
       {
         id: 'salt-ledger',
@@ -246,6 +253,13 @@ export const CHAPTERS = [
       { speaker: 'timekeeper', text: 'You have one night. Not a night you can repeat — the Tree will not give you another.' },
       { speaker: 'timekeeper', text: 'Find out what is wrong before the third act. Then decide what you are willing to break.' }
     ],
+    endingFlag: 'lincoln',
+    history: {
+      label: 'Lincoln is shot at Ford’s Theatre',
+      verifiedKey: 'lincoln',
+      verified: ['unchanged'],
+      unrecorded: false
+    },
     missions: [
       {
         id: 'the-door',
@@ -349,6 +363,13 @@ export const CHAPTERS = [
       { speaker: 'timekeeper', text: 'Two hundred soldiers are refusing to leave the line. Not because they are cowards. Because the order is written wrong.' },
       { speaker: 'timekeeper', text: 'Find the clerk who wrote it. Before the military police find the men.' }
     ],
+    endingFlag: 'mutiny',
+    history: {
+      label: 'The mutiny is broken and the offensive continues',
+      verifiedKey: 'mutiny',
+      verified: [],
+      unrecorded: false
+    },
     missions: [
       {
         id: 'the-order',
@@ -402,6 +423,13 @@ export const CHAPTERS = [
       { speaker: 'timekeeper', text: 'In an archive three streets away, a woman is deciding which files to burn and which to carry.' },
       { speaker: 'timekeeper', text: 'One of those files contains a name that should not be in it. Yours.' }
     ],
+    endingFlag: 'file',
+    history: {
+      label: 'The wall opens on the ninth of November',
+      verifiedKey: 'file',
+      verified: [],
+      unrecorded: false
+    },
     missions: [
       {
         id: 'the-archive',

@@ -12,7 +12,7 @@ export function writeSave(data) {
 }
 
 export class Quest {
-  constructor({ chapter, scene, ui, player, npcs = {}, props = {}, world, onEnding, save, auto = false }) {
+  constructor({ chapter, scene, ui, player, npcs = {}, props = {}, world, onEnding, onChoice, introExtra = [], save, auto = false }) {
     this.chapter = chapter;
     this.scene = scene;
     this.ui = ui;
@@ -21,6 +21,8 @@ export class Quest {
     this.props = props;
     this.world = world;
     this.onEnding = onEnding;
+    this.onChoice = onChoice;
+    this.introExtra = introExtra;
     this.save = save || loadSave();
     this.auto = auto;
 
@@ -65,7 +67,7 @@ export class Quest {
   }
 
   advanceText() {
-    const t = this.chapter.intro.map((l) => ({ ...l, speaker: CHARACTERS[l.speaker] ? CHARACTERS[l.speaker].name : l.speaker }));
+    const t = [...this.chapter.intro, ...(this.introExtra || [])].map((l) => ({ ...l, speaker: CHARACTERS[l.speaker] ? CHARACTERS[l.speaker].name : l.speaker }));
     if (t.length) this.ui.dialogBox(t, () => { this.ui.hint(''); });
   }
 
@@ -114,7 +116,13 @@ export class Quest {
     this.done = true;
     this.marker.visible = false;
     this._clearHighlights();
-    const key = this.flags.ending || this.chapter.objectiveEnding || Object.keys(this.chapter.endings)[0];
+    let key = this.flags.ending;
+    if (!key && this.chapter.endingFlag) key = this.flags[this.chapter.endingFlag];
+    if (!key) {
+      const values = Object.values(this.flags);
+      key = values.find((v) => this.chapter.endings[v]);
+    }
+    if (!key) key = this.chapter.objectiveEnding || Object.keys(this.chapter.endings)[0];
     const end = this.chapter.endings[key] || Object.values(this.chapter.endings)[0];
     this.save.completed = this.save.completed || [];
     if (!this.save.completed.includes(this.chapter.id)) this.save.completed.push(this.chapter.id);
@@ -226,6 +234,7 @@ export class Quest {
       this._autoChoiceIndex = (this._autoChoiceIndex || 0) + 1;
       Object.assign(this.flags, opt.flags || {});
       if (opt.journal) this._record(opt.journal);
+      if (this.onChoice) this.onChoice(opt, step);
       this._next();
     }
   }
@@ -245,6 +254,7 @@ export class Quest {
       this.choiceOpen = false;
       Object.assign(this.flags, opt.flags || {});
       if (opt.journal) this._record(opt.journal);
+      if (this.onChoice) this.onChoice(opt, step);
       this._next();
     });
   }

@@ -1,0 +1,55 @@
+{
+  "chapter": "france-1917",
+  "loadToStateMs": 13274,
+  "viewport": [
+    1280,
+    720
+  ],
+  "scene": {
+    "chapter": "france-1917",
+    "quest": true,
+    "npcs": [
+      "sergeant"
+    ],
+    "player": [
+      0,
+      0,
+      15
+    ],
+    "camera": [
+      -5.497596563046444e-16,
+      3.078316077174015,
+      19.489128266920787
+    ],
+    "hall": null,
+    "renderer": {
+      "calls": 323,
+      "triangles": 288548,
+      "geometries": 170,
+      "textures": 24
+    },
+    "occlusionHits": [],
+    "stats": "1.9 FPS · LOW · THE QUIET MUTINY · 0, 15"
+  },
+  "timing": {
+    "intervals": [
+      616.5999999999995,
+      966.6000000000004,
+      50,
+      500,
+      1000,
+      33.29999999999927,
+      550,
+      499.90000000000146,
+      516.6999999999989,
+      483.2000000000007
+    ],
+    "stats": "2.7 FPS · LOW · THE QUIET MUTINY · 0, 15",
+    "frameMsMedian": 516.6999999999989,
+    "measuredFps": 1.9170676533174855,
+    "displayedFps": 2.7
+  },
+  "errors": [],
+  "failedRequests": []
+}
+PASS browser regression checks

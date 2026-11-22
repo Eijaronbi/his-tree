@@ -1,0 +1,315 @@
+=====================================================================
+3D BROWSER GAME ON PATCH.GG - CONTEXT FOR THE GAME DESIGNER
+=====================================================================
+Prepared 12 Nov 2026 | Built by an AI coding agent inside an InstaBox
+Linux VM (Debian 13, x86_64, 4 vCPU / 8 GB) | Publisher: patch.gg
+
+THIS IS A 3D GAME. Everything below is 3D: 3D characters, 3D worlds,
+3D models remodelled in Blender inside the VM. 2D is used only for the
+cover image, logo and small UI icons.
+
+---------------------------------------------------------------------
+0. HOW THIS IS BUILT (read this first)
+---------------------------------------------------------------------
+Everything happens inside one Linux VM. Nothing is done on a phone.
+
+  1. DESIGN - this document. A designer (ChatGPT) writes the spec.
+  2. MODELLING - all 3D modelling happens in the VM with Blender 4.3.2
+     running headless, driven by Python scripts:
+       - import a base character GLB from the patch.gg asset library
+       - re-proportion the body, reshape the head, swap hair / clothes /
+         armour / weapons from library kits
+       - recolour and retexture materials
+       - retarget or rebuild the rig, author new clips if needed
+       - export an optimised GLB (gltf-transform: meshopt/Draco, WebP
+         textures, unused animation clips stripped)
+  3. GAME - three.js in the browser, one static web app.
+  4. PUBLISH AS OURS - the remodelled characters are published as our
+     own patch.gg projects of kind "character" / "asset", with our own
+     licence and the original author's credit line preserved plus a
+     "modified by us" note. The game itself is published as our own
+     project.
+  5. COVER ART - Patch generates free covers from the game's own
+     screenshots (12 takes, 4 fixes); AI image generation makes the
+     key art, logo and UI icons.
+  6. LIVE - commit, release, upload, Patch file checks, automated
+     play-test on the creator's Windows Patch Desktop (hidden muted
+     window), agent reviews the footage, creator approves, Patch's
+     scan, game is live on patch.gg.
+
+---------------------------------------------------------------------
+1. THE PLATFORM: patch.gg
+---------------------------------------------------------------------
+* patch.gg is where coding agents make and publish browser games and
+  mods. Browser games play in the browser on patch.gg (no install, no
+  Windows needed by players). Mods play in the Windows app Patch
+  Desktop and need a host game patch.gg already lists.
+  THIS PROJECT IS A BROWSER GAME - no mod, no host game.
+* Every project is a git repo (public by default, remixable), or it can
+  take GitHub as its home.
+* A browser game release needs NO recipe: the game opens at index.html
+  in the project root. A recipe (JSON: host games, loaders, components,
+  paths, settings, tests) exists only for mods.
+* Hard limits and rules:
+    - Maximum 500 MB per release; we target well under that.
+    - No secrets in the repo or release. Patch scans and rejects.
+    - No native binaries, no server-side code in a browser game.
+    - A cover image is required before a game goes live (free covers
+      available, generated from the game's own stills).
+    - CC-BY assets must keep their exact credit line.
+    - Single-player static hosting is the target. Multiplayer needs a
+      separate backend we host ourselves; not part of the release.
+    - WebGL2 on a normal desktop browser. Fast load, low draw calls.
+    - Keyboard + mouse primary; touch is a bonus, not required.
+    - Progress and saves live in the browser (localStorage).
+    - The game must be legible in the first 10 seconds: title screen,
+      one-line objective, controls on screen.
+    - Every third-party asset is credited in a credits screen and in
+      the repo README, with the exact credit line from the asset record.
+
+---------------------------------------------------------------------
+2. THE 3D ASSET LIBRARY (58,994 assets, public API, no key needed)
+---------------------------------------------------------------------
+Browse it:
+  GET https://patch.gg/api/v1/assets/search?q=...&type=model&source=...
+      &cap=rigged&where=triangles<=5000&sort=best&limit=50
+  GET https://patch.gg/api/v1/assets/{id}    (variants, licence duties,
+      exact credit line, capabilities per runtime, file URLs, SHA-256)
+  GET https://patch.gg/api/v1/assets/facets  (counts, ranges, traits)
+Each asset has variants: "preview" (viewing only) and "web" (the one
+that carries rigged + animated for the patch-web@1 runtime).
+
+3D stock:
+  3D models                21,468
+  materials / PBR sets      2,906
+  HDRIs (sky/lighting)      1,432
+  music 1,812 | audio 659 | shaders 8
+  (sprites also exist, but this game is 3D, so sprites are ignored)
+
+Licences in the whole library - only these two:
+  CC0-1.0    43,457 assets -> modify freely, no attribution required
+  CC-BY-4.0  15,537 assets -> modify allowed, BUT keep the author's
+                              exact credit line, link the licence, and
+                              state that you changed it.
+
+Model sources:
+  Amazon Berkeley Objects 7,498 | Polyfork 3,070 | ambientCG 2,637 |
+  Poly Haven 2,383 | SimReady 2,382 | KayKit 1,890 | Kenney (3D parts) |
+  incompetech 1,443 | Patch's own 337 | 1,068 AI-generated
+
+3D capability counts:
+  rigged (has a skeleton)          751 models
+  animated (has clips)             786 models
+  articulated (moving parts)         36 models  <- very rare
+  realistic game-ready humans        328 (MPFB / MakeHuman bases),
+                                     rigged, 6-12 MB, NO clips
+
+---------------------------------------------------------------------
+3. THE 3D BASES I DOWNLOADED AND INSPECTED IN THE VM
+---------------------------------------------------------------------
+I downloaded these into the build VM, imported them into Blender and
+read their animation data. These are facts, not guesses.
+
+A) kenney:mini-characters/character-male-a.glb   (CC0, 145 KB)
+   Chibi low-poly human: big head, brown skin, black bowl haircut,
+   beard, white sunglasses, green shirt, blue shorts, tan boots.
+   709 triangles, 512 px texture, 1 mesh set, 1 armature.
+   SHIPS 32 ANIMATION CLIPS, already authored:
+     static, idle, walk, sprint, jump, fall, crouch, sit, drive, die,
+     pick-up, emote-yes, emote-no, holding-right, holding-left,
+     holding-both, holding-right-shoot, holding-left-shoot,
+     holding-both-shoot, attack-melee-right, attack-melee-left,
+     attack-kick-right, attack-kick-left, interact-right, interact-left,
+     wheelchair-sit, wheelchair-look-left, wheelchair-look-right,
+     wheelchair-move-forward, wheelchair-move-back, wheelchair-move-
+     left, wheelchair-move-right
+   => The cheapest fully animated hero and enemy base in the library.
+   Same pack, other bodies: character-female-a..f, character-male-a..f.
+
+B) kenney:blocky-characters/character-a.glb        (CC0, 68 KB)
+   Voxel / Minecraft-style blocky human: dark hair and beard, bare
+   chest, green trousers. Animated, NO rig.
+   30 CLIPS: static, idle, walk, sprint, sit, drive, die, pick-up,
+   emote-yes, emote-no, holding-right/left/both, holding-*-shoot,
+   attack-melee-right/left, attack-kick-right/left, interact-right/
+   left, wheelchair-sit, wheelchair-move-forward/back/left/right.
+
+C) kaykit:adventurers/characters/Knight.glb        (CC0, 3.69 MB)
+   Stylised chibi fantasy knight: grey plate armour, rounded helmet
+   covering most of the head, red kite shield on the back, belt and
+   boots. Rigged + animated.
+   SHIPS ~140 CLIPS - a full combat animation library:
+     Idle_A/B, T-Pose, Walking_A/B/C, Walking_Backwards, Running_A/B,
+     Running_Strafe_Left/Right, Running_HoldingBow, Running_HoldingRifle,
+     Jump_Idle, Jump_Start, Jump_Full_Long, Jump_Full_Short, Jump_Land,
+     Crouching, Sneaking, Crawling, Dodge_Forward/Backward/Left/Right,
+     Melee_1H_Attack_Chop/Slice_Diagonal/Slice_Horizontal/Stab,
+     Melee_2H_Attack_Chop/Slice/Spin/Spinning/Stab, Melee_Block,
+     Melee_Blocking, Melee_Block_Attack, Melee_Block_Hit,
+     Melee_Unarmed_Attack_Punch_A, Melee_Unarmed_Attack_Kick,
+     Melee_Dualwield_Attack_Chop/Slice/Stab,
+     Ranged_1H_Aiming/Reload/Shoot/Shooting,
+     Ranged_2H_Aiming/Reload/Shoot/Shooting,
+     Ranged_Bow_Aiming_Idle/Draw/Draw_Up/Idle/Release/Release_Up,
+     Ranged_Magic_Raise/Shoot/Spellcasting/Spellcasting_Long/Summon,
+     Death_A/Death_A_Pose/Death_B/Death_B_Pose, Hit_A/Hit_B,
+     Interact, PickUp, Spawn_Air, Spawn_Ground, Throw, Use_Item,
+     Sit_Chair_Down/Idle/StandUp, Sit_Floor_Down/Idle/StandUp,
+     Lie_Down/Lie_Idle/Lie_StandUp, Cheering, Waving, Push_Ups, Sit_Ups
+   Same pack: Barbarian, Mage, Ranger, Rogue, Rogue_Hooded, and weapons
+   (axes, bows, crossbows) as separate assets.
+
+D) kaykit:skeletons/characters/Skeleton_Warrior.glb (CC0, 3.72 MB)
+   Chibi skeleton, horned iron helmet, red scarf, bone arms and legs,
+   belt and boots. Rigged + animated, SAME ~140-clip library as (C)
+   plus skeleton-specific clips:
+     Skeletons_Awaken_Floor, Skeletons_Awaken_Floor_Long,
+     Skeletons_Awaken_Standing, Skeletons_Death, Skeletons_Death_Pose,
+     Skeletons_Death_Resurrect, Skeletons_Idle,
+     Skeletons_Inactive_Floor_Pose, Skeletons_Inactive_Standing_Pose,
+     Skeletons_Spawn_Ground, Skeletons_Taunt, Skeletons_Taunt_Longer,
+     Skeletons_Walking
+   Same pack: Skeleton_Mage, Skeleton_Rogue, Skeleton_Minion.
+
+E) kaykit:character-animations/characters/Mannequin_Medium.glb
+   Blank featureless rigged body, animation demo pack. The canvas for
+   "make our character from scratch" - keep its rig, skin new geometry.
+
+F) mpfb:human-0003 (327 more like it)
+   Realistic adult human, rigged, 6-12 MB, NO animation clips.
+   Use only when the brief demands a realistic human; then we author
+   the clips ourselves in Blender.
+
+Remodelling these is the normal path: change proportions, swap gear,
+recolour, retarget, animate, publish as our own asset.
+
+---------------------------------------------------------------------
+4. TOOLING INSTALLED IN THE VM (all verified working)
+---------------------------------------------------------------------
+Blender 4.3.2 headless (Python 3.13 API, numpy 2.2.4)  - verified:
+  imported a real library character, recoloured its materials, exported
+  a working GLB with the animation clips intact.
+gltf-transform 4.5.1  - verified on that same file:
+  267 KB export -> 114 KB optimised (meshopt + WebP textures).
+git-lfs 3.6.1 | git 2.47.3 | ImageMagick | Node.js 22.23.3 | npm 10.9.9
+Python 3.13 | build-essential | pch CLI 1.0.0 | three.js (vendored into
+the repo, no CDN at runtime)
+AI image generation (Nano Banana / Gemini) for cover art, key art and UI
+icons - 2D only; it cannot produce rigged 3D models.
+VM network egress is the datacentre's own IP; nothing of yours is sent
+except the auth headers to patch.gg.
+
+---------------------------------------------------------------------
+5. WHAT CAN BE ACHIEVED IN 3D HERE
+---------------------------------------------------------------------
+Realistic for a first release:
+  * Third-person, first-person or fixed isometric camera, three.js.
+  * A custom hero remodelled from a base above, with real authored or
+    reused clips (idle, walk, sprint, jump, attack, hit, death).
+  * Melee, ranged and magic combat out of the box, because the KayKit
+    characters already carry ~140 clips including 1H/2H attacks, blocks,
+    dual wield, bow aiming/draw/release, magic cast/summon, dodges.
+  * Enemy archetypes from KayKit skeletons or Kenney characters,
+    recoloured and re-rigged, code-driven locomotion.
+  * Levels from Kenney kits, Poly Haven and ambientCG props, ambientCG
+    materials, Poly Haven HDRIs for sky and lighting.
+  * Full loops: wave survival, arena score attack, collect-the-items,
+    time trial, puzzle rooms, exploration with objectives, tower
+    defence, twin-stick combat, boss fight from a scaled base.
+  * Interaction verbs the clips already support: pick up, throw, use
+    item, interact, sit, drive.
+  * HUD, menus, inventory, dialogue, settings, pause, results screen.
+  * Library music + SFX, plus WebAudio-synthesised SFX if needed.
+  * localStorage saves, unlocks, difficulty ramp.
+  * Cover art and key art generated free by Patch and by AI.
+  * Publishing to patch.gg with the full automated test loop.
+
+Possible but riskier / needs a decision:
+  * Multiplayer (our own backend, hosted by us, not in the release).
+  * Ragdolls and soft-body physics.
+  * Very large open worlds (we keep levels compact instead).
+  * Vehicle gameplay (KayKit has a "drive" clip, but no rigged vehicle
+    cockpit; needs extra modelling).
+  * KayKit GLBs are 3.7 MB each with ~140 clips: we strip unused clips
+    and optimise, otherwise the game gets heavy fast.
+
+Not possible in this setup:
+  * Native plugins, PC-only builds, per-player accounts, anything
+    needing a secret in the client.
+
+---------------------------------------------------------------------
+6. STYLE PRESETS THE AGENT CAN DELIVER RELIABLY
+---------------------------------------------------------------------
+A) Stylised low-poly cartoon - Kenney mini / blocky look. Cheapest,
+   fastest to polish, 30-32 clips each. Platformers, arenas, cute toys.
+B) Stylised fantasy - KayKit Adventurers + Skeletons, Poly Haven
+   environments, ~140 clips each. RPG-lite, dungeon crawl, survival.
+C) Voxel / blocky - Kenney blocky characters + voxel props. Survival
+   craft, tower defence, sandbox building.
+D) Realistic human - MPFB base remodelled in Blender (face, body, hair,
+   clothes), clips authored from scratch. Heaviest; most work.
+E) Sci-fi hard-surface - Amazon Berkeley Objects / SimReady panels and
+   props, custom-built player character. Arena combat, vehicles.
+
+Pick ONE for the first release and stay inside it.
+
+---------------------------------------------------------------------
+7. YOUR TASK: RETURN A 3D GAME SPECIFICATION
+---------------------------------------------------------------------
+Write the spec so a coding agent can build it without asking follow-up
+questions. Return exactly these sections:
+
+1. TITLE + one-sentence pitch + a 3-6 word genre tag.
+2. PLAYER FANTASY - who the player is and why it is fun, one sentence.
+3. CORE LOOP - the repeating cycle of actions.
+4. MOMENT-TO-MOMENT - what happens every 5-10 seconds: input, response,
+   feedback (sound, camera, hit flash, particles, UI).
+5. CAMERA + CONTROLS - third person / first person / fixed isometric;
+   full key map; mouse behaviour; mouse-look vs click-to-move; touch
+   support yes/no.
+6. PLAYER CHARACTER - species, body, clothing, silhouette, colour
+   palette (hex), WHICH base from section 3 to remodel and exactly what
+   to change (proportions, gear, materials, rig, clips).
+7. ENEMIES / NPC CAST - 2-4 types: silhouette, behaviour, how many on
+   screen at once, which base each uses, what to recolour.
+8. WORLD - level size in metres, layout, landmarks, props, lighting,
+   HDRI, time of day, colour palette (hex).
+9. OBJECTIVES + PROGRESSION - win condition, lose condition, score,
+   difficulty curve over 5-10 minutes, unlocks.
+10. HUD + MENUS - exact on-screen elements and positions, and the menu
+    flow (title -> how to play -> game -> pause -> game over -> results).
+11. AUDIO - music mood, key SFX list, library vs synthesised.
+12. ASSET WISH LIST - table: asset id (or description if remodelled),
+    purpose, what to change. 15-30 assets maximum.
+13. TECH PLAN - three.js approach, scene structure, how characters are
+    driven (AnimationMixer clips vs procedural), collision approach,
+    performance budget (draw calls, model size, texture sizes), repo
+    file layout (index.html, src/, assets/models/, assets/textures/...).
+14. MVP vs STRETCH - what ships first, what is deferred.
+15. RISKS - the 3 things most likely to break this and the cheapest
+    mitigation for each.
+
+Rules:
+  * 3D, browser, single-player, desktop keyboard + mouse.
+  * Stay inside one style preset from section 6.
+  * Fun and legible in the first 10 seconds.
+  * Every mechanic must be implementable with the assets and tools
+    listed above.
+  * No art that must be hand-painted: all 3D comes from the library or
+    from remodelling a library base in Blender; AI art is only for the
+    cover, logo and UI icons.
+  * Be specific. Numbers, names and ids beat adjectives.
+
+---------------------------------------------------------------------
+8. WHAT THE IMPLEMENTING AGENT NEEDS FROM THE HUMAN
+---------------------------------------------------------------------
+1. This spec (sections 1-15 above) from the designer.
+2. A patch.gg account, and an API key with read + publish scopes (or a
+   device-code sign-in), so the project can be created and published.
+3. Approval to download the chosen library assets into the build VM
+   (each 70 KB - 4 MB; all from patch.gg's CDN, all CC0 or CC-BY).
+4. Approval for AI image generation for the cover / logo / UI icons.
+5. A Windows PC with Patch Desktop signed in, for the automated
+   play-test before the release goes live (browser game's test runs in
+   a hidden muted window there).
+6. A final YES before anything is published publicly.

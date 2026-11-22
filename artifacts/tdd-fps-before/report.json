@@ -1,0 +1,145 @@
+{
+  "chapter": "berlin-1989",
+  "loadToStateMs": 13098,
+  "viewport": [
+    1280,
+    720
+  ],
+  "scene": {
+    "chapter": "berlin-1989",
+    "quest": true,
+    "npcs": [
+      "miep"
+    ],
+    "player": [
+      0,
+      0,
+      8
+    ],
+    "camera": [
+      -5.497596563046444e-16,
+      3.07831397598117,
+      12.489128266920785
+    ],
+    "hall": {
+      "W": 26,
+      "D": 34,
+      "H": 4.6
+    },
+    "renderer": {
+      "calls": 1,
+      "triangles": 1,
+      "geometries": 37,
+      "textures": 9
+    },
+    "occlusionHits": [
+      {
+        "distance": 1.4633968171481555,
+        "point": [
+          -3.8576374246136263e-16,
+          2.488173530716876,
+          11.150000005960464
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "BoxGeometry",
+        "objectPosition": [
+          0,
+          2.3,
+          11
+        ]
+      }
+    ],
+    "forwardHits": [
+      {
+        "distance": 1.4197123651269747,
+        "point": [
+          -3.8576374246136263e-16,
+          2.606807135742541,
+          11.150000005960464
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "BoxGeometry",
+        "objectPosition": [
+          0,
+          2.3,
+          11
+        ],
+        "objectRotation": [
+          0,
+          0,
+          0
+        ],
+        "objectScale": [
+          1,
+          1,
+          1
+        ],
+        "material": {
+          "type": "MeshStandardMaterial",
+          "transparent": false,
+          "opacity": 1,
+          "color": "8f8d86"
+        }
+      },
+      {
+        "distance": 9.268837782357162,
+        "point": [
+          5.209160380969123e-16,
+          -3.8777819832093016e-16,
+          3.7463977494605434
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "PlaneGeometry",
+        "objectPosition": [
+          0,
+          0,
+          0
+        ],
+        "objectRotation": [
+          -1.5707963267948966,
+          0,
+          0
+        ],
+        "objectScale": [
+          1,
+          1,
+          1
+        ],
+        "material": {
+          "type": "MeshStandardMaterial",
+          "transparent": false,
+          "opacity": 1,
+          "color": "6a6a66"
+        }
+      }
+    ],
+    "stats": ""
+  },
+  "timing": {
+    "intervals": [
+      16.700000000000728,
+      633.2999999999993,
+      16.600000000000364,
+      850,
+      33.29999999999927,
+      383.3000000000011,
+      566.5999999999985,
+      66.70000000000073,
+      250,
+      83.39999999999964
+    ],
+    "stats": "25 FPS · LOW · THE FILE THAT DOESN’T EXIST · 0, 8",
+    "frameMsMedian": 250,
+    "measuredFps": 3.448394772233526,
+    "displayedFps": 25
+  },
+  "errors": [
+    "THREE.WebGLProgram: Shader Error 0 - VALIDATE_STATUS false\n\nMaterial Name: skin_miep\nMaterial Type: MeshPhysicalMaterial\n\nProgram Info Log: Vertex shader is not compiled.\nVERTEX\n\nERROR: 0:619: 'uLeg' : undeclared identifier\n\n  614:     float dy = transformed.y - uShoulderY;\n  615:     float dz = transformed.z;\n  616:     transformed.y = uShoulderY + dy * cos(sw) - dz * sin(sw);\n  617:     transformed.z = dz * cos(sw) + dy * sin(sw);\n  618:   }\n> 619:   if (uPose > 1.5 && uLeg > 0.001) {\n  620:     float sa = -(uPose - 1.0) * 1.15;\n  621:     float sca = cos(sa);\n  622:     float ssa = sin(sa);\n  623:     float sdy = transformed.y - uHipY;\n  624:     float sdz = transformed.z;\n  625:     transformed.y = uHipY + sdy * sca - sdz * ssa;\n",
+    "THREE.WebGLProgram: Shader Error 1282 - VALIDATE_STATUS false\n\nMaterial Name: clothes_mat_female_casualsuit02\nMaterial Type: MeshPhysicalMaterial\n\nProgram Info Log: Vertex shader is not compiled.\nVERTEX\n\nERROR: 0:622: 'uLeg' : undeclared identifier\n\n  617:     float dy = transformed.y - uShoulderY;\n  618:     float dz = transformed.z;\n  619:     transformed.y = uShoulderY + dy * cos(sw) - dz * sin(sw);\n  620:     transformed.z = dz * cos(sw) + dy * sin(sw);\n  621:   }\n> 622:   if (uPose > 1.5 && uLeg > 0.001) {\n  623:     float sa = -(uPose - 1.0) * 1.15;\n  624:     float sca = cos(sa);\n  625:     float ssa = sin(sa);\n  626:     float sdy = transformed.y - uHipY;\n  627:     float sdz = transformed.z;\n  628:     transformed.y = uHipY + sdy * sca - sdz * ssa;\n",
+    "THREE.WebGLProgram: Shader Error 1282 - VALIDATE_STATUS false\n\nMaterial Name: shoe_leather\nMaterial Type: MeshPhysicalMaterial\n\nProgram Info Log: Vertex shader is not compiled.\nVERTEX\n\nERROR: 0:617: 'uLeg' : undeclared identifier\n\n  612:     float dy = transformed.y - uShoulderY;\n  613:     float dz = transformed.z;\n  614:     transformed.y = uShoulderY + dy * cos(sw) - dz * sin(sw);\n  615:     transformed.z = dz * cos(sw) + dy * sin(sw);\n  616:   }\n> 617:   if (uPose > 1.5 && uLeg > 0.001) {\n  618:     float sa = -(uPose - 1.0) * 1.15;\n  619:     float sca = cos(sa);\n  620:     float ssa = sin(sa);\n  621:     float sdy = transformed.y - uHipY;\n  622:     float sdz = transformed.z;\n  623:     transformed.y = uHipY + sdy * sca - sdz * ssa;\n"
+  ],
+  "failedRequests": []
+}

@@ -1,0 +1,66 @@
+HIS-TREE performance baseline (post-fix, rev 2)
+captured: 2026-11-21 07:25:01
+environment: headless chromium + swiftshader (software rasteriser), viewport 844x390, mobile emulation
+note: absolute FPS here is software-rendered and NOT representative of a real GPU.
+      Draw calls / triangles / memory / payload are the meaningful numbers.
+
+chapter: mali-1324
+  fps(swiftshader): 2.7
+  draw calls/frame:  17
+  triangles/frame:  29571
+  frames sampled:   219
+  scene meshes:     1118
+  scene triangles:  698268
+  geometries:       437
+  textures:         74
+  programs:         32
+  npcs / mounts:    14 / 2
+  requests:         117  bytes: 24067309 (22.95 MiB)
+  failed requests:  0
+  page errors:      0
+
+chapter: washington-1865
+  fps(swiftshader): 1.4
+  draw calls/frame:  6
+  triangles/frame:  82053
+  frames sampled:   84
+  scene meshes:     293
+  scene triangles:  1881377
+  geometries:       210
+  textures:         68
+  programs:         37
+  npcs / mounts:    3 / 0
+  requests:         145  bytes: 57886695 (55.21 MiB)
+  failed requests:  0
+  page errors:      0
+
+chapter: france-1917
+  fps(swiftshader): 9.1
+  draw calls/frame:  3
+  triangles/frame:  8292
+  frames sampled:   582
+  scene meshes:     268
+  scene triangles:  289298
+  geometries:       173
+  textures:         24
+  programs:         12
+  npcs / mounts:    1 / 0
+  requests:         87  bytes: 16957689 (16.17 MiB)
+  failed requests:  0
+  page errors:      0
+
+chapter: berlin-1989
+  fps(swiftshader): 12.8
+  draw calls/frame:  1
+  triangles/frame:  2365
+  frames sampled:   939
+  scene meshes:     37
+  scene triangles:  89106
+  geometries:       37
+  textures:         18
+  programs:         11
+  npcs / mounts:    1 / 0
+  requests:         81  bytes: 9967472 (9.51 MiB)
+  failed requests:  0
+  page errors:      0
+

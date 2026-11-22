@@ -1,0 +1,2045 @@
+[
+  {
+    "file": "assets/models/generated/mali_house_glb.glb",
+    "bytes": 11338324,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 3,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 58440,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_adult_f_elegant.glb",
+    "bytes": 6772836,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 137250,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/lincoln_bust.glb",
+    "bytes": 6364936,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 150000,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/lincoln_color.glb",
+    "bytes": 6364936,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 150000,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience/char_old_f_bonnet.glb",
+    "bytes": 6207436,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 112518,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/reed.glb",
+    "bytes": 5427076,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 150000,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience/char_actor_m.glb",
+    "bytes": 5392732,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 96634,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/props/trench_corner.glb",
+    "bytes": 5319324,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 88585,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_actor_m2.glb",
+    "bytes": 5217176,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 101614,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_adult_f_simple.glb",
+    "bytes": 5167484,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 97886,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_old_m_top.glb",
+    "bytes": 5062920,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 103991,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/lofi.glb",
+    "bytes": 5039016,
+    "nodes": 2,
+    "meshes": 2,
+    "materials": 2,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 98965,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_actor_f.glb",
+    "bytes": 4824168,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 85706,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_adult_m_frock.glb",
+    "bytes": 4722488,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 88268,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/blender/mali_house_v2.glb",
+    "bytes": 4667588,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 3,
+    "textures": 6,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 552,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience/char_soldier_blue.glb",
+    "bytes": 4633452,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 88473,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_worker.glb",
+    "bytes": 4604860,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 85539,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/blender/mali_house_v1.glb",
+    "bytes": 4562504,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 3,
+    "textures": 6,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 544,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/blender/mali_house_v0.glb",
+    "bytes": 4555912,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 3,
+    "textures": 6,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      },
+      {
+        "mimeType": "image/png",
+        "width": 1024,
+        "height": 1024
+      }
+    ],
+    "animations": [],
+    "triangles": 504,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience/char_adult_m_officer.glb",
+    "bytes": 4485772,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 80512,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience/char_child_m.glb",
+    "bytes": 4482116,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 89544,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/miep.glb",
+    "bytes": 2667104,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 42158,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/sergeant.glb",
+    "bytes": 2495956,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 38526,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/tommy.glb",
+    "bytes": 2303176,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 37104,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/booth.glb",
+    "bytes": 2241292,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 35994,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/musa.glb",
+    "bytes": 2213324,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 35242,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/amina.glb",
+    "bytes": 2170236,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 36540,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/bakary.glb",
+    "bytes": 2139120,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 5,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 35660,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/grant.glb",
+    "bytes": 2133416,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 44202,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/player_1865.glb",
+    "bytes": 2065444,
+    "nodes": 6,
+    "meshes": 6,
+    "materials": 5,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 46520,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/stasi.glb",
+    "bytes": 2063980,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 46496,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/salim.glb",
+    "bytes": 1957212,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 44202,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/parker.glb",
+    "bytes": 1885932,
+    "nodes": 5,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      },
+      {
+        "mimeType": "image/jpeg",
+        "width": 2048,
+        "height": 2048
+      }
+    ],
+    "animations": [],
+    "triangles": 45074,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/camel-base.glb",
+    "bytes": 1719300,
+    "nodes": 28,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 0,
+    "images": [],
+    "animations": [
+      {
+        "name": "Walk",
+        "channels": 52
+      },
+      {
+        "name": "Idle",
+        "channels": 52
+      },
+      {
+        "name": "Run",
+        "channels": 52
+      }
+    ],
+    "triangles": 3364,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_adult_f_elegant.glb",
+    "bytes": 1605348,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 19214,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/lincoln.glb",
+    "bytes": 1597856,
+    "nodes": 143,
+    "meshes": 5,
+    "materials": 4,
+    "textures": 4,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      },
+      {
+        "mimeType": "image/png",
+        "width": 256,
+        "height": 256
+      }
+    ],
+    "animations": [],
+    "triangles": 29920,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_old_f_bonnet.glb",
+    "bytes": 1578504,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 15752,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_actor_m.glb",
+    "bytes": 1517512,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 13528,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_actor_m2.glb",
+    "bytes": 1485168,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 14225,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_worker.glb",
+    "bytes": 1427356,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 11975,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_soldier_blue.glb",
+    "bytes": 1408004,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 12385,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_child_m.glb",
+    "bytes": 1402704,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 12536,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_adult_m_officer.glb",
+    "bytes": 1385176,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 11271,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_adult_m_frock.glb",
+    "bytes": 1383740,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 12357,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_old_m_top.glb",
+    "bytes": 1346432,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 14558,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_actor_f.glb",
+    "bytes": 1340120,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 11998,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_lod/char_adult_f_simple.glb",
+    "bytes": 1333972,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 13703,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/generated/mali_house_lite_glb.glb",
+    "bytes": 1302892,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 0,
+    "textures": 0,
+    "images": [],
+    "animations": [],
+    "triangles": 72352,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_actor_m.glb",
+    "bytes": 1218208,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 5314,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_old_f_bonnet.glb",
+    "bytes": 1212760,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 6187,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_adult_f_elegant.glb",
+    "bytes": 1180916,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 7548,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_actor_m2.glb",
+    "bytes": 1177176,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 5588,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_worker.glb",
+    "bytes": 1176872,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4704,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_soldier_blue.glb",
+    "bytes": 1141756,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4866,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_adult_m_officer.glb",
+    "bytes": 1132908,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4428,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_adult_m_frock.glb",
+    "bytes": 1125880,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4854,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_child_m.glb",
+    "bytes": 1124796,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4924,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_actor_f.glb",
+    "bytes": 1058800,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 4712,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_old_m_top.glb",
+    "bytes": 1036208,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 5719,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/characters/audience_far/char_adult_f_simple.glb",
+    "bytes": 1026544,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      },
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [],
+    "triangles": 5383,
+    "extensions": [
+      "KHR_materials_specular"
+    ]
+  },
+  {
+    "file": "assets/models/character-female-c.glb",
+    "bytes": 148364,
+    "nodes": 11,
+    "meshes": 2,
+    "materials": 1,
+    "textures": 1,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [
+      {
+        "name": "static",
+        "channels": 21
+      },
+      {
+        "name": "idle",
+        "channels": 4
+      },
+      {
+        "name": "walk",
+        "channels": 7
+      },
+      {
+        "name": "sprint",
+        "channels": 7
+      },
+      {
+        "name": "jump",
+        "channels": 7
+      },
+      {
+        "name": "fall",
+        "channels": 5
+      },
+      {
+        "name": "crouch",
+        "channels": 8
+      },
+      {
+        "name": "sit",
+        "channels": 5
+      },
+      {
+        "name": "drive",
+        "channels": 5
+      },
+      {
+        "name": "die",
+        "channels": 8
+      },
+      {
+        "name": "pick-up",
+        "channels": 4
+      },
+      {
+        "name": "emote-yes",
+        "channels": 4
+      },
+      {
+        "name": "emote-no",
+        "channels": 4
+      },
+      {
+        "name": "holding-right",
+        "channels": 2
+      },
+      {
+        "name": "holding-left",
+        "channels": 2
+      },
+      {
+        "name": "holding-both",
+        "channels": 2
+      },
+      {
+        "name": "holding-right-shoot",
+        "channels": 4
+      },
+      {
+        "name": "holding-left-shoot",
+        "channels": 4
+      },
+      {
+        "name": "holding-both-shoot",
+        "channels": 4
+      },
+      {
+        "name": "attack-melee-right",
+        "channels": 7
+      },
+      {
+        "name": "attack-melee-left",
+        "channels": 7
+      },
+      {
+        "name": "attack-kick-right",
+        "channels": 7
+      },
+      {
+        "name": "attack-kick-left",
+        "channels": 7
+      },
+      {
+        "name": "interact-right",
+        "channels": 4
+      },
+      {
+        "name": "interact-left",
+        "channels": 4
+      },
+      {
+        "name": "wheelchair-sit",
+        "channels": 7
+      },
+      {
+        "name": "wheelchair-look-left",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-look-right",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-forward",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-back",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-left",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-right",
+        "channels": 9
+      }
+    ],
+    "triangles": 732,
+    "extensions": [
+      "KHR_texture_transform"
+    ]
+  },
+  {
+    "file": "assets/models/character-male-a.glb",
+    "bytes": 144788,
+    "nodes": 11,
+    "meshes": 2,
+    "materials": 1,
+    "textures": 1,
+    "images": [
+      {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512
+      }
+    ],
+    "animations": [
+      {
+        "name": "static",
+        "channels": 21
+      },
+      {
+        "name": "idle",
+        "channels": 4
+      },
+      {
+        "name": "walk",
+        "channels": 7
+      },
+      {
+        "name": "sprint",
+        "channels": 7
+      },
+      {
+        "name": "jump",
+        "channels": 7
+      },
+      {
+        "name": "fall",
+        "channels": 5
+      },
+      {
+        "name": "crouch",
+        "channels": 8
+      },
+      {
+        "name": "sit",
+        "channels": 5
+      },
+      {
+        "name": "drive",
+        "channels": 5
+      },
+      {
+        "name": "die",
+        "channels": 8
+      },
+      {
+        "name": "pick-up",
+        "channels": 4
+      },
+      {
+        "name": "emote-yes",
+        "channels": 4
+      },
+      {
+        "name": "emote-no",
+        "channels": 4
+      },
+      {
+        "name": "holding-right",
+        "channels": 2
+      },
+      {
+        "name": "holding-left",
+        "channels": 2
+      },
+      {
+        "name": "holding-both",
+        "channels": 2
+      },
+      {
+        "name": "holding-right-shoot",
+        "channels": 4
+      },
+      {
+        "name": "holding-left-shoot",
+        "channels": 4
+      },
+      {
+        "name": "holding-both-shoot",
+        "channels": 4
+      },
+      {
+        "name": "attack-melee-right",
+        "channels": 7
+      },
+      {
+        "name": "attack-melee-left",
+        "channels": 7
+      },
+      {
+        "name": "attack-kick-right",
+        "channels": 7
+      },
+      {
+        "name": "attack-kick-left",
+        "channels": 7
+      },
+      {
+        "name": "interact-right",
+        "channels": 4
+      },
+      {
+        "name": "interact-left",
+        "channels": 4
+      },
+      {
+        "name": "wheelchair-sit",
+        "channels": 7
+      },
+      {
+        "name": "wheelchair-look-left",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-look-right",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-forward",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-back",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-left",
+        "channels": 9
+      },
+      {
+        "name": "wheelchair-move-right",
+        "channels": 9
+      }
+    ],
+    "triangles": 709,
+    "extensions": [
+      "KHR_texture_transform"
+    ]
+  },
+  {
+    "file": "assets/models/market-stall-94937d.glb",
+    "bytes": 68548,
+    "nodes": 4,
+    "meshes": 2,
+    "materials": 1,
+    "textures": 0,
+    "images": [],
+    "animations": [],
+    "triangles": 592,
+    "extensions": []
+  },
+  {
+    "file": "assets/models/tree_palmTall.glb",
+    "bytes": 12912,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 2,
+    "textures": 0,
+    "images": [],
+    "animations": [],
+    "triangles": 190,
+    "extensions": [
+      "KHR_materials_unlit"
+    ]
+  },
+  {
+    "file": "assets/models/tree_palm.glb",
+    "bytes": 10412,
+    "nodes": 1,
+    "meshes": 1,
+    "materials": 2,
+    "textures": 0,
+    "images": [],
+    "animations": [],
+    "triangles": 102,
+    "extensions": [
+      "KHR_materials_unlit"
+    ]
+  }
+]

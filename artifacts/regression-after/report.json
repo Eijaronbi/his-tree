@@ -1,0 +1,58 @@
+{
+  "chapter": "berlin-1989",
+  "loadToStateMs": 8985,
+  "viewport": [
+    1280,
+    720
+  ],
+  "scene": {
+    "chapter": "berlin-1989",
+    "quest": true,
+    "npcs": [
+      "miep"
+    ],
+    "player": [
+      0,
+      0,
+      8
+    ],
+    "camera": [
+      -5.497596563046444e-16,
+      3.078316077174015,
+      10.6
+    ],
+    "hall": {
+      "W": 26,
+      "D": 22,
+      "H": 4.6
+    },
+    "renderer": {
+      "calls": 35,
+      "triangles": 88928,
+      "geometries": 33,
+      "textures": 18
+    },
+    "occlusionHits": [],
+    "stats": "3.3 FPS · LOW · THE FILE THAT DOESN’T EXIST · 0, 8"
+  },
+  "timing": {
+    "intervals": [
+      283.39999999999964,
+      249.90000000000055,
+      466.6999999999998,
+      16.599999999999454,
+      450.10000000000036,
+      16.600000000000364,
+      250,
+      233.29999999999927,
+      250,
+      733.3000000000002
+    ],
+    "stats": "3.4 FPS · LOW · THE FILE THAT DOESN’T EXIST · 0, 8",
+    "frameMsMedian": 250,
+    "measuredFps": 3.3899454218787084,
+    "displayedFps": 3.4
+  },
+  "errors": [],
+  "failedRequests": []
+}

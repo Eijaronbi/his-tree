@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { makeGltfLoader } from '../core/GLTF.js';
 import { woodMaterial, clothMaterial, plasterMaterial, contactShadowMaterial, metalMaterial, tileObjectUVs, sandMaterial } from './Materials.js';
 
-const propLoader = new GLTFLoader();
+const propLoader = makeGltfLoader();
 
 function loadRealProp(file, parent, { x = 0, y = 0, z = 0, rot = 0, scale = 1, height = null }) {
   propLoader.load(file, (gltf) => {

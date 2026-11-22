@@ -225,11 +225,13 @@ export function dressAfrican(root, opts = {}) {
 
 export function dressMaliCourt(root, role = 'noble') {
   const royal = role === 'royal';
-  return dressAfrican(root, {
-    robe: royal ? MAT.white : MAT.indigo,
-    robeAlt: royal ? MAT.indigoDeep : MAT.white,
-    headwrap: royal ? MAT.white : MAT.indigoDeep,
-    trim: MAT.gold,
-    royal
-  });
+  const presets = {
+    royal: { robe: MAT.white, robeAlt: MAT.indigoDeep, headwrap: MAT.white, trim: MAT.gold, royal: true },
+    noble: { robe: MAT.indigo, robeAlt: MAT.white, headwrap: MAT.indigoDeep, trim: MAT.gold },
+    trader: { robe: MAT.ochre, robeAlt: MAT.indigo, headwrap: MAT.indigo, trim: MAT.leather },
+    guide: { robe: MAT.white, robeAlt: MAT.leather, headwrap: MAT.ochre, trim: MAT.leather },
+    guard: { robe: MAT.leather, robeAlt: MAT.indigoDeep, headwrap: MAT.indigoDeep, trim: MAT.leather }
+  };
+  const preset = presets[role] || presets.noble;
+  return dressAfrican(root, preset);
 }

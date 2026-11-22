@@ -1,0 +1,98 @@
+--- PAGE 1 ---
+HIS-TREE
+EXPERIENCE THE PAST · UNDERSTAND THE PRESENT · SHAPE THE FUTURE
+HIS-TREE is a browser-based 3D history platform. Each episode reconstructs one
+documented moment at human scale — the place, the people who were there, the
+objects they touched, and the decision that hung on it. You enter as the
+Timekeeper , talk to the cast, inspect the evidence, and then choose: witness what
+happened, or rewrite it and live with the consequence.
+It is not four stories. It is an episode format built to grow: a reconstructed environment, a
+sourced cast, and a decision with two sides. The ﬁrst four branches are playable today —
+Timbuktu 1324, Ford's Theatre 1865, Chemin des Dames 1917, Berlin 1989 — and the same
+format extends to a burning library, a printing press, a city on a lake, a wrong turn in Sarajevo.
+WHO IT IS FOR
+Learners & teachers
+History is taught as ﬂat
+text and dates. HIS-TREE
+makes scale and
+consequence legible: you
+stand in the room where
+it was decided.
+Museums & heritage
+A playable exhibit instead
+of a plaque — runs on a
+kiosk tablet, needs no
+install and no account.
+Players
+Narrative players who
+want ﬁction anchored in
+real sources, with an
+alternate-history mode
+that treats "what if" as a
+mechanic, not a gimmick.
+HOW AHOLO LUX3D WAS USED
+Lux3D is the character and prop pipeline — core 3D content, not decoration. Every cast
+member and every player avatar began as an image→3D generation from period reference
+plates plus a written prompt describing era, class, posture and garment.
+STAGE TOOL WHAT HAPPENED
+1 ·
+Concept
+Lux3D
+image→3D
+Reference plate + era/class/posture/garment prompt → base mesh
+2 · RepairBlender Seam welding, weight cleanup, proportion ﬁxes (the white shoulder tear
+visible in early audits)
+3 · Bake Blender +
+script
+Two LOD passes: audience_lod 0.14, audience_far 0.055
+4 · Cast three.js r169 12 crowd variants instanced into ~180 seated spectators; procedural posing
+on non-rigged meshes
+Assets produced: 4 chapter casts (Musa, Salim, Lincoln, Booth, Grant, Parker, the sergeant,
+Miep), a player avatar per era, 12 crowd variants, plus props (parchment, lantern, ledger, riﬂe,
+wire cutters, travel documents). First-generation vs. corrected comparisons are kept in
+
+--- PAGE 2 ---
+docs/PIPELINE.md; the workﬂow is in the repo README. This is the hackathon's 30% "use of
+Manycore tools" criterion, evidenced in version control rather than asserted.
+Timbuktu 1324 — market, cast, and the
+player's ﬂight
+Ford's Theatre 1865 — ~180 instanced
+spectators
+Chemin des Dames 1917 — witness or
+mutiny
+WHAT IS BUILT
+Four playable episodes, each with a sourced cast, interactive props, and a two-sided
+decision.
+Two modes per episode: witness (primary sources, consequence) and rewrite (divergent
+branch, staged aftermath).
+World map + avatar picker — choose epoch and cast; the map is the library, not a level
+select.
+Movement verbs: walk, run, and Loﬁ the Yeti's ﬂoat / superman-ﬂight / ground-impact.
+Interface: quiet HUD, journal, subtitles, pause menu, adaptive quality tiers.
+Zero build step for the game: plain modules, one static artifact of 87 MB / 449 ﬁles.
+ENGINEERING NOTES
+Vanilla three.js r169 with ES modules; deterministic world assembly from seeded layout tables
+so a chapter is identical on every device. Instanced crowd rendering keeps a full theatre within
+a few draw calls on mobile GPUs. Non-rigged Lux3D meshes are posed procedurally (lean,
+reach, slump) rather than through a skeleton, which is why the cast reads as alive without any
+animation authoring. Quality tiers (?q=low|med|high) trade shadow map size and LOD distance
+for frame rate.
+VERIFICATION
+Static build smoke test: all four chapters booted from the deploy artifact with no page
+errors and no 404s.
+Vision audits: every build was reviewed frame-by-frame by an image model (seams,
+ﬂoating props, empty sets, HUD overlap); each ﬁnding has a ﬁx commit.
+Mechanics probes: ﬂoat and ﬂight validated against live state (altitude 0 → 2 m → 7.9 m),
+not screenshots alone.
+Payload budget: 516 MB source → 87 MB deploy artifact, under the free static-host upload
+limit.
+HONEST LIMITATIONS
+Character models are low-poly and read as stylised rather than photographic; the theatre
+crowd is intentionally instanced and repetitive. Only the ﬁrst four episodes are authored — the
+
+--- PAGE 3 ---
+library mechanic and the two-mode format are real, but the next branches are content work,
+not promises. Audio is sparse: ambience and cues, no voice-over in-game yet.
+Play: h t t p s : / / e i j a r o n b i . g i t h u b . i o / h i s - t r e e /   ·  Source: h t t p s : / / g i t h u b . c o m / E i j a r o n b i / h i s - t r e e   ·  Demo: demo/his-tree-
+demo.mp4 (75 s, narrated)
+Built for the Aholo Global 3D AI Hackathon · Characters generated with Aholo Lux3D (Manycore Tech)

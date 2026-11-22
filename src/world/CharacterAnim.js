@@ -2,6 +2,29 @@ import * as THREE from 'three';
 
 const VERT_PATCH = `
   float side = transformed.x >= 0.0 ? 1.0 : -1.0;
+  if (uPose > 2.5) {
+    // Superman flight pose: a streamlined horizontal body.
+    // The chest and head are lifted so he looks ahead instead of at the ground,
+    // the arms are stretched forward along the body axis and the legs stay
+    // straight and together (Reeve flew like a glider pilot, not a swimmer).
+    float cb = cos(-0.95);
+    float sb = sin(-0.95);
+    float dhy = transformed.y - uHipY;
+    float dhz = transformed.z;
+    transformed.y = uHipY + dhy * cb - dhz * sb;
+    transformed.z = dhy * sb + dhz * cb;
+    if (aArm > 0.001) {
+      float shy = uHipY + (uShoulderY - uHipY) * cb;
+      float shz = (uShoulderY - uHipY) * sb;
+      float ay = transformed.y - shy;
+      float az = transformed.z - shz;
+      transformed.y = shy - ay;
+      transformed.z = shz + az;
+    }
+    if (aLeg > 0.001) {
+      transformed.x = mix(transformed.x, side * uHeight * 0.012, 0.7);
+    }
+  } else {
   if (uPose > 0.001 && aArm > 0.001) {
     float pa = uPose * 1.5;
     float pdy = transformed.y - uShoulderY;
@@ -19,7 +42,7 @@ const VERT_PATCH = `
     transformed.y = uShoulderY + dy * cos(sw) - dz * sin(sw);
     transformed.z = dz * cos(sw) + dy * sin(sw);
   }
-  if (uPose > 1.5 && aLeg > 0.001) {
+  if (uPose > 1.5 && uLeg > 0.001) {
     float sa = -(uPose - 1.0) * 1.15;
     float sca = cos(sa);
     float ssa = sin(sa);
@@ -29,13 +52,40 @@ const VERT_PATCH = `
     transformed.z = sdz * sca + sdy * ssa;
   }
   if (aLeg > 0.001 && uPose < 1.5) {
-    float sc = sin(uPhase + (side > 0.0 ? 0.0 : 3.14159265));
-    float swl = sc * uAmt * uLegAmp * aLeg;
+    float sideSign = side > 0.0 ? 1.0 : -1.0;
+    float th = sideSign * sin(uPhase) * uAmt * uLegAmp;
+    float cth = cos(th);
+    float sth = sin(th);
     float ldy = transformed.y - uHipY;
     float ldz = transformed.z;
-    transformed.y = uHipY + ldy * cos(swl) - ldz * sin(swl) * 0.30;
-    transformed.z = ldz * cos(swl) + ldy * sin(swl) * 0.90;
-    transformed.y += max(0.0, sc) * uAmt * 0.04 * uHeight * aLeg;
+    float ry = uHipY + ldy * cth - ldz * sth;
+    float rz = ldz * cth + ldy * sth;
+    float kneeY = uHipY - uHeight * 0.17;
+    float lower = smoothstep(kneeY + uHeight * 0.05, kneeY - uHeight * 0.05, transformed.y);
+    float flex = max(0.0, -sin(th)) * 0.30 * uAmt * lower;
+    float cfl = cos(flex);
+    float sfl = sin(flex);
+    float kdy = ry - kneeY;
+    float kdz = rz;
+    float ky = kneeY + kdy * cfl - kdz * sfl;
+    float kz = kdz * cfl + kdy * sfl;
+    float foot = smoothstep(kneeY, uHipY - uHeight * 0.30, transformed.y);
+    ky = max(ky, uGroundY + 0.004 * foot);
+    transformed.y = ky;
+    transformed.z = kz;
+  }
+  if (aLeg < 0.35 && uAmt > 0.001 && uPose < 1.5) {
+    transformed.y -= uAmt * uHeight * 0.008 * (0.5 + 0.5 * cos(uPhase * 2.0));
+  }
+  }
+  if (uIdle > 0.001 && uPose < 2.5) {
+    float above = clamp((transformed.y - uHipY) / max(0.001, uHeight * 0.5), 0.0, 1.0);
+    float sway = sin(uPhase) * uIdle * uHeight * 0.010 * above;
+    float bob = sin(uPhase * 2.0) * uIdle * uHeight * 0.005;
+    float lean = sin(uPhase * 0.7 + 1.57) * uIdle * uHeight * 0.006 * above;
+    transformed.x += sway;
+    transformed.z += lean;
+    transformed.y += bob * (0.35 + 0.65 * above);
   }
 `;
 
@@ -150,7 +200,7 @@ export function poseCharacter(root, opts = {}) {
     const z = m.pos[i * 3 + 2];
     if (Math.abs(x) < torsoHalf * 1.03) return false;
     if (y < shoulderY - h * 0.46) return false;
-    if (y > shoulderY + h * 0.12) return false;
+    if (y > shoulderY + h * (opts.collarGuard ? 0.02 : 0.12)) return false;
     if (Math.abs(z) > h * 0.24) return false;
     return true;
   };
@@ -174,6 +224,7 @@ export function poseCharacter(root, opts = {}) {
           const nb = m.adjTo[e];
           if (weights[nb] > 0) continue;
           if (!armGate(m, nb)) continue;
+          if (opts.collarGuard && Math.abs(m.pos[nb * 3]) < torsoHalf * 1.12) continue;
           weights[nb] = 1;
           queue.push(nb);
         }
@@ -216,7 +267,7 @@ export function poseCharacter(root, opts = {}) {
       }
     }
     measured = angles.length ? angles.reduce((a, b) => a + b, 0) / angles.length : 0;
-    armDown = Math.max(0, Math.min(1.5, 1.32 - measured));
+    armDown = Math.max(0, Math.min(opts.collarGuard ? 1.05 : 1.5, (opts.collarGuard ? 1.18 : 1.32) - measured));
   }
   info.armMeasured = measured;
   info.armDown = armDown;
@@ -284,7 +335,9 @@ export function poseCharacter(root, opts = {}) {
     uArmAmp: { value: opts.armAmp ?? 0.42 },
     uLegAmp: { value: opts.legAmp ?? 0.55 },
     uPose: { value: 0 },
-    uShoulderX: { value: torsoHalf }
+    uShoulderX: { value: torsoHalf },
+    uIdle: { value: 0 },
+    uGroundY: { value: minY }
   };
 
   root.traverse((o) => {
@@ -297,11 +350,11 @@ export function poseCharacter(root, opts = {}) {
         shader.vertexShader = shader.vertexShader
           .replace(
             '#include <common>',
-            '#include <common>\nattribute float aArm;\nattribute float aLeg;\nuniform float uPhase;\nuniform float uAmt;\nuniform float uHipY;\nuniform float uShoulderY;\nuniform float uHeight;\nuniform float uArmAmp;\nuniform float uLegAmp;\nuniform float uPose;\nuniform float uShoulderX;'
+            '#include <common>\nattribute float aArm;\nattribute float aLeg;\nuniform float uPhase;\nuniform float uAmt;\nuniform float uHipY;\nuniform float uShoulderY;\nuniform float uHeight;\nuniform float uArmAmp;\nuniform float uLegAmp;\nuniform float uPose;\nuniform float uShoulderX;\nuniform float uIdle;\nuniform float uGroundY;'
           )
           .replace('#include <begin_vertex>', '#include <begin_vertex>\n' + VERT_PATCH);
       };
-      mat.customProgramCacheKey = () => 'histree-pose-v3';
+      mat.customProgramCacheKey = () => 'histree-pose-v5';
       mat.needsUpdate = true;
       return mat;
     });
@@ -316,8 +369,10 @@ export function poseCharacter(root, opts = {}) {
       shared.uAmt.value = Math.min(1, Math.max(0, speed / 4.0));
     },
     setIdle() { shared.uAmt.value = 0; },
+    setIdleAmp(amount) { shared.uIdle.value = Math.max(0, Number(amount) || 0); },
     setPose(name) {
-      if (name === 'superman') shared.uPose.value = 1;
+      if (name === 'fly') shared.uPose.value = 3;
+      else if (name === 'superman') shared.uPose.value = 1;
       else if (name === 'slam') shared.uPose.value = 0.35;
       else if (name === 'sit') shared.uPose.value = 2;
       else shared.uPose.value = 0;

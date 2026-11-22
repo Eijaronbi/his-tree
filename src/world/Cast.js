@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { makeGltfLoader } from '../core/GLTF.js';
 import { poseCharacter } from './CharacterAnim.js';
 import { robustBox } from './frame.js';
 
-const loader = new GLTFLoader();
+const loader = makeGltfLoader();
 
 /**
  * Realistic cast members generated with Lux3D. Each entry is normalised to a
@@ -49,7 +49,7 @@ export class Cast {
 
     let pose = null;
     if (!spec.noPose) {
-      pose = poseCharacter(holder, { armDown: 'auto', legAmp: 0.42, armAmp: 0.34 });
+      pose = poseCharacter(holder, { armDown: 'auto', legAmp: 0.42, armAmp: 0.34, collarGuard: spec.collarGuard === true });
       if (pose) pose.setIdle();
     }
     const actor = {
@@ -96,20 +96,13 @@ export class Cast {
 
 /** Theatre cast: three actors on the stage, the house standing about the aisles. */
 export function theatreCast() {
-  const A = './assets/models/characters/audience_lod/';
+  const L = './assets/models/characters/audience_lod/';
   const stageY = 1.0;
   return [
-    { file: A + 'char_actor_m.glb', x: -1.8, y: stageY, z: -14.3, rot: 0.35, height: 1.78, sway: 1, stage: true },
-    { file: A + 'char_actor_m2.glb', x: 2.4, y: stageY, z: -14.6, rot: -0.45, height: 1.74, sway: 1, stage: true },
-    { file: A + 'char_actor_f.glb', x: 0.5, y: stageY, z: -13.6, rot: -0.1, height: 1.68, sway: 1, stage: true },
-    { file: A + 'char_adult_m_officer.glb', x: 5.4, y: stageY, z: -13.4, rot: -1.0, height: 1.76 },
-    { file: A + 'char_adult_m_frock.glb', x: -5.0, y: stageY, z: -13.2, rot: 1.1, height: 1.74 },
-    { file: A + 'char_adult_f_elegant.glb', x: -14.6, y: 0, z: -7.0, rot: 1.5, height: 1.70, sway: 0.6, clap: true },
-    { file: A + 'char_adult_f_simple.glb', x: 14.6, y: 0, z: -4.2, rot: -1.5, height: 1.66, sway: 0.6, clap: true },
-    { file: A + 'char_old_m_top.glb', x: -15.4, y: 0, z: 1.6, rot: 1.4, height: 1.70, sway: 0.5, clap: true },
-    { file: A + 'char_old_f_bonnet.glb', x: 15.2, y: 0, z: 4.4, rot: -1.5, height: 1.63, sway: 0.5, clap: true },
-    { file: A + 'char_soldier_blue.glb', x: -16.0, y: 0, z: 8.0, rot: 1.2, height: 1.80 },
-    { file: A + 'char_worker.glb', x: 16.2, y: 0, z: 10.4, rot: -1.3, height: 1.74 },
-    { file: A + 'char_child_m.glb', x: -13.2, y: 0, z: 12.8, rot: 2.9, height: 1.22, sway: 0.8 }
+    { file: L + 'char_actor_m.glb', x: -1.8, y: stageY, z: -14.3, rot: 0.35, height: 1.78, sway: 1, stage: true },
+    { file: L + 'char_actor_m2.glb', x: 2.4, y: stageY, z: -14.6, rot: -0.45, height: 1.74, sway: 1, stage: true },
+    { file: L + 'char_actor_f.glb', x: 0.5, y: stageY, z: -13.6, rot: -0.1, height: 1.68, sway: 1, stage: true },
+    { file: L + 'char_adult_m_officer.glb', x: 5.4, y: stageY, z: -13.4, rot: -1.0, height: 1.76 },
+    { file: L + 'char_adult_m_frock.glb', x: -5.0, y: stageY, z: -13.2, rot: 1.1, height: 1.74 },
   ];
 }

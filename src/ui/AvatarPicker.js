@@ -929,6 +929,7 @@ export class AvatarPicker {
     this._open = true;
     this._lastFocus = document.activeElement;
     document.body.classList.add(BODY_CLASS);
+    document.dispatchEvent(new CustomEvent('avatarpicker:show'));
     this.root.setAttribute('aria-hidden', 'false');
     this.root.classList.add('ap-visible');
     window.addEventListener('keydown', this._onKeyDown);
@@ -952,6 +953,7 @@ export class AvatarPicker {
   hide() {
     if (!this._open || !this.root) return;
     this._open = false;
+    document.dispatchEvent(new CustomEvent('avatarpicker:hide'));
     window.removeEventListener('keydown', this._onKeyDown);
     if (this._poll) {
       window.clearInterval(this._poll);

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { makeGltfLoader } from './GLTF.js';
 
-const loader = new GLTFLoader();
+const loader = makeGltfLoader();
 
 const WEAPONS = {
   fist: { label: 'Fists', range: 1.9, damage: 11, cooldown: 0.42, swing: 0.9 },

@@ -1,0 +1,866 @@
+{
+ "voices": [
+  {
+   "id": "andrew",
+   "label": "Andrew (American narrator)",
+   "edge": "en-US-AndrewNeural"
+  },
+  {
+   "id": "guy",
+   "label": "Guy (American)",
+   "edge": "en-US-GuyNeural"
+  },
+  {
+   "id": "ryan",
+   "label": "Ryan (British)",
+   "edge": "en-GB-RyanNeural"
+  },
+  {
+   "id": "ava",
+   "label": "Ava (American)",
+   "edge": "en-US-AvaNeural"
+  }
+ ],
+ "clips": {
+  "6c0468db": {
+   "ava": "assets/audio/narration/ava/6c0468db.mp3",
+   "guy": "assets/audio/narration/guy/6c0468db.mp3",
+   "ryan": "assets/audio/narration/ryan/6c0468db.mp3",
+   "andrew": "assets/audio/narration/andrew/6c0468db.mp3"
+  },
+  "250c1b49": {
+   "guy": "assets/audio/narration/guy/250c1b49.mp3",
+   "ava": "assets/audio/narration/ava/250c1b49.mp3",
+   "ryan": "assets/audio/narration/ryan/250c1b49.mp3",
+   "andrew": "assets/audio/narration/andrew/250c1b49.mp3"
+  },
+  "b7a10c88": {
+   "ryan": "assets/audio/narration/ryan/b7a10c88.mp3",
+   "ava": "assets/audio/narration/ava/b7a10c88.mp3",
+   "guy": "assets/audio/narration/guy/b7a10c88.mp3",
+   "andrew": "assets/audio/narration/andrew/b7a10c88.mp3"
+  },
+  "4211ebef": {
+   "ava": "assets/audio/narration/ava/4211ebef.mp3",
+   "ryan": "assets/audio/narration/ryan/4211ebef.mp3",
+   "guy": "assets/audio/narration/guy/4211ebef.mp3",
+   "andrew": "assets/audio/narration/andrew/4211ebef.mp3"
+  },
+  "f4f5a7d6": {
+   "guy": "assets/audio/narration/guy/f4f5a7d6.mp3",
+   "ava": "assets/audio/narration/ava/f4f5a7d6.mp3",
+   "ryan": "assets/audio/narration/ryan/f4f5a7d6.mp3",
+   "andrew": "assets/audio/narration/andrew/f4f5a7d6.mp3"
+  },
+  "05c13336": {
+   "guy": "assets/audio/narration/guy/05c13336.mp3",
+   "ava": "assets/audio/narration/ava/05c13336.mp3",
+   "ryan": "assets/audio/narration/ryan/05c13336.mp3",
+   "andrew": "assets/audio/narration/andrew/05c13336.mp3"
+  },
+  "1ef4f106": {
+   "ryan": "assets/audio/narration/ryan/1ef4f106.mp3",
+   "ava": "assets/audio/narration/ava/1ef4f106.mp3",
+   "guy": "assets/audio/narration/guy/1ef4f106.mp3",
+   "andrew": "assets/audio/narration/andrew/1ef4f106.mp3"
+  },
+  "07d89098": {
+   "ryan": "assets/audio/narration/ryan/07d89098.mp3",
+   "ava": "assets/audio/narration/ava/07d89098.mp3",
+   "andrew": "assets/audio/narration/andrew/07d89098.mp3",
+   "guy": "assets/audio/narration/guy/07d89098.mp3"
+  },
+  "41c35cf2": {
+   "andrew": "assets/audio/narration/andrew/41c35cf2.mp3",
+   "guy": "assets/audio/narration/guy/41c35cf2.mp3",
+   "ryan": "assets/audio/narration/ryan/41c35cf2.mp3",
+   "ava": "assets/audio/narration/ava/41c35cf2.mp3"
+  },
+  "34a3bbeb": {
+   "guy": "assets/audio/narration/guy/34a3bbeb.mp3",
+   "ryan": "assets/audio/narration/ryan/34a3bbeb.mp3",
+   "ava": "assets/audio/narration/ava/34a3bbeb.mp3",
+   "andrew": "assets/audio/narration/andrew/34a3bbeb.mp3"
+  },
+  "5d1cf61e": {
+   "guy": "assets/audio/narration/guy/5d1cf61e.mp3",
+   "ava": "assets/audio/narration/ava/5d1cf61e.mp3",
+   "ryan": "assets/audio/narration/ryan/5d1cf61e.mp3",
+   "andrew": "assets/audio/narration/andrew/5d1cf61e.mp3"
+  },
+  "1035a620": {
+   "andrew": "assets/audio/narration/andrew/1035a620.mp3",
+   "guy": "assets/audio/narration/guy/1035a620.mp3",
+   "ava": "assets/audio/narration/ava/1035a620.mp3",
+   "ryan": "assets/audio/narration/ryan/1035a620.mp3"
+  },
+  "034fed9f": {
+   "guy": "assets/audio/narration/guy/034fed9f.mp3",
+   "ava": "assets/audio/narration/ava/034fed9f.mp3",
+   "ryan": "assets/audio/narration/ryan/034fed9f.mp3",
+   "andrew": "assets/audio/narration/andrew/034fed9f.mp3"
+  },
+  "bbd76c30": {
+   "guy": "assets/audio/narration/guy/bbd76c30.mp3",
+   "ryan": "assets/audio/narration/ryan/bbd76c30.mp3",
+   "ava": "assets/audio/narration/ava/bbd76c30.mp3",
+   "andrew": "assets/audio/narration/andrew/bbd76c30.mp3"
+  },
+  "425681a1": {
+   "ava": "assets/audio/narration/ava/425681a1.mp3",
+   "guy": "assets/audio/narration/guy/425681a1.mp3",
+   "andrew": "assets/audio/narration/andrew/425681a1.mp3",
+   "ryan": "assets/audio/narration/ryan/425681a1.mp3"
+  },
+  "b5c21013": {
+   "guy": "assets/audio/narration/guy/b5c21013.mp3",
+   "ava": "assets/audio/narration/ava/b5c21013.mp3",
+   "ryan": "assets/audio/narration/ryan/b5c21013.mp3",
+   "andrew": "assets/audio/narration/andrew/b5c21013.mp3"
+  },
+  "17cd192b": {
+   "ava": "assets/audio/narration/ava/17cd192b.mp3",
+   "guy": "assets/audio/narration/guy/17cd192b.mp3",
+   "ryan": "assets/audio/narration/ryan/17cd192b.mp3",
+   "andrew": "assets/audio/narration/andrew/17cd192b.mp3"
+  },
+  "9a62b10a": {
+   "andrew": "assets/audio/narration/andrew/9a62b10a.mp3",
+   "ryan": "assets/audio/narration/ryan/9a62b10a.mp3",
+   "ava": "assets/audio/narration/ava/9a62b10a.mp3",
+   "guy": "assets/audio/narration/guy/9a62b10a.mp3"
+  },
+  "4b40c931": {
+   "guy": "assets/audio/narration/guy/4b40c931.mp3",
+   "ava": "assets/audio/narration/ava/4b40c931.mp3",
+   "ryan": "assets/audio/narration/ryan/4b40c931.mp3",
+   "andrew": "assets/audio/narration/andrew/4b40c931.mp3"
+  },
+  "ae782c38": {
+   "andrew": "assets/audio/narration/andrew/ae782c38.mp3",
+   "guy": "assets/audio/narration/guy/ae782c38.mp3",
+   "ryan": "assets/audio/narration/ryan/ae782c38.mp3",
+   "ava": "assets/audio/narration/ava/ae782c38.mp3"
+  },
+  "dc543a45": {
+   "ryan": "assets/audio/narration/ryan/dc543a45.mp3",
+   "guy": "assets/audio/narration/guy/dc543a45.mp3",
+   "ava": "assets/audio/narration/ava/dc543a45.mp3",
+   "andrew": "assets/audio/narration/andrew/dc543a45.mp3"
+  },
+  "da8ec5ef": {
+   "guy": "assets/audio/narration/guy/da8ec5ef.mp3",
+   "ryan": "assets/audio/narration/ryan/da8ec5ef.mp3",
+   "ava": "assets/audio/narration/ava/da8ec5ef.mp3",
+   "andrew": "assets/audio/narration/andrew/da8ec5ef.mp3"
+  },
+  "cbe8a72d": {
+   "ava": "assets/audio/narration/ava/cbe8a72d.mp3",
+   "guy": "assets/audio/narration/guy/cbe8a72d.mp3",
+   "ryan": "assets/audio/narration/ryan/cbe8a72d.mp3",
+   "andrew": "assets/audio/narration/andrew/cbe8a72d.mp3"
+  },
+  "3d288eb6": {
+   "guy": "assets/audio/narration/guy/3d288eb6.mp3",
+   "ava": "assets/audio/narration/ava/3d288eb6.mp3",
+   "andrew": "assets/audio/narration/andrew/3d288eb6.mp3",
+   "ryan": "assets/audio/narration/ryan/3d288eb6.mp3"
+  },
+  "83922f30": {
+   "guy": "assets/audio/narration/guy/83922f30.mp3",
+   "ryan": "assets/audio/narration/ryan/83922f30.mp3",
+   "ava": "assets/audio/narration/ava/83922f30.mp3",
+   "andrew": "assets/audio/narration/andrew/83922f30.mp3"
+  },
+  "2ede2605": {
+   "guy": "assets/audio/narration/guy/2ede2605.mp3",
+   "ryan": "assets/audio/narration/ryan/2ede2605.mp3",
+   "ava": "assets/audio/narration/ava/2ede2605.mp3",
+   "andrew": "assets/audio/narration/andrew/2ede2605.mp3"
+  },
+  "6a59cce2": {
+   "ava": "assets/audio/narration/ava/6a59cce2.mp3",
+   "guy": "assets/audio/narration/guy/6a59cce2.mp3",
+   "ryan": "assets/audio/narration/ryan/6a59cce2.mp3",
+   "andrew": "assets/audio/narration/andrew/6a59cce2.mp3"
+  },
+  "402e192a": {
+   "guy": "assets/audio/narration/guy/402e192a.mp3",
+   "ryan": "assets/audio/narration/ryan/402e192a.mp3",
+   "ava": "assets/audio/narration/ava/402e192a.mp3",
+   "andrew": "assets/audio/narration/andrew/402e192a.mp3"
+  },
+  "34b7dc3a": {
+   "guy": "assets/audio/narration/guy/34b7dc3a.mp3",
+   "ryan": "assets/audio/narration/ryan/34b7dc3a.mp3",
+   "ava": "assets/audio/narration/ava/34b7dc3a.mp3",
+   "andrew": "assets/audio/narration/andrew/34b7dc3a.mp3"
+  },
+  "acc20052": {
+   "guy": "assets/audio/narration/guy/acc20052.mp3",
+   "ryan": "assets/audio/narration/ryan/acc20052.mp3",
+   "ava": "assets/audio/narration/ava/acc20052.mp3",
+   "andrew": "assets/audio/narration/andrew/acc20052.mp3"
+  },
+  "7782a366": {
+   "ryan": "assets/audio/narration/ryan/7782a366.mp3",
+   "guy": "assets/audio/narration/guy/7782a366.mp3",
+   "ava": "assets/audio/narration/ava/7782a366.mp3",
+   "andrew": "assets/audio/narration/andrew/7782a366.mp3"
+  },
+  "a9224c40": {
+   "guy": "assets/audio/narration/guy/a9224c40.mp3",
+   "ava": "assets/audio/narration/ava/a9224c40.mp3",
+   "ryan": "assets/audio/narration/ryan/a9224c40.mp3",
+   "andrew": "assets/audio/narration/andrew/a9224c40.mp3"
+  },
+  "92b4833c": {
+   "ava": "assets/audio/narration/ava/92b4833c.mp3",
+   "guy": "assets/audio/narration/guy/92b4833c.mp3",
+   "ryan": "assets/audio/narration/ryan/92b4833c.mp3",
+   "andrew": "assets/audio/narration/andrew/92b4833c.mp3"
+  },
+  "1a1884fb": {
+   "guy": "assets/audio/narration/guy/1a1884fb.mp3",
+   "ryan": "assets/audio/narration/ryan/1a1884fb.mp3",
+   "ava": "assets/audio/narration/ava/1a1884fb.mp3",
+   "andrew": "assets/audio/narration/andrew/1a1884fb.mp3"
+  },
+  "ec083eb9": {
+   "guy": "assets/audio/narration/guy/ec083eb9.mp3",
+   "ryan": "assets/audio/narration/ryan/ec083eb9.mp3",
+   "ava": "assets/audio/narration/ava/ec083eb9.mp3",
+   "andrew": "assets/audio/narration/andrew/ec083eb9.mp3"
+  },
+  "2f0d76e1": {
+   "guy": "assets/audio/narration/guy/2f0d76e1.mp3",
+   "ryan": "assets/audio/narration/ryan/2f0d76e1.mp3",
+   "ava": "assets/audio/narration/ava/2f0d76e1.mp3",
+   "andrew": "assets/audio/narration/andrew/2f0d76e1.mp3"
+  },
+  "36510b03": {
+   "guy": "assets/audio/narration/guy/36510b03.mp3",
+   "ava": "assets/audio/narration/ava/36510b03.mp3",
+   "ryan": "assets/audio/narration/ryan/36510b03.mp3",
+   "andrew": "assets/audio/narration/andrew/36510b03.mp3"
+  },
+  "b053e116": {
+   "ava": "assets/audio/narration/ava/b053e116.mp3",
+   "ryan": "assets/audio/narration/ryan/b053e116.mp3",
+   "guy": "assets/audio/narration/guy/b053e116.mp3",
+   "andrew": "assets/audio/narration/andrew/b053e116.mp3"
+  },
+  "d0e3aa8a": {
+   "guy": "assets/audio/narration/guy/d0e3aa8a.mp3",
+   "ryan": "assets/audio/narration/ryan/d0e3aa8a.mp3",
+   "ava": "assets/audio/narration/ava/d0e3aa8a.mp3",
+   "andrew": "assets/audio/narration/andrew/d0e3aa8a.mp3"
+  },
+  "8d2080e2": {
+   "guy": "assets/audio/narration/guy/8d2080e2.mp3",
+   "ava": "assets/audio/narration/ava/8d2080e2.mp3",
+   "ryan": "assets/audio/narration/ryan/8d2080e2.mp3",
+   "andrew": "assets/audio/narration/andrew/8d2080e2.mp3"
+  },
+  "a55a5863": {
+   "ava": "assets/audio/narration/ava/a55a5863.mp3",
+   "guy": "assets/audio/narration/guy/a55a5863.mp3",
+   "ryan": "assets/audio/narration/ryan/a55a5863.mp3",
+   "andrew": "assets/audio/narration/andrew/a55a5863.mp3"
+  },
+  "2d5b40cb": {
+   "guy": "assets/audio/narration/guy/2d5b40cb.mp3",
+   "ryan": "assets/audio/narration/ryan/2d5b40cb.mp3",
+   "ava": "assets/audio/narration/ava/2d5b40cb.mp3",
+   "andrew": "assets/audio/narration/andrew/2d5b40cb.mp3"
+  },
+  "b27fe2e1": {
+   "guy": "assets/audio/narration/guy/b27fe2e1.mp3",
+   "ryan": "assets/audio/narration/ryan/b27fe2e1.mp3",
+   "ava": "assets/audio/narration/ava/b27fe2e1.mp3",
+   "andrew": "assets/audio/narration/andrew/b27fe2e1.mp3"
+  },
+  "02471b1a": {
+   "ava": "assets/audio/narration/ava/02471b1a.mp3",
+   "guy": "assets/audio/narration/guy/02471b1a.mp3",
+   "ryan": "assets/audio/narration/ryan/02471b1a.mp3",
+   "andrew": "assets/audio/narration/andrew/02471b1a.mp3"
+  },
+  "813f8a96": {
+   "guy": "assets/audio/narration/guy/813f8a96.mp3",
+   "ava": "assets/audio/narration/ava/813f8a96.mp3",
+   "ryan": "assets/audio/narration/ryan/813f8a96.mp3",
+   "andrew": "assets/audio/narration/andrew/813f8a96.mp3"
+  },
+  "5182dc2f": {
+   "ryan": "assets/audio/narration/ryan/5182dc2f.mp3",
+   "ava": "assets/audio/narration/ava/5182dc2f.mp3",
+   "guy": "assets/audio/narration/guy/5182dc2f.mp3",
+   "andrew": "assets/audio/narration/andrew/5182dc2f.mp3"
+  },
+  "e740cafa": {
+   "guy": "assets/audio/narration/guy/e740cafa.mp3",
+   "ava": "assets/audio/narration/ava/e740cafa.mp3",
+   "ryan": "assets/audio/narration/ryan/e740cafa.mp3",
+   "andrew": "assets/audio/narration/andrew/e740cafa.mp3"
+  },
+  "cab879d4": {
+   "guy": "assets/audio/narration/guy/cab879d4.mp3",
+   "ryan": "assets/audio/narration/ryan/cab879d4.mp3",
+   "ava": "assets/audio/narration/ava/cab879d4.mp3",
+   "andrew": "assets/audio/narration/andrew/cab879d4.mp3"
+  },
+  "f6825ed3": {
+   "guy": "assets/audio/narration/guy/f6825ed3.mp3",
+   "ava": "assets/audio/narration/ava/f6825ed3.mp3",
+   "ryan": "assets/audio/narration/ryan/f6825ed3.mp3",
+   "andrew": "assets/audio/narration/andrew/f6825ed3.mp3"
+  },
+  "88322164": {
+   "guy": "assets/audio/narration/guy/88322164.mp3",
+   "ryan": "assets/audio/narration/ryan/88322164.mp3",
+   "ava": "assets/audio/narration/ava/88322164.mp3",
+   "andrew": "assets/audio/narration/andrew/88322164.mp3"
+  },
+  "a95e62d7": {
+   "guy": "assets/audio/narration/guy/a95e62d7.mp3",
+   "ava": "assets/audio/narration/ava/a95e62d7.mp3",
+   "ryan": "assets/audio/narration/ryan/a95e62d7.mp3",
+   "andrew": "assets/audio/narration/andrew/a95e62d7.mp3"
+  },
+  "5fb395e7": {
+   "guy": "assets/audio/narration/guy/5fb395e7.mp3",
+   "ryan": "assets/audio/narration/ryan/5fb395e7.mp3",
+   "ava": "assets/audio/narration/ava/5fb395e7.mp3",
+   "andrew": "assets/audio/narration/andrew/5fb395e7.mp3"
+  },
+  "3e83cd9d": {
+   "guy": "assets/audio/narration/guy/3e83cd9d.mp3",
+   "ryan": "assets/audio/narration/ryan/3e83cd9d.mp3",
+   "ava": "assets/audio/narration/ava/3e83cd9d.mp3",
+   "andrew": "assets/audio/narration/andrew/3e83cd9d.mp3"
+  },
+  "9a70d35d": {
+   "ava": "assets/audio/narration/ava/9a70d35d.mp3",
+   "guy": "assets/audio/narration/guy/9a70d35d.mp3",
+   "ryan": "assets/audio/narration/ryan/9a70d35d.mp3",
+   "andrew": "assets/audio/narration/andrew/9a70d35d.mp3"
+  },
+  "fbe59975": {
+   "guy": "assets/audio/narration/guy/fbe59975.mp3",
+   "ava": "assets/audio/narration/ava/fbe59975.mp3",
+   "ryan": "assets/audio/narration/ryan/fbe59975.mp3",
+   "andrew": "assets/audio/narration/andrew/fbe59975.mp3"
+  },
+  "d3898efc": {
+   "guy": "assets/audio/narration/guy/d3898efc.mp3",
+   "ryan": "assets/audio/narration/ryan/d3898efc.mp3",
+   "ava": "assets/audio/narration/ava/d3898efc.mp3",
+   "andrew": "assets/audio/narration/andrew/d3898efc.mp3"
+  },
+  "c9434aea": {
+   "guy": "assets/audio/narration/guy/c9434aea.mp3",
+   "ava": "assets/audio/narration/ava/c9434aea.mp3",
+   "ryan": "assets/audio/narration/ryan/c9434aea.mp3",
+   "andrew": "assets/audio/narration/andrew/c9434aea.mp3"
+  },
+  "d4bcb35a": {
+   "guy": "assets/audio/narration/guy/d4bcb35a.mp3",
+   "ava": "assets/audio/narration/ava/d4bcb35a.mp3",
+   "ryan": "assets/audio/narration/ryan/d4bcb35a.mp3",
+   "andrew": "assets/audio/narration/andrew/d4bcb35a.mp3"
+  },
+  "19cd8ae5": {
+   "guy": "assets/audio/narration/guy/19cd8ae5.mp3",
+   "ava": "assets/audio/narration/ava/19cd8ae5.mp3",
+   "ryan": "assets/audio/narration/ryan/19cd8ae5.mp3",
+   "andrew": "assets/audio/narration/andrew/19cd8ae5.mp3"
+  },
+  "468fbd6d": {
+   "guy": "assets/audio/narration/guy/468fbd6d.mp3",
+   "ava": "assets/audio/narration/ava/468fbd6d.mp3",
+   "ryan": "assets/audio/narration/ryan/468fbd6d.mp3",
+   "andrew": "assets/audio/narration/andrew/468fbd6d.mp3"
+  },
+  "c4cd9976": {
+   "guy": "assets/audio/narration/guy/c4cd9976.mp3",
+   "ava": "assets/audio/narration/ava/c4cd9976.mp3",
+   "ryan": "assets/audio/narration/ryan/c4cd9976.mp3",
+   "andrew": "assets/audio/narration/andrew/c4cd9976.mp3"
+  },
+  "84b83a9b": {
+   "guy": "assets/audio/narration/guy/84b83a9b.mp3",
+   "ava": "assets/audio/narration/ava/84b83a9b.mp3",
+   "ryan": "assets/audio/narration/ryan/84b83a9b.mp3",
+   "andrew": "assets/audio/narration/andrew/84b83a9b.mp3"
+  },
+  "32498cd4": {
+   "guy": "assets/audio/narration/guy/32498cd4.mp3",
+   "ryan": "assets/audio/narration/ryan/32498cd4.mp3",
+   "ava": "assets/audio/narration/ava/32498cd4.mp3",
+   "andrew": "assets/audio/narration/andrew/32498cd4.mp3"
+  },
+  "c2a90558": {
+   "ryan": "assets/audio/narration/ryan/c2a90558.mp3",
+   "guy": "assets/audio/narration/guy/c2a90558.mp3",
+   "ava": "assets/audio/narration/ava/c2a90558.mp3",
+   "andrew": "assets/audio/narration/andrew/c2a90558.mp3"
+  },
+  "a707cb8f": {
+   "guy": "assets/audio/narration/guy/a707cb8f.mp3",
+   "ava": "assets/audio/narration/ava/a707cb8f.mp3",
+   "ryan": "assets/audio/narration/ryan/a707cb8f.mp3",
+   "andrew": "assets/audio/narration/andrew/a707cb8f.mp3"
+  },
+  "b36b57c2": {
+   "guy": "assets/audio/narration/guy/b36b57c2.mp3",
+   "ryan": "assets/audio/narration/ryan/b36b57c2.mp3",
+   "ava": "assets/audio/narration/ava/b36b57c2.mp3",
+   "andrew": "assets/audio/narration/andrew/b36b57c2.mp3"
+  },
+  "464e64ce": {
+   "ava": "assets/audio/narration/ava/464e64ce.mp3",
+   "guy": "assets/audio/narration/guy/464e64ce.mp3",
+   "ryan": "assets/audio/narration/ryan/464e64ce.mp3",
+   "andrew": "assets/audio/narration/andrew/464e64ce.mp3"
+  },
+  "36c5c0c3": {
+   "andrew": "assets/audio/narration/andrew/36c5c0c3.mp3",
+   "guy": "assets/audio/narration/guy/36c5c0c3.mp3",
+   "ava": "assets/audio/narration/ava/36c5c0c3.mp3",
+   "ryan": "assets/audio/narration/ryan/36c5c0c3.mp3"
+  },
+  "66fd416d": {
+   "guy": "assets/audio/narration/guy/66fd416d.mp3",
+   "ryan": "assets/audio/narration/ryan/66fd416d.mp3",
+   "ava": "assets/audio/narration/ava/66fd416d.mp3",
+   "andrew": "assets/audio/narration/andrew/66fd416d.mp3"
+  },
+  "57831a0f": {
+   "andrew": "assets/audio/narration/andrew/57831a0f.mp3",
+   "ryan": "assets/audio/narration/ryan/57831a0f.mp3",
+   "ava": "assets/audio/narration/ava/57831a0f.mp3",
+   "guy": "assets/audio/narration/guy/57831a0f.mp3"
+  },
+  "b0a66a68": {
+   "guy": "assets/audio/narration/guy/b0a66a68.mp3",
+   "ava": "assets/audio/narration/ava/b0a66a68.mp3",
+   "ryan": "assets/audio/narration/ryan/b0a66a68.mp3",
+   "andrew": "assets/audio/narration/andrew/b0a66a68.mp3"
+  },
+  "ff4b6a56": {
+   "guy": "assets/audio/narration/guy/ff4b6a56.mp3",
+   "ryan": "assets/audio/narration/ryan/ff4b6a56.mp3",
+   "ava": "assets/audio/narration/ava/ff4b6a56.mp3",
+   "andrew": "assets/audio/narration/andrew/ff4b6a56.mp3"
+  },
+  "d04aaf4b": {
+   "ava": "assets/audio/narration/ava/d04aaf4b.mp3",
+   "ryan": "assets/audio/narration/ryan/d04aaf4b.mp3",
+   "guy": "assets/audio/narration/guy/d04aaf4b.mp3",
+   "andrew": "assets/audio/narration/andrew/d04aaf4b.mp3"
+  },
+  "d23945fd": {
+   "guy": "assets/audio/narration/guy/d23945fd.mp3",
+   "ava": "assets/audio/narration/ava/d23945fd.mp3",
+   "ryan": "assets/audio/narration/ryan/d23945fd.mp3",
+   "andrew": "assets/audio/narration/andrew/d23945fd.mp3"
+  },
+  "7d870403": {
+   "ava": "assets/audio/narration/ava/7d870403.mp3",
+   "guy": "assets/audio/narration/guy/7d870403.mp3",
+   "ryan": "assets/audio/narration/ryan/7d870403.mp3",
+   "andrew": "assets/audio/narration/andrew/7d870403.mp3"
+  },
+  "9014d4c4": {
+   "guy": "assets/audio/narration/guy/9014d4c4.mp3",
+   "ava": "assets/audio/narration/ava/9014d4c4.mp3",
+   "ryan": "assets/audio/narration/ryan/9014d4c4.mp3",
+   "andrew": "assets/audio/narration/andrew/9014d4c4.mp3"
+  },
+  "7dbf1c09": {
+   "guy": "assets/audio/narration/guy/7dbf1c09.mp3",
+   "ava": "assets/audio/narration/ava/7dbf1c09.mp3",
+   "ryan": "assets/audio/narration/ryan/7dbf1c09.mp3",
+   "andrew": "assets/audio/narration/andrew/7dbf1c09.mp3"
+  },
+  "370178e5": {
+   "guy": "assets/audio/narration/guy/370178e5.mp3",
+   "ryan": "assets/audio/narration/ryan/370178e5.mp3",
+   "ava": "assets/audio/narration/ava/370178e5.mp3",
+   "andrew": "assets/audio/narration/andrew/370178e5.mp3"
+  },
+  "e2b02e3b": {
+   "guy": "assets/audio/narration/guy/e2b02e3b.mp3",
+   "ryan": "assets/audio/narration/ryan/e2b02e3b.mp3",
+   "ava": "assets/audio/narration/ava/e2b02e3b.mp3",
+   "andrew": "assets/audio/narration/andrew/e2b02e3b.mp3"
+  },
+  "5f83b84f": {
+   "guy": "assets/audio/narration/guy/5f83b84f.mp3",
+   "ryan": "assets/audio/narration/ryan/5f83b84f.mp3",
+   "ava": "assets/audio/narration/ava/5f83b84f.mp3",
+   "andrew": "assets/audio/narration/andrew/5f83b84f.mp3"
+  },
+  "9e664e9b": {
+   "guy": "assets/audio/narration/guy/9e664e9b.mp3",
+   "ava": "assets/audio/narration/ava/9e664e9b.mp3",
+   "ryan": "assets/audio/narration/ryan/9e664e9b.mp3",
+   "andrew": "assets/audio/narration/andrew/9e664e9b.mp3"
+  },
+  "fe15b846": {
+   "ryan": "assets/audio/narration/ryan/fe15b846.mp3",
+   "guy": "assets/audio/narration/guy/fe15b846.mp3",
+   "ava": "assets/audio/narration/ava/fe15b846.mp3",
+   "andrew": "assets/audio/narration/andrew/fe15b846.mp3"
+  },
+  "e908757e": {
+   "guy": "assets/audio/narration/guy/e908757e.mp3",
+   "ryan": "assets/audio/narration/ryan/e908757e.mp3",
+   "ava": "assets/audio/narration/ava/e908757e.mp3",
+   "andrew": "assets/audio/narration/andrew/e908757e.mp3"
+  },
+  "060749ab": {
+   "guy": "assets/audio/narration/guy/060749ab.mp3",
+   "ava": "assets/audio/narration/ava/060749ab.mp3",
+   "ryan": "assets/audio/narration/ryan/060749ab.mp3",
+   "andrew": "assets/audio/narration/andrew/060749ab.mp3"
+  },
+  "f0e0978a": {
+   "ryan": "assets/audio/narration/ryan/f0e0978a.mp3",
+   "ava": "assets/audio/narration/ava/f0e0978a.mp3",
+   "guy": "assets/audio/narration/guy/f0e0978a.mp3",
+   "andrew": "assets/audio/narration/andrew/f0e0978a.mp3"
+  },
+  "832becaa": {
+   "ava": "assets/audio/narration/ava/832becaa.mp3",
+   "guy": "assets/audio/narration/guy/832becaa.mp3",
+   "andrew": "assets/audio/narration/andrew/832becaa.mp3",
+   "ryan": "assets/audio/narration/ryan/832becaa.mp3"
+  },
+  "ab76eef8": {
+   "guy": "assets/audio/narration/guy/ab76eef8.mp3",
+   "ryan": "assets/audio/narration/ryan/ab76eef8.mp3",
+   "ava": "assets/audio/narration/ava/ab76eef8.mp3",
+   "andrew": "assets/audio/narration/andrew/ab76eef8.mp3"
+  },
+  "044d1ea6": {
+   "ryan": "assets/audio/narration/ryan/044d1ea6.mp3",
+   "andrew": "assets/audio/narration/andrew/044d1ea6.mp3",
+   "ava": "assets/audio/narration/ava/044d1ea6.mp3",
+   "guy": "assets/audio/narration/guy/044d1ea6.mp3"
+  },
+  "6be29be6": {
+   "ava": "assets/audio/narration/ava/6be29be6.mp3",
+   "guy": "assets/audio/narration/guy/6be29be6.mp3",
+   "ryan": "assets/audio/narration/ryan/6be29be6.mp3",
+   "andrew": "assets/audio/narration/andrew/6be29be6.mp3"
+  },
+  "d7c306db": {
+   "guy": "assets/audio/narration/guy/d7c306db.mp3",
+   "ryan": "assets/audio/narration/ryan/d7c306db.mp3",
+   "ava": "assets/audio/narration/ava/d7c306db.mp3",
+   "andrew": "assets/audio/narration/andrew/d7c306db.mp3"
+  },
+  "46ea292c": {
+   "ryan": "assets/audio/narration/ryan/46ea292c.mp3",
+   "guy": "assets/audio/narration/guy/46ea292c.mp3",
+   "ava": "assets/audio/narration/ava/46ea292c.mp3",
+   "andrew": "assets/audio/narration/andrew/46ea292c.mp3"
+  },
+  "4762efab": {
+   "ryan": "assets/audio/narration/ryan/4762efab.mp3",
+   "guy": "assets/audio/narration/guy/4762efab.mp3",
+   "ava": "assets/audio/narration/ava/4762efab.mp3",
+   "andrew": "assets/audio/narration/andrew/4762efab.mp3"
+  },
+  "389e8dcb": {
+   "ava": "assets/audio/narration/ava/389e8dcb.mp3",
+   "guy": "assets/audio/narration/guy/389e8dcb.mp3",
+   "ryan": "assets/audio/narration/ryan/389e8dcb.mp3",
+   "andrew": "assets/audio/narration/andrew/389e8dcb.mp3"
+  },
+  "4452019b": {
+   "ava": "assets/audio/narration/ava/4452019b.mp3",
+   "andrew": "assets/audio/narration/andrew/4452019b.mp3",
+   "ryan": "assets/audio/narration/ryan/4452019b.mp3",
+   "guy": "assets/audio/narration/guy/4452019b.mp3"
+  },
+  "207048e6": {
+   "guy": "assets/audio/narration/guy/207048e6.mp3",
+   "ava": "assets/audio/narration/ava/207048e6.mp3",
+   "ryan": "assets/audio/narration/ryan/207048e6.mp3",
+   "andrew": "assets/audio/narration/andrew/207048e6.mp3"
+  },
+  "d12265a4": {
+   "guy": "assets/audio/narration/guy/d12265a4.mp3",
+   "ryan": "assets/audio/narration/ryan/d12265a4.mp3",
+   "ava": "assets/audio/narration/ava/d12265a4.mp3",
+   "andrew": "assets/audio/narration/andrew/d12265a4.mp3"
+  },
+  "204f94c1": {
+   "guy": "assets/audio/narration/guy/204f94c1.mp3",
+   "ryan": "assets/audio/narration/ryan/204f94c1.mp3",
+   "ava": "assets/audio/narration/ava/204f94c1.mp3",
+   "andrew": "assets/audio/narration/andrew/204f94c1.mp3"
+  },
+  "ed60e91a": {
+   "ava": "assets/audio/narration/ava/ed60e91a.mp3",
+   "ryan": "assets/audio/narration/ryan/ed60e91a.mp3",
+   "guy": "assets/audio/narration/guy/ed60e91a.mp3",
+   "andrew": "assets/audio/narration/andrew/ed60e91a.mp3"
+  },
+  "a78018d7": {
+   "guy": "assets/audio/narration/guy/a78018d7.mp3",
+   "ava": "assets/audio/narration/ava/a78018d7.mp3",
+   "ryan": "assets/audio/narration/ryan/a78018d7.mp3",
+   "andrew": "assets/audio/narration/andrew/a78018d7.mp3"
+  },
+  "7285c0c2": {
+   "ava": "assets/audio/narration/ava/7285c0c2.mp3",
+   "guy": "assets/audio/narration/guy/7285c0c2.mp3",
+   "ryan": "assets/audio/narration/ryan/7285c0c2.mp3",
+   "andrew": "assets/audio/narration/andrew/7285c0c2.mp3"
+  },
+  "4a2a05ff": {
+   "ryan": "assets/audio/narration/ryan/4a2a05ff.mp3",
+   "ava": "assets/audio/narration/ava/4a2a05ff.mp3",
+   "guy": "assets/audio/narration/guy/4a2a05ff.mp3",
+   "andrew": "assets/audio/narration/andrew/4a2a05ff.mp3"
+  },
+  "fa38a170": {
+   "ava": "assets/audio/narration/ava/fa38a170.mp3",
+   "guy": "assets/audio/narration/guy/fa38a170.mp3",
+   "ryan": "assets/audio/narration/ryan/fa38a170.mp3",
+   "andrew": "assets/audio/narration/andrew/fa38a170.mp3"
+  },
+  "801c924c": {
+   "guy": "assets/audio/narration/guy/801c924c.mp3",
+   "ava": "assets/audio/narration/ava/801c924c.mp3",
+   "ryan": "assets/audio/narration/ryan/801c924c.mp3",
+   "andrew": "assets/audio/narration/andrew/801c924c.mp3"
+  },
+  "cbd4d61b": {
+   "guy": "assets/audio/narration/guy/cbd4d61b.mp3",
+   "ryan": "assets/audio/narration/ryan/cbd4d61b.mp3",
+   "ava": "assets/audio/narration/ava/cbd4d61b.mp3",
+   "andrew": "assets/audio/narration/andrew/cbd4d61b.mp3"
+  },
+  "c19fbde3": {
+   "ava": "assets/audio/narration/ava/c19fbde3.mp3",
+   "guy": "assets/audio/narration/guy/c19fbde3.mp3",
+   "ryan": "assets/audio/narration/ryan/c19fbde3.mp3",
+   "andrew": "assets/audio/narration/andrew/c19fbde3.mp3"
+  },
+  "0ea23ec2": {
+   "guy": "assets/audio/narration/guy/0ea23ec2.mp3",
+   "ryan": "assets/audio/narration/ryan/0ea23ec2.mp3",
+   "ava": "assets/audio/narration/ava/0ea23ec2.mp3",
+   "andrew": "assets/audio/narration/andrew/0ea23ec2.mp3"
+  },
+  "c39e1423": {
+   "guy": "assets/audio/narration/guy/c39e1423.mp3",
+   "ryan": "assets/audio/narration/ryan/c39e1423.mp3",
+   "ava": "assets/audio/narration/ava/c39e1423.mp3",
+   "andrew": "assets/audio/narration/andrew/c39e1423.mp3"
+  },
+  "2a25f543": {
+   "ava": "assets/audio/narration/ava/2a25f543.mp3",
+   "ryan": "assets/audio/narration/ryan/2a25f543.mp3",
+   "guy": "assets/audio/narration/guy/2a25f543.mp3",
+   "andrew": "assets/audio/narration/andrew/2a25f543.mp3"
+  },
+  "ffb1368d": {
+   "guy": "assets/audio/narration/guy/ffb1368d.mp3",
+   "ava": "assets/audio/narration/ava/ffb1368d.mp3",
+   "ryan": "assets/audio/narration/ryan/ffb1368d.mp3",
+   "andrew": "assets/audio/narration/andrew/ffb1368d.mp3"
+  },
+  "0c73607f": {
+   "guy": "assets/audio/narration/guy/0c73607f.mp3",
+   "ava": "assets/audio/narration/ava/0c73607f.mp3",
+   "ryan": "assets/audio/narration/ryan/0c73607f.mp3",
+   "andrew": "assets/audio/narration/andrew/0c73607f.mp3"
+  },
+  "bb684139": {
+   "ava": "assets/audio/narration/ava/bb684139.mp3",
+   "ryan": "assets/audio/narration/ryan/bb684139.mp3",
+   "guy": "assets/audio/narration/guy/bb684139.mp3",
+   "andrew": "assets/audio/narration/andrew/bb684139.mp3"
+  },
+  "83f2a7ba": {
+   "guy": "assets/audio/narration/guy/83f2a7ba.mp3",
+   "ryan": "assets/audio/narration/ryan/83f2a7ba.mp3",
+   "ava": "assets/audio/narration/ava/83f2a7ba.mp3",
+   "andrew": "assets/audio/narration/andrew/83f2a7ba.mp3"
+  },
+  "9fd4d7eb": {
+   "ryan": "assets/audio/narration/ryan/9fd4d7eb.mp3",
+   "guy": "assets/audio/narration/guy/9fd4d7eb.mp3",
+   "ava": "assets/audio/narration/ava/9fd4d7eb.mp3",
+   "andrew": "assets/audio/narration/andrew/9fd4d7eb.mp3"
+  },
+  "8f1fc2d4": {
+   "ava": "assets/audio/narration/ava/8f1fc2d4.mp3",
+   "guy": "assets/audio/narration/guy/8f1fc2d4.mp3",
+   "ryan": "assets/audio/narration/ryan/8f1fc2d4.mp3",
+   "andrew": "assets/audio/narration/andrew/8f1fc2d4.mp3"
+  },
+  "ae71227b": {
+   "guy": "assets/audio/narration/guy/ae71227b.mp3",
+   "ava": "assets/audio/narration/ava/ae71227b.mp3",
+   "ryan": "assets/audio/narration/ryan/ae71227b.mp3",
+   "andrew": "assets/audio/narration/andrew/ae71227b.mp3"
+  },
+  "640bce8c": {
+   "guy": "assets/audio/narration/guy/640bce8c.mp3",
+   "ryan": "assets/audio/narration/ryan/640bce8c.mp3",
+   "ava": "assets/audio/narration/ava/640bce8c.mp3",
+   "andrew": "assets/audio/narration/andrew/640bce8c.mp3"
+  },
+  "32bde78d": {
+   "ava": "assets/audio/narration/ava/32bde78d.mp3",
+   "guy": "assets/audio/narration/guy/32bde78d.mp3",
+   "ryan": "assets/audio/narration/ryan/32bde78d.mp3",
+   "andrew": "assets/audio/narration/andrew/32bde78d.mp3"
+  },
+  "b153bdd7": {
+   "ryan": "assets/audio/narration/ryan/b153bdd7.mp3",
+   "guy": "assets/audio/narration/guy/b153bdd7.mp3",
+   "ava": "assets/audio/narration/ava/b153bdd7.mp3",
+   "andrew": "assets/audio/narration/andrew/b153bdd7.mp3"
+  },
+  "b4a19de1": {
+   "guy": "assets/audio/narration/guy/b4a19de1.mp3",
+   "ryan": "assets/audio/narration/ryan/b4a19de1.mp3",
+   "andrew": "assets/audio/narration/andrew/b4a19de1.mp3",
+   "ava": "assets/audio/narration/ava/b4a19de1.mp3"
+  },
+  "2383dd2e": {
+   "guy": "assets/audio/narration/guy/2383dd2e.mp3",
+   "ava": "assets/audio/narration/ava/2383dd2e.mp3",
+   "ryan": "assets/audio/narration/ryan/2383dd2e.mp3",
+   "andrew": "assets/audio/narration/andrew/2383dd2e.mp3"
+  },
+  "eaa29f25": {
+   "guy": "assets/audio/narration/guy/eaa29f25.mp3",
+   "ava": "assets/audio/narration/ava/eaa29f25.mp3",
+   "ryan": "assets/audio/narration/ryan/eaa29f25.mp3",
+   "andrew": "assets/audio/narration/andrew/eaa29f25.mp3"
+  },
+  "9c233f98": {
+   "guy": "assets/audio/narration/guy/9c233f98.mp3",
+   "ava": "assets/audio/narration/ava/9c233f98.mp3",
+   "ryan": "assets/audio/narration/ryan/9c233f98.mp3",
+   "andrew": "assets/audio/narration/andrew/9c233f98.mp3"
+  },
+  "2134be07": {
+   "ava": "assets/audio/narration/ava/2134be07.mp3",
+   "guy": "assets/audio/narration/guy/2134be07.mp3",
+   "ryan": "assets/audio/narration/ryan/2134be07.mp3",
+   "andrew": "assets/audio/narration/andrew/2134be07.mp3"
+  },
+  "95254953": {
+   "guy": "assets/audio/narration/guy/95254953.mp3",
+   "ava": "assets/audio/narration/ava/95254953.mp3",
+   "ryan": "assets/audio/narration/ryan/95254953.mp3",
+   "andrew": "assets/audio/narration/andrew/95254953.mp3"
+  },
+  "65e5608a": {
+   "guy": "assets/audio/narration/guy/65e5608a.mp3",
+   "ava": "assets/audio/narration/ava/65e5608a.mp3",
+   "ryan": "assets/audio/narration/ryan/65e5608a.mp3",
+   "andrew": "assets/audio/narration/andrew/65e5608a.mp3"
+  },
+  "c167fd1c": {
+   "guy": "assets/audio/narration/guy/c167fd1c.mp3",
+   "ava": "assets/audio/narration/ava/c167fd1c.mp3",
+   "ryan": "assets/audio/narration/ryan/c167fd1c.mp3",
+   "andrew": "assets/audio/narration/andrew/c167fd1c.mp3"
+  },
+  "2471abc6": {
+   "guy": "assets/audio/narration/guy/2471abc6.mp3",
+   "ava": "assets/audio/narration/ava/2471abc6.mp3",
+   "ryan": "assets/audio/narration/ryan/2471abc6.mp3",
+   "andrew": "assets/audio/narration/andrew/2471abc6.mp3"
+  },
+  "06df9627": {
+   "ryan": "assets/audio/narration/ryan/06df9627.mp3",
+   "guy": "assets/audio/narration/guy/06df9627.mp3",
+   "ava": "assets/audio/narration/ava/06df9627.mp3",
+   "andrew": "assets/audio/narration/andrew/06df9627.mp3"
+  },
+  "05d79bc4": {
+   "guy": "assets/audio/narration/guy/05d79bc4.mp3",
+   "ava": "assets/audio/narration/ava/05d79bc4.mp3",
+   "ryan": "assets/audio/narration/ryan/05d79bc4.mp3",
+   "andrew": "assets/audio/narration/andrew/05d79bc4.mp3"
+  },
+  "c10e0745": {
+   "guy": "assets/audio/narration/guy/c10e0745.mp3",
+   "ava": "assets/audio/narration/ava/c10e0745.mp3",
+   "ryan": "assets/audio/narration/ryan/c10e0745.mp3",
+   "andrew": "assets/audio/narration/andrew/c10e0745.mp3"
+  },
+  "1adc5e87": {
+   "guy": "assets/audio/narration/guy/1adc5e87.mp3",
+   "ryan": "assets/audio/narration/ryan/1adc5e87.mp3",
+   "ava": "assets/audio/narration/ava/1adc5e87.mp3",
+   "andrew": "assets/audio/narration/andrew/1adc5e87.mp3"
+  },
+  "3d0e9d6c": {
+   "ava": "assets/audio/narration/ava/3d0e9d6c.mp3",
+   "guy": "assets/audio/narration/guy/3d0e9d6c.mp3",
+   "ryan": "assets/audio/narration/ryan/3d0e9d6c.mp3",
+   "andrew": "assets/audio/narration/andrew/3d0e9d6c.mp3"
+  },
+  "51e4b042": {
+   "guy": "assets/audio/narration/guy/51e4b042.mp3",
+   "ava": "assets/audio/narration/ava/51e4b042.mp3",
+   "ryan": "assets/audio/narration/ryan/51e4b042.mp3",
+   "andrew": "assets/audio/narration/andrew/51e4b042.mp3"
+  },
+  "99d70127": {
+   "guy": "assets/audio/narration/guy/99d70127.mp3",
+   "ava": "assets/audio/narration/ava/99d70127.mp3",
+   "ryan": "assets/audio/narration/ryan/99d70127.mp3",
+   "andrew": "assets/audio/narration/andrew/99d70127.mp3"
+  },
+  "dcc74112": {
+   "guy": "assets/audio/narration/guy/dcc74112.mp3",
+   "ava": "assets/audio/narration/ava/dcc74112.mp3",
+   "ryan": "assets/audio/narration/ryan/dcc74112.mp3",
+   "andrew": "assets/audio/narration/andrew/dcc74112.mp3"
+  },
+  "54041446": {
+   "guy": "assets/audio/narration/guy/54041446.mp3",
+   "ryan": "assets/audio/narration/ryan/54041446.mp3",
+   "ava": "assets/audio/narration/ava/54041446.mp3",
+   "andrew": "assets/audio/narration/andrew/54041446.mp3"
+  },
+  "031db524": {
+   "guy": "assets/audio/narration/guy/031db524.mp3",
+   "ava": "assets/audio/narration/ava/031db524.mp3",
+   "ryan": "assets/audio/narration/ryan/031db524.mp3",
+   "andrew": "assets/audio/narration/andrew/031db524.mp3"
+  },
+  "22997e42": {
+   "guy": "assets/audio/narration/guy/22997e42.mp3",
+   "ava": "assets/audio/narration/ava/22997e42.mp3",
+   "ryan": "assets/audio/narration/ryan/22997e42.mp3",
+   "andrew": "assets/audio/narration/andrew/22997e42.mp3"
+  },
+  "ef6be93c": {
+   "ryan": "assets/audio/narration/ryan/ef6be93c.mp3",
+   "guy": "assets/audio/narration/guy/ef6be93c.mp3",
+   "ava": "assets/audio/narration/ava/ef6be93c.mp3",
+   "andrew": "assets/audio/narration/andrew/ef6be93c.mp3"
+  },
+  "11abfb93": {
+   "ryan": "assets/audio/narration/ryan/11abfb93.mp3",
+   "ava": "assets/audio/narration/ava/11abfb93.mp3",
+   "guy": "assets/audio/narration/guy/11abfb93.mp3",
+   "andrew": "assets/audio/narration/andrew/11abfb93.mp3"
+  }
+ }
+}

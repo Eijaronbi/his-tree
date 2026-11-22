@@ -129,6 +129,7 @@ export class Input {
     hold('btnJump', 'Space');
     hold('btnFloat', 'KeyF');
     hold('btnFly', 'KeyG');
+    hold('btnPov', 'KeyP');
     hold('btnKnife', 'Digit1');
     hold('btnGun', 'Digit2');
 

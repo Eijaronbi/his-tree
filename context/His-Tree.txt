@@ -1,0 +1,767 @@
+HIS-TREE
+
+Experience History. Rewrite Destiny.
+
+You are an autonomous senior game developer, 3D game designer, historical researcher, technical artist, and gameplay engineer.
+
+Your task is to build HIS-TREE, a 3D browser-based historical time-travel adventure game, using the existing development environment and technical resources described in the supplied project context.
+
+Do not build a simple history quiz, a collection of text pages, or a static educational experience. Build an immersive, playable 3D game in which players travel through historical periods, explore reconstructed environments, interact with people, complete missions, make decisions, and experience the consequences of their actions.
+
+The defining idea is:
+
+What actually happened? And what if history had happened differently?
+
+The game must have two distinct gameplay modes.
+
+---
+
+1. GAME TITLE, PITCH AND GENRE
+
+Title: HIS-TREE
+First Episode: THE GOLDEN EMPIRE
+Tagline: Experience History. Rewrite Destiny.
+
+Genre:
+
+- 3D historical adventure.
+- Time-travel exploration.
+- Mission-based gameplay.
+- Historical simulation.
+- Alternate-history strategy.
+- Educational entertainment.
+
+Core pitch:
+
+His-Tree is a time-travel adventure that allows players to enter important moments in human history, explore the people and places involved, complete historically grounded missions, and discover how decisions shaped the world.
+
+Players can experience events as they happened or activate Rewrite History Mode to attempt to change their outcomes.
+
+The game should make history feel like something players can experience rather than simply read about.
+
+2. PLAYER FANTASY
+
+The player is a time traveller with access to different historical periods.
+
+They can:
+
+- Travel between historical eras.
+- Explore historically inspired 3D environments.
+- Meet historical figures.
+- Interact with fictional characters based on people and occupations from the period.
+- Discover historical objects and locations.
+- Complete missions and challenges.
+- Investigate historical events.
+- Make decisions that influence events.
+- Experience alternative outcomes.
+- Compare actual history with the history they created.
+
+The player should feel like an active participant in history.
+
+Two gameplay modes
+
+Every episode should support two modes, subject to the practical scope of the episode.
+
+A. HISTORICAL MODE
+
+The player experiences documented history.
+
+Events, timelines, locations, and outcomes should be based on credible historical research.
+
+The player may investigate, explore, assist people, solve problems, and complete missions within the historical setting.
+
+However, the game must not falsely present changed historical outcomes as real events.
+
+B. REWRITE HISTORY MODE
+
+This is the larger-than-life mode.
+
+The player is allowed to attempt to change history.
+
+They can prevent events, alter decisions, influence important people, change military strategies, protect individuals, redirect resources, and create alternative outcomes.
+
+The player should experience the consequences of changing history.
+
+For example:
+
+- Preventing an assassination could change the political future of a country.
+- Changing a military strategy could produce a different battlefield outcome.
+- Preventing a major disaster could create new challenges and consequences.
+- Changing a ruler's economic decisions could alter the development of an empire.
+
+This mode must be clearly labelled ALTERNATE HISTORY. Its events and outcomes are fictional possibilities, not claims about what actually happened.
+
+The player should be able to switch between the two modes from the episode selection or time-travel hub.
+
+3. CORE GAMEPLAY LOOP
+
+The main gameplay loop is:
+
+1. Enter the time-travel hub.
+2. Select a historical period or episode.
+3. Choose Historical Mode or Rewrite History Mode.
+4. Arrive in the historical environment.
+5. Explore the world.
+6. Meet characters and gather information.
+7. Receive missions and objectives.
+8. Interact with the environment and complete challenges.
+9. Make decisions where applicable.
+10. Witness the consequences.
+11. Unlock historical discoveries and journal entries.
+12. Complete the episode.
+13. Return to the time-travel hub and choose another experience.
+
+The game should reward exploration, curiosity, problem-solving, and replayability.
+
+4. MOMENT-TO-MOMENT GAMEPLAY
+
+The player should be able to:
+
+- Walk, run, jump, and explore.
+- Interact with NPCs.
+- Start conversations.
+- Pick up and inspect selected objects.
+- Activate mechanisms.
+- Collect clues and historical artefacts.
+- Complete puzzles.
+- Follow mission objectives.
+- Make dialogue and strategy decisions.
+- Unlock new areas.
+- Receive mission updates.
+- View historical discoveries in a journal.
+
+Rewrite History Mode should introduce additional mechanics where appropriate:
+
+- Timed interventions.
+- Decision points.
+- Protection and rescue objectives.
+- Strategy planning.
+- Resource allocation.
+- Branching missions.
+- Consequence tracking.
+- Alternative endings.
+
+Do not make every episode a combat game. Each historical period should have mechanics that suit its setting.
+
+5. CAMERA AND CONTROLS
+
+Use a third-person 3D camera for the first release.
+
+The camera should follow the player smoothly and allow mouse-controlled rotation.
+
+Desktop controls:
+
+- W: Move forward.
+- A: Move left.
+- S: Move backward.
+- D: Move right.
+- Mouse: Rotate camera.
+- E: Interact.
+- Space: Jump.
+- Shift: Run.
+- ESC: Pause.
+
+Provide a visible controls guide at the beginning of the game.
+
+Keep controls responsive and intuitive.
+
+6. PLAYER CHARACTER
+
+Create a recognisable time-traveller character.
+
+The character should be visually distinct from historical NPCs.
+
+Use an existing rigged character from the available asset library as the base.
+
+Preferred starting character:
+
+- Kenney mini-character female-c.
+- Alternative: Kenney mini-character male-a.
+
+Choose the character that best fits the final visual style.
+
+Remodel or customise the character using Blender where necessary.
+
+Required animations:
+
+- Idle.
+- Walk.
+- Run.
+- Jump.
+- Interaction.
+- Hit reaction if needed.
+- Death or failure animation only where appropriate.
+
+Do not spend excessive time building an elaborate character system before the first playable episode works.
+
+7. NPCS, HISTORICAL FIGURES AND ENEMIES
+
+NPCs should have:
+
+- Names.
+- Roles.
+- Dialogue.
+- Basic movement or idle animations.
+- Interaction prompts.
+- Mission-related behaviour where required.
+
+Historical figures should be recognisable through historically informed visual design.
+
+For the first episode, include:
+
+Mansa Musa: Historically informed representation of the Mali emperor.
+
+Merchant: Fictional composite character who introduces the player to trade and daily commercial life.
+
+Caravan guide: Fictional character who explains the caravan journey and its challenges.
+
+Scholar: Fictional character who introduces the importance of scholarship, knowledge, and learning in the historical setting.
+
+Clearly distinguish actual historical figures from fictional characters.
+
+Do not invent dialogue and then present it as a verified historical quotation.
+
+8. WORLD DESIGN
+
+First episode: THE GOLDEN EMPIRE
+
+The first playable environment should be a compact, stylised reconstruction inspired by the Mali Empire during Mansa Musa's reign.
+
+Build a connected environment approximately 120m x 100m in game scale.
+
+Include:
+
+1. Marketplace.
+2. Merchant stalls.
+3. Trading area.
+4. Residential architecture.
+5. Caravan preparation area.
+6. Scholarly or learning area.
+7. Royal meeting area.
+8. Desert-facing viewpoint.
+9. Environmental landmarks and paths.
+
+The world should feel alive through:
+
+- NPC activity.
+- Environmental ambience.
+- Market sounds.
+- Moving characters.
+- Interactive objects.
+- Appropriate lighting.
+- Environmental storytelling.
+
+The first release should prioritise a compact, polished world over a large unfinished map.
+
+9. EPISODES, OBJECTIVES AND PROGRESSION
+
+FIRST EPISODE: THE GOLDEN EMPIRE
+
+Historical setting: Mali Empire during the reign of Mansa Musa.
+
+The episode should introduce the player to the empire's trade networks, wealth, culture, scholarship, and historical significance.
+
+Historical Mode missions
+
+Mission 1: Arrival
+
+The player arrives in the historical setting and learns how to move, explore, and interact.
+
+Mission 2: The Marketplace
+
+The player explores the marketplace, meets merchants, and learns about the trading economy.
+
+Introduce historically grounded information about gold, salt, and trans-Saharan trade.
+
+Mission 3: Preparing the Caravan
+
+The player helps prepare a caravan by completing simple resource and organisation challenges.
+
+Mission 4: The Emperor
+
+The player reaches the royal meeting area and encounters a historically informed representation of Mansa Musa.
+
+Mission 5: Historical Discovery
+
+The player completes the episode by discovering important historical information about Mali, Mansa Musa, trade, and scholarship.
+
+Rewrite History missions
+
+The player can explore alternative decisions affecting the empire.
+
+Possible scenarios:
+
+- Influence trade policies.
+- Improve the distribution of resources.
+- Encourage investment in education and scholarship.
+- Change diplomatic decisions.
+- Improve infrastructure and commercial connections.
+
+These are fictional alternative scenarios inspired by the historical setting. Do not claim they actually occurred.
+
+The first episode's Rewrite History content should be relatively small and manageable. It should demonstrate the mechanic without requiring a huge branching world.
+
+FUTURE EPISODES
+
+Design the architecture so that additional historical episodes can be added without rebuilding the entire game.
+
+Potential episodes include:
+
+1. The Assassination of Abraham Lincoln — 1865
+
+Explore the events surrounding the assassination of President Abraham Lincoln.
+
+2. World War I — 1914–1918
+
+Experience selected events, military conditions, historical decisions, and the human consequences of the war.
+
+3. World War II — 1939–1945
+
+Explore selected campaigns, strategic decisions, resistance, and the historical consequences of the war.
+
+4. September 11 — 2001
+
+Explore the historical events and their consequences through a respectful, non-graphic experience focused on investigation, emergency response, and historical understanding.
+
+5. Pompeii — 79 AD
+
+Explore Roman daily life and the eruption of Mount Vesuvius.
+
+6. The Haitian Revolution — 1791–1804
+
+Explore the struggle against slavery and colonial rule and the creation of Haiti.
+
+7. The Berlin Wall — 1989
+
+Experience the events surrounding the opening and fall of the Berlin Wall.
+
+8. The Battle of Adwa — 1896
+
+Explore the Ethiopian victory against Italian invading forces.
+
+9. Ancient Egypt
+
+Explore ancient Egyptian civilisation, architecture, society, and historical mysteries.
+
+10. World War III — Speculative Future
+
+This must be explicitly presented as fictional future history. It is not an actual historical event.
+
+Each episode should have its own environment, characters, objectives, missions, and historical journal.
+
+10. REWRITE HISTORY: EXAMPLE CAMPAIGNS
+
+This system is one of the most important features of His-Tree.
+
+Do not treat Rewrite History as a simple dialogue option that changes a sentence. It should create meaningful alternative missions and consequences.
+
+Example A: SAVE LINCOLN
+
+Historical event: Abraham Lincoln's assassination on 14 April 1865.
+
+Historical Mode:
+The player investigates and experiences the historical circumstances surrounding the assassination, with the documented outcome preserved.
+
+Rewrite History Mode:
+
+Objective: Prevent the assassination.
+
+Possible mission sequence:
+
+1. Arrive in Washington, D.C., in April 1865.
+2. Gather information about the assassination conspiracy.
+3. Discover John Wilkes Booth's plan.
+4. Investigate the locations and movements involved.
+5. Protect Lincoln before the assassination takes place.
+6. Prevent Booth from carrying out the attack.
+7. Complete the intervention mission.
+8. Experience the alternative political consequences of Lincoln surviving.
+
+The player should have to investigate and make decisions rather than simply press a button to save Lincoln.
+
+Possible outcomes:
+
+- Lincoln survives.
+- The attempt is discovered but the player fails to prevent every consequence.
+- The player fails and the historical outcome remains unchanged.
+
+Any political developments after Lincoln's survival must be clearly identified as fictional alternate history.
+
+Example B: ALTERNATE WORLD WAR II MILITARY CAMPAIGN
+
+Create a fictional alternate-history campaign inspired by World War II.
+
+For example, the player takes command of German forces in a fictional scenario against British forces and attempts to achieve a military victory through strategy.
+
+The player should be able to:
+
+- Study the battlefield.
+- Review available resources.
+- Plan troop movements.
+- Choose defensive or offensive strategies.
+- Manage limited supplies.
+- Make tactical decisions.
+- Respond to changing battlefield conditions.
+- Experience the consequences of strategic choices.
+
+This is an alternate-history strategy scenario, not a claim that Germany defeated Britain in actual history.
+
+Important:
+The game must not glorify Nazi ideology, antisemitism, genocide, or war crimes. It must not turn historical atrocities into entertainment rewards. The military scenario should focus on fictional strategic decision-making and clearly distinguish the alternative scenario from documented history.
+
+If the game explores a hypothetical World War III, it must use fictional future factions and explicitly label the scenario as speculative.
+
+Example C: CHANGE THE COURSE OF AN EMPIRE
+
+In the Mali episode, the player can influence trade, diplomacy, education, and infrastructure.
+
+The player should see how different decisions create different fictional developments for the empire.
+
+THE CONSEQUENCE SYSTEM
+
+Build a reusable system that records major player decisions.
+
+For example:
+
+- Historical event: Lincoln was assassinated.
+- Player intervention: Lincoln was protected.
+- New outcome: Lincoln survived.
+- Historical status: Fictional alternate outcome.
+
+In later versions, introduce a Butterfly Effect System.
+
+This system allows one major decision to influence later missions, characters, environments, and events.
+
+Do not attempt to simulate every possible consequence in the first release. Begin with a few meaningful branches.
+
+11. HISTORICAL JOURNAL AND INFORMATION SYSTEM
+
+The player should have an in-game journal.
+
+It should record:
+
+- Historical discoveries.
+- Important people.
+- Locations.
+- Artefacts.
+- Mission achievements.
+- Decisions made.
+- Alternative outcomes.
+
+Every historical entry must distinguish between:
+
+- VERIFIED HISTORY: Supported by credible historical evidence.
+- HISTORICAL INTERPRETATION: A reasonable interpretation of historical evidence.
+- DISPUTED HISTORY: An account or detail where historians disagree.
+- FICTIONAL CHARACTER: A character created for gameplay.
+- FICTIONALISED DIALOGUE: Dialogue written for the game, not a verified quotation.
+- ALTERNATE HISTORY: An outcome created by the player's actions.
+
+Historical Mode must preserve documented historical outcomes.
+
+Rewrite History Mode must identify what the player changed and what is fictional.
+
+Use credible sources for historical research. Prioritise museums, archives, universities, academic publications, and reputable historical institutions.
+
+Do not invent dates, quotations, people, or events and present them as facts.
+
+12. HUD, MENUS AND USER EXPERIENCE
+
+Create a polished, modern 3D game interface.
+
+Required screens:
+
+Main Menu
+
+- His-Tree logo.
+- Start Game.
+- Continue.
+- Episodes.
+- Settings.
+- Credits.
+
+Time-Travel Hub
+
+- Episode selection.
+- Historical period information.
+- Locked and unlocked episodes.
+- Historical Mode selection.
+- Rewrite History Mode selection.
+
+In-Game HUD
+
+- Player health or status where needed.
+- Current mission.
+- Objective instructions.
+- Interaction prompts.
+- Journal access.
+- Pause button.
+
+Dialogue Interface
+
+- Character name.
+- Dialogue text.
+- Response choices where applicable.
+
+Historical Journal
+
+- Discoveries.
+- People.
+- Places.
+- Historical facts.
+- Decisions and consequences.
+
+Pause Menu
+
+- Resume.
+- Restart mission.
+- Settings.
+- Return to hub.
+
+Results Screen
+
+- Mission completion.
+- Discoveries.
+- Decisions.
+- Score or performance where applicable.
+- Unlocks.
+- Replay option.
+
+The game must be understandable within the first 10 seconds.
+
+Show the title, a one-line objective, and controls early.
+
+13. AUDIO AND ATMOSPHERE
+
+Use suitable music and environmental sound.
+
+For the Mali episode, consider:
+
+- Market ambience.
+- Footsteps.
+- Wind.
+- Conversations.
+- Animal sounds where appropriate.
+- Trade and interaction sounds.
+- Background music inspired by the setting.
+
+Use audio assets from the permitted library and preserve required attribution.
+
+Avoid presenting modern stereotypes as authentic historical music or culture.
+
+Include volume controls and a mute option.
+
+14. ASSET WISHLIST AND TECHNICAL PLAN
+
+Asset wishlist
+
+Keep the initial asset list focused, with approximately 15–30 primary assets.
+
+Prioritise:
+
+- Player character.
+- NPC characters.
+- Marketplace structures.
+- Market stalls.
+- Trade goods.
+- Buildings.
+- Trees and vegetation.
+- Environmental props.
+- Paths and terrain.
+- Lighting and sky.
+- Interactive objects.
+- Audio ambience.
+
+Use the available asset library and remodel existing assets in Blender.
+
+Do not use AI-generated images as substitutes for rigged 3D characters or playable 3D environments.
+
+AI image generation is permitted for:
+
+- Game cover.
+- Logo.
+- Small UI icons.
+- Promotional key art.
+
+Technical architecture
+
+Use the existing project environment.
+
+Game engine: Three.js.
+
+Language: JavaScript or TypeScript, following the existing project structure.
+
+3D modelling: Blender 4.3.2.
+
+Asset optimisation: gltf-transform 4.5.1.
+
+Persistence: Browser localStorage.
+
+Deployment: patch.gg.
+
+Create reusable modules where appropriate:
+
+- Game.js
+- SceneManager
+- CameraController
+- PlayerController
+- InteractionSystem
+- MissionManager
+- DialogueSystem
+- InventorySystem
+- HistoricalJournal
+- SaveSystem
+- AudioManager
+- EpisodeManager
+- ModeManager
+- TimelineManager
+- DecisionSystem
+- NPCManager
+- MaliWorld
+- Environment
+
+The final architecture should allow new episodes to be added through reusable systems and episode-specific configuration.
+
+Avoid building a monolithic file.
+
+Platform requirements
+
+- Must run in a browser.
+- Must be a 3D game.
+- Must work as a static browser application.
+- Must be single-player.
+- Must support desktop keyboard and mouse.
+- Must use localStorage for saves and progression.
+- Must not depend on a backend server.
+- Must not expose API keys or secrets.
+- Must not require external CDNs at runtime.
+- Must remain within patch.gg's 500 MB release limit.
+- Target a significantly smaller release where possible.
+- Optimise models, textures, audio, and loading.
+- Test WebGL2 compatibility.
+
+Preserve required asset licence attribution and document modifications.
+
+15. MVP, STRETCH GOALS, RISKS AND FINAL EXECUTION
+
+MVP: FIRST PLAYABLE RELEASE
+
+Build a complete, playable first episode.
+
+The MVP must include:
+
+1. Main menu.
+2. Time-travel hub.
+3. The Golden Empire episode.
+4. Third-person player character.
+5. Compact 3D Mali-inspired environment.
+6. Interactive NPCs.
+7. Dialogue system.
+8. Five Historical Mode missions.
+9. A small but playable Rewrite History experience.
+10. Historical journal.
+11. Mode selection.
+12. Basic decision and consequence tracking.
+13. Pause and results screens.
+14. Audio.
+15. Local save system.
+16. Working keyboard and mouse controls.
+
+The first Rewrite History experience should focus on a manageable set of alternative economic, trade, diplomatic, or educational decisions in the Mali episode.
+
+Do not attempt to build all future episodes before the first episode is complete.
+
+STRETCH GOALS
+
+After the MVP works:
+
+- More episodes.
+- Larger environments.
+- More character animations.
+- More complex branching stories.
+- Butterfly Effect System.
+- More detailed historical simulations.
+- Tactical strategy missions.
+- More interactive objects.
+- Additional languages.
+- Touch controls.
+- Advanced NPC behaviour.
+- More sophisticated time-travel hub.
+- Multiple endings.
+- Episode-specific gameplay mechanics.
+
+RISKS TO MANAGE
+
+Scope creep: Do not attempt to build ten historical episodes at once.
+
+Performance: Optimise for browser performance and the available VM resources.
+
+Historical accuracy: Research before implementing historical claims.
+
+Branching complexity: Start with limited meaningful alternatives.
+
+Player confusion: Clearly distinguish documented history from fictional outcomes.
+
+Asset limitations: Remodel existing assets instead of attempting to create everything from scratch.
+
+Narrative quality: Make missions engaging and playable, not just information delivery.
+
+Sensitivity: Treat real-world tragedies, wars, slavery, genocide, terrorism, and victims with historical seriousness. Do not trivialise suffering or turn atrocities into spectacle.
+
+EXECUTION INSTRUCTIONS
+
+Before building:
+
+1. Inspect the entire existing project repository.
+2. Read the supplied technical environment and constraints.
+3. Inspect available 3D assets and licences.
+4. Identify reusable models and character bases.
+5. Review the current project structure.
+6. Create a practical implementation plan.
+7. Begin development.
+
+Then:
+
+1. Build the game foundation.
+2. Implement the player controller and camera.
+3. Build the first 3D environment.
+4. Add NPCs and interactions.
+5. Implement the mission system.
+6. Implement Historical Mode.
+7. Implement Rewrite History Mode.
+8. Add the journal and historical classifications.
+9. Add the HUD and menus.
+10. Add audio.
+11. Implement saving.
+12. Optimise the release.
+13. Run automated browser play-tests.
+14. Inspect gameplay footage.
+15. Fix bugs and improve the experience.
+16. Prepare the cover image and credits.
+17. Run the required Patch validation and publish only when the build is ready.
+
+Do not stop after generating a plan or creating a visual prototype. Build a functioning game.
+
+If a feature is too ambitious for the MVP, implement a smaller working version and document what remains.
+
+Keep the game playable throughout development.
+
+FINAL DESIGN PRINCIPLE
+
+His-Tree should make players curious about history.
+
+A player should be able to enter an era, walk through its world, meet its people, understand what happened, and participate in meaningful missions.
+
+Then they should be able to return to that same moment and ask:
+
+What if I changed something?
+
+Historical Mode answers:
+
+WHAT ACTUALLY HAPPENED?
+
+Rewrite History Mode answers:
+
+WHAT IF THINGS HAD HAPPENED DIFFERENTLY?
+
+Both experiences are essential to the identity of His-Tree.

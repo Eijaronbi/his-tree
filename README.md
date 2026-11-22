@@ -67,6 +67,9 @@ video that establishes the moment, then control as the Timekeeper.
 - **WASD** move · **Shift** run · **Mouse** look (click to capture the pointer)
 - **E** or click — talk, inspect, advance dialogue
 - **J** — field journal (all entries and their provenance tags)
+- **P** — toggle avatar / first-person view. The HUD button (top right) does the
+  same; the game always starts in **avatar** (third-person) mode.
+- **F** — float/hover · **G** — fly (A/D banked turns, W/S climb) · **G** again — land
 - **M** — music on/off · **Esc** — release the pointer
 
 On touch devices an on-screen stick and a **RUN** button appear instead.
@@ -94,7 +97,7 @@ Useful URL parameters:
 The game is a static site. Two supported paths:
 
 **ModelScope Studio** (primary host, `sdk: static`) or **Vercel** — import this repository, or run `npx vercel --prod`. `vercel.json`
-runs `scripts/build-dist.sh` and serves `dist/` (≈87 MB, inside Vercel's 100 MB
+runs `scripts/build-dist.sh` and serves `dist/` (≈79 MiB, inside Vercel's 100 MB
 Hobby static-upload limit) with immutable caching on `assets/`.
 
 ```bash
@@ -110,6 +113,30 @@ shipped.
 
 **Any static host** — copy `dist/` behind nginx/Caddy. No server runtime, no API
 keys, no environment variables.
+
+## Performance and delivery
+
+The shipped build is deliberately small and cache-friendly:
+
+- **Geometry and texture compression.** All 67 runtime GLBs are deduplicated,
+  pruned, resampled, re-encoded (WebP q95) and meshopt-compressed:
+  **195.7 MB → 65.2 MB (−66.7 %)** at 45–54 dB PSNR. Loaders use
+  `EXT_meshopt_compression` via `src/core/GLTF.js` — a plain `GLTFLoader` cannot
+  read these files. Originals live outside the repo; `optimise_assets.sh` rebuilds
+  the compressed set.
+- **Per-chapter payload.** A chapter streams only what it needs, using versioned
+  URLs (`src/core/Assets.js`) and mobile texture variants (`src/core/AssetTiers.js`):
+  Mali 15.7 MiB, Washington 20.5 MiB, France 9.5 MiB, Berlin 8.1 MiB.
+- **Offline cache.** `sw.js` v4 precaches the shell and keeps fetched assets in
+  IndexedDB (~220 MB budget), so a return visit is instant.
+- **Adaptive quality.** `src/core/Quality.js` picks low/medium/high from the GPU
+  and frame time, with render-scale floors of 0.72 / 0.75 / 0.8. The old 0.55 floor
+  is what made the image look soft and "half screen"; first-person is pinned to 1.0.
+  Override with `?q=low|medium|high`.
+- **Memory.** `src/core/Memory.js` tracks textures and disposables per owner and
+  releases a whole chapter world on exit.
+
+`dist/` is ≈79 MiB and boots all four chapters with no failed requests.
 
 ## How to build on it
 

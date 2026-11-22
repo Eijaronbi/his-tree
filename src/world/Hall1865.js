@@ -1,12 +1,15 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { texturePath } from '../core/AssetTiers.js';
+import { assetTextureLoader } from '../core/Assets.js';
+import { makeGltfLoader } from '../core/GLTF.js';
 import { theatreWoodMaterial, theatrePlasterMaterial, theatreVelvetMaterial, carpetMaterial, goldMaterial, clothMaterial, metalMaterial, contactShadowMaterial, tileObjectUVs } from './Materials.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { Crowd, theatreAudienceSeats, theatreStandingCrowd, stageActors } from './Crowd.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import { Audience } from './Audience.js';
 import { Cast, theatreCast } from './Cast.js';
 
 export function buildHall1865(scene) {
+  RectAreaLightUniformsLib.init();
   const group = new THREE.Group();
   scene.add(group);
 
@@ -45,7 +48,7 @@ export function buildHall1865(scene) {
 
 
   // painted stage backdrop: a Lux3D generated 1860s scenic drop
-  const dropTex = new THREE.TextureLoader().load('./assets/textures/scenery/theatre_drop_wide.png');
+  const dropTex = assetTextureLoader().load(texturePath('scenery/theatre_drop_wide.webp'));
   dropTex.colorSpace = THREE.SRGBColorSpace;
   dropTex.anisotropy = 8;
   const drop = new THREE.Mesh(
@@ -159,9 +162,7 @@ export function buildHall1865(scene) {
   const crowdInstances = [];
   const audience = new Audience(group);
   audience.load().then(() => { if (group.userData.audienceReady) group.userData.audienceReady(); });
-  const house = new Crowd(theatreStandingCrowd(D), { name: 'house' });
-  group.add(house.group);
-  crowdInstances.push(audience, house);
+  crowdInstances.push(audience);
 
   // real cast members (Lux3D generated) take the stage and the aisles
   const cast = new Cast(group);
@@ -194,7 +195,7 @@ export function buildHall1865(scene) {
   bustPivot.position.set(W / 2 - 3.0, 5.3, -D / 2 + 8.55);
   bustPivot.rotation.y = 2.35;
   group.add(bustPivot);
-  new GLTFLoader().load('./assets/models/characters/lincoln_bust.glb', (gltf) => {
+  makeGltfLoader().load('./assets/models/characters/lincoln_bust.glb', (gltf) => {
     const bust = gltf.scene;
     const box = new THREE.Box3().setFromObject(bust);
     const size = new THREE.Vector3(); box.getSize(size);
@@ -234,7 +235,7 @@ export function buildHall1865(scene) {
     flame.scale.set(0.7, 1.5, 0.7);
     flame.position.set(x, 4.9, -D / 2 + 0.72);
     group.add(flame);
-    const gl = new THREE.PointLight(0xffb066, 26, 7.0, 2.0);
+    const gl = new THREE.PointLight(0xffc79a, 22, 7.0, 2.0);
     gl.position.set(x, 4.9, -D / 2 + 1.1);
     group.add(gl);
     lights.push(gl);
@@ -286,12 +287,61 @@ export function buildHall1865(scene) {
     lights.push(l);
     return l;
   };
-  addLight(new THREE.Vector3(0, 9.2, 2), 234, 0xffc98a, 22);
-  addLight(new THREE.Vector3(-11, 3.4, -6), 52, 0xffb56a, 13);
-  addLight(new THREE.Vector3(11, 3.4, -6), 52, 0xffb56a, 13);
-  addLight(new THREE.Vector3(W / 2 - 3.4, 6.4, -D / 2 + 8), 91, 0xffc27a, 12);
-  addLight(new THREE.Vector3(0,  6.5, -D / 2 + 6), 182, 0xffcf96, 18);
+  addLight(new THREE.Vector3(0, 9.2, 2), 210, 0xffd2a8, 22);
+  addLight(new THREE.Vector3(-11, 3.4, -6), 46, 0xffc79a, 13);
+  addLight(new THREE.Vector3(11, 3.4, -6), 46, 0xffc79a, 13);
+  addLight(new THREE.Vector3(W / 2 - 3.4, 6.4, -D / 2 + 8), 82, 0xffd0a2, 12);
+  addLight(new THREE.Vector3(0,  6.5, -D / 2 + 6), 168, 0xffd8b0, 18);
   addLight(new THREE.Vector3(0, 4.2, 12), 68, 0x6f95a8, 26);
+
+  // soft area wash for the chandelier (broad falloff instead of a hot point)
+  const chandWash = new THREE.RectAreaLight(0xffd8b4, 7.5, 2.6, 2.6);
+  chandWash.position.set(0, 8.9, 2);
+  chandWash.rotation.x = -Math.PI / 2;
+  group.add(chandWash);
+
+  // footlight strip: soft up-light along the stage lip
+  const footWash = new THREE.RectAreaLight(0xffcf9c, 3.4, W - 12, 0.45);
+  footWash.position.set(0, 1.04, -D / 2 + 6.95);
+  footWash.rotation.x = -Math.PI / 2 + 0.42;
+  group.add(footWash);
+
+  // soft light shafts over the stage (soft-edged additive billboards)
+  const shaftAlpha = (() => {
+    const c = document.createElement('canvas');
+    c.width = 64; c.height = 128;
+    const g = c.getContext('2d');
+    const img = g.createImageData(64, 128);
+    for (let y = 0; y < 128; y += 1) {
+      const vy = 1 - y / 127;
+      const vertical = Math.pow(Math.max(0, vy), 1.5) * 0.92;
+      for (let x = 0; x < 64; x += 1) {
+        const vx = Math.abs(x / 63 - 0.5) * 2;
+        const horizontal = Math.pow(Math.max(0, 1 - vx), 1.8);
+        const a = Math.round(255 * vertical * horizontal);
+        const i = (y * 64 + x) * 4;
+        img.data[i] = a; img.data[i + 1] = a; img.data[i + 2] = a; img.data[i + 3] = 255;
+      }
+    }
+    g.putImageData(img, 0, 0);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  })();
+  const shaftMat = new THREE.MeshBasicMaterial({
+    color: 0xffd9a8, transparent: true, opacity: 0.16, alphaMap: shaftAlpha,
+    blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide,
+    fog: true
+  });
+  for (const sx of [-13, -4.5, 4.5, 13]) {
+    for (const rot of [0, Math.PI / 2]) {
+      const shaft = new THREE.Mesh(new THREE.PlaneGeometry(4.4, 10.4), shaftMat);
+      shaft.position.set(sx, 6.2, -D / 2 + 6.6);
+      shaft.rotation.y = rot;
+      shaft.renderOrder = 3;
+      group.add(shaft);
+    }
+  }
 
   const stageKey = new THREE.SpotLight(0xffe0b4, 676, 46, 0.60, 0.80, 1.6);
   stageKey.position.set(0, 11.5, -2.0);
@@ -326,7 +376,7 @@ export function buildHall1865(scene) {
 
 
   // theatre playbills on the side walls
-  const playbillTex = new THREE.TextureLoader().load('./assets/textures/scenery/playbill.png');
+  const playbillTex = assetTextureLoader().load(texturePath('scenery/playbill.webp'));
   playbillTex.colorSpace = THREE.SRGBColorSpace;
   const playbillMat = new THREE.MeshStandardMaterial({ map: playbillTex, roughness: 0.95 });
   for (const side of [-1, 1]) {

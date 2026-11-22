@@ -1,31 +1,36 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { makeGltfLoader } from './core/GLTF.js';
 import { clone as cloneSkinned } from 'three/addons/utils/SkeletonUtils.js';
 import { Input } from './core/Input.js';
-import { ThirdPersonController } from './core/ThirdPersonController.js';
+import { ThirdPersonController, collectColliders } from './core/ThirdPersonController.js';
 import { loadLofi, Flight } from './core/Flight.js';
 import { AudioManager } from './core/AudioManager.js';
+import { Narrator } from './core/Narrator.js';
 import { PostFX } from './core/PostFX.js';
+import { QualityController } from './core/Quality.js';
+import { ASSET_ORIGIN, ASSET_VERSION, requestPersistentStorage, storageEstimate } from './core/Assets.js';
+import { disposeTree, memorySnapshot, releaseOwner } from './core/Memory.js';
+import { setAssetTier } from './core/AssetTiers.js';
 import { CameraDirector } from './core/CameraDirector.js';
 import { MaliTown } from './world/MaliTown.js';
 import { skyDome } from './world/Materials.js';
 import { exteriorEnvironment, interiorEnvironment, applyEnvironment } from './world/Environment.js';
-import { loadCharacters } from './world/Characters.js';
+import { loadCharacters, instantiateCharacters } from './world/Characters.js';
 import { dressMaliCourt } from './world/Attire.js';
 import { buildHall1865 } from './world/Hall1865.js';
 import { buildTrench1917, buildArchive1989 } from './world/OtherEras.js';
 import { Quest, loadSave } from './core/Quest.js';
 import { Ask } from './core/Ask.js';
 import { Combat } from './core/Combat.js';
-import { Crowd, maliTownsfolk } from './world/Crowd.js';
 import { UI } from './ui/UI.js';
 import { poseCharacter } from './world/CharacterAnim.js';
-import { CHAPTERS } from './data/story.js';
+import { CHAPTERS, DIALOGUE } from './data/story.js';
 import { Cinematic } from './ui/Cinematic.js';
 import { Waypoint } from './ui/Waypoint.js';
 import { WorldMap } from './ui/WorldMap.js';
 import { AvatarPicker } from './ui/AvatarPicker.js';
 import { AvatarPreview } from './ui/AvatarPreview.js';
+import { loadMount } from './world/Mounts.js';
 
 const safeStore = (() => {
   try {
@@ -66,7 +71,7 @@ const CONTINENT_BY_CHAPTER = {
 
 const CARD_BY_CHAPTER = {
   'mali-1324': './assets/textures/scenery/pano_desert.jpg',
-  'washington-1865': './assets/textures/scenery/playbill.png'
+  'washington-1865': './assets/textures/scenery/playbill.webp'
 };
 
 let cine = null;
@@ -74,6 +79,8 @@ let waypoint = null;
 let worldMap = null;
 let avatarPicker = null;
 let avatarPreview = null;
+let pickerHoverTimer = 0;
+let pickerHoverToken = 0;
 let pendingChapterId = null;
 let chosenAvatar = null;
 let avatarModel = null;
@@ -84,6 +91,16 @@ const loadingBar = document.getElementById('loading');
 const title = document.getElementById('title');
 const statsEl = document.getElementById('stats');
 const params = new URLSearchParams(location.search);
+const MODE_KEY = 'his-tree:mode:v1';
+const historyBadgeEl = document.getElementById('history-badge');
+let historyMode = 'real';
+let historyDivergences = 0;
+try {
+  const stored = localStorage.getItem(MODE_KEY);
+  if (stored === 'rewrite' || stored === 'real') historyMode = stored;
+} catch (e) { /* ignore */ }
+if (params.get('mode') === 'rewrite') historyMode = 'rewrite';
+if (params.get('mode') === 'real') historyMode = 'real';
 const qualityParam = params.get('q');
 const autostartParam = params.get('chapter');
 const autoParam = params.get('auto') === '1';
@@ -112,7 +129,9 @@ function detectTier() {
   return 'high';
 }
 
-const tier = detectTier();
+let tier = detectTier();
+setAssetTier(tier);
+const adaptEnabled = params.get('adapt') !== '0';
 renderer.setPixelRatio(flags.px ? 1 : Math.min(window.devicePixelRatio, 2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = flags.shadow;
@@ -143,15 +162,36 @@ scene.add(sun, sun.target, hemi, ambient);
 
 const input = new Input(canvas);
 const audio = new AudioManager();
-const loader = new GLTFLoader();
+const loader = makeGltfLoader();
 const director = new CameraDirector(camera);
 const ui = new UI();
 
 let post = null;
+try { localStorage.removeItem('his-tree:pov'); } catch (e) { /* private mode */ }
+
+const quality = new QualityController(renderer, {
+  tier,
+  manual: !adaptEnabled || !!qualityParam,
+  targetFps: params.get('fps') ? Number(params.get('fps')) : undefined,
+  onChange: (state) => {
+    if (sun && sun.shadow) {
+      const size = state.step >= 2 ? 1024 : (tier === 'low' ? 1024 : tier === 'medium' ? 1536 : 2048);
+      if (sun.shadow.mapSize.x !== size) {
+        sun.shadow.mapSize.set(size, size);
+        if (sun.shadow.map) {
+          sun.shadow.map.dispose();
+          sun.shadow.map = null;
+        }
+      }
+    }
+    if (post) post.setResolutionScale(state.scale);
+  }
+});
 let controller = null;
 let player = null;
 let mixer = null;
 let world = null;
+let narrator = null;
 let npcs = {};
 let props = {};
 let quest = null;
@@ -160,7 +200,8 @@ let activeChapter = null;
 let sky = null;
 let ask = null;
 let combat = null;
-let streetCrowd = null;
+let mounts = [];
+let activeMount = null;
 let flight = null;
 let lofiRoot = null;
 let lofiHolder = null;
@@ -170,19 +211,57 @@ let playerPose = null;
 let clock = new THREE.Clock();
 
 const baseModels = {};
+const baseClips = {};
 
-function loadModel(key, file) {
+function loadModel(key, file, retries = 2) {
   return new Promise((resolve) => {
-    loader.load(file, (gltf) => { baseModels[key] = gltf.scene; resolve(true); }, undefined, () => resolve(false));
+    const attempt = (n) => {
+      loader.load(file, (gltf) => {
+        baseModels[key] = gltf.scene;
+        baseClips[key] = gltf.animations || [];
+        resolve(true);
+      }, undefined, () => {
+        if (n < retries) {
+          setTimeout(() => attempt(n + 1), 500 * (n + 1));
+        } else {
+          console.warn('asset failed after retries', file);
+          resolve(false);
+        }
+      });
+    };
+    attempt(0);
   });
 }
 
-async function boot() {
-  const jobs = [
-    ['player', './assets/models/characters/player_1865.glb'],
-    ['villager', './assets/models/character-male-a.glb'],
+const CHAPTER_ASSETS = {
+  'mali-1324': [
     ['palm', './assets/models/tree_palm.glb'],
-    ['camel', './assets/models/camel-base.glb']
+    ['camel', './assets/models/camel-base.glb'],
+    ['donkey', './assets/models/donkey-base.glb'],
+    ['horse', './assets/models/horse-base.glb']
+  ]
+};
+const chapterAssetPromises = {};
+
+function ensureChapterAssets(chapterId) {
+  const list = CHAPTER_ASSETS[chapterId] || [];
+  if (!list.length) return Promise.resolve([]);
+  if (!chapterAssetPromises[chapterId]) {
+    chapterAssetPromises[chapterId] = Promise.all(list.map(([k, f]) => loadModel(k, f)));
+  }
+  return chapterAssetPromises[chapterId];
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(location.hostname)) return;
+  navigator.serviceWorker.register('./sw.js?v=4').catch(() => undefined);
+}
+
+async function boot() {
+  registerServiceWorker();
+  const jobs = [
+    ['player', './assets/models/characters/player_1865.glb']
   ];
   let done = 0;
   await Promise.all(jobs.map(async ([k, f]) => {
@@ -193,6 +272,7 @@ async function boot() {
   setTimeout(() => { loadingBar.style.width = '0%'; }, 400);
 
   if (flags.post) post = new PostFX(renderer, scene, camera, tier, 'mali');
+  if (post) post.setResolutionScale(quality.scale);
 
   if (avatarParam === 'lofi') avatarMode = 'lofi';
   const save = loadSave();
@@ -207,27 +287,77 @@ async function boot() {
   })), startChapter, () => {
     safeStore.removeItem('his-tree:save:v1');
     location.reload();
-  });
+  }, (mode) => setHistoryMode(mode));
   else openMap();
 
   waypoint = new Waypoint();
 
-  window.__game = { scene, camera, renderer, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter, controller, input, flight, playerPose, avatarMode }; }, THREE };
+  narrator = new Narrator();
+  narrator.load().then(() => {
+    ui.narratorVoices = narrator.voices;
+    ui.narratorVoice = narrator.voice;
+    ui.narratorEnabled = narrator.enabled;
+    if (ui.menuEl) {
+      const sel = ui.menuEl.querySelector('.nr-voice');
+      if (sel) {
+        sel.innerHTML = narrator.voices.map((v) => `
+          <option value="${v.id}" ${v.id === narrator.voice ? 'selected' : ''}>${v.label}</option>`).join('');
+        sel.value = narrator.voice;
+      }
+      const box = ui.menuEl.querySelector('.nr-mute-box');
+      if (box) box.checked = narrator.enabled;
+    }
+  });
+  ui.onLine = (line) => narrator.speak(line && line.text);
+  ui.onEndingText = (text) => narrator.speak(text);
+  ui.onNarratorVoice = (id) => narrator.setVoice(id);
+  ui.onNarratorMute = (on) => narrator.setEnabled(on);
+
+  const storedQuality = safeStore.getItem('his-tree:quality');
+  ui.graphicsQuality = storedQuality || 'auto';
+  ui.onGraphicsQuality = (value) => {
+    const v = value === 'auto' ? 'auto' : value;
+    ui.graphicsQuality = v;
+    try {
+      if (v === 'auto') safeStore.removeItem('his-tree:quality');
+      else safeStore.setItem('his-tree:quality', v);
+    } catch (e) { /* ignore */ }
+    if (v === 'auto') {
+      quality.setManual(false);
+    } else {
+      tier = v;
+      setAssetTier(v);
+      quality.setTier(v, true);
+      if (post) post.setTier(v);
+    }
+  };
+
+  window.__game = { scene, camera, renderer, quality: quality.state, memory: () => memorySnapshot(renderer), assets: { origin: ASSET_ORIGIN, version: ASSET_VERSION }, setPOV, togglePOV, get pov() { return !!(controller && controller.firstPerson); }, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter, controller, input, flight, playerPose, avatarMode, mounts, narrator, get activeMount() { return activeMount; } }; }, THREE };
   loop();
 }
 
 function disposeWorld() {
   if (waypoint) waypoint.clear();
   if (combat) { combat.disable(); combat = null; }
-  if (streetCrowd) { scene.remove(streetCrowd.group); streetCrowd = null; }
+  if (activeMount) { dismount(); }
+  for (const m of mounts) { scene.remove(m.root); }
+  mounts = [];
   ask = null;
   if (world && world.group) {
     world.group.traverse((o) => {
-      if (o.isMesh && o.userData.ownedGeometry) o.geometry.dispose();
+      if (o.isMesh && o.userData.ownedGeometry && o.geometry) o.geometry.dispose();
     });
+    disposeTree(world.group);
     scene.remove(world.group);
   }
-  Object.values(npcs).forEach((n) => { scene.remove(n.root); });
+  Object.values(npcs).forEach((n) => {
+    scene.remove(n.root);
+    n.root.traverse((o) => {
+      if (o.isMesh && o.geometry && o.geometry.userData.shared !== true) o.geometry.dispose();
+    });
+    disposeTree(n.root);
+  });
+  releaseOwner(activeChapter ? activeChapter.id : 'none');
   npcs = {};
   props = {};
   world = null;
@@ -276,7 +406,7 @@ function setAvatar(kind) {
     rig.add(model);
   }
   playerBody = model;
-  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38 }) : null;
   mixer = new THREE.AnimationMixer(model || rig);
   controller.mixer = mixer;
   controller.actions = {};
@@ -284,9 +414,12 @@ function setAvatar(kind) {
   controller.runAction = null;
   controller.idleAction = null;
   controller.height = height * 0.84;
+  controller.eyeHeight = height * 0.9;
+  controller.povForward = 0.22;
   controller.groundY = 0;
   if (flight) {
     flight.rig = rig;
+    flight.baseEye = controller.eyeHeight;
     flight.enable(kind === 'lofi');
   }
   ui.setPowers(kind === 'lofi'
@@ -328,7 +461,7 @@ function buildAvatarModel(kind) {
   return model;
 }
 
-function makePlayer(chapter) {
+function makePlayer(chapter, source = null) {
   const pivot = new THREE.Group();
   const rig = new THREE.Group();
   rig.userData.poseRig = true;
@@ -338,6 +471,18 @@ function makePlayer(chapter) {
   if (avatarMode === 'lofi' && lofiRoot) {
     model = lofiRoot;
     height = 1.72;
+    rig.add(model);
+  } else if (chapter.id === 'mali-1324' && source && chapter.playerFile !== null) {
+    model = cloneSkinned(source.pristine || source.root);
+    model.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(model);
+    const c = new THREE.Vector3();
+    box.getCenter(c);
+    const h = Math.max(0.4, box.max.y - box.min.y);
+    model.position.set(-c.x, -box.min.y, -c.z);
+    model.userData.height = h;
+    dressMaliCourt(model, 'guide');
+    height = h;
     rig.add(model);
   } else if (baseModels.player && chapter.playerFile !== null) {
     model = buildAvatarModel('default');
@@ -355,9 +500,15 @@ function makePlayer(chapter) {
   const clips = [];
   controller = new ThirdPersonController(camera, pivot, mixer, clips, input, 0);
   controller.height = height * 0.84;
+  controller.eyeHeight = height * 0.9;
+  controller.povForward = 0.22;
   flight = new Flight({ player: pivot, controller, camera, scene, ui, input, rig });
+  flight.baseEye = controller.eyeHeight;
+  controller.setFirstPerson(false);
+  if (quality) quality.setScaleLock(false);
+  povLabel(false);
   playerBody = model;
-  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.55, armAmp: 0.46 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38 }) : null;
   flight.enable(avatarMode === 'lofi');
   if (typeof syncTouchPowers === 'function') syncTouchPowers();
   if (avatarMode === 'lofi') {
@@ -390,7 +541,10 @@ function setAtmosphere(chapter) {
     });
     applyEnvironment(scene, env, 0.35);
     scene.background = new THREE.Color(chapter.palette.haze).multiplyScalar(0.32);
-    scene.fog = new THREE.FogExp2(chapter.palette.haze, chapter.id === 'france-1917' ? 0.022 : 0.012);
+    scene.fog = new THREE.FogExp2(
+      chapter.id === 'washington-1865' ? 0x2a1c14 : chapter.palette.haze,
+      chapter.id === 'france-1917' ? 0.022 : chapter.id === 'washington-1865' ? 0.016 : 0.012
+    );
     sun.intensity = 0.28;
     sun.color.setHex(0x8ea4bd);
     sun.castShadow = false;
@@ -406,6 +560,128 @@ function overlayObjective(chapter) {
   ui.setChapter(chapter);
 }
 
+const MOUNT_SPAWNS = {
+  'mali-1324': [
+    { kind: 'donkey', file: './assets/models/donkey-base.glb', x: 52.5, z: -19.5, rot: 2.4 },
+    { kind: 'horse', file: './assets/models/horse-base.glb', x: 47.0, z: -31.0, rot: 0.8 }
+  ],
+  'washington-1865': []
+};
+
+async function spawnMounts(chapterId) {
+  const list = MOUNT_SPAWNS[chapterId] || [];
+  for (const spec of list) {
+    const pre = baseModels[spec.kind] ? { scene: baseModels[spec.kind], clips: baseClips[spec.kind] } : null;
+    const m = await loadMount(spec.kind, spec.file, scene, spec, pre);
+    if (m) {
+      if (world && world.groundHeight) m.root.position.y = world.groundHeight(m.root.position.x, m.root.position.z);
+      mounts.push(m);
+    }
+  }
+}
+
+const MALI_TOWNSFOLK = [
+  { x: -7.5, z: 17.2, rot: 1.4, role: 'trader', scale: 1.0 },
+  { x: 6.8, z: 14.6, rot: -1.1, role: 'noble', scale: 0.97 },
+  { x: -11.2, z: 11.0, rot: 2.2, role: 'guide', scale: 1.02 },
+  { x: 9.4, z: 9.2, rot: -2.0, role: 'trader', scale: 0.99 },
+  { x: -4.4, z: 8.0, rot: 0.6, role: 'guard', scale: 1.03 },
+  { x: 3.6, z: 19.5, rot: 2.8, role: 'noble', scale: 0.96 },
+  { x: -14.5, z: 18.4, rot: -1.6, role: 'trader', scale: 1.01 },
+  { x: 12.6, z: 17.8, rot: 1.9, role: 'guide', scale: 0.98 },
+  { x: -22.0, z: -4.0, rot: 0.4, role: 'guide', scale: 1.0 },
+  { x: 19.0, z: -9.0, rot: -2.6, role: 'trader', scale: 0.97 }
+];
+
+function spawnMaliTownsfolk() {
+  const sources = ['bakary', 'amina', 'salim', 'musa'];
+  MALI_TOWNSFOLK.forEach((spot, i) => {
+    const source = npcs[sources[i % sources.length]];
+    if (!source || !source.pristine) return;
+    const [character] = instantiateCharacters(source.pristine, [{
+      x: spot.x,
+      z: spot.z,
+      rot: spot.rot,
+      scale: spot.scale,
+      label: 'Townsfolk',
+      dress: (root) => dressMaliCourt(root, spot.role)
+    }], scene);
+    if (character) npcs['town' + i] = character;
+  });
+}
+
+function nearestMount(maxDist = 3.2) {
+  if (!player) return null;
+  let best = null;
+  let bestD = maxDist;
+  for (const m of mounts) {
+    if (m.occupied) continue;
+    const d = Math.hypot(m.root.position.x - player.position.x, m.root.position.z - player.position.z);
+    if (d < bestD) { bestD = d; best = m; }
+  }
+  return best;
+}
+
+function mountUp(m) {
+  if (!m || activeMount) return;
+  activeMount = m;
+  controller.frozen = true;
+  controller.velocity.set(0, 0, 0);
+  m.attach(player);
+  if (playerPose) playerPose.setPose('sit');
+  ui.toast('Press R to dismount', 1600);
+}
+
+function dismount() {
+  const m = activeMount;
+  if (!m) return;
+  activeMount = null;
+  const rider = m.detach();
+  if (rider) {
+    const side = new THREE.Vector3(1.1, 0, 0.4).applyAxisAngle(new THREE.Vector3(0, 1, 0), m.root.rotation.y);
+    rider.position.set(m.root.position.x + side.x, 0, m.root.position.z + side.z);
+    rider.rotation.y = m.root.rotation.y;
+  }
+  if (controller) { controller.frozen = false; controller.velocity.set(0, 0, 0); }
+  if (playerPose) playerPose.setPose('idle');
+}
+
+function updateRiding(dt, t) {
+  const m = activeMount;
+  if (!m || !player || !controller) return;
+  controller.frozen = true;
+  const axis = input.axis();
+  const moving = axis.len > 0.06;
+  const speedCap = input.run ? m.speeds.run : m.speeds.walk;
+  const forward = new THREE.Vector3(Math.sin(controller.yaw), 0, Math.cos(controller.yaw));
+  const right = new THREE.Vector3(-forward.z, 0, forward.x);
+  const desired = new THREE.Vector3()
+    .addScaledVector(forward, axis.y)
+    .addScaledVector(right, axis.x);
+  if (desired.lengthSq() > 0) desired.normalize().multiplyScalar(speedCap * axis.len);
+  const accel = moving ? 6 : 9;
+  m.velocity = m.velocity || new THREE.Vector3();
+  m.velocity.lerp(desired, Math.min(1, dt * accel));
+  const planar = Math.hypot(m.velocity.x, m.velocity.z);
+  m.root.position.addScaledVector(m.velocity, dt);
+  if (world && world.groundHeight) m.root.position.y = world.groundHeight(m.root.position.x, m.root.position.z);
+  if (world && world.resolveCollisions) world.resolveCollisions(m.root.position, 0.9);
+  if (planar > 0.15) {
+    const target = Math.atan2(m.velocity.x, m.velocity.z);
+    let diff = target - m.root.rotation.y;
+    while (diff > Math.PI) diff -= Math.PI * 2;
+    while (diff < -Math.PI) diff += Math.PI * 2;
+    m.root.rotation.y += diff * Math.min(1, dt * 5.5);
+  }
+  m.update(dt, t, speedCap > 0 ? planar / speedCap : 0);
+  const seat = m.seatPosition(new THREE.Vector3());
+  player.position.copy(seat);
+  player.rotation.y = m.root.rotation.y;
+  controller.speed = planar;
+  controller.walkPhase += planar * dt * 1.6;
+  controller.state = planar > m.speeds.walk * 1.1 ? 'run' : (planar > 0.15 ? 'walk' : 'idle');
+}
+
 async function startChapter(id) {
   const chapter = CHAPTERS.find((c) => c.id === id);
   if (!chapter) return;
@@ -414,12 +690,15 @@ async function startChapter(id) {
   if (player) { scene.remove(player); player = null; }
   setAtmosphere(chapter);
   activeChapter = chapter;
+  historyDivergences = 0;
+  if (ui) ui.setHistoryMode(historyMode);
+  updateHistoryBadge();
   overlayObjective(chapter);
 
+  await ensureChapterAssets(chapter.id);
+
   if (chapter.id === 'mali-1324') {
-    world = new MaliTown(scene, baseModels, chapter.palette, { palms: true, lights: flags.lights });
-    streetCrowd = new Crowd(maliTownsfolk(), { name: 'townsfolk' });
-    scene.add(streetCrowd.group);
+    world = new MaliTown(scene, baseModels, chapter.palette, { palms: true, lights: flags.lights, clips: baseClips });
     props = {
       stall: { position: new THREE.Vector3(0, 1.3, 24), label: 'The cloth stall', desc: 'Indigo bolts, unrolled cloth, a wooden counter with a hidden ledge beneath it. A folded page has been pushed under the ledge.' },
       'crate-a': { position: new THREE.Vector3(46, 1.0, -20), label: 'The astronomy crate', desc: 'Ptolemy, corrected in Toledo. The water has reached the second folio; the tables on eclipses are still dry.' },
@@ -470,28 +749,39 @@ async function startChapter(id) {
   }
 
   if (avatarMode === 'lofi' && !lofiRoot) await ensureLofi();
-  player = makePlayer(chapter);
+  npcs = await loadCharacters(cfg.npcs, scene, cfg.positions);
+  player = makePlayer(chapter, npcs.bakary || null);
+  if (world && world.group && controller) {
+    controller.setColliders(collectColliders(world.group));
+    if (world.groundHeight) controller.setGroundHeight((x, z) => world.groundHeight(x, z));
+    controller.setCollisionResolver((pos, radius) => {
+      if (world && world.resolveCollisions) world.resolveCollisions(pos, radius);
+    });
+  }
   player.position.copy(cfg.spawn);
   player.rotation.y = Math.PI;
   camera.position.set(cfg.spawn.x, 4.2, cfg.spawn.z + 5.4);
 
-  npcs = await loadCharacters(cfg.npcs, scene, cfg.positions);
+  await spawnMounts(chapter.id);
   if (chapter.id === 'mali-1324') {
     if (npcs.musa) dressMaliCourt(npcs.musa.root, 'royal');
     if (npcs.salim) dressMaliCourt(npcs.salim.root, 'noble');
     if (npcs.amina) dressMaliCourt(npcs.amina.root, 'noble');
     if (npcs.bakary) dressMaliCourt(npcs.bakary.root, 'noble');
+    spawnMaliTownsfolk();
   }
   quest = new Quest({
     chapter, scene, ui, player, npcs, props, world, save: loadSave(),
     auto: autoParam,
+    onChoice: (opt) => recordHistoryChoice(opt),
+    introExtra: historyMode === 'rewrite' ? (DIALOGUE.timekeeper_rewrite || []) : [],
     onEnding: (end) => {
       ui.showEnding(end, () => {
         const save = loadSave();
         ui.menu(CHAPTERS.map((c) => ({
           ...c,
           tagline: (save.completed || []).includes(c.id) ? `${c.tagline} · completed` : c.tagline
-        })), startChapter, () => { safeStore.removeItem('his-tree:save:v1'); location.reload(); });
+        })), startChapter, () => { safeStore.removeItem('his-tree:save:v1'); location.reload(); }, (mode) => setHistoryMode(mode));
         disposeWorld();
         if (player) { scene.remove(player); player = null; }
       });
@@ -554,9 +844,18 @@ window.addEventListener('keydown', (e) => {
     controller.dash(dir);
     e.preventDefault();
   }
-  if (e.code === 'KeyF') { flight.toggleFloat(); e.preventDefault(); }
-  if (e.code === 'KeyG') { flight.toggleFly(); e.preventDefault(); }
+  if (e.code === 'KeyF') { e.preventDefault(); }
+  if (e.code === 'KeyG') { e.preventDefault(); }
   if (e.code === 'KeyV') { setAvatar(avatarMode === 'lofi' ? 'default' : 'lofi'); e.preventDefault(); }
+  if (e.code === 'KeyR') {
+    if (activeMount) { dismount(); }
+    else {
+      const m = nearestMount();
+      if (m) mountUp(m);
+      else ui.toast('No mount nearby', 1200);
+    }
+    e.preventDefault();
+  }
 });
 
 function journalKey(e) {
@@ -571,6 +870,42 @@ function journalKey(e) {
 }
 
 let paused = false;
+
+function povLabel(on) {
+  const btn = document.getElementById('pausePov');
+  if (btn) {
+    btn.textContent = 'View: ' + (on ? 'Avatar (third person)' : 'First person');
+    btn.classList.toggle('is-off', !!on);
+  }
+  const hud = document.getElementById('btnView');
+  if (hud) {
+    // the button always names what it will switch to
+    hud.textContent = on ? 'AVATAR' : 'POV';
+    hud.classList.toggle('is-pov', !!on);
+    hud.setAttribute('aria-label', on ? 'Switch to avatar view' : 'Switch to first person view');
+    hud.setAttribute('title', on ? 'Avatar view (P)' : 'First person view (P)');
+  }
+}
+
+/**
+ * First person (POV) mode. Works for every avatar, including Lofi the Yeti:
+ * the camera moves to the character's eyes and the body turns with the view.
+ * The game always starts in avatar (third person) mode, the toggle is explicit.
+ */
+function setPOV(on) {
+  if (!controller) return false;
+  const want = !!on;
+  controller.setFirstPerson(want);
+  if (quality) quality.setScaleLock(want);
+  povLabel(want);
+  if (ui) ui.toast(want ? 'First person view' : 'Avatar view', 1400);
+  return want;
+}
+
+function togglePOV() {
+  if (!controller) return false;
+  return setPOV(!controller.firstPerson);
+}
 
 function setPaused(on) {
   paused = !!on;
@@ -591,6 +926,10 @@ function setupPauseMenu() {
   if (menuBtn) menuBtn.addEventListener('click', () => { audio.sfx('ui'); setPaused(!paused); });
   const resume = document.getElementById('pauseResume');
   if (resume) resume.addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
+  const povBtn = document.getElementById('pausePov');
+  if (povBtn) povBtn.addEventListener('click', () => { audio.sfx('ui'); togglePOV(); });
+  const viewBtn = document.getElementById('btnView');
+  if (viewBtn) viewBtn.addEventListener('click', () => { audio.sfx('ui'); togglePOV(); });
   const chapters = document.getElementById('pauseChapters');
   if (chapters) chapters.addEventListener('click', () => {
     audio.sfx('ui');
@@ -624,6 +963,51 @@ function setupPauseMenu() {
   });
 }
 
+function setHistoryMode(mode) {
+  historyMode = mode === 'rewrite' ? 'rewrite' : 'real';
+  try { localStorage.setItem(MODE_KEY, historyMode); } catch (e) { /* ignore */ }
+  if (ui) ui.setHistoryMode(historyMode);
+  updateHistoryBadge();
+  return historyMode;
+}
+
+function historyBadgeState() {
+  const h = activeChapter && activeChapter.history;
+  if (historyMode === 'rewrite') {
+    return {
+      text: historyDivergences ? `REWRITE MODE · ${historyDivergences} divergence${historyDivergences > 1 ? 's' : ''}` : 'REWRITE MODE',
+      cls: 'rewrite'
+    };
+  }
+  if (h && h.unrecorded) {
+    return {
+      text: historyDivergences ? `HISTORY UNRECORDED · ${historyDivergences}` : 'HISTORY UNRECORDED',
+      cls: 'unrecorded'
+    };
+  }
+  if (historyDivergences > 0) {
+    return { text: `HISTORY REWRITTEN · ${historyDivergences}`, cls: 'rewritten' };
+  }
+  return { text: 'HISTORY INTACT', cls: 'intact' };
+}
+
+function updateHistoryBadge() {
+  if (!historyBadgeEl) return;
+  const state = historyBadgeState();
+  historyBadgeEl.textContent = state.text;
+  historyBadgeEl.className = state.cls;
+  historyBadgeEl.style.display = 'block';
+}
+
+function recordHistoryChoice(opt) {
+  const h = activeChapter && activeChapter.history;
+  if (!h) return;
+  const flags = (opt && opt.flags) || {};
+  const matched = !!(h.verifiedKey && (h.verified || []).includes(flags[h.verifiedKey]));
+  if (historyMode === 'rewrite' || !matched) historyDivergences += 1;
+  updateHistoryBadge();
+}
+
 function isPortrait() { return window.innerHeight > window.innerWidth * 1.04; }
 
 function syncOrientation() {
@@ -636,6 +1020,8 @@ function syncTouchPowers() {
     const el = document.getElementById(id);
     if (el) el.style.display = show && document.body.classList.contains('touch') ? 'flex' : 'none';
   }
+  const pov = document.getElementById('btnPov');
+  if (pov) pov.style.display = document.body.classList.contains('touch') ? 'flex' : 'none';
 }
 
 function setupMobile() {
@@ -698,9 +1084,14 @@ function openMap() {
   worldMap.show();
 }
 
-function openPicker() {
+function ensurePreview() {
+  if (avatarPreview) return avatarPreview;
   const container = document.getElementById('avatar-preview');
   if (container) avatarPreview = new AvatarPreview(container, loader);
+  return avatarPreview;
+}
+
+function openPicker() {
   if (!avatarPicker) {
     avatarPicker = new AvatarPicker({
       avatars: AVATARS,
@@ -715,16 +1106,20 @@ function openPicker() {
       onHover: (id) => {
         const a = AVATARS.find((v) => v.id === id);
         if (!a || !avatarPreview) return;
-        avatarPreview.load(a.file).catch(() => {});
+        const token = ++pickerHoverToken;
+        if (pickerHoverTimer) window.clearTimeout(pickerHoverTimer);
+        pickerHoverTimer = window.setTimeout(() => {
+          pickerHoverTimer = 0;
+          if (token !== pickerHoverToken) return;
+          avatarPreview.load(a.file).catch(() => {});
+        }, 160);
       }
     });
   }
+  ensurePreview();
   avatarPicker.show();
   const first = AVATARS.find((a) => !a.locked);
-  if (first) {
-    if (!avatarPreview) avatarPreview = new AvatarPreview(document.getElementById('avatar-preview'), loader);
-    avatarPreview.load(first.file).catch(() => {});
-  }
+  if (first && avatarPreview) avatarPreview.load(first.file).catch(() => {});
 }
 
 async function applyAvatar(a) {
@@ -741,6 +1136,7 @@ async function applyAvatar(a) {
 window.__setArm = () => false;
 window.__openMap = openMap;
 window.__openPicker = openPicker;
+window.__avatarPreview = () => avatarPreview;
 window.__poseUniforms = () => (playerPose ? playerPose.uniforms : null);
 
 setupMobile();
@@ -748,7 +1144,7 @@ setupMobile();
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  quality.apply();
   if (post) post.resize();
   syncOrientation();
 });
@@ -760,6 +1156,7 @@ function loop() {
   const rawDt = clock.getDelta();
   const dt = Math.min(0.05, rawDt);
   const t = clock.elapsedTime;
+  quality.update(rawDt);
 
   if (paused) {
     renderer.render(scene, camera);
@@ -768,13 +1165,19 @@ function loop() {
   const inCine = !!(cine && cine.active);
   if (inCine) cine.update(rawDt);
   if (player && controller && !inCine) {
-    if (flight) flight.update(dt);
+    if (flight && !activeMount) flight.update(dt);
     if (playerPose) {
-      if (flight && flight.mode === 'fly') playerPose.setPose('superman');
+      if (flight && flight.mode === 'fly') playerPose.setPose('fly');
       else if (flight && flight.mode === 'float') playerPose.setPose('float');
       else if (playerPose.uniforms.uPose.value !== 0) playerPose.setPose('idle');
     }
+    if (flight) {
+      if (input.consume('KeyF')) flight.toggleFloat();
+      if (input.consume('KeyG')) flight.toggleFly();
+    }
+    if (input.consume('KeyP')) togglePOV();
     controller.update(dt);
+    if (activeMount) updateRiding(dt, t);
     if (playerPose) playerPose.setWalk(controller.speed, controller.walkPhase);
     if (window.__look) {
       const lk = window.__look;
@@ -834,7 +1237,7 @@ function loop() {
     });
   }
   if (world && world.update) world.update(dt, t);
-  if (streetCrowd) streetCrowd.update(dt, t);
+  if (!activeMount) for (const m of mounts) m.update(dt, t, 0);
   Object.values(npcs).forEach((n) => n.update(dt, t, player ? player.position : null));
   if (quest && player && !inCine) quest.update(dt, input);
   if (ask && player && !ui.busy && !inCine) ask.update(dt, input);
@@ -875,5 +1278,7 @@ function loop() {
     statsEl.textContent = `${fps} FPS · ${tier.toUpperCase()} · ${activeChapter ? activeChapter.title : 'HIS-TREE'} · ${Math.round(pos.x)}, ${Math.round(pos.z)}`;
   }
 }
+
+requestPersistentStorage();
 
 boot();

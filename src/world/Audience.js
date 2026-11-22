@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { makeGltfLoader } from '../core/GLTF.js';
 import { poseCharacter } from './CharacterAnim.js';
 import { robustBox } from './frame.js';
 
@@ -58,7 +58,7 @@ export class Audience {
   }
 
   async load() {
-    const loader = new GLTFLoader();
+    const loader = makeGltfLoader();
     const seats = this.seatPositions();
     const buckets = new Map();
 

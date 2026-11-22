@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { assetTextureLoader } from '../core/Assets.js';
+import { mergeStaticMeshes, instanceModel } from './Merge.js';
+import { clone as cloneSkinned } from 'three/addons/utils/SkeletonUtils.js';
 import { adobeMaterial, sandMaterial, woodMaterial, clothMaterial, thatchMaterial, goldMaterial, contactShadowMaterial, tileObjectUVs, makeRng } from './Materials.js';
 
 const UP = new THREE.Vector3(0, 1, 0);
@@ -13,6 +16,7 @@ export class MaliTown {
     this.colliders = [];
     this.animated = [];
     this.lights = [];
+    this.clips = options.clips || {};
     this.group = new THREE.Group();
     scene.add(this.group);
     this._buildGround();
@@ -23,6 +27,7 @@ export class MaliTown {
     this._scatterNature();
     this._buildHorizon();
     tileObjectUVs(this.group, 2.4);
+    this.mergeStats = mergeStaticMeshes(this.group, { minGroup: 4 });
   }
 
   _addCollider(x, z, r, solid = true) {
@@ -43,6 +48,14 @@ export class MaliTown {
       pos.setY(i, dune * Math.min(1, dist / 60) + far + (rng() - 0.5) * 0.22);
     }
     geo.computeVertexNormals();
+    this.groundSegments = 110;
+    this.groundSize = 520;
+    this.heightField = new Float32Array((this.groundSegments + 1) * (this.groundSegments + 1));
+    for (let i = 0; i < pos.count; i += 1) {
+      const gx = Math.round((pos.getX(i) / this.groundSize + 0.5) * this.groundSegments);
+      const gz = Math.round((pos.getZ(i) / this.groundSize + 0.5) * this.groundSegments);
+      this.heightField[gz * (this.groundSegments + 1) + gx] = pos.getY(i);
+    }
     const ground = new THREE.Mesh(geo, sandMaterial([70, 70]));
     ground.receiveShadow = true;
     ground.userData.noTileUV = true;
@@ -186,23 +199,66 @@ export class MaliTown {
     this.group.add(pot);
   }
 
-  _camel(x, z, rot = 0) {
+  _camel(x, z, rot = 0, opts = {}) {
     const model = this.models.camel;
     if (!model) return;
-    const clone = model.clone(true);
+    const clone = cloneSkinned(model);
     clone.position.set(x, 0, z);
     clone.rotation.y = rot;
-    clone.scale.setScalar(1.0);
+    clone.scale.setScalar(opts.scale || 1.0);
     clone.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
     this.group.add(clone);
     this._addCollider(x, z, 1.5, false);
+
+    const clips = this.clips.camel || [];
+    const mixer = new THREE.AnimationMixer(clone);
+    const idle = clips.find((c) => c.name === 'Idle');
+    const walk = clips.find((c) => c.name === 'Walk');
+    const pick = opts.walking && walk ? walk : (idle || walk);
+    let action = null;
+    if (pick) {
+      action = mixer.clipAction(pick);
+      action.play();
+      if (opts.walking && walk && idle) {
+        const idleAction = mixer.clipAction(idle);
+        idleAction.setEffectiveWeight(0.35);
+        idleAction.play();
+      }
+    }
+    this.animated.push({ mixer, action, obj: clone, phase: this.rng() * Math.PI * 2, bob: opts.bob !== false });
   }
 
   _donkey(x, z, rot = 0) {
+    const model = this.models.donkey;
+    if (model) {
+      const clone = cloneSkinned(model);
+      clone.position.set(x, 0, z);
+      clone.rotation.y = rot;
+      clone.scale.setScalar(1.0);
+      clone.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+      this.group.add(clone);
+      this._addCollider(x, z, 1.0, false);
+      const mixer = new THREE.AnimationMixer(clone);
+      const clips = this.clips.donkey || [];
+      const idle = clips.find((c) => c.name === 'Idle');
+      const walk = clips.find((c) => c.name === 'Walk');
+      if (idle) {
+        const act = mixer.clipAction(idle);
+        act.play();
+        if (walk) {
+          const walkAct = mixer.clipAction(walk);
+          walkAct.setEffectiveWeight(0.28);
+          walkAct.play();
+        }
+      }
+      this.animated.push({ mixer, obj: clone });
+      return clone;
+    }
     const grey = new THREE.MeshStandardMaterial({ color: 0x6b6257, roughness: 0.94 });
     const dark = new THREE.MeshStandardMaterial({ color: 0x4a443c, roughness: 0.95 });
     const g = new THREE.Group();
-    const body = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.62, 1.5), grey);
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.33, 0.92, 6, 14), grey);
+    body.rotation.x = Math.PI / 2;
     body.position.y = 0.92;
     const neck = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.72, 0.34), grey);
     neck.position.set(0, 1.34, 0.62);
@@ -218,11 +274,16 @@ export class MaliTown {
     tail.position.set(0, 1.06, -0.78);
     tail.rotation.x = 0.5;
     const legs = [];
+    const legPivots = [];
     for (const dx of [-0.22, 0.22]) {
       for (const dz of [-0.52, 0.52]) {
-        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.86, 7), dark);
-        leg.position.set(dx, 0.43, dz);
-        legs.push(leg);
+        const pivot = new THREE.Group();
+        pivot.position.set(dx, 0.86, dz);
+        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.86, 9), dark);
+        leg.position.y = -0.43;
+        pivot.add(leg);
+        legPivots.push(pivot);
+        legs.push(pivot);
       }
     }
     g.add(body, neck, head, ears, ears2, tail, ...legs);
@@ -232,18 +293,6 @@ export class MaliTown {
     this.group.add(g);
     this._addCollider(x, z, 0.9, false);
     return g;
-  }
-
-  _npc(x, z, rot = 0, name = 'villager') {
-    const model = this.models.villager;
-    if (!model) return;
-    const clone = model.clone(true);
-    clone.position.set(x, 0, z);
-    clone.rotation.y = rot;
-    clone.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
-    this.group.add(clone);
-    this._addCollider(x, z, 0.7, false);
-    return clone;
   }
 
   _lantern(x, z, y = 2.6) {
@@ -284,9 +333,6 @@ export class MaliTown {
       this._pot(side * 5.4 + (this.rng() - 0.5) * 2.4, z - 1.6, 0.9 + this.rng() * 0.5);
       this._lantern(side * 5.4, z + 2.6);
     }
-    this._npc(-4.2, -14, 1.2);
-    this._npc(4.6, 2, -0.8);
-    this._npc(-4.8, 14, 2.4);
   }
 
   _buildScholarQuarter() {
@@ -313,7 +359,6 @@ export class MaliTown {
     manuscript.position.set(cx, 1.1, cz);
     this.group.add(manuscript);
     this._stall({ x: cx + 3, z: cz + 2, rot: 0.6, cloth: 0x2f4a70 });
-    this._npc(cx + 2.6, cz - 1.4, 2.1);
   }
 
   _buildCaravanCamp() {
@@ -341,7 +386,6 @@ export class MaliTown {
     for (let i = 0; i < 5; i++) {
       this._basket(cx + (this.rng() - 0.5) * 14, cz + (this.rng() - 0.5) * 14, 0.8 + this.rng() * 0.6);
     }
-    this._npc(cx - 1, cz + 3, 0.4);
   }
 
   _buildPalaceGate() {
@@ -377,7 +421,7 @@ export class MaliTown {
   }
 
   _buildHorizon() {
-    const loader = new THREE.TextureLoader();
+    const loader = assetTextureLoader();
     const backdrop = (file, width, height, y, x, z, ry) => {
       const tex = loader.load(file);
       tex.colorSpace = THREE.SRGBColorSpace;
@@ -408,15 +452,37 @@ export class MaliTown {
         if (Math.abs(x) < 9 && z > -26 && z < 26) continue;
         spots.push({ x, z, s: 0.9 + this.rng() * 0.7, r: this.rng() * Math.PI * 2 });
       }
-      for (const spot of spots) {
-        const palm = palms.clone(true);
-        palm.position.set(spot.x, 0, spot.z);
-        palm.rotation.y = spot.r;
-        palm.scale.setScalar(spot.s);
-        palm.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
-        this.group.add(palm);
-      }
+      const placements = spots.map((spot) => ({ x: spot.x, z: spot.z, r: spot.r, s: spot.s }));
+      instanceModel(palms, placements, this.group);
     }
+  }
+
+  /** Exact height of the dune terrain at a world position (sampled from the mesh). */
+  groundHeight(x, z) {
+    const seg = this.groundSegments;
+    const size = this.groundSize;
+    const fx = (x / size + 0.5) * seg;
+    const fz = (z / size + 0.5) * seg;
+    if (!this.heightField || fx < 0 || fz < 0 || fx > seg || fz > seg) {
+      const dist = Math.hypot(x, z);
+      const dune = Math.sin(x * 0.031 + 1.2) * Math.cos(z * 0.027) * 3.4;
+      const far = Math.max(0, dist - 120) * 0.055;
+      return dune * Math.min(1, dist / 60) + far;
+    }
+    const x0 = Math.floor(fx);
+    const z0 = Math.floor(fz);
+    const x1 = Math.min(seg, x0 + 1);
+    const z1 = Math.min(seg, z0 + 1);
+    const tx = fx - x0;
+    const tz = fz - z0;
+    const row = seg + 1;
+    const h00 = this.heightField[z0 * row + x0];
+    const h10 = this.heightField[z0 * row + x1];
+    const h01 = this.heightField[z1 * row + x0];
+    const h11 = this.heightField[z1 * row + x1];
+    const a = h00 + (h10 - h00) * tx;
+    const b = h01 + (h11 - h01) * tx;
+    return a + (b - a) * tz;
   }
 
   resolveCollisions(position, radius = 0.6) {
@@ -434,9 +500,21 @@ export class MaliTown {
     }
   }
 
-  update(dt) {
+  update(dt, t = 0) {
     for (const l of this.lights) {
       l.intensity = 1.0 + Math.sin(performance.now() * 0.003 + l.position.x) * 0.12;
+    }
+    for (const a of this.animated) {
+      if (a.mixer) a.mixer.update(dt);
+      if (a.obj) {
+        const head = a.obj.getObjectByName('Head');
+        if (head) {
+          if (!head.userData.baseQuat) head.userData.baseQuat = head.quaternion.clone();
+          head.quaternion.copy(head.userData.baseQuat);
+          head.rotateX(Math.sin(t * 0.9 + (a.obj.position.x || 0)) * 0.04);
+          head.rotateY(Math.sin(t * 0.6 + (a.obj.position.z || 0)) * 0.06);
+        }
+      }
     }
   }
 }

@@ -1,0 +1,1131 @@
+HIS-TREE — DEVELOPMENT EXPANSION 02
+IMMERSIVE HISTORICAL CAMPAIGNS & BIBLICAL EXPERIENCES
+
+PROJECT: HIS-TREE
+TAGLINE: EXPERIENCE HISTORY. REWRITE DESTINY.
+
+YOUR ROLE:
+Continue as the senior game developer, 3D environment artist, historical researcher, cinematic designer, gameplay engineer and technical director of HIS-TREE.
+
+IMPORTANT:
+This is a FOLLOW-UP DEVELOPMENT INSTRUCTION.
+
+The original HIS-TREE project is already under development. You have previously received the master game development specification.
+
+DO NOT START FROM SCRATCH.
+DO NOT DISCARD EXISTING WORK.
+DO NOT REPLACE WORKING SYSTEMS WITHOUT A GOOD TECHNICAL REASON.
+
+First inspect the existing project, understand what has already been implemented, identify incomplete features and improve the existing foundation.
+
+Everything in this document should extend the existing game.
+
+==================================================
+1. THE BIGGER VISION
+==================================================
+
+HIS-TREE must become an immersive 3D historical time-travel experience.
+
+The player should not simply read about historical events, walk around historical locations or listen to NPCs explain what happened.
+
+THE PLAYER MUST PARTICIPATE IN HISTORY.
+
+For example, when experiencing a World War campaign, the player should be able to:
+
+- Join a military formation.
+- March with other soldiers.
+- Receive mission instructions.
+- Move through historically appropriate environments.
+- Experience battlefield conditions.
+- Take part in appropriate combat missions.
+- Use historically appropriate equipment.
+- Complete objectives.
+- Experience the consequences of decisions.
+- Progress through the historical timeline.
+
+The same principle applies to African history and biblical experiences.
+
+Every major historical event should be represented as a CAMPAIGN containing multiple connected missions.
+
+A campaign is not one isolated level.
+
+It should tell the story of an event from its beginning through its important developments and conclusion.
+
+The player should experience the event in chronological order.
+
+The objective is to make history playable.
+
+==================================================
+2. TWO DISTINCT HISTORICAL GAMEPLAY MODES
+==================================================
+
+Preserve the two modes from the original specification.
+
+A. HISTORICAL MODE
+
+This mode allows players to participate in actual historical events.
+
+The player follows the documented historical timeline.
+
+The player can participate in missions, explore environments, interact with historical figures and experience the circumstances surrounding important events.
+
+The actual historical outcome must remain historically accurate.
+
+B. REWRITE HISTORY MODE
+
+This mode allows players to attempt to change historical outcomes.
+
+For example:
+- Prevent Abraham Lincoln's assassination.
+- Change the outcome of a fictionalised alternate-history military campaign.
+- Influence decisions that affect the development of an empire.
+
+The player makes decisions and experiences alternative consequences.
+
+Every changed outcome must be labelled ALTERNATE HISTORY.
+
+IMPORTANT DISTINCTION:
+
+Historical Mode = Experience what actually happened.
+
+Rewrite History Mode = Explore what might have happened differently.
+
+Do not confuse these two modes.
+
+Biblical episodes are different.
+
+BIBLICAL MODE MUST NOT HAVE REWRITE HISTORY.
+
+The biblical campaigns are intended to let players experience and learn the events recorded in Scripture.
+
+==================================================
+3. EXPAND AFRICAN HISTORY
+==================================================
+
+Create a dedicated African History category in the time-travel hub.
+
+The following four campaigns should be added to the development roadmap.
+
+Prioritise implementing them in stages rather than attempting to build all four simultaneously.
+
+--------------------------------------------------
+CAMPAIGN 1: THE ABA WOMEN'S WAR — 1929
+--------------------------------------------------
+
+LOCATION:
+Colonial south-eastern Nigeria.
+
+HISTORICAL EVENT:
+The Aba Women's War, also known as the Women's War of 1929.
+
+CORE EXPERIENCE:
+
+The player experiences the historical protests led by Igbo and other women against colonial policies and the warrant chief system.
+
+This campaign should communicate the scale, organisation, courage and historical significance of the women's resistance.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — LIFE UNDER COLONIAL RULE
+
+Introduce the player to the historical setting.
+
+Reconstruct a Nigerian community during the colonial period.
+
+Show:
+- Traditional compounds.
+- Marketplaces.
+- Community life.
+- Women's economic activities.
+- Traditional clothing.
+- Colonial administrative structures.
+
+Allow the player to interact with residents and understand the conditions that led to the protests.
+
+MISSION 2 — THE GRIEVANCES
+
+Introduce the colonial taxation controversy and the concerns surrounding warrant chiefs and colonial administration.
+
+The player gathers information and learns why women were becoming increasingly concerned.
+
+MISSION 3 — THE WOMEN MOBILISE
+
+The player participates in the organisation and communication surrounding the protests.
+
+Show women gathering, communicating, singing, marching and coordinating their actions.
+
+MISSION 4 — THE PROTESTS
+
+The player participates in historically grounded protest activities.
+
+Reconstruct the atmosphere of the demonstrations and the interactions with colonial authorities.
+
+MISSION 5 — THE CONSEQUENCES
+
+Show the consequences of the protests, the colonial response, and the historical significance of the movement.
+
+GAMEPLAY REQUIREMENTS:
+
+- Crowd simulation appropriate to the available resources.
+- NPC conversations.
+- Group movement.
+- Mission objectives.
+- Historically appropriate clothing.
+- Accurate environmental design.
+- Period-appropriate architecture.
+- Cultural details informed by historical research.
+
+IMPORTANT:
+
+Do not turn the Aba Women's War into a generic shooting or combat game.
+
+The central experience is organised resistance, protest, community mobilisation and the struggle against colonial injustice.
+
+Respect the women and communities involved.
+
+--------------------------------------------------
+CAMPAIGN 2: THE DEATH OF GENERAL SANI ABACHA — 1998
+--------------------------------------------------
+
+LOCATION:
+Nigeria.
+
+HISTORICAL EVENT:
+The death of General Sani Abacha on 8 June 1998.
+
+This campaign should explore the political and historical circumstances surrounding the end of Abacha's rule and the transition that followed.
+
+IMPORTANT HISTORICAL ACCURACY:
+
+Do not automatically describe Abacha's death as an assassination.
+
+The circumstances and reported cause of his death should be researched using credible historical sources.
+
+Distinguish verified facts, disputed accounts, rumours and speculation.
+
+Do not invent a conspiracy and present it as historical fact.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — NIGERIA UNDER MILITARY RULE
+
+Reconstruct the political and social atmosphere of Nigeria during the Abacha administration.
+
+MISSION 2 — THE PRESIDENCY
+
+Introduce the historical presidential environment, military administration and key institutions.
+
+MISSION 3 — THE FINAL DAYS
+
+Explore the documented events leading up to Abacha's death.
+
+Use credible research to establish what can actually be represented.
+
+MISSION 4 — THE ANNOUNCEMENT
+
+The player experiences the historical announcement and the national reaction.
+
+MISSION 5 — THE TRANSITION
+
+Explore the political developments that followed his death and the eventual transition towards civilian government.
+
+VISUAL REQUIREMENTS:
+
+- Period-appropriate Nigerian architecture.
+- Government buildings.
+- Military uniforms.
+- Vehicles.
+- Street environments.
+- Communication technology.
+- News and media environments.
+- Period-appropriate clothing.
+
+Do not use modern Nigerian environments or technology where they would be historically inappropriate.
+
+--------------------------------------------------
+CAMPAIGN 3: THE BATTLE OF ADWA — 1896
+--------------------------------------------------
+
+LOCATION:
+Ethiopia.
+
+HISTORICAL EVENT:
+The Battle of Adwa, fought on 1 March 1896.
+
+CORE EXPERIENCE:
+
+Allow players to experience the historical conflict between Ethiopian forces and the invading Italian army.
+
+This is an opportunity for a large-scale African historical campaign.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — ETHIOPIA BEFORE THE BATTLE
+
+Introduce the Ethiopian Empire, its leadership, culture and political circumstances.
+
+MISSION 2 — THE GATHERING
+
+The player experiences the mobilisation and preparation of Ethiopian forces.
+
+MISSION 3 — STRATEGY AND TERRAIN
+
+Introduce the geography, military preparations and strategic considerations.
+
+MISSION 4 — THE BATTLE OF ADWA
+
+Create a playable battlefield experience.
+
+The player participates in historically grounded military objectives.
+
+MISSION 5 — THE VICTORY
+
+Present the historical outcome and its significance for Ethiopia, Africa and the wider world.
+
+GAMEPLAY:
+
+- Military formations.
+- Battlefield navigation.
+- Strategy-based objectives.
+- Period-appropriate weapons.
+- Historical uniforms.
+- Terrain and environmental effects.
+- NPC soldiers and commanders.
+
+Represent the historical outcome accurately.
+
+--------------------------------------------------
+CAMPAIGN 4: THE BENIN EXPEDITION — 1897
+--------------------------------------------------
+
+LOCATION:
+Benin Kingdom, present-day southern Nigeria.
+
+HISTORICAL EVENT:
+The British punitive expedition against the Kingdom of Benin in 1897.
+
+CORE EXPERIENCE:
+
+Explore the Kingdom of Benin before the expedition, the events of the invasion, the destruction and looting, and the consequences for the kingdom and its people.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — THE KINGDOM OF BENIN
+
+Introduce the Benin Kingdom.
+
+Show:
+- Royal architecture.
+- The palace environment.
+- Benin artistic traditions.
+- Bronze and brass casting.
+- Traditional clothing.
+- Palace life.
+- The political structure.
+
+MISSION 2 — THE KINGDOM AND ITS PEOPLE
+
+Allow the player to explore the city, meet residents and discover the kingdom's cultural and political importance.
+
+MISSION 3 — THE GROWING CONFLICT
+
+Introduce the historical tensions and events leading to the British expedition.
+
+MISSION 4 — THE EXPEDITION
+
+Reconstruct the 1897 invasion through historically grounded missions.
+
+MISSION 5 — THE AFTERMATH
+
+Explore the consequences, including the destruction and looting of cultural objects and their removal from Benin.
+
+GAMEPLAY:
+
+- Exploration.
+- Historical investigation.
+- Environmental storytelling.
+- Protection and rescue objectives where historically appropriate.
+- Period-appropriate military encounters.
+- Cultural artefact discovery.
+
+IMPORTANT:
+
+Treat the destruction, deaths and looting with historical seriousness.
+
+Do not turn the suffering of the people or the destruction of their heritage into entertainment rewards.
+
+==================================================
+4. CREATE A DEDICATED BIBLICAL HISTORY CATEGORY
+==================================================
+
+Create a separate category in the time-travel hub:
+
+BIBLICAL EXPERIENCES
+
+These episodes must be treated differently from ordinary historical campaigns.
+
+The objective is to let players experience and learn important biblical events in an immersive 3D environment while following the biblical account.
+
+NO REWRITE HISTORY MODE.
+
+No alternative endings.
+No changing Scripture.
+No fictional outcomes presented as biblical events.
+
+The player follows the sequence of events recorded in Scripture.
+
+The narration should follow the biblical text.
+
+Where possible, use actual Scripture narration with clear book, chapter and verse references.
+
+Use a public-domain or appropriately licensed Bible translation for displayed or spoken Scripture.
+
+Do not invent quotations and attribute them to the Bible.
+
+The player should feel transported into the world of the biblical period.
+
+==================================================
+5. BIBLICAL VISUAL REALISM — A MAJOR REQUIREMENT
+==================================================
+
+The biblical episodes must aim for the highest visual realism achievable within the existing development environment.
+
+I do not want cartoonish characters, fantasy armour, generic medieval environments or exaggerated video-game representations.
+
+The target is:
+
+CINEMATIC, HISTORICALLY INFORMED, HIGH-FIDELITY 3D REALISM.
+
+Think of a high-quality historical film recreated as an interactive 3D game.
+
+The coding agent is text-based and may not be able to inspect images generated separately.
+
+Therefore, use the detailed descriptions in this document as the visual direction.
+
+Use all available technical resources to achieve the best possible result.
+
+Do not simply select the first available 3D model and place it in the environment.
+
+Search the asset library, inspect models, remodel assets, create custom materials and use Blender where necessary.
+
+Use the existing Blender and Three.js workflow.
+
+A. CHARACTER REALISM
+
+Characters should have:
+- Realistic human proportions.
+- Natural body movement.
+- Period-appropriate hairstyles.
+- Period-appropriate facial hair.
+- Historically informed skin and clothing textures.
+- Natural-looking faces.
+- Realistic clothing folds.
+- Believable walking and running animations.
+- Appropriate body language.
+- Natural interaction animations.
+
+Avoid:
+- Cartoon proportions.
+- Oversized heads.
+- Modern hairstyles.
+- Modern clothing.
+- Fantasy armour.
+- Plastic-looking skin.
+- Unnaturally shiny materials.
+
+Where high-quality realistic human models are available, use them.
+
+Where necessary, use Blender to remodel and improve available models.
+
+B. CLOTHING AND COSTUMES
+
+Research the clothing of the relevant biblical period.
+
+Do not dress every character in generic robes.
+
+Clothing should reflect:
+- Historical period.
+- Geographic location.
+- Social position.
+- Occupation.
+- Wealth.
+- Cultural background.
+
+Use realistic woven fabric materials, natural colours, appropriate sandals, belts, head coverings and other historically informed details.
+
+C. ENVIRONMENT REALISM
+
+Reconstruct environments using historically informed architecture and materials.
+
+Consider:
+- Mud-brick structures.
+- Stone buildings.
+- Ancient settlements.
+- Desert landscapes.
+- Rocky terrain.
+- River environments.
+- Agricultural land.
+- Ancient roads.
+- Wooden structures.
+- Natural vegetation.
+
+Use realistic terrain, atmospheric effects, lighting, shadows, sky, water and environmental sound.
+
+Do not introduce modern buildings, roads, objects or materials.
+
+D. CINEMATIC LIGHTING AND ATMOSPHERE
+
+Lighting is essential.
+
+Use appropriate:
+- Sunrise and sunset lighting.
+- Harsh desert sunlight.
+- Night-time illumination.
+- Firelight.
+- Torchlight.
+- Dust and atmospheric particles.
+- Shadows.
+- Environmental fog where appropriate.
+- Realistic water and reflections.
+
+The environment should change according to the time of day and mission.
+
+E. SOUND AND MUSIC
+
+Audio must contribute to the historical atmosphere.
+
+Use:
+- Period-inspired instrumental music.
+- Environmental ambience.
+- Wind.
+- Footsteps.
+- Animal sounds.
+- Market sounds.
+- Crowd sounds.
+- Water.
+- Fire.
+- Battle ambience where appropriate.
+- Appropriate musical transitions.
+
+Avoid modern electronic music in biblical episodes.
+
+Use music that is historically informed and appropriate to the setting.
+
+Do not claim that a modern musical reconstruction is the exact music used in biblical times.
+
+==================================================
+6. BIBLICAL CAMPAIGN ONE: DAVID AND GOLIATH
+==================================================
+
+BIBLICAL SOURCE:
+1 Samuel 17.
+
+SETTING:
+Ancient Israel and the Valley of Elah.
+
+CORE EXPERIENCE:
+
+Allow the player to experience the biblical account of David and Goliath.
+
+The player should understand the circumstances surrounding the confrontation, not simply watch the final battle.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — THE VALLEY OF ELAH
+
+Reconstruct the valley and the opposing military camps.
+
+Show the geography, terrain, tents, equipment, soldiers and surrounding landscape.
+
+MISSION 2 — THE TWO ARMIES
+
+Introduce the Israelite and Philistine forces.
+
+Allow the player to explore the camp environment and observe the soldiers.
+
+MISSION 3 — GOLIATH'S CHALLENGE
+
+Present the biblical account of Goliath's challenge.
+
+Use Scripture-based narration.
+
+Make the size and physical presence of Goliath visually intimidating without turning him into a fantasy monster.
+
+MISSION 4 — DAVID ARRIVES
+
+Introduce David as a young shepherd.
+
+Show his interaction with the soldiers and the events leading to his encounter with Goliath.
+
+MISSION 5 — THE ARMOUR
+
+Present David's decision not to use Saul's armour.
+
+Show the sling and stones as described in Scripture.
+
+MISSION 6 — THE CONFRONTATION
+
+Create the confrontation between David and Goliath.
+
+The player should experience the tension and progression of the biblical event.
+
+MISSION 7 — THE OUTCOME
+
+Present the biblical outcome.
+
+The narration should follow 1 Samuel 17.
+
+VISUAL DIRECTION:
+
+DAVID:
+A young shepherd, wearing simple historically informed clothing, with a shepherd's sling and a natural appearance.
+
+GOLIATH:
+A physically imposing warrior wearing historically informed ancient Philistine military equipment.
+
+Do not turn Goliath into a mythical giant with supernatural fantasy armour.
+
+THE ENVIRONMENT:
+A realistic ancient battlefield valley with dry terrain, military camps, tents, dust, natural vegetation and historically informed equipment.
+
+==================================================
+7. BIBLICAL CAMPAIGN TWO: THE CROSSING OF THE RED SEA
+==================================================
+
+BIBLICAL SOURCE:
+Exodus 13–15.
+
+SETTING:
+Ancient Egypt and the wilderness journey of the Israelites.
+
+CORE EXPERIENCE:
+
+This should be one of the most visually impressive experiences in HIS-TREE.
+
+The player should experience the events leading up to the crossing, the Israelites' situation, Pharaoh's pursuit, the opening of the sea and the crossing.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — EGYPT
+
+Reconstruct ancient Egypt.
+
+Show:
+- Egyptian architecture.
+- Settlements.
+- Palace environments.
+- Ancient Egyptian clothing.
+- Egyptian military equipment.
+- Everyday life.
+- The Israelites' circumstances.
+
+MISSION 2 — THE EXODUS
+
+Show the Israelites leaving Egypt.
+
+Create a large travelling population.
+
+The player participates in the journey.
+
+MISSION 3 — THE WILDERNESS
+
+Reconstruct the environment and challenges of the journey.
+
+Show the large population travelling through the wilderness.
+
+MISSION 4 — PHARAOH'S PURSUIT
+
+Present the biblical account of Pharaoh's army pursuing the Israelites.
+
+Create a cinematic and tense sequence.
+
+MISSION 5 — THE SEA BEFORE THEM
+
+The player reaches the sea with the Israelites.
+
+Show the scale of the water, the surrounding landscape and the approaching Egyptian forces.
+
+MISSION 6 — THE SEA OPENS
+
+Create an extraordinary cinematic representation of the biblical miracle.
+
+The sea should separate into two enormous bodies of water.
+
+The player should witness the scale and physical environment of the divided sea.
+
+Create:
+- Massive walls of water.
+- A visible passage through the sea.
+- A seabed pathway.
+- Water movement and environmental effects.
+- Lighting through the divided water.
+- The sound of powerful moving water.
+- A large crowd beginning the crossing.
+
+MISSION 7 — THE CROSSING
+
+Allow the player to participate in the Israelites' journey through the divided sea.
+
+Create a sense of scale.
+
+Show families, groups, possessions and animals travelling through the passage.
+
+MISSION 8 — PHARAOH'S ARMY
+
+Present the Egyptian army entering the passage.
+
+MISSION 9 — THE WATERS RETURN
+
+Present the biblical conclusion of the event as recorded in Exodus.
+
+The waters return and Pharaoh's pursuing forces are overwhelmed.
+
+MISSION 10 — DELIVERANCE
+
+Complete the campaign with the Israelites reaching safety.
+
+Use Scripture-based narration and appropriate musical atmosphere.
+
+IMPORTANT VISUAL REQUIREMENT:
+
+The Red Sea crossing must not look like a small swimming pool with two walls of water.
+
+It should feel enormous.
+
+Use the largest visually convincing environment possible within browser performance limits.
+
+If rendering an enormous environment simultaneously is too expensive, use carefully designed camera sequences, environmental streaming, level sections and cinematic transitions.
+
+Maintain player participation.
+
+Do not turn the entire episode into a movie.
+
+==================================================
+8. BIBLICAL CAMPAIGN THREE: SAMSON
+==================================================
+
+BIBLICAL SOURCE:
+Judges 13–16.
+
+SETTING:
+Ancient Israel during the period of the judges.
+
+CORE EXPERIENCE:
+
+Create a complete campaign following the biblical account of Samson.
+
+This campaign should introduce the player to Samson's birth, calling, strength, conflicts and final events.
+
+POSSIBLE MISSION STRUCTURE:
+
+MISSION 1 — THE ANNOUNCEMENT
+
+Present the biblical account of the angel's announcement to Samson's parents.
+
+MISSION 2 — SAMSON'S BIRTH AND GROWING YEARS
+
+Introduce Samson and his Nazirite dedication as described in Scripture.
+
+MISSION 3 — SAMSON AND THE PHILISTINES
+
+Show the historical and geographical setting of the conflict.
+
+MISSION 4 — THE LION
+
+Recreate the biblical encounter with the lion.
+
+MISSION 5 — THE RIDDLE
+
+Present the events surrounding Samson's wedding feast and riddle.
+
+MISSION 6 — THE CONFLICT
+
+Allow the player to experience selected confrontations with the Philistines.
+
+MISSION 7 — DELILAH
+
+Present the biblical account of Samson and Delilah.
+
+MISSION 8 — CAPTURE
+
+Show Samson's capture and imprisonment.
+
+MISSION 9 — THE FINAL EVENT
+
+Reconstruct the final event in the temple of Dagon.
+
+Present Samson's final prayer and the collapse of the structure according to the biblical account.
+
+MISSION 10 — THE CONCLUSION
+
+Complete the story with Scripture-based narration.
+
+VISUAL DIRECTION:
+
+Samson should look like a believable human being from the historical setting.
+
+He should be physically powerful, but not a fantasy superhero.
+
+His strength should be communicated through animation, action, environmental interaction and cinematic presentation.
+
+His hair should be visually consistent with the biblical narrative.
+
+Use historically informed Philistine and Israelite clothing, architecture, weapons and environments.
+
+==================================================
+9. SCRIPTURE-BASED NARRATION SYSTEM
+==================================================
+
+This is essential.
+
+For biblical campaigns, narration should follow Scripture.
+
+Each mission should have:
+- Biblical book.
+- Chapter.
+- Verse references.
+- Narration.
+- Relevant dialogue where supported by Scripture.
+- Clear transitions between biblical passages.
+
+The player should be able to understand which part of Scripture is being experienced.
+
+Do not:
+- Invent biblical quotations.
+- Change the biblical sequence.
+- Add alternative biblical endings.
+- Present fictional conversations as actual Scripture.
+- Introduce events that contradict the biblical account.
+
+Where additional dialogue is required for gameplay, label it as fictional dialogue or dramatic reconstruction.
+
+The biblical journal should allow players to revisit the relevant passages.
+
+Consider a Scripture reference display during important scenes.
+
+Narration should be cinematic but faithful to the biblical text.
+
+==================================================
+10. HISTORICAL RESEARCH AND AUTHENTICITY
+==================================================
+
+Before building any campaign, research the relevant historical period.
+
+Do not rely on assumptions.
+
+For African history, investigate:
+- Historical clothing.
+- Languages.
+- Architecture.
+- Cultural practices.
+- Political structures.
+- Weapons and technology.
+- Geography.
+- Historical personalities.
+- Chronology.
+
+For biblical campaigns, investigate:
+- Archaeological context.
+- Ancient Near Eastern architecture.
+- Clothing and materials.
+- Geography.
+- Historical technologies.
+- Weapons and tools.
+- Daily life.
+- Relevant biblical passages.
+
+Distinguish between:
+1. Documented historical facts.
+2. Historical interpretations.
+3. Disputed historical accounts.
+4. Artistic reconstructions.
+5. Fictional gameplay additions.
+6. Scripture-based narration.
+
+The game must not present uncertain historical reconstructions as proven facts.
+
+For biblical episodes, distinguish the biblical account from archaeological interpretation and artistic reconstruction.
+
+==================================================
+11. MISSION-BASED CAMPAIGN ENGINE
+==================================================
+
+Improve the existing game architecture to support complete historical campaigns.
+
+Each campaign should contain multiple connected missions.
+
+Build or improve reusable systems for:
+
+- CampaignManager.
+- MissionManager.
+- TimelineManager.
+- EpisodeManager.
+- HistoricalMode.
+- RewriteHistoryMode.
+- BiblicalMode.
+- NPCManager.
+- DialogueSystem.
+- InteractionSystem.
+- ObjectiveSystem.
+- CinematicManager.
+- AudioManager.
+- HistoricalJournal.
+- ScriptureNarration.
+- SaveSystem.
+
+Each mission should support:
+
+- Mission title.
+- Historical period.
+- Location.
+- Opening sequence.
+- Objectives.
+- NPC interactions.
+- Environmental activities.
+- Mission progression.
+- Optional discoveries.
+- Completion conditions.
+- Closing sequence.
+- Journal updates.
+
+The campaign should remember completed missions.
+
+Allow players to return to previous missions where appropriate.
+
+Do not make every mission use the same mechanics.
+
+A military campaign, a protest campaign, an ancient marketplace and a biblical miracle should feel different.
+
+==================================================
+12. CINEMATIC PRESENTATION
+==================================================
+
+Use cinematic presentation to make important moments memorable.
+
+Consider:
+- Opening establishing shots.
+- Character introductions.
+- Camera transitions.
+- Environmental reveals.
+- Mission briefings.
+- Dramatic lighting.
+- Cinematic music.
+- Slow camera movement during major discoveries.
+- Scripted environmental events.
+- Closing sequences.
+
+However, cinematic sequences should not replace gameplay.
+
+The player must remain involved.
+
+Where appropriate, allow the player to move, interact, investigate and participate during major events.
+
+==================================================
+13. VISUAL QUALITY AND 3D ASSET STRATEGY
+==================================================
+
+The visual direction for the entire game should move towards high-quality, realistic 3D.
+
+Do not assume that all existing assets are good enough.
+
+Inspect the available asset library.
+
+Use Blender to:
+- Remodel characters.
+- Improve proportions.
+- Create period-appropriate clothing.
+- Modify armour and equipment.
+- Improve textures.
+- Create environmental props.
+- Build architectural details.
+- Create animations.
+- Improve existing models.
+
+Use glTF optimisation for browser delivery.
+
+Prioritise quality while maintaining performance.
+
+Do not sacrifice the entire experience to visual effects that make the game unplayable.
+
+The target is the highest visual fidelity that the existing browser-based platform can realistically support.
+
+==================================================
+14. PERFORMANCE AND TECHNICAL CONSTRAINTS
+==================================================
+
+Preserve the original technical environment and patch.gg requirements.
+
+Use:
+- Three.js.
+- Blender.
+- Existing asset library.
+- Existing project tooling.
+- LocalStorage for saves.
+- Existing static browser deployment structure.
+
+Maintain:
+- WebGL2 compatibility.
+- Desktop keyboard and mouse support.
+- Optimised GLB models.
+- Optimised textures.
+- Efficient lighting.
+- Efficient shadows.
+- Audio optimisation.
+- Scene management.
+- Asset loading.
+- Browser performance.
+
+Do not expose secrets.
+
+Do not introduce a backend dependency without a clear requirement.
+
+Keep the release below the patch.gg 500 MB limit, preferably substantially smaller.
+
+Use level streaming or staged loading for larger environments.
+
+==================================================
+15. IMPLEMENTATION PRIORITIES
+==================================================
+
+Do not attempt everything at once.
+
+Follow this order.
+
+PHASE 1 — AUDIT AND IMPROVEMENT
+
+Inspect the current HIS-TREE build.
+
+Identify:
+- What works.
+- What is incomplete.
+- What is missing.
+- What needs visual improvement.
+- What needs architectural improvement.
+- What can be reused.
+
+Improve the existing project before adding large amounts of content.
+
+PHASE 2 — CAMPAIGN SYSTEM
+
+Improve the existing mission architecture so it can support complete historical campaigns.
+
+Make sure missions can be linked chronologically.
+
+Implement campaign progression and saving.
+
+PHASE 3 — AFRICAN HISTORY
+
+Begin with the Aba Women's War campaign.
+
+Build it as a complete playable campaign, not just a location with dialogue.
+
+Test it.
+
+Then proceed to:
+- The death of General Sani Abacha.
+- The Battle of Adwa.
+- The Benin Expedition.
+
+Implement and test each campaign progressively.
+
+PHASE 4 — BIBLICAL MODE
+
+Create the dedicated Biblical Experiences category.
+
+Implement:
+1. David and Goliath.
+2. The Crossing of the Red Sea.
+3. Samson.
+
+Prioritise the visual and environmental realism of these experiences.
+
+Use Scripture-based narration.
+
+Do not include Rewrite History in Biblical Mode.
+
+PHASE 5 — QUALITY AND OPTIMISATION
+
+Test every campaign.
+
+Check:
+- Player movement.
+- Camera behaviour.
+- NPC interactions.
+- Mission progression.
+- Dialogue.
+- Historical chronology.
+- Scripture references.
+- Audio.
+- Lighting.
+- Animation.
+- Performance.
+- Saving.
+- Loading.
+- Browser compatibility.
+
+Capture gameplay footage and inspect the actual experience.
+
+Fix incomplete or broken features before publishing.
+
+==================================================
+16. FINAL CREATIVE DIRECTION
+==================================================
+
+The game should feel like entering another time.
+
+When the player enters ancient Egypt, it should feel like ancient Egypt.
+
+When the player enters the Valley of Elah, it should feel like the biblical world surrounding David and Goliath.
+
+When the player enters the Red Sea crossing, the scale and atmosphere should be extraordinary.
+
+When the player enters colonial Nigeria, the environment should reflect the period and the people.
+
+When the player enters the Battle of Adwa, the player should experience the historical military environment.
+
+When the player enters the Aba Women's War, the player should understand the courage, organisation and historical significance of the women involved.
+
+Do not settle for generic 3D environments with historical names attached.
+
+Every campaign should be researched, visually distinct and mission-driven.
+
+The player should not feel as if they are playing the same level repeatedly with different skins.
+
+Each historical period should have its own identity, atmosphere, characters, mechanics and soundtrack.
+
+==================================================
+17. FINAL INSTRUCTION
+==================================================
+
+Your task is to progressively transform HIS-TREE into a high-quality, immersive, 3D historical adventure game.
+
+Preserve the existing project.
+
+Improve what has already been built.
+
+Build complete historical campaigns.
+
+Make history playable through missions.
+
+Introduce authentic African history.
+
+Create a dedicated biblical experience based on Scripture.
+
+Use all available tools, assets, modelling resources, animation capabilities and optimisation techniques to achieve the best possible result.
+
+Do not merely describe what should be built.
+
+IMPLEMENT IT.
+
+If a feature is too ambitious for the current development stage, create a smaller working version and document the remaining work.
+
+Never pretend an unfinished feature is complete.
+
+Prioritise a functioning, immersive and visually impressive experience over a long list of incomplete features.
+
+THE ULTIMATE GOAL:
+
+HIS-TREE SHOULD LET PEOPLE STEP INTO HISTORY, EXPERIENCE ITS IMPORTANT EVENTS, UNDERSTAND ITS PEOPLE AND PLACES, AND DISCOVER THE STORIES THAT SHAPED HUMANITY.
+
+EXPERIENCE HISTORY.
+REWRITE DESTINY.

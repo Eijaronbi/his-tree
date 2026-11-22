@@ -1,0 +1,1 @@
+AssertionError [ERR_ASSERTION]: whole-scene triangle count was 1

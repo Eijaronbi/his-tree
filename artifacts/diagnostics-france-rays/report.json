@@ -1,0 +1,152 @@
+{
+  "chapter": "france-1917",
+  "loadToStateMs": 12740,
+  "viewport": [
+    1280,
+    720
+  ],
+  "scene": {
+    "chapter": "france-1917",
+    "quest": true,
+    "npcs": [
+      "sergeant"
+    ],
+    "player": [
+      0,
+      0,
+      15
+    ],
+    "camera": [
+      -5.497596563046444e-16,
+      3.078316077174015,
+      19.489128266920787
+    ],
+    "hall": null,
+    "renderer": {
+      "calls": 323,
+      "triangles": 288548,
+      "geometries": 170,
+      "textures": 24
+    },
+    "occlusionHits": [],
+    "forwardHits": [
+      {
+        "distance": 9.13774275236221,
+        "point": [
+          5.421010862427522e-16,
+          0.04354064102825633,
+          10.870051711946095
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "BoxGeometry",
+        "objectPosition": [
+          0,
+          0.06,
+          10.7
+        ],
+        "objectRotation": [
+          0,
+          0.024661723917796825,
+          0
+        ],
+        "objectScale": [
+          1,
+          1,
+          1
+        ],
+        "material": {
+          "type": "MeshStandardMaterial",
+          "transparent": false,
+          "opacity": 1,
+          "color": "ffffff"
+        }
+      },
+      {
+        "distance": 9.223678941444772,
+        "point": [
+          5.15699583295613e-16,
+          0.014999999999998048,
+          10.788993335428117
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "PlaneGeometry",
+        "objectPosition": [
+          0,
+          0.015,
+          0
+        ],
+        "objectRotation": [
+          -1.5707963267948966,
+          0,
+          0
+        ],
+        "objectScale": [
+          1,
+          1,
+          1
+        ],
+        "material": {
+          "type": "MeshBasicMaterial",
+          "transparent": true,
+          "opacity": 0.55,
+          "color": "2a1c0e"
+        }
+      },
+      {
+        "distance": 9.326176614159628,
+        "point": [
+          5.27539446014692e-16,
+          -0.019040947293767083,
+          10.69231351944099
+        ],
+        "name": null,
+        "type": "Mesh",
+        "geometry": "PlaneGeometry",
+        "objectPosition": [
+          0,
+          0,
+          0
+        ],
+        "objectRotation": [
+          -1.5707963267948966,
+          0,
+          0
+        ],
+        "objectScale": [
+          1,
+          1,
+          1
+        ],
+        "material": {
+          "type": "MeshStandardMaterial",
+          "transparent": false,
+          "opacity": 1,
+          "color": "6f6a58"
+        }
+      }
+    ],
+    "stats": "1.9 FPS · LOW · THE QUIET MUTINY · 0, 15"
+  },
+  "timing": {
+    "intervals": [
+      549.8999999999996,
+      483.3000000000002,
+      516.6999999999998,
+      550,
+      516.7000000000007,
+      516.6000000000004,
+      533.2999999999993,
+      483.2000000000007,
+      1016.6999999999989,
+      16.700000000000728
+    ],
+    "stats": "1.0 FPS · LOW · THE QUIET MUTINY · 0, 15",
+    "frameMsMedian": 516.7000000000007,
+    "measuredFps": 1.9293473018077982,
+    "displayedFps": 1
+  },
+  "errors": [],
+  "failedRequests": []
+}

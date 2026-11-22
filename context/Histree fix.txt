@@ -1,0 +1,640 @@
+PROJECT TASK: PRE-RELEASE GAME OPTIMISATION AND PERFORMANCE AUDIT
+
+1. OBJECTIVE
+
+Conduct a comprehensive technical audit and implement an optimisation strategy for the existing browser-based 3D game.
+
+The game is built primarily with:
+
+- Three.js
+- React (where applicable)
+- GLB/glTF 3D assets
+- Blender for 3D modelling and asset preparation
+- AI-assisted 3D asset generation tools, including Aholo AI
+
+The game currently has approximately 200 MB of assets and may eventually grow to 500 MB or more.
+
+The objective is to ensure that the game remains:
+
+- Visually beautiful.
+- High-quality in graphics and animations.
+- Fast to load.
+- Responsive on mobile devices.
+- Efficient in memory consumption.
+- Reliable on different Android devices.
+- Capable of supporting a growing asset library.
+
+CRITICAL REQUIREMENT: Preserve the existing game's visual identity and quality. Do not sacrifice important graphical details, character appearance, textures, animations, environments or artistic direction merely to reduce file sizes.
+
+Do not redesign the game or change its existing visual direction.
+
+This is an optimisation task, not a visual redesign.
+
+---
+
+2. FIRST: AUDIT THE EXISTING PROJECT
+
+Before modifying anything, inspect the entire project.
+
+Identify:
+
+1. The current Three.js architecture.
+2. React integration and component structure.
+3. How GLB assets are loaded.
+4. Whether assets are loaded individually or as large combined files.
+5. Current asset sizes.
+6. Texture formats and resolutions.
+7. Polygon counts and mesh complexity.
+8. Animation sizes and structures.
+9. Current hosting and asset delivery arrangements.
+10. Existing caching mechanisms.
+11. Current memory consumption.
+12. Rendering bottlenecks on mobile.
+13. Whether unused assets are being loaded unnecessarily.
+
+Generate an asset inventory.
+
+For every significant GLB, identify:
+
+- Filename.
+- File size.
+- Number of meshes.
+- Number of materials.
+- Number of textures.
+- Texture resolutions.
+- Polygon/triangle count.
+- Animation count.
+- Compression status.
+
+Identify the largest assets and the biggest opportunities for optimisation.
+
+Do not immediately compress everything.
+
+First establish a baseline against which improvements can be measured.
+
+---
+
+3. LOSSLESS AND QUALITY-PRESERVING ASSET COMPRESSION
+
+Investigate and implement appropriate GLB optimisation techniques.
+
+Recommended technologies:
+
+- glTF Transform.
+- Meshopt.
+- Draco where beneficial.
+- KTX2.
+- Basis Universal.
+
+Geometry optimisation
+
+Use Meshopt to optimise geometry storage and delivery.
+
+Prioritise lossless optimisation wherever practical.
+
+Do not automatically reduce polygon counts.
+
+Where quantisation is used, compare the resulting model against the original and ensure that any differences are visually negligible.
+
+Draco may also be evaluated where it provides meaningful improvements.
+
+Avoid unnecessary stacking of compression methods.
+
+Texture optimisation
+
+Investigate KTX2 and Basis Universal.
+
+Convert suitable textures into GPU-compressed delivery formats.
+
+Preserve:
+
+- Texture detail.
+- Normal maps.
+- Roughness information.
+- Metallic information.
+- Alpha transparency.
+- Material appearance.
+- Colour accuracy.
+
+Pay particular attention to normal maps and textures that influence the appearance of characters and environments.
+
+Do not blindly reduce every texture resolution.
+
+Only reduce resolution when testing establishes that the change is visually acceptable at the relevant viewing distance and screen size.
+
+Animation optimisation
+
+Optimise animation data without changing the appearance or behaviour of animations.
+
+Consider:
+
+- Removing redundant keyframes.
+- Removing unused animation tracks.
+- Reducing unnecessary animation duplication.
+- Reusing animation clips where appropriate.
+
+Preserve animation timing, transitions, rigging and character movement.
+
+Original asset preservation
+
+NEVER overwrite original Blender projects or original GLB assets.
+
+Maintain separate directories for:
+
+- Original source assets.
+- Optimised assets.
+- Mobile assets.
+- Desktop/high-quality assets.
+
+Always retain the ability to regenerate optimised assets from the original files.
+
+---
+
+4. PROGRESSIVE ASSET LOADING AND LAZY LOADING
+
+Do not download the entire game when the player initially opens the website.
+
+Implement progressive loading.
+
+The game should download only the assets necessary to begin playing.
+
+For example:
+
+Initial loading:
+
+- Game interface.
+- Essential scripts.
+- Initial environment.
+- Main playable character.
+- Essential animations.
+
+Subsequent loading:
+
+- Additional characters.
+- Additional environments.
+- Secondary objects.
+- Background assets.
+- Additional animations.
+- Future levels.
+
+Load assets according to gameplay requirements.
+
+Prioritise assets that are immediately visible or necessary for gameplay.
+
+Load upcoming environments before players reach them.
+
+Load non-essential assets in the background when bandwidth and device performance allow.
+
+Avoid blocking gameplay while unrelated assets are downloading.
+
+Implement loading progress indicators where appropriate.
+
+The initial game experience should remain usable even when additional assets are still loading.
+
+---
+
+5. ASSET MANAGEMENT SYSTEM
+
+Implement or improve a central asset management system.
+
+It should:
+
+1. Maintain an inventory of game assets.
+2. Identify assets required by each level.
+3. Prioritise essential assets.
+4. Load assets asynchronously.
+5. Avoid duplicate downloads.
+6. Reuse already-loaded assets.
+7. Support different asset quality levels.
+8. Track loading progress.
+9. Handle failed downloads.
+10. Retry failed requests intelligently.
+11. Unload unused assets.
+12. Release GPU and CPU resources when appropriate.
+
+Use Three.js LoadingManager or an appropriate custom asset manager.
+
+Ensure that disposing of assets does not accidentally destroy resources still being used elsewhere.
+
+Avoid memory leaks.
+
+---
+
+6. CDN AND EXTERNAL ASSET DELIVERY
+
+Investigate separating the game application from its large asset library.
+
+The game application should not need to serve hundreds of megabytes of assets directly.
+
+Evaluate:
+
+- Cloudflare R2.
+- Cloudflare CDN.
+- AWS S3 and CloudFront.
+- Other suitable CDN providers.
+
+Select the most appropriate option based on:
+
+- Cost.
+- Reliability.
+- Global delivery.
+- Performance for Nigerian users.
+- Cache behaviour.
+- Storage requirements.
+- Bandwidth requirements.
+
+Store large GLB files, textures, audio and other downloadable resources separately from the main application where practical.
+
+Implement:
+
+- Appropriate cache headers.
+- Immutable, versioned asset URLs.
+- CDN caching.
+- Efficient HTTP requests.
+- Range requests where beneficial and supported.
+- Compression and content-type configuration.
+
+Do not assume that a CDN automatically guarantees low latency. Test actual delivery performance.
+
+---
+
+7. BROWSER CACHING AND DEVICE STORAGE
+
+Implement a persistent asset caching strategy.
+
+Investigate:
+
+Cache API
+
+Use for caching downloaded static assets and resources.
+
+Service Workers
+
+Use for:
+
+- Offline support where appropriate.
+- Managing asset requests.
+- Intercepting network requests.
+- Serving cached resources.
+- Handling repeat visits.
+
+IndexedDB
+
+Consider for:
+
+- Persistent asset metadata.
+- Download manifests.
+- Larger resources where appropriate.
+- Asset version information.
+
+The objective is to avoid repeatedly downloading the same assets.
+
+When a player returns to the game, previously downloaded assets should be retrieved from local storage whenever valid.
+
+Implement:
+
+- Cache versioning.
+- Cache invalidation.
+- Asset update detection.
+- Storage quota checks.
+- Storage eviction handling.
+- Recovery when cached assets are missing or corrupted.
+
+Do not assume browser storage is unlimited or permanent.
+
+The game must remain functional if the browser clears its cache.
+
+Where supported, investigate persistent storage requests through the browser Storage API.
+
+---
+
+8. MOBILE GRAPHICS AND PERFORMANCE OPTIMISATION
+
+Optimise the Three.js rendering architecture for mobile devices.
+
+Preserve the game's artistic quality.
+
+Investigate:
+
+Level of Detail (LOD)
+
+Use different model complexity levels based on camera distance.
+
+Close objects should retain their intended visual detail.
+
+Distant objects can use simpler geometry where the difference is not noticeable.
+
+GPU Instancing
+
+Use Three.js InstancedMesh for repeated objects such as:
+
+- Trees.
+- Rocks.
+- Buildings.
+- Grass.
+- Repeated environmental objects.
+
+Avoid unnecessary draw calls.
+
+Frustum Culling
+
+Avoid rendering objects outside the camera's visible area.
+
+Occlusion Culling
+
+Where beneficial, avoid processing objects that are completely hidden behind other objects.
+
+Lighting
+
+Review expensive lighting operations.
+
+Use efficient lighting arrangements while preserving the intended appearance.
+
+Shadows
+
+Optimise shadow rendering and shadow map resolution based on device capabilities.
+
+Particle Systems
+
+Control particle counts and unnecessary effects on lower-performing devices.
+
+Memory Management
+
+Dispose of unused:
+
+- Geometries.
+- Materials.
+- Textures.
+- Render targets.
+- Other GPU resources.
+
+Avoid retaining unnecessary scenes and asset references.
+
+Do not remove visual effects indiscriminately.
+
+---
+
+9. MULTIPLE ASSET QUALITY LEVELS
+
+Investigate providing different quality versions of suitable assets.
+
+For example:
+
+LOW:
+
+- Optimised textures.
+- Simplified distant geometry.
+- Reduced shadow complexity.
+
+MEDIUM:
+
+- Balanced textures.
+- Standard geometry.
+- Moderate rendering quality.
+
+HIGH:
+
+- Higher-resolution textures.
+- More detailed geometry.
+- Higher-quality shadows and effects.
+
+ULTRA:
+
+- Original or near-original visual fidelity.
+- Highest supported texture resolution.
+- Maximum appropriate rendering quality.
+
+The original source assets must remain untouched.
+
+The game should select an appropriate quality level based on device capabilities.
+
+Do not rely exclusively on phone model detection.
+
+Consider:
+
+- Available memory.
+- Rendering performance.
+- Screen resolution.
+- Device capabilities.
+- Actual frame-rate measurements.
+
+Allow players to manually select graphics quality where appropriate.
+
+Do not force low-quality assets on capable devices.
+
+---
+
+10. AUTOMATIC MOBILE PERFORMANCE ADAPTATION
+
+The game should adapt to the player's device.
+
+Implement an intelligent performance configuration.
+
+For lower-performing devices:
+
+- Reduce unnecessary rendering complexity.
+- Reduce particle counts.
+- Adjust shadow quality.
+- Use appropriate texture variants.
+- Reduce unnecessary background processing.
+
+For more capable devices:
+
+- Preserve higher graphical settings.
+- Allow higher-quality assets.
+- Enable additional visual effects where appropriate.
+
+Monitor actual performance and adjust settings carefully.
+
+Do not make aggressive changes that cause noticeable visual degradation.
+
+Provide a manual graphics-quality override.
+
+---
+
+11. MEMORY MANAGEMENT
+
+A large game must not load its entire asset library into memory.
+
+Implement asset lifecycle management.
+
+For example:
+
+When entering Level 1:
+
+- Load Level 1 assets.
+- Retain shared assets.
+- Avoid loading unrelated levels.
+
+When entering Level 2:
+
+- Load Level 2 assets.
+- Release Level 1 assets that are no longer required.
+- Preserve shared assets.
+
+Pay attention to decoded texture memory.
+
+A compressed texture can occupy significantly more memory after decoding, depending on the format.
+
+Monitor:
+
+- JavaScript heap usage.
+- Texture memory.
+- Geometry memory.
+- Renderer memory statistics.
+- Frame rate.
+- Memory growth over time.
+
+Avoid memory leaks during:
+
+- Level transitions.
+- Character changes.
+- Scene changes.
+- Repeated gameplay sessions.
+
+---
+
+12. PERFORMANCE TESTING
+
+Do not assume optimisation has worked simply because the GLB files became smaller.
+
+Test the game before and after implementation.
+
+Measure:
+
+Download performance
+
+- Initial download size.
+- Initial loading time.
+- Total downloaded assets.
+- CDN response time.
+- Repeat-visit loading time.
+
+Rendering performance
+
+- Average FPS.
+- Frame-time consistency.
+- Draw calls.
+- Triangle counts.
+- Rendering bottlenecks.
+
+Memory performance
+
+- JavaScript memory.
+- Geometry memory.
+- Texture memory.
+- Memory growth during gameplay.
+- Memory released during level transitions.
+
+Visual quality
+
+Compare original and optimised assets.
+
+Check:
+
+- Character appearance.
+- Texture sharpness.
+- Material appearance.
+- Lighting.
+- Shadows.
+- Transparency.
+- Animation smoothness.
+- Environmental details.
+
+Test on actual Android devices, including lower-end devices.
+
+Use Chrome DevTools and Three.js renderer statistics where appropriate.
+
+Test different network conditions.
+
+---
+
+13. REQUIRED PERFORMANCE OBJECTIVES
+
+Use the following as initial engineering targets, adjusting them based on the actual game.
+
+1. The entire game asset library must not be downloaded during initial startup.
+2. The player should reach the first playable experience without waiting for unrelated assets.
+3. Essential initial assets should ideally remain within approximately 5–15 MB where the game's design allows.
+4. Additional assets should load progressively.
+5. Previously downloaded assets should be reusable through browser caching.
+6. Unused assets should be unloaded from memory.
+7. The game should remain playable on reasonably capable Android devices.
+8. Graphics quality should adapt to device capabilities.
+9. The original visual identity must be preserved.
+10. No major graphical regression is acceptable.
+11. Asset delivery must support future expansion beyond 500 MB.
+12. The game must recover gracefully from interrupted downloads and missing cached assets.
+
+These are targets, not reasons to compromise visual quality.
+
+---
+
+14. STRICT DEVELOPMENT RULES
+
+Follow these rules throughout implementation:
+
+1. Do not redesign the game.
+2. Do not change the artistic direction.
+3. Do not replace existing characters.
+4. Do not modify character proportions or facial appearance.
+5. Do not unnecessarily reduce polygon counts.
+6. Do not blindly downscale textures.
+7. Do not remove animations.
+8. Do not remove environmental details without justification.
+9. Do not overwrite original Blender or GLB files.
+10. Do not introduce unnecessary dependencies.
+11. Do not break existing gameplay.
+12. Do not compromise desktop quality to optimise mobile.
+13. Do not assume that smaller files automatically mean faster rendering.
+14. Do not introduce a new hosting provider without evaluating the existing infrastructure.
+15. Do not implement compression without testing the resulting assets.
+
+Preserving visual fidelity is a priority.
+
+Where a compression technique produces noticeable degradation, investigate an alternative.
+
+---
+
+15. IMPLEMENTATION AND REPORTING
+
+Work in phases.
+
+PHASE 1: Project audit and baseline measurements.
+
+PHASE 2: Asset inventory and optimisation experiments.
+
+PHASE 3: Quality-preserving geometry and texture compression.
+
+PHASE 4: Progressive loading and asset management.
+
+PHASE 5: CDN integration and browser caching.
+
+PHASE 6: Mobile rendering and memory optimisation.
+
+PHASE 7: Device-based quality adaptation.
+
+PHASE 8: Testing, benchmarking and visual validation.
+
+After each phase:
+
+- Explain what was changed.
+- Report original and optimised asset sizes.
+- Report performance improvements.
+- Identify any visual differences.
+- Identify outstanding problems.
+- Confirm that existing functionality still works.
+
+Do not claim that an optimisation is successful without measurements.
+
+If a proposed optimisation risks reducing visual quality, explain the trade-off before applying it.
+
+FINAL GOAL
+
+Transform the existing Three.js browser game into a scalable, mobile-friendly 3D gaming experience.
+
+The game should be capable of growing from approximately 200 MB to 500 MB or more of total assets without requiring players to download everything upfront.
+
+It should load intelligently, cache efficiently, manage memory responsibly, render smoothly and preserve the original visual quality.
+
+The guiding principle: Optimise how the game stores, downloads, processes and renders its assets. Do not compromise the quality of the game itself.

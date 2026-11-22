@@ -10,6 +10,42 @@ person who owns this project:
 
 ---
 
+## Where it stands (2026-11-22)
+
+Done and verified — `HANDOVER.md` has the evidence and file map:
+
+- **Asset weight:** 67 runtime GLBs **195.7 MB → 65.2 MB (−66.7 %)** (PSNR 45–54 dB)
+  via dedup → prune → resample → WebP q95 → meshopt; originals kept outside the repo.
+  Built dist **116.7 → 79.1 MiB**; all four chapters boot with zero failed requests.
+  Per-chapter payloads: Mali 15.7 / Washington 20.5 / France 9.5 / Berlin 8.1 MiB.
+- **Delivery:** versioned asset URLs (`core/Assets.js`), meshopt loaders
+  (`core/GLTF.js`), service worker v4 with an IndexedDB asset cache (~220 MB),
+  mobile texture tiers (`core/AssetTiers.js`).
+- **Quality:** adaptive low/medium/high tiers; render-scale floors raised
+  0.55 → 0.72/0.75/0.8 (this was the "half screen / soft" image); POV pinned to 1.0;
+  UI graphics selector.
+- **Memory:** per-owner texture/disposable tracking and chapter-world disposal.
+- **Flight:** Superman-style — head-up pose, 8 m cruise, steady banked turns, no yaw
+  wobble, closer chase camera that keeps Lofi framed.
+- **View modes:** avatar (third person) is the default; POV toggles with `P`/HUD,
+  hides the body and renders at full scale.
+- **Portraits:** all nine avatar portraits are full-front (`YAW = 0`), matching the
+  selection preview's camera and light rig.
+- **Turn stability:** `check_turn.py` shows the rig dead-centre (422,206), bank
+  −0.55 rad held steady, heading turning steadily; the controller no longer
+  integrates lateral velocity while flight is frozen.
+
+### Next
+
+- [ ] Finish face texture cleanup — the source AI textures still carry broad dark
+      streaks. `clean_textures.py` (GLB image despeckle + buffer rebuild) works; tune
+      the filter with `test_filters.py` (`optwork/tex_filters.png`) and re-render the
+      nine portraits.
+- [ ] Refresh perf/report and the asset inventory after the texture changes.
+- [ ] Keep this file and `README.md` current — they were the last two behind the work.
+
+---
+
 ## 0. Safety net — do first
 
 - [ ] **Push the repo** to `git.patch.gg` so the work exists outside the VM
@@ -35,6 +71,10 @@ person who owns this project:
 
 ## 2. Characters — the largest realism gap
 
+- [x] Full-front selection portraits (were rendered in profile; now `YAW = 0` in
+      `render_faces.py` and `PROFILE_YAW = 0` in `src/ui/AvatarPreview.js`)
+- [ ] Remove the dark streaks baked into the source AI face textures before shipping
+      (`clean_textures.py` + `test_filters.py`)
 - [ ] Switch the player avatar off the MPFB `toon01` skin to a realistic skin
 - [ ] Regenerate every NPC with realistic MPFB skins, eyes and hair
 - [ ] Model era-correct garments: 1324 boubou/tagelmust, 1865 frock coat and
@@ -113,7 +153,8 @@ person who owns this project:
 - [ ] Deliver the final videos to the airdrop folder
 - [ ] `pch check` — run the game in Patch's headless browser and read the report
 - [ ] `pch validate` — check `patch.json` and the files
-- [ ] Budget check: whole game under 500 MB, no CDN, every asset CC0/CC-BY-4.0
+- [x] Budget check: runtime assets 65.2 MB, dist 79.1 MiB — well under 500 MB; no CDN;
+      every asset CC0/CC-BY-4.0 (keep the Polyfork credit)
 - [ ] `pch publish` from a Windows PC with Patch Desktop — **only when the
       person asks**
 
@@ -121,8 +162,8 @@ person who owns this project:
 
 - [ ] Headless pointer lock fails, so mouse-look is limited in recordings
 - [ ] SwiftShader cannot measure real frame rate
-- [ ] The host SD card is at 100% capacity (772 MB free) — clear space before
-      delivering large videos
+- [ ] The VM's `/data` is 84 % full (3.4 GiB free) — clear space before delivering
+      large videos (or `instabox resize test --disk <GiB>`)
 - [ ] The VM has no `ffmpeg`; mp4 conversion has to happen on the phone
-- [ ] `instabox exec` truncates stdout around 768 KB and prints a warning —
-      use the port forward for binaries
+- [ ] `instabox exec` caps each stream at 1 MiB and a command at ~60 s — run long
+      jobs with `nohup … &` and read the log, and use `instabox pull` for binaries

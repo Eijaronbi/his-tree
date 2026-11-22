@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { texturePath } from '../core/AssetTiers.js';
+import { assetTextureLoader } from '../core/Assets.js';
 
 export function makeRng(seed) {
   let s = seed >>> 0;
@@ -14,7 +16,7 @@ const texCache = new Map();
 export function loadTexture(file, { srgb = false, repeat = null } = {}) {
   const key = `${file}|${srgb ? 's' : 'l'}|${repeat ? repeat.join('x') : '-'}`;
   if (texCache.has(key)) return texCache.get(key);
-  const tex = new THREE.TextureLoader().load(TEX_BASE + file);
+  const tex = assetTextureLoader().load(texturePath(file));
   tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
   tex.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace;
   tex.anisotropy = 8;

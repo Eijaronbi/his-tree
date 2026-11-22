@@ -130,8 +130,8 @@ export class AudioManager {
     osc.frequency.setValueAtTime(freq, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(Math.max(30, freq * slide), ctx.currentTime + dur);
     g.gain.setValueAtTime(0.0001, ctx.currentTime);
-    g.gain.exponentialRampToTime(gain, ctx.currentTime + 0.008);
-    g.gain.exponentialRampToTime(0.0001, ctx.currentTime + dur);
+    g.gain.exponentialRampToValueAtTime(gain, ctx.currentTime + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
     osc.connect(g);
     g.connect(this.sfxGain);
     osc.start();

@@ -8,3 +8,20 @@ This project is on [Patch](https://patch.gg), where people publish and play brow
 - **Publish it.** Once the person wants it out, commit your work and run `pch publish`. It uploads, tests it on this PC with Patch Desktop and stops for your review of the sheets it keeps here; send that as it says, and it follows Patch's review until it's live. Without Patch Desktop on this PC it stops after the upload: ask the person to open it and run `pch publish` again, or to open the game's page in Patch Desktop on their PC and press test.
 - **Push it.** Plain `git push` works. If git says HTTP 413, that's over 100 MB: run `pch push`, which takes any size.
 - **The rest.** `pch guide` has everything else.
+
+## HIS-TREE specifics
+
+- **Loaders.** Every runtime GLB is meshopt-compressed. Use `makeGltfLoader()` from
+  `src/core/GLTF.js`; a bare `GLTFLoader` throws "Malformed buffer data".
+- **Don't touch** the theatre stage actors or the seated audience (no LOD or scale
+  swaps without the owner's explicit consent). `amina.glb` is broken and stays off
+  the roster. Keep the Polyfork animal credit in the report.
+- **View modes.** Avatar (third person) is the default and must load with
+  `window.__game.pov === false`; the toggle is `P`, the HUD `#btnView`, the pause
+  menu and the touch button.
+- **Probes.** `check_shots.py`, `check_turn.py`, `check_fly_pose.py` drive Playwright
+  against `:8099` and print JSON. They dismiss the auto-opening `#dialog` first; do
+  not add `?auto=1` (it advances to the ending card).
+- **Assets.** Compression and texture cleanup live in `optimise_assets.sh` and
+  `clean_textures.py`; originals are outside the repo, not in `assets/`.
+- **Docs.** `docs/TODO.md` is the running plan; `HANDOVER.md` is the current hand-off.
