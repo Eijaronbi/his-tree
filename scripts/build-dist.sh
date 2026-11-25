@@ -20,6 +20,8 @@ mkdir -p "$OUT/vendor/three/addons"
 cp "$ROOT/vendor/three/three.module.js" "$OUT/vendor/three/"
 cp -R "$ROOT/vendor/three/addons/." "$OUT/vendor/three/addons/"
 rm -rf "$OUT/vendor/three/addons/libs"
+mkdir -p "$OUT/vendor/three/addons/libs"
+cp "$ROOT/vendor/three/addons/libs/meshopt_decoder.module.js" "$OUT/vendor/three/addons/libs/"
 
 # Instanced crowd: LOD and far sets are what Audience.js instantiates.
 cp -R "$ROOT/assets/models/characters/audience_lod" "$OUT/assets/models/characters/"
