@@ -160,6 +160,30 @@ Done and verified — `HANDOVER.md` has the evidence and file map:
 
 ## 9. Known issues
 
+- [x] **Fixed: headless/legless avatar.** `poseCharacter` baked float positions into the
+      cloned `position` attribute; the meshopt-optimised GLBs store positions as
+      normalised int8 (`KHR_mesh_quantization`), so every baked vertex truncated and the
+      torso/head collapsed while the untouched legs survived. It now always writes a
+      fresh `Float32Array` (position + normal), so the 1.1 MB quantised `lofi.glb` renders
+      correctly again — and the quantised NPC/audience models are no longer mangled.
+      Asset version bumped to `v4`, SW `his-tree-v7`, so clients pick up the fix.
+- [x] **Fixed: flight pose head-down.** `Flight._poseFly` already lays the body flat
+      (`rig.rotation.x = PI/2`), and the vertex shader added a *second* pitch (1.45 rad),
+      so the avatar tipped ~176° head-down. The shader no longer pitches the body; it only
+      poses limbs. Verified: body now horizontal, head forward, legs full and splayed.
+- [x] **Flight arms extended forward (vertex approximation).** The Lofi source mesh
+      (checked on the raw, unposed GLB from front/side/back) is symmetric with both hands
+      tucked inside the coat pockets — there is no extended arm to reuse, so the old
+      T-pose detector latched onto the coat's *back* panel (z<0) and rotating it did
+      nothing visible. A new `aFlight` attribute marks a shoulder→pocket sleeve tube
+      (radius-limited, symmetric, ~6.6k selected verts) and the flight block swings that
+      tube ~169° about the shoulder X axis (position *and* normal) so both sleeves point
+      ahead of the head once the rig lies the body flat. A neck guard keeps the collar
+      closed (wider radii tore a hole there). Verified from directly above: two separated
+      arms reach forward alongside the head, legs trail behind with both blue shoes
+      intact, silhouette symmetric, no holes. Asset version `v4`, SW `his-tree-v9`.
+      This is still a vertex approximation, not real arm articulation; the proper fix is
+      a rigged mesh (§10.5 — cloud Blender armature + auto-weights + retargeted clips).
 - [ ] Headless pointer lock fails, so mouse-look is limited in recordings
 - [ ] SwiftShader cannot measure real frame rate
 - [ ] The VM's `/data` is 84 % full (3.4 GiB free) — clear space before delivering
@@ -167,3 +191,102 @@ Done and verified — `HANDOVER.md` has the evidence and file map:
 - [ ] The VM has no `ffmpeg`; mp4 conversion has to happen on the phone
 - [ ] `instabox exec` caps each stream at 1 MiB and a command at ~60 s — run long
       jobs with `nohup … &` and read the log, and use `instabox pull` for binaries
+
+## 10. Realism pipeline (free / near-free)
+
+Reference points: **A: Alice, the Gathering** (UE 5.8, 3 people, 4 days, $22.97 actual
+spend — witnesstodark.itch.io/a + /a-devlog) and the Patch stack (patch.gg/blender,
+`@patchgg/cli`). Goal: more realistic scenery, characters and play **without** leaving
+the three.js build.
+
+### 10.1 Free asset sources (all CC0 / CC-BY, no paid tiers needed)
+
+- [ ] **Poly Haven** (CC0): HDRI skies for each era + AO/GTAO maps → PMREM environment
+      lighting instead of flat ambient light
+- [ ] **ambientCG** (CC0): PBR sets (sand, mud, timber, plaster, rusted iron) → replace
+      our flat-colour materials with normal/roughness/AO maps
+- [ ] **Kenney** / **Quaternius** / **OpenGameArt** / **Sketchfab (CC0 filter)**:
+      crates, barrels, baskets, rugs, awnings, 1865 theatre props, street clutter
+- [ ] **BlenderKit** / **Fab free tier** (Epic account): high-res scans; keep the
+      Polyfork (Horse/Donkey/Camel, CC BY 4.0) credit line
+- [ ] **AI 3D generators, free tiers** (Tripo AI, Hunyuan3D, Rodin): one-off props
+      (pots, statues, market goods, furniture) → retopo, UV, bake, export GLB
+- [ ] Track every import: keep `docs/CREDITS.md` with source + licence per asset
+
+### 10.2 Patch stack (cloud Blender + agent pipelines)
+
+- [ ] Install the Patch CLI: `npm i -g @patchgg/cli` → `pch login` → **500 starter
+      credits** ($0.01/credit, ~50 credits/hour → ~10 free cloud-Blender hours)
+- [ ] `patch-gg/cloud-blender-skills` — 29 Blender skills (modeling, UVs, materials,
+      baking, rigging, animation, clothing, hair, environments, weather, export, QA);
+      run in Patch's cloud Blender with `--cloud`; GPU renders on L40S;
+      `cloud.py fork --count N` runs N takes in parallel; files sync both ways
+- [ ] `patch-gg/trompe` — paints a whole level from a gray blockout: plan cameras →
+      FLUX paints each view → project + bake → textured `.glb`.
+      `node scripts/texture.mjs --level <blockout.glb> --views 90 --atlas 8192 --style "..."`.
+      Best for buildings seen from a few metres (Mali market, 1865 theatre); not for
+      ground under the player's feet. ~1–4¢ per view (≈$4 for 90 views)
+- [ ] `patch-gg/anymove` — motion capture for any creature from one AI video →
+      fitted rig + GLB animation (NPC walk/talk, Lofi idle/flight)
+- [ ] `patch-gg/crowdbricks` — batched motion for hundreds of characters (theatre
+      audience, market crowd)
+
+### 10.3 Engine realism (three.js — no rewrite)
+
+- [ ] IBL per era: HDRI → `PMREMGenerator`, sun + sky colour matched to the time of day
+- [ ] PBR everywhere: normal/roughness/AO maps, correct metalness, no flat colours
+- [ ] Contact shadows / GTAO / SSAO; verify PostFX pass order (grade → bloom → bokeh →
+      GTAO → output) and that shadows are on for the low tier too
+- [ ] LODs + GPU instancing for props/crowd (cloud Blender batch does 3 LODs × 64 chars)
+- [ ] Atmosphere: per-era sky, dust motes, heat haze, wind on awnings/banners
+- [ ] Audio: footsteps per surface, market/harbour ambience beds (Freesound CC0),
+      per-space reverb
+- [ ] Characters: authored idle/walk/fly clips (anymove), no "hands in pocket" silhouette
+
+### 10.5 Character realism — which tool fixes what
+
+The cast looks "AI-made" for three separate reasons; each has a different tool.
+
+| Problem we see | Tool that fixes it | Cost |
+| --- | --- | --- |
+| Face/skin blotches, streaks, baked-in noise in the texture (Lofi's speckled face, the streak on the 1865 portraits) | **Our own pipeline** first (`clean_textures.py` despeckle → `blur_lift` in `test_filters.py`, threshold 45–60, strength 0.75–0.85), then repaint only what is still broken with an **image model** and re-bake through **cloud-blender-skills** (materials + baking skills) | free on our side; cloud credits for the bake |
+| Silhouette / proportions / clothing that reads as a costume rather than a person | **cloud-blender-skills** — modeling, clothing, hair, retopology skills on one live cloud scene; fork the session for variants and keep the best | ~1 cloud hour per character |
+| Stiff, weightless motion (and the flight pose) | **`patch-gg/anymove`** — mocap any creature from one AI video, rig fitted in both views, GLB out; use it for walk / talk / carry / turn, then drive our `poseCharacter` shader from those clips | free (fal/credits for the video) |
+| Crowd of identical stiff spectators | **`patch-gg/crowdbricks`** — batched motion for hundreds of characters | free tier |
+| Unusable topology for animation (needs bone deformation) | **cloud-blender-skills** retopology + armature + automatic weights, then export a game-ready GLB with 3 LODs (cloud Blender does the LOD batch for a whole folder) | ~1 cloud hour per character |
+| Flat materials on clothes (no fabric response) | **ambientCG** fabric/leather/wool PBR sets + **Poly Haven** AO, applied in the cloud Blender material skills and baked | free (CC0) |
+| A face that is simply not a face | **AI 3D generators** (Tripo / Hunyuan3D / Rodin free tiers) to generate a *replacement* head for the 1865 characters, then blend it into the existing head in cloud Blender | free tier, ~5–10 min |
+
+Order of work: (1) texture cleanup on the current cast, (2) anymove clips for Lofi and the
+NPCs, (3) cloud-Blender retopo/rig/LOD pass per hero character, (4) replace the weakest
+faces with generated heads. Keep the existing models until a replacement beats them in a
+side-by-side render (`render_faces.py` + `AvatarPreview.js`).
+
+### 10.4 Unreal Engine 5 — can we move HIS-TREE there without rebuilding?
+
+- [x] **Answer:** the *assets* move almost 1:1 (our GLBs import through UE's Interchange
+      glTF/GLB pipeline, PBR textures included), but the *gameplay code* does not — the
+      three.js/JS layer has to be re-authored in Blueprints or C++. There is no
+      three.js → UE compiler.
+- [ ] Practical constraints here: the UE editor needs ~80–100 GB and a desktop GPU;
+      our sandbox/VM cannot run it — the Windows PC would need Epic Games (free tier,
+      GitHub-linked). A remake also means re-authoring quest logic, flight, dialogue,
+      UI and save state.
+- [ ] **Recommendation:** keep shipping the three.js build now (1.1 MB quantised GLBs,
+      86 MB dist, runs on the phone) and spend the free Patch credits on the asset
+      pipeline above. Revisit UE5 only for a remake with new content, not as a port.
+
+## 11. Gameplay fixes
+
+- [x] **Exit to chapters** — pause menu button that returns to the episode picker (`#pauseExit` → `openMap()`)
+- [x] **Flight pose** — body horizontal, head forward, arms stretched forward and separated,
+      legs full and spaced (was upright, arms at the sides, legs collapsed into one thin column)
+- [ ] **Idle hands** — hands clear of the coat (they still read as being in the pockets; the
+      idle push is a small `uArmOut` nudge, a rigged mesh is the real fix — §10.5)
+- [x] **Objective arrow always on** during gameplay — falls back to the next quest step
+      (`stepTarget`) or the last known target (`lastObjectiveStep`) when the current step
+      has no world position
+- [x] **Rotation fix** — the canvas kept its load-time inline pixel size after an
+      orientation change, so the game filled only half the screen and the rest stayed
+      dark; the canvas is now styled 100% and the viewport refits on resize /
+      orientationchange / visualViewport resize

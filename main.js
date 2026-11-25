@@ -167,6 +167,8 @@ const director = new CameraDirector(camera);
 const ui = new UI();
 
 let post = null;
+try { localStorage.removeItem('his-tree:pov'); } catch (e) { /* private mode */ }
+
 const quality = new QualityController(renderer, {
   tier,
   manual: !adaptEnabled || !!qualityParam,
@@ -253,7 +255,7 @@ function ensureChapterAssets(chapterId) {
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   if (location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(location.hostname)) return;
-  navigator.serviceWorker.register('./sw.js').catch(() => undefined);
+  navigator.serviceWorker.register('./sw.js?v=7').catch(() => undefined);
 }
 
 async function boot() {
@@ -330,7 +332,7 @@ async function boot() {
     }
   };
 
-  window.__game = { scene, camera, renderer, quality: quality.state, memory: () => memorySnapshot(renderer), assets: { origin: ASSET_ORIGIN, version: ASSET_VERSION }, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter, controller, input, flight, playerPose, avatarMode, mounts, narrator, get activeMount() { return activeMount; } }; }, THREE };
+  window.__game = { scene, camera, renderer, quality: quality.state, memory: () => memorySnapshot(renderer), assets: { origin: ASSET_ORIGIN, version: ASSET_VERSION }, setPOV, togglePOV, get pov() { return !!(controller && controller.firstPerson); }, get flight() { return flight; }, get state() { return { world, npcs, props, quest, player, post, chapter: activeChapter, controller, input, flight, playerPose, avatarMode, mounts, narrator, get activeMount() { return activeMount; } }; }, THREE };
   loop();
 }
 
@@ -412,9 +414,12 @@ function setAvatar(kind) {
   controller.runAction = null;
   controller.idleAction = null;
   controller.height = height * 0.84;
+  controller.eyeHeight = height * 0.9;
+  controller.povForward = 0.22;
   controller.groundY = 0;
   if (flight) {
     flight.rig = rig;
+    flight.baseEye = controller.eyeHeight;
     flight.enable(kind === 'lofi');
   }
   ui.setPowers(kind === 'lofi'
@@ -495,7 +500,13 @@ function makePlayer(chapter, source = null) {
   const clips = [];
   controller = new ThirdPersonController(camera, pivot, mixer, clips, input, 0);
   controller.height = height * 0.84;
+  controller.eyeHeight = height * 0.9;
+  controller.povForward = 0.22;
   flight = new Flight({ player: pivot, controller, camera, scene, ui, input, rig });
+  flight.baseEye = controller.eyeHeight;
+  controller.setFirstPerson(false);
+  if (quality) quality.setScaleLock(false);
+  povLabel(false);
   playerBody = model;
   playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38 }) : null;
   flight.enable(avatarMode === 'lofi');
@@ -860,6 +871,42 @@ function journalKey(e) {
 
 let paused = false;
 
+function povLabel(on) {
+  const btn = document.getElementById('pausePov');
+  if (btn) {
+    btn.textContent = 'View: ' + (on ? 'Avatar (third person)' : 'First person');
+    btn.classList.toggle('is-off', !!on);
+  }
+  const hud = document.getElementById('btnView');
+  if (hud) {
+    // the button always names what it will switch to
+    hud.textContent = on ? 'AVATAR' : 'POV';
+    hud.classList.toggle('is-pov', !!on);
+    hud.setAttribute('aria-label', on ? 'Switch to avatar view' : 'Switch to first person view');
+    hud.setAttribute('title', on ? 'Avatar view (P)' : 'First person view (P)');
+  }
+}
+
+/**
+ * First person (POV) mode. Works for every avatar, including Lofi the Yeti:
+ * the camera moves to the character's eyes and the body turns with the view.
+ * The game always starts in avatar (third person) mode, the toggle is explicit.
+ */
+function setPOV(on) {
+  if (!controller) return false;
+  const want = !!on;
+  controller.setFirstPerson(want);
+  if (quality) quality.setScaleLock(want);
+  povLabel(want);
+  if (ui) ui.toast(want ? 'First person view' : 'Avatar view', 1400);
+  return want;
+}
+
+function togglePOV() {
+  if (!controller) return false;
+  return setPOV(!controller.firstPerson);
+}
+
 function setPaused(on) {
   paused = !!on;
   const panel = document.getElementById('pause');
@@ -879,6 +926,10 @@ function setupPauseMenu() {
   if (menuBtn) menuBtn.addEventListener('click', () => { audio.sfx('ui'); setPaused(!paused); });
   const resume = document.getElementById('pauseResume');
   if (resume) resume.addEventListener('click', () => { audio.sfx('ui'); setPaused(false); });
+  const povBtn = document.getElementById('pausePov');
+  if (povBtn) povBtn.addEventListener('click', () => { audio.sfx('ui'); togglePOV(); });
+  const viewBtn = document.getElementById('btnView');
+  if (viewBtn) viewBtn.addEventListener('click', () => { audio.sfx('ui'); togglePOV(); });
   const chapters = document.getElementById('pauseChapters');
   if (chapters) chapters.addEventListener('click', () => {
     audio.sfx('ui');
@@ -969,6 +1020,8 @@ function syncTouchPowers() {
     const el = document.getElementById(id);
     if (el) el.style.display = show && document.body.classList.contains('touch') ? 'flex' : 'none';
   }
+  const pov = document.getElementById('btnPov');
+  if (pov) pov.style.display = document.body.classList.contains('touch') ? 'flex' : 'none';
 }
 
 function setupMobile() {
@@ -1122,6 +1175,7 @@ function loop() {
       if (input.consume('KeyF')) flight.toggleFloat();
       if (input.consume('KeyG')) flight.toggleFly();
     }
+    if (input.consume('KeyP')) togglePOV();
     controller.update(dt);
     if (activeMount) updateRiding(dt, t);
     if (playerPose) playerPose.setWalk(controller.speed, controller.walkPhase);

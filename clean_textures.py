@@ -1,7 +1,7 @@
 """Remove dark AI-texture blotches from embedded GLB images.
 
 Parses a binary glTF container, filters every embedded image (PNG/WebP) with a
-dark-outlier median blend, and writes a new GLB. Geometry buffers (including the
+dark-outlier Gaussian blend, and writes a new GLB. Geometry buffers (including the
 EXT_meshopt_compression fallback buffer) are copied byte for byte.
 """
 import io
@@ -45,26 +45,26 @@ def write_glb(path, js, bins):
             f.write(b)
 
 
-def despeckle(image, threshold=26, strength=0.8):
-    """Lift pixels that are far darker than their local neighbourhood."""
+def blur_lift(image, radius=9, threshold=45, strength=0.85):
+    """Lift dark streaks towards a blurred local neighbourhood."""
     rgb = image.convert("RGB")
-    med = rgb.filter(ImageFilter.MedianFilter(9)).filter(ImageFilter.MedianFilter(3))
+    blurred = rgb.filter(ImageFilter.GaussianBlur(radius))
     src = rgb.load()
-    mid = med.load()
+    base = blurred.load()
     w, h = rgb.size
     out = Image.new("RGB", (w, h))
     dst = out.load()
     for y in range(h):
         for x in range(w):
             r, g, b = src[x, y]
-            mr, mg, mb = mid[x, y]
+            mr, mg, mb = base[x, y]
             luma = 0.299 * r + 0.587 * g + 0.114 * b
             mluma = 0.299 * mr + 0.587 * mg + 0.114 * mb
             gap = mluma - luma
             if gap <= threshold:
                 dst[x, y] = (r, g, b)
                 continue
-            amount = min(1.0, gap / (threshold * 3.0)) * strength
+            amount = min(1.0, gap / (threshold * 2.0)) * strength
             dst[x, y] = (
                 int(r + (mr - r) * amount),
                 int(g + (mg - g) * amount),
@@ -73,7 +73,12 @@ def despeckle(image, threshold=26, strength=0.8):
     return out
 
 
-def clean_glb(src_path, dst_path, threshold=26, strength=0.8):
+def despeckle(image, threshold=45, strength=0.85, radius=9):
+    """Backward-compatible entry point for the texture cleanup pipeline."""
+    return blur_lift(image, radius, threshold, strength)
+
+
+def clean_glb(src_path, dst_path, threshold=45, strength=0.85, radius=9):
     """Rewrite buffer 0: keep the meshopt payload, replace the embedded images.
 
     gltf-transform stores the image bytes first and the EXT_meshopt_compression
@@ -113,7 +118,7 @@ def clean_glb(src_path, dst_path, threshold=26, strength=0.8):
         try:
             pil = Image.open(io.BytesIO(raw))
             pil.load()
-            cleaned = despeckle(pil, threshold, strength)
+            cleaned = despeckle(pil, threshold, strength, radius)
             out = io.BytesIO()
             if mime == "image/webp":
                 cleaned.save(out, format="WEBP", quality=92, method=6)
@@ -141,7 +146,8 @@ def clean_glb(src_path, dst_path, threshold=26, strength=0.8):
 if __name__ == "__main__":
     src = sys.argv[1]
     dst = sys.argv[2]
-    threshold = int(sys.argv[3]) if len(sys.argv) > 3 else 26
-    strength = float(sys.argv[4]) if len(sys.argv) > 4 else 0.8
-    replaced, total, before, after = clean_glb(src, dst, threshold, strength)
+    threshold = int(sys.argv[3]) if len(sys.argv) > 3 else 45
+    strength = float(sys.argv[4]) if len(sys.argv) > 4 else 0.85
+    radius = int(sys.argv[5]) if len(sys.argv) > 5 else 9
+    replaced, total, before, after = clean_glb(src, dst, threshold, strength, radius)
     print("%s -> %s images=%d/%d bytes %d -> %d" % (os.path.basename(src), os.path.basename(dst), replaced, total, before, after))

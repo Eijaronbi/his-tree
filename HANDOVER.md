@@ -23,17 +23,18 @@ work from here**, in this workspace copy:
 
 | Area | Result / evidence |
 |---|---|
-| **Flight (Lofi)** | Superman pose (`uPose=3`, head arched up), real altitude (8 m cruise, floor 3.2, max 120), steady banked turns (`FLY_BANK_ANGLE 0.55`, rate-limited), yaw sway removed. Probe `check_turn.py`: rig dead-centre, bank settles −0.548 rad (31°), heading turns steadily, no oscillation. |
+| **Flight (Lofi)** | Superman pose (`uPose=3`), real altitude (8 m cruise, floor 3.2, max 120), steady banked turns (`FLY_BANK_ANGLE 0.55`, rate-limited), yaw sway removed. Probe `check_turn.py`: rig dead-centre, bank settles −0.548 rad (31°), heading turns steadily, no oscillation. |
+| **Flight pose (fixed 2026-11-25)** | The avatar flew **head-down**: `Flight._poseFly` already lays the body flat (`rig.rotation.x = PI/2 + pitch`) and the vertex shader added a *second* pitch (1.45 rad) → ~176°. The shader no longer pitches the body. **Arms:** the Lofi source mesh keeps both hands in the coat pockets (verified on the raw GLB from all sides), so a new `aFlight` attribute marks the shoulder→pocket sleeve tube and the flight block swings it ~169° about the shoulder X axis (position *and* normal, neck guard keeps the collar closed). Measured in-game: arms reach ahead of the head (`z` 1.813 vs the head front 2.118), separated (`x` −0.31/+0.36), legs full and split, no holes; from the front the two sleeves read as solid, separated limbs. The hands themselves stay in the pockets — a rigged mesh (§10.5 of `docs/TODO.md`) is the real fix. |
 | **Flight camera** | `ThirdPersonController.targetHeight` (0.2 m in flight) keeps the body centred; chase `5.4 + alt*0.02`, pitch floor 0.1 → body ~79×88 px, horizon visible. |
 | **Avatar/POV** | Avatar mode is hot default; `localStorage['his-tree:pov']` cleared on boot; `#btnView` names the **target**; `P` key + pause menu + touch. POV hides body, camera at eyes, render scale locked 1.0. Verified: load `pov=false`, cam≈5.4 m; toggle → `pov=true`, buffer 844×390; toggle back OK. |
 | **Faces (front)** | Yaw probe proved **yaw 0 = full front** for all 9. `render_faces.py` (`YAW=0.0`, MeshoptDecoder, new light rig, exposure 1.14) re-rendered all 9 `thumbs/faces/*.png`. `AvatarPreview.js`: `PROFILE_YAW=0`, matching lights, auto-spin ±0.11 rad. |
 | **Blotch cause** | `render_faces_cmp.py`: optimized vs original GLBs produce **identical dark streaks** → baked into the source AI textures, **not** compression damage. |
 | **Texture cleaner** | `clean_textures.py` parses GLB, despeckles embedded images, rebuilds the buffer while preserving the meshopt payload (elegant 399664→348198 B, lofi 1093092→1050954 B; both load with 0 errors). |
 | **§3 compression** | 67 GLBs **195,675,708 → 65,162,448 B (−66.7 %)**, PSNR 45–54 dB. Originals: `/data/home/his-tree-originals/models`. Script `optimise_assets.sh`. |
-| **§6/§7 delivery** | `core/Assets.js` (CDN origin + versioned URLs), `core/GLTF.js` meshopt loader at all loader sites, `sw.js` v4 + IndexedDB asset cache (220 MB), `core/AssetTiers.js`. |
+| **§6/§7 delivery** | `core/Assets.js` (CDN origin + versioned URLs), `core/GLTF.js` meshopt loader at all loader sites, `sw.js` (cache `his-tree-v9`) + IndexedDB asset cache (220 MB), `core/AssetTiers.js`. |
 | **§8/§10 quality** | `core/Quality.js` tiers low/med/high, scale floors **0.72/0.75/0.8** (was 0.55 → the "half screen"), POV pinned 1.0; UI graphics select; `__game.quality`. |
 | **§11 memory** | `core/Memory.js` (trackTexture/releaseOwner/disposeTree/memorySnapshot), `disposeWorld()`. |
-| **dist** | `build_dist.py` fixed; dist **116.7 → 79.1 MiB**; 4 chapters boot with 0 failed requests. |
+| **dist** | `build_dist.py` fixed; dist **116.7 → 79.5 MiB**; 4 chapters boot with 0 failed requests. |
 | **Perf/inventory** | payloads mali 15.67 / washington 20.46 / france 9.45 / berlin 8.05 MiB (`/data/home/luxin/perf-post-opt.txt`); inventory 680 files, 85.8 MiB, 0 unreferenced. |
 | **Probes** | `check_shots.py` dismisses the auto-opening `#dialog` (`KeyE` ×4) → `dialogueOpen:false` in all states. `?auto=1` runs the quest to the end card — omit it from probes. |
 | **Flight drift** | `ThirdPersonController.update` zeroes velocity and skips integration while `frozen` (Flight owns motion). `check_turn.py` now reports `vel:[0,0,0]` in every state; bank −0.55 rad and heading turn unchanged. |
@@ -68,8 +69,11 @@ in `clean_textures.py` (`despeckle(threshold=26, strength=0.8)`) is too weak.
 
 ### 2.2 Clean in-flight beauty shot
 `optwork/shot5_fly_closeup.png` / `shot6_fly_bank.png` exist but the close-up camera lerps
-back to 5.4 m. Produce one convincing head-up / face-forward / arms-forward shot (freeze the
-camera distance, keep the horizon in frame) for the README/report.
+back to 5.4 m. The flight **pose** is now correct (body horizontal, head forward, arms
+forward — see the table above), so produce one convincing face-forward / arms-forward shot
+(freeze the camera distance, keep the horizon in frame) for the README/report. Use the
+game's own camera hook for framing: set `window.__cam = {p:[x,y,z], l:[x,y,z]}` (offsets are
+relative to the player) and the game applies it every frame.
 
 ### 2.3 Refresh perf + report + inventory
 `python3 perf_opt.py` → `/data/home/luxin/perf-post-opt.txt`; rebuild with `build_dist.py`;
@@ -87,7 +91,8 @@ refresh `docs/ASSET-INVENTORY.md` / `PERF-BASELINE.txt` via `make_inventory.py`.
 - **Loaders must use MeshoptDecoder** (`core/GLTF.js`); a plain `GLTFLoader` fails with
   `Malformed buffer data: -1` / `Invalid typed array length`.
 - **Pose:** model forward is local **+Z**; `CharacterAnim.js` `uPose > 2.5` is the flight pose;
-  cache key `histree-pose-v5`.
+  cache key `histree-pose-v6`. In flight the rig maps local **+y → world −z** (head forward)
+  and local **+z → world +y** (face up).
 - **Keys:** `F` toggleFloat, `G` toggleFly, `P` togglePOV, `#btnView` HUD. Flight HUD reads
   "G LAND", "A/D TURN", "W/S UP/DOWN".
 - **Dialogue trap:** `#dialog` auto-opens at spawn and spoils screenshots → press `KeyE`

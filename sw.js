@@ -1,4 +1,4 @@
-const VERSION = 'his-tree-v4';
+const VERSION = 'his-tree-v9';
 const DB_NAME = 'his-tree-assets';
 const DB_VERSION = 1;
 const STORE = 'files';

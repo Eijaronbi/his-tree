@@ -1,7 +1,7 @@
 import asyncio, base64, os
 from playwright.async_api import async_playwright
 
-ROOT = "/data/home/his-tree"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "optwork/faces_sheet.png")
 NAMES = ["frock", "officer", "elegant", "simple", "worker", "soldier", "elder-m", "elder-f", "lofi"]
 

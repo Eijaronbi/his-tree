@@ -3,28 +3,36 @@ import * as THREE from 'three';
 const VERT_PATCH = `
   float side = transformed.x >= 0.0 ? 1.0 : -1.0;
   if (uPose > 2.5) {
-    // Superman flight pose: a streamlined horizontal body.
-    // The chest and head are lifted so he looks ahead instead of at the ground,
-    // the arms are stretched forward along the body axis and the legs stay
-    // straight and together (Reeve flew like a glider pilot, not a swimmer).
-    float cb = cos(-0.95);
-    float sb = sin(-0.95);
-    float dhy = transformed.y - uHipY;
-    float dhz = transformed.z;
-    transformed.y = uHipY + dhy * cb - dhz * sb;
-    transformed.z = dhy * sb + dhz * cb;
-    if (aArm > 0.001) {
-      float shy = uHipY + (uShoulderY - uHipY) * cb;
-      float shz = (uShoulderY - uHipY) * sb;
-      float ay = transformed.y - shy;
-      float az = transformed.z - shz;
-      transformed.y = shy - ay;
-      transformed.z = shz + az;
+    // The rig itself lays the body flat for flight (rig.rotation.x ~= PI/2),
+    // so the shader must NOT pitch the body a second time -- doing so tipped
+    // the avatar head-down. Pose only the limbs here.
+    if (aFlight > 0.001) {
+      // Lofi's source mesh keeps its hands in the coat pockets, so there is no
+      // extended arm to reuse: aFlight marks the sleeve tube from shoulder to
+      // pocket and we swing it up over the head. Once the rig lies the body
+      // flat that points the arms ahead of the chest (superman).
+      float ady = transformed.y - uShoulderY;
+      float adz = transformed.z;
+      float ang = 2.95 * aFlight;
+      float ca = cos(ang);
+      float sa = sin(ang);
+      transformed.y = uShoulderY + ady * ca - adz * sa;
+      transformed.z = ady * sa + adz * ca;
+      // the normal has to follow the same rotation, otherwise the sleeve is
+      // lit as if it were still hanging down and reads as torn black shards
+      objectNormal = vec3(
+        objectNormal.x,
+        objectNormal.y * ca - objectNormal.z * sa,
+        objectNormal.y * sa + objectNormal.z * ca);
     }
     if (aLeg > 0.001) {
-      transformed.x = mix(transformed.x, side * uHeight * 0.012, 0.7);
+      transformed.x += side * uHeight * 0.022 * aLeg;
     }
   } else {
+  if (uArmOut > 0.0001 && uPose < 0.5 && aArm > 0.001) {
+    // keep the hands clear of the coat so they do not read as tucked away
+    transformed.x += side * uArmOut * uHeight * aArm;
+  }
   if (uPose > 0.001 && aArm > 0.001) {
     float pa = uPose * 1.5;
     float pdy = transformed.y - uShoulderY;
@@ -42,7 +50,7 @@ const VERT_PATCH = `
     transformed.y = uShoulderY + dy * cos(sw) - dz * sin(sw);
     transformed.z = dz * cos(sw) + dy * sin(sw);
   }
-  if (uPose > 1.5 && uLeg > 0.001) {
+  if (uPose > 1.5 && aLeg > 0.001) {
     float sa = -(uPose - 1.0) * 1.15;
     float sca = cos(sa);
     float ssa = sin(sa);
@@ -278,6 +286,11 @@ export function poseCharacter(root, opts = {}) {
     const nor = geo.attributes.normal;
     const armAttr = new Float32Array(pos.count);
     const legAttr = new Float32Array(pos.count);
+    // Always bake into fresh float arrays: quantized (int8/int16) source
+    // attributes would truncate the float positions written below, collapsing
+    // every mesh that was optimized with KHR_mesh_quantization.
+    const pArr = new Float32Array(pos.count * 3);
+    const nArr = nor ? new Float32Array(nor.count * 3) : null;
     const weights = armWeights.get(m) || null;
 
     for (let i = 0; i < pos.count; i += 1) {
@@ -286,6 +299,14 @@ export function poseCharacter(root, opts = {}) {
       const z = m.pos[i * 3 + 2];
       const w = weights ? weights[i] : 0;
       armAttr[i] = w;
+      let nx = 0;
+      let ny = 0;
+      let nz = 0;
+      if (nor) {
+        nx = nor.getX(i);
+        ny = nor.getY(i);
+        nz = nor.getZ(i);
+      }
       if (w > 0.001 && armDown > 0.001) {
         const side = x >= 0 ? 1 : -1;
         const pivotX = side * torsoHalf * 0.98;
@@ -294,26 +315,78 @@ export function poseCharacter(root, opts = {}) {
         const sa = Math.sin(ang);
         const dx = x - pivotX;
         const dy = y - shoulderY;
-        const nx = pivotX + dx * ca - dy * sa;
-        const ny = shoulderY + dx * sa + dy * ca;
-        if (Number.isFinite(nx) && Number.isFinite(ny)) {
-          x = nx;
-          y = ny;
-          if (nor) {
-            const nvx = nor.getX(i);
-            const nvy = nor.getY(i);
-            nor.setXYZ(i, nvx * ca - nvy * sa, nvx * sa + nvy * ca, nor.getZ(i));
+        const nxp = pivotX + dx * ca - dy * sa;
+        const nyp = shoulderY + dx * sa + dy * ca;
+        if (Number.isFinite(nxp) && Number.isFinite(nyp)) {
+          x = nxp;
+          y = nyp;
+          if (nArr) {
+            const rx = nx * ca - ny * sa;
+            const ry = nx * sa + ny * ca;
+            nx = rx;
+            ny = ry;
           }
         }
       }
       const legW = smoothstep(hipY + h * 0.02, hipY - h * 0.12, y);
       legAttr[i] = legW * (opts.legScale ?? 1);
-      pos.setXYZ(i, x, y, z);
+      pArr[i * 3] = x;
+      pArr[i * 3 + 1] = y;
+      pArr[i * 3 + 2] = z;
+      if (nArr) {
+        nArr[i * 3] = nx;
+        nArr[i * 3 + 1] = ny;
+        nArr[i * 3 + 2] = nz;
+      }
       info.verts += 1;
     }
 
+    // Flight-arm weight: a tube from the shoulder down to the pocket, built
+    // from the *baked* positions so it matches what the shader sees. The
+    // weight is a pure distance field with a wide falloff and no hard gates:
+    // a clipped field tears the surface into shredded slivers because
+    // neighbouring vertices end up with very different rotations.
+    // Kept separate from aArm so the walk/idle swing stays untouched.
+    const flightAttr = new Float32Array(pos.count);
+    {
+      const R0 = h * 0.035;
+      const R1 = h * 0.085;
+      const shoulderX = torsoHalf * 1.02;
+      const handX = torsoHalf * 0.72;
+      const handY = hipY + h * 0.02;
+      const handZ = h * 0.06;
+      for (let i = 0; i < pos.count; i += 1) {
+        const x = pArr[i * 3];
+        const y = pArr[i * 3 + 1];
+        const z = pArr[i * 3 + 2];
+        // keep the neck and head out of the swing: the tube's shoulder end
+        // reaches them, and rotating them tore the collar open
+        const neckGuard = smoothstep(shoulderY + h * 0.05, shoulderY - h * 0.01, y);
+        if (neckGuard <= 0.001) continue;
+        const s = x >= 0 ? 1 : -1;
+        const ax = s * shoulderX;
+        const bx = s * handX;
+        const dx = bx - ax;
+        const dy = handY - shoulderY;
+        const dz = handZ;
+        const len2 = dx * dx + dy * dy + dz * dz || 1e-6;
+        let t = ((x - ax) * dx + (y - shoulderY) * dy + z * dz) / len2;
+        t = Math.max(0, Math.min(1, t));
+        const qx = ax + dx * t;
+        const qy = shoulderY + dy * t;
+        const qz = dz * t;
+        const d = Math.hypot(x - qx, y - qy, z - qz);
+        const w = (1 - smoothstep(R0, R1, d)) * neckGuard;
+        if (w > 0.001) flightAttr[i] = w;
+      }
+    }
+
+    geo.setAttribute('position', new THREE.BufferAttribute(pArr, 3));
+    if (nArr) geo.setAttribute('normal', new THREE.BufferAttribute(nArr, 3));
+
     geo.setAttribute('aArm', new THREE.BufferAttribute(armAttr, 1));
     geo.setAttribute('aLeg', new THREE.BufferAttribute(legAttr, 1));
+    geo.setAttribute('aFlight', new THREE.BufferAttribute(flightAttr, 1));
     geo.computeBoundingBox();
     geo.computeBoundingSphere();
 
@@ -337,7 +410,8 @@ export function poseCharacter(root, opts = {}) {
     uPose: { value: 0 },
     uShoulderX: { value: torsoHalf },
     uIdle: { value: 0 },
-    uGroundY: { value: minY }
+    uGroundY: { value: minY },
+    uArmOut: { value: opts.armOut ?? 0 }
   };
 
   root.traverse((o) => {
@@ -350,11 +424,11 @@ export function poseCharacter(root, opts = {}) {
         shader.vertexShader = shader.vertexShader
           .replace(
             '#include <common>',
-            '#include <common>\nattribute float aArm;\nattribute float aLeg;\nuniform float uPhase;\nuniform float uAmt;\nuniform float uHipY;\nuniform float uShoulderY;\nuniform float uHeight;\nuniform float uArmAmp;\nuniform float uLegAmp;\nuniform float uPose;\nuniform float uShoulderX;\nuniform float uIdle;\nuniform float uGroundY;'
+            '#include <common>\nattribute float aArm;\nattribute float aLeg;\nattribute float aFlight;\nuniform float uPhase;\nuniform float uAmt;\nuniform float uHipY;\nuniform float uShoulderY;\nuniform float uHeight;\nuniform float uArmAmp;\nuniform float uLegAmp;\nuniform float uPose;\nuniform float uShoulderX;\nuniform float uIdle;\nuniform float uGroundY;\nuniform float uArmOut;'
           )
           .replace('#include <begin_vertex>', '#include <begin_vertex>\n' + VERT_PATCH);
       };
-      mat.customProgramCacheKey = () => 'histree-pose-v5';
+      mat.customProgramCacheKey = () => 'histree-pose-v6';
       mat.needsUpdate = true;
       return mat;
     });

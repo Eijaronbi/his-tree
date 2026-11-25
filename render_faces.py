@@ -1,7 +1,7 @@
 import asyncio, base64, json, os, sys
 from playwright.async_api import async_playwright
 
-ROOT = "/data/home/his-tree"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "thumbs/faces")
 AVATARS = [
     ("frock", "./assets/models/characters/audience_lod/char_adult_m_frock.glb"),

@@ -13,7 +13,7 @@ function resolveOrigin() {
 }
 
 export const ASSET_ORIGIN = resolveOrigin();
-export const ASSET_VERSION = 'v2';
+export const ASSET_VERSION = 'v4';
 
 function withVersion(url) {
   if (!url) return url;

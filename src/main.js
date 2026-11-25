@@ -76,6 +76,7 @@ const CARD_BY_CHAPTER = {
 
 let cine = null;
 let waypoint = null;
+let lastObjectiveStep = null;
 let worldMap = null;
 let avatarPicker = null;
 let avatarPreview = null;
@@ -133,7 +134,9 @@ let tier = detectTier();
 setAssetTier(tier);
 const adaptEnabled = params.get('adapt') !== '0';
 renderer.setPixelRatio(flags.px ? 1 : Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(window.innerWidth, window.innerHeight, false);
+renderer.domElement.style.width = '100%';
+renderer.domElement.style.height = '100%';
 renderer.shadowMap.enabled = flags.shadow;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -255,7 +258,7 @@ function ensureChapterAssets(chapterId) {
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   if (location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(location.hostname)) return;
-  navigator.serviceWorker.register('./sw.js?v=4').catch(() => undefined);
+  navigator.serviceWorker.register('./sw.js?v=9').catch(() => undefined);
 }
 
 async function boot() {
@@ -406,7 +409,7 @@ function setAvatar(kind) {
     rig.add(model);
   }
   playerBody = model;
-  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38, armOut: 0.035 }) : null;
   mixer = new THREE.AnimationMixer(model || rig);
   controller.mixer = mixer;
   controller.actions = {};
@@ -481,7 +484,6 @@ function makePlayer(chapter, source = null) {
     const h = Math.max(0.4, box.max.y - box.min.y);
     model.position.set(-c.x, -box.min.y, -c.z);
     model.userData.height = h;
-    dressMaliCourt(model, 'guide');
     height = h;
     rig.add(model);
   } else if (baseModels.player && chapter.playerFile !== null) {
@@ -508,7 +510,7 @@ function makePlayer(chapter, source = null) {
   if (quality) quality.setScaleLock(false);
   povLabel(false);
   playerBody = model;
-  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38 }) : null;
+  playerPose = (model && !/pose=0/.test(location.search)) ? poseCharacter(model, { armDown: 'auto', legAmp: 0.32, armAmp: 0.38, armOut: 0.035 }) : null;
   flight.enable(avatarMode === 'lofi');
   if (typeof syncTouchPowers === 'function') syncTouchPowers();
   if (avatarMode === 'lofi') {
@@ -937,6 +939,17 @@ function setupPauseMenu() {
     if (avatarPicker) avatarPicker.hide();
     openMap();
   });
+  const exit = document.getElementById('pauseExit');
+  if (exit) exit.addEventListener('click', () => {
+    audio.sfx('ui');
+    setPaused(false);
+    if (avatarPicker) avatarPicker.hide();
+    if (flight && flight.mode !== 'ground') flight.toggleFly();
+    if (activeMount) dismount();
+    if (player) player.visible = false;
+    disposeWorld();
+    openMap();
+  });
   const restart = document.getElementById('pauseRestart');
   if (restart) restart.addEventListener('click', () => {
     audio.sfx('ui');
@@ -1047,16 +1060,34 @@ function setupMobile() {
   window.addEventListener('orientationchange', () => setTimeout(syncOrientation, 120));
 }
 
-function objectiveTarget() {
-  if (!quest || !quest.step) return null;
-  const st = quest.step;
+function stepTarget(st) {
+  if (!st) return null;
   if (st.type === 'goto' && st.marker) return { x: st.marker.x, y: 0, z: st.marker.z, label: st.label || 'Go there' };
-  if (st.type === 'talk' && st.who && npcs[st.who]) {
+  if ((st.type === 'talk' || st.type === 'choice') && st.who && npcs[st.who]) {
     return { x: npcs[st.who].position.x, y: npcs[st.who].position.y, z: npcs[st.who].position.z, label: npcs[st.who].label || 'Speak to them' };
   }
   if (st.type === 'inspect' && st.target && props[st.target]) {
     return { x: props[st.target].position.x, y: props[st.target].position.y, z: props[st.target].position.z, label: props[st.target].label || 'Look closer' };
   }
+  return null;
+}
+
+function objectiveTarget() {
+  if (!quest) return null;
+  const st = quest.step;
+  const direct = stepTarget(st);
+  if (direct) {
+    lastObjectiveStep = st;
+    return direct;
+  }
+  const steps = quest.mission && quest.mission.steps ? quest.mission.steps : [];
+  const idx = typeof quest.stepIndex === 'number' ? quest.stepIndex : 0;
+  for (let i = idx + 1; i < steps.length; i += 1) {
+    const next = stepTarget(steps[i]);
+    if (next) return next;
+  }
+  const previous = stepTarget(lastObjectiveStep);
+  if (previous) return previous;
   return null;
 }
 
@@ -1141,13 +1172,26 @@ window.__poseUniforms = () => (playerPose ? playerPose.uniforms : null);
 
 setupMobile();
 
-window.addEventListener('resize', () => {
+function fitViewport() {
+  const canvas = renderer.domElement;
+  if (canvas) {
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+  }
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   quality.apply();
   if (post) post.resize();
   syncOrientation();
+}
+
+window.addEventListener('resize', fitViewport);
+window.addEventListener('orientationchange', () => {
+  fitViewport();
+  setTimeout(fitViewport, 250);
+  setTimeout(fitViewport, 700);
 });
+if (window.visualViewport) window.visualViewport.addEventListener('resize', fitViewport);
 
 let frames = 0;
 let fpsTime = 0;
