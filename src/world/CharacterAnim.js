@@ -399,6 +399,13 @@ export function poseCharacter(root, opts = {}) {
   }
   info.baked = true;
 
+  // The "LOFI" lettering is a separate flat mesh sitting on the hoodie's back.
+  // Lying face-up in flight it ends up on top of the body and reads as a slab
+  // floating above the avatar, so it is hidden for the flight poses only.
+  const labelMeshes = meshes
+    .filter((m) => m.mesh && typeof m.mesh.name === 'string' && /text/i.test(m.mesh.name))
+    .map((m) => m.mesh);
+
   const shared = {
     uPhase: { value: 0 },
     uAmt: { value: 0 },
@@ -450,6 +457,8 @@ export function poseCharacter(root, opts = {}) {
       else if (name === 'slam') shared.uPose.value = 0.35;
       else if (name === 'sit') shared.uPose.value = 2;
       else shared.uPose.value = 0;
+      const airborne = name === 'fly' || name === 'superman';
+      for (const m of labelMeshes) m.visible = !airborne;
     }
   };
 }
