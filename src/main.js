@@ -258,7 +258,7 @@ function ensureChapterAssets(chapterId) {
 function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
   if (location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(location.hostname)) return;
-  navigator.serviceWorker.register('./sw.js?v=9').catch(() => undefined);
+  navigator.serviceWorker.register('./sw.js?v=10').catch(() => undefined);
 }
 
 async function boot() {
